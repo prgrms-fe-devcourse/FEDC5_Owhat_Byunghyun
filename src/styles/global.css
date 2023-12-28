@@ -11,6 +11,6 @@
 
 @layer base {
   * {
-    @apply font-LINE;
+    @apply font-sans;
   }
 }
