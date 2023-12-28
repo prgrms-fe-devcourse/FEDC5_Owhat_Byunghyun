@@ -10,10 +10,8 @@ const meta = {
 export default meta;
 
 export const PrimaryText: StoryObj<typeof Text> = {
-  argTypes: {
-    children: { control: 'text' },
-  },
   args: {
+    children: 'Text',
     fontColor: 'primary',
     fontSize: 'md',
     decoration: 'none',
@@ -22,19 +20,15 @@ export const PrimaryText: StoryObj<typeof Text> = {
 };
 
 export const BoldText: StoryObj<typeof Text> = {
-  argTypes: {
-    children: { control: 'text' },
-  },
   args: {
+    children: 'Text',
     strong: true,
   },
 };
 
 export const UnderlineText: StoryObj<typeof Text> = {
-  argTypes: {
-    children: { control: 'text' },
-  },
   args: {
+    children: 'Text',
     decoration: 'underline',
   },
 };
