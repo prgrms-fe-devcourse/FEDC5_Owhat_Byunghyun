@@ -9,18 +9,6 @@ export interface TextProps
   extends VariantProps<typeof TextVariants>,
     ComponentProps<'div'> {
   children: ReactNode;
-  fontColor?:
-    | 'primary'
-    | 'success'
-    | 'error'
-    | 'online'
-    | 'white'
-    | 'black'
-    | 'lightGray'
-    | 'gray';
-  fontSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  strong?: boolean;
-  decoration?: 'none' | 'underline' | 'lineThrough' | 'overline';
 }
 
 const Text = ({
