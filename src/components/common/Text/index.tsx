@@ -11,9 +11,9 @@ export interface TextProps
   children: ReactNode;
   color?:
     | 'primary'
-    | 'green'
-    | 'red'
-    | 'lightGreen'
+    | 'success'
+    | 'error'
+    | 'online'
     | 'white'
     | 'black'
     | 'lightGray'

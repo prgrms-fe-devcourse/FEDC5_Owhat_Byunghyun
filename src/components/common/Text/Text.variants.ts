@@ -3,15 +3,15 @@ import { cva } from 'class-variance-authority';
 export const TextVariants = cva(``, {
   variants: {
     color: {
-      default: 'text-gray900',
+      default: 'text-black',
       primary: 'text-primary',
-      red: 'text-red',
-      green: 'text-green',
-      lightGreen: 'text-light-green',
-      black: 'text-gray900',
-      white: 'text-gray0',
-      lightGray: 'text-gray300',
-      gray: 'text-gray700',
+      error: 'text-red',
+      success: 'text-green',
+      online: 'text-light-green',
+      black: 'text-black',
+      white: 'text-white',
+      lightGray: 'text-gray-300',
+      gray: 'text-gray-700',
     },
     size: {
       default: 'text-md',
