@@ -4,8 +4,7 @@ import IconSprite from '~/assets/icon-sprite.svg';
 
 import { IconName } from './type';
 
-interface IconProps
-  extends Omit<ComponentProps<'svg'>, 'id' | 'width' | 'height'> {
+interface IconProps extends Omit<ComponentProps<'svg'>, 'width' | 'height'> {
   id: IconName;
   size?: number;
 }
