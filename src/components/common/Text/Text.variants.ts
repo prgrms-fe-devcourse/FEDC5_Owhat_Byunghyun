@@ -5,9 +5,9 @@ export const TextVariants = cva(``, {
     fontColor: {
       default: 'text-black',
       primary: 'text-primary',
-      error: 'text-red',
-      success: 'text-green',
-      online: 'text-light-green',
+      error: 'text-error',
+      success: 'text-success',
+      online: 'text-online',
       black: 'text-black',
       white: 'text-white',
       lightGray: 'text-gray-300',
