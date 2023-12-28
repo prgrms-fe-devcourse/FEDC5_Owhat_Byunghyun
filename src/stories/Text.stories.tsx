@@ -14,8 +14,8 @@ export const PrimaryText: StoryObj<typeof Text> = {
     children: { control: 'text' },
   },
   args: {
-    color: 'primary',
-    size: 'md',
+    fontColor: 'primary',
+    fontSize: 'md',
     decoration: 'none',
     strong: false,
   },

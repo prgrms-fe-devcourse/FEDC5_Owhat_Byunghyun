@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 
 export const TextVariants = cva(``, {
   variants: {
-    color: {
+    fontColor: {
       default: 'text-black',
       primary: 'text-primary',
       error: 'text-red',
@@ -13,7 +13,7 @@ export const TextVariants = cva(``, {
       lightGray: 'text-gray-300',
       gray: 'text-gray-700',
     },
-    size: {
+    fontSize: {
       default: 'text-md',
       xs: `text-xs`,
       sm: `text-sm`,
@@ -35,8 +35,8 @@ export const TextVariants = cva(``, {
     },
   },
   defaultVariants: {
-    color: 'default',
-    size: 'default',
+    fontColor: 'default',
+    fontSize: 'default',
     strong: 'default',
     decoration: 'default',
   },
