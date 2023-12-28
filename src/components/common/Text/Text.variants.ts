@@ -20,6 +20,8 @@ export const TextVariants = cva(``, {
       md: `text-md`,
       lg: `text-lg`,
       xl: `text-xl`,
+      '2xl': `text-2xl`,
+      '3xl': `text-3xl`,
     },
     strong: {
       default: 'font-normal',
