@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Sigmar&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'LINE';
+  src: url('../assets/fonts/LINESeedKR-Rg.woff2');
+}
+
+@layer base {
+  * {
+    @apply font-LINE;
+  }
+}
