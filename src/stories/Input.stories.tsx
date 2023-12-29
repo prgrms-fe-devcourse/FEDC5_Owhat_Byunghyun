@@ -6,14 +6,14 @@ const meta = {
   title: 'Common/Components/Input',
   component: Input,
   argTypes: {
-    onChange: { action: 'onChangeFunc', control: 'function' },
+    onChange: { action: 'onChange', control: 'function' },
     placeholder: { control: 'text' },
-    isBorderNone: { control: 'boolean' },
+    hasBorder: { control: 'boolean' },
     isBottomBorderOnly: { control: 'boolean' },
   },
   parameters: {
     actions: {
-      handles: ['onChangeFunc'],
+      handles: ['onChange'],
     },
   },
 } satisfies Meta<typeof Input>;
@@ -22,12 +22,7 @@ export default meta;
 
 export const InputExample: StoryObj<typeof Input> = {
   args: {
-    onChange: event => {
-      event.target.value;
-    },
-    placeholder: '내용을 입력해주세요.',
-    isBorderNone: false,
+    hasBorder: false,
     isBottomBorderOnly: false,
   },
-  render: args => <Input {...args} />,
 };
