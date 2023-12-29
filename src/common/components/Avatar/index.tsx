@@ -24,6 +24,18 @@ export interface AvatarProps
   svgSize?: number;
 }
 
+const useConditionalEffect = (
+  callback: () => void,
+  condition: boolean,
+  deps: React.DependencyList,
+) => {
+  useEffect(() => {
+    if (condition) {
+      callback();
+    }
+  }, [deps, callback, condition]);
+};
+
 const Avatar = ({
   AvatarType = 'img',
   display = 'block',
@@ -42,11 +54,15 @@ const Avatar = ({
 }: AvatarProps) => {
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    const image = new Image();
-    image.src = src;
-    image.onload = () => setLoaded(true);
-  });
+  useConditionalEffect(
+    () => {
+      const image = new Image();
+      image.src = src;
+      image.onload = () => setLoaded(true);
+    },
+    AvatarType === 'img',
+    [src],
+  );
 
   return (
     <div className={cn(avatarVariants({ shape }), className)} {...props}>
