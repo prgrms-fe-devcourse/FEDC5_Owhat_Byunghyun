@@ -22,7 +22,9 @@ export default meta;
 
 export const InputExample: StoryObj<typeof Input> = {
   args: {
-    onChange: () => {},
+    onChange: event => {
+      event.target.value;
+    },
     borderColor: 'default',
     outlineColor: 'default',
     placeholder: '내용을 입력해주세요.',
