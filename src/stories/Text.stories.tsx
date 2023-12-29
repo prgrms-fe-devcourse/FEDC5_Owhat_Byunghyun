@@ -6,7 +6,7 @@ type fontSizeOption = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 
 type decorationOption = 'none' | 'underline' | 'overline' | 'lineThrough';
 
-const fontSizeOption: Array<fontSizeOption> = [
+const sizeOption: Array<fontSizeOption> = [
   'xs',
   'sm',
   'md',
@@ -27,8 +27,8 @@ const meta = {
   title: 'Common/Components/Text',
   component: Text,
   argTypes: {
-    fontSize: {
-      options: fontSizeOption,
+    size: {
+      options: sizeOption,
     },
     decoration: {
       options: decorationOption,
@@ -44,7 +44,7 @@ export default meta;
 export const PrimaryText: StoryObj<typeof Text> = {
   args: {
     children: 'Text',
-    fontSize: 'md',
+    size: 'md',
     decoration: 'none',
     strong: false,
   },

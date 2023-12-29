@@ -11,17 +11,9 @@ export interface TextProps
   children: ReactNode;
 }
 
-const Text = ({
-  children,
-  className,
-  fontSize,
-  strong,
-  decoration,
-}: TextProps) => {
+const Text = ({ children, className, size, strong, decoration }: TextProps) => {
   return (
-    <div
-      className={cn(textVariants({ fontSize, strong, decoration }), className)}
-    >
+    <div className={cn(textVariants({ size, strong, decoration }), className)}>
       {children}
     </div>
   );

@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 
 export const textVariants = cva(`text-black`, {
   variants: {
-    fontSize: {
+    size: {
       default: 'text-md',
       xs: `text-xs`,
       sm: `text-sm`,
@@ -26,7 +26,7 @@ export const textVariants = cva(`text-black`, {
     },
   },
   defaultVariants: {
-    fontSize: 'default',
+    size: 'default',
     strong: 'default',
     decoration: 'default',
   },
