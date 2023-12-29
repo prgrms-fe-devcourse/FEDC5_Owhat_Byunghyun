@@ -10,10 +10,7 @@ interface InputProps
     ComponentProps<'input'> {}
 
 const Input = ({
-  id,
-  placeholder,
   className,
-  onChange,
   hasBorder,
   isBottomBorderOnly,
   ...props
@@ -21,9 +18,6 @@ const Input = ({
   return (
     <input
       {...props}
-      id={id}
-      onChange={onChange}
-      placeholder={placeholder}
       className={cn(
         InputVariants({
           hasBorder,
