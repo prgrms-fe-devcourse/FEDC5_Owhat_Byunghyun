@@ -1,9 +1,9 @@
 import { VariantProps } from 'class-variance-authority';
 import { ComponentProps, useRef } from 'react';
 
+import useLazyImage from '~/hooks/useLazyImage';
 import { cn } from '~/utils/cn';
 
-import useObserver from '../../../hooks/useLazyImage';
 import { imageVariants } from './Image.variants';
 
 export interface ImageProps
@@ -30,7 +30,7 @@ const Image = ({
   ...props
 }: ImageProps) => {
   const imgRef = useRef<HTMLImageElement>(null);
-  const [loaded] = useObserver({ lazy, ref: imgRef, threshold });
+  const [loaded] = useLazyImage({ lazy, ref: imgRef, threshold });
 
   return (
     <img
