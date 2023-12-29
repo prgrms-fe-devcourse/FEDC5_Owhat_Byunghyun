@@ -3,10 +3,10 @@ import { ComponentProps, ReactNode } from 'react';
 
 import { cn } from '~/utils/cn';
 
-import { TextVariants } from './Text.variants';
+import { textVariants } from './Text.variants';
 
 export interface TextProps
-  extends VariantProps<typeof TextVariants>,
+  extends VariantProps<typeof textVariants>,
     ComponentProps<'div'> {
   children: ReactNode;
 }
@@ -22,7 +22,7 @@ const Text = ({
   return (
     <div
       className={cn(
-        TextVariants({ fontColor, fontSize, strong, decoration }),
+        textVariants({ fontColor, fontSize, strong, decoration }),
         className,
       )}
     >
