@@ -13,13 +13,13 @@ const onIntersecrtion: IntersectionObserverCallback = (entries, io) => {
   });
 };
 
-interface useObserverProps {
+interface useLazyImageParams {
   lazy: boolean | undefined;
   ref: React.RefObject<HTMLImageElement>;
   threshold: number;
 }
 
-const useObserver = ({ lazy, ref, threshold }: useObserverProps) => {
+const useLazyImage = ({ lazy, ref, threshold }: useLazyImageParams) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -53,4 +53,4 @@ const useObserver = ({ lazy, ref, threshold }: useObserverProps) => {
   return [loaded, setLoaded];
 };
 
-export default useObserver;
+export default useLazyImage;
