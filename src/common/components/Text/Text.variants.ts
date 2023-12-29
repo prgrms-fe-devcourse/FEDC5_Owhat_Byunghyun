@@ -3,7 +3,6 @@ import { cva } from 'class-variance-authority';
 export const textVariants = cva(`text-black`, {
   variants: {
     size: {
-      default: 'text-md',
       xs: `text-xs`,
       sm: `text-sm`,
       md: `text-md`,
@@ -13,12 +12,10 @@ export const textVariants = cva(`text-black`, {
       '3xl': `text-3xl`,
     },
     strong: {
-      default: 'font-normal',
       true: 'font-bold',
       false: 'font-normal',
     },
     decoration: {
-      default: 'no-underline',
       none: 'no-underline',
       underline: 'underline',
       overline: 'overline',
@@ -26,8 +23,8 @@ export const textVariants = cva(`text-black`, {
     },
   },
   defaultVariants: {
-    size: 'default',
-    strong: 'default',
-    decoration: 'default',
+    size: 'md',
+    strong: false,
+    decoration: 'none',
   },
 });
