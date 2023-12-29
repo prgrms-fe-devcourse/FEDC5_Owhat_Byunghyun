@@ -14,17 +14,13 @@ export interface TextProps
 const Text = ({
   children,
   className,
-  fontColor,
   fontSize,
   strong,
   decoration,
 }: TextProps) => {
   return (
     <div
-      className={cn(
-        textVariants({ fontColor, fontSize, strong, decoration }),
-        className,
-      )}
+      className={cn(textVariants({ fontSize, strong, decoration }), className)}
     >
       {children}
     </div>
