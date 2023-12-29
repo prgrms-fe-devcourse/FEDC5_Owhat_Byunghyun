@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Image from '~/components/common/Image';
+import Image from '~/common/components/Image';
 
 export default {
   title: 'Common/Components/Image',

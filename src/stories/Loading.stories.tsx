@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Loading from '~/components/common/Loading';
+import Loading from '~/common/components/Loading';
 
 const meta: Meta<typeof Loading> = {
-  title: 'Components/Common/Loading',
+  title: 'Common/Components/Loading',
   component: Loading,
 };
 export default meta;

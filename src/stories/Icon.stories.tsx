@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Icon from '~/components/common/Icon';
-import { IconName } from '~/components/common/Icon/type';
+import Icon from '~/common/components/Icon';
+import { IconName } from '~/common/components/Icon/type';
 
 const meta: Meta<typeof Icon> = {
-  title: 'components/Icon',
+  title: 'Common/Components/Icon',
   component: Icon,
 };
 export default meta;

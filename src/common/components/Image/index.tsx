@@ -1,7 +1,7 @@
 import { VariantProps } from 'class-variance-authority';
 import { ComponentProps, useRef } from 'react';
 
-import useLazyImage from '~/hooks/useLazyImage';
+import useLazyImage from '~/common/hooks/useLazyImage';
 import { cn } from '~/utils/cn';
 
 import { imageVariants } from './Image.variants';
