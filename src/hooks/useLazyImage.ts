@@ -27,7 +27,9 @@ const useObserver = ({ lazy, ref, threshold }: useObserverProps) => {
       setLoaded(true);
       return;
     }
+
     const handleLoadImage = () => setLoaded(true);
+
     if (ref) {
       const imgElement = ref.current;
 
@@ -43,10 +45,11 @@ const useObserver = ({ lazy, ref, threshold }: useObserverProps) => {
 
   useEffect(() => {
     if (!lazy) return;
-    observer = new IntersectionObserver(onIntersecrtion, { threshold });
 
+    observer = new IntersectionObserver(onIntersecrtion, { threshold });
     ref.current && observer.observe(ref.current);
   }, [lazy, threshold, ref]);
+
   return [loaded, setLoaded];
 };
 

@@ -17,12 +17,12 @@ export interface ImageProps
 }
 
 const Image = ({
-  lazy,
+  lazy = false,
   display,
   threshold = 0.5,
   src,
   placeholder = 'https://via.placeholder.com/200',
-  alt,
+  alt = '이미지',
   mode,
   imgWidth,
   imgHeight,
