@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-export const TextVariants = cva(``, {
+export const textVariants = cva(``, {
   variants: {
     fontColor: {
       default: 'text-black',
