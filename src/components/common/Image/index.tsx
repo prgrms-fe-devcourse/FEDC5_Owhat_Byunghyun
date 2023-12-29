@@ -3,7 +3,7 @@ import { ComponentProps, useRef } from 'react';
 
 import { cn } from '~/utils/cn';
 
-import useObserver from '../../../hooks/useObserver';
+import useObserver from '../../../hooks/useLazyImage';
 import { imageVariants } from './Image.variants';
 
 export interface ImageProps
@@ -14,10 +14,6 @@ export interface ImageProps
   src: string;
   alt?: string;
   placeholder?: string;
-  imgWidth?: 'small' | 'halfFull' | 'full' | 'screen' | 'auto';
-  imgHeight?: 'small' | 'halfFull' | 'full' | 'screen' | 'auto';
-  mode?: 'cover' | 'fill' | 'contain';
-  display?: 'block' | 'inlineBlock';
 }
 
 const Image = ({
