@@ -21,9 +21,11 @@ const Input = ({
   isBorderNone,
   isBottomBorderOnly,
   inputType,
+  ...props
 }: InputProps) => {
   return (
     <input
+      {...props}
       id={id}
       type={inputType}
       onChange={onChange}
