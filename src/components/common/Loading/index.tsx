@@ -9,19 +9,12 @@ export interface LoadingProps
   extends VariantProps<typeof LoadingVariants>,
     ComponentProps<'div'> {}
 
-const Loading = ({
-  loadingSize,
-  loadingColor,
-  className,
-  ...props
-}: LoadingProps) => {
+const Loading = ({ size, className, ...props }: LoadingProps) => {
   return (
     <div
       className={cn(
-        'animate-spin rounded-full border-gray-300',
         LoadingVariants({
-          loadingSize,
-          loadingColor,
+          size,
         }),
         className,
       )}
