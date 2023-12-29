@@ -7,7 +7,9 @@ import { InputVariants } from './Input.variants';
 
 interface InputProps
   extends VariantProps<typeof InputVariants>,
-    ComponentProps<'input'> {}
+    ComponentProps<'input'> {
+  inputType: 'text' | 'password' | 'number' | 'email';
+}
 
 const Input = ({
   id,
@@ -18,12 +20,12 @@ const Input = ({
   outlineColor,
   isBorderNone,
   isBottomBorderOnly,
-  type,
+  inputType,
 }: InputProps) => {
   return (
     <input
       id={id}
-      type={type}
+      type={inputType}
       onChange={onChange}
       placeholder={placeholder}
       className={cn(
