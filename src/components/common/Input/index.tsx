@@ -27,14 +27,14 @@ const Input = ({
       onChange={onChange}
       placeholder={placeholder}
       className={cn(
-        'rounded-[8px] px-2 py-1',
+        'rounded-[8px] px-2 py-1 text-black placeholder:text-sm',
         InputVariants({
           borderColor,
           outlineColor,
           isBorderNone,
           isBottomBorderOnly,
         }),
-        `${className} `,
+        `${className}`,
       )}
     />
   );
