@@ -11,8 +11,6 @@ export interface LoadingProps
 
 const Loading = ({
   loadingSize,
-  loadingBorder,
-  loadingBorderColor,
   loadingColor,
   className,
   ...props
@@ -20,11 +18,9 @@ const Loading = ({
   return (
     <div
       className={cn(
-        'animate-spin rounded-full',
+        'animate-spin rounded-full border-gray-300',
         LoadingVariants({
           loadingSize,
-          loadingBorder,
-          loadingBorderColor,
           loadingColor,
         }),
         className,
