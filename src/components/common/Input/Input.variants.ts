@@ -14,7 +14,7 @@ export const InputVariants = cva(``, {
     },
     isBorderNone: {
       default: false,
-      true: 'rounded-none border-x-0 border-y-0 ',
+      true: 'border-transparent',
       false: 'border',
     },
     isBottomBorderOnly: {
