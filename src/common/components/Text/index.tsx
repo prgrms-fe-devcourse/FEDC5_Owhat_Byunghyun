@@ -1,5 +1,5 @@
 import { VariantProps } from 'class-variance-authority';
-import { ComponentProps, ReactNode } from 'react';
+import { ComponentProps, createElement, ReactNode } from 'react';
 
 import { cn } from '~/utils/cn';
 
@@ -9,6 +9,7 @@ export interface TextProps
   extends VariantProps<typeof textVariants>,
     ComponentProps<'div'> {
   children: ReactNode;
+  elementType?: 'div' | 'span' | 'p';
 }
 
 const Text = ({
@@ -17,15 +18,16 @@ const Text = ({
   size,
   strong,
   decoration,
+  elementType = 'div',
   ...props
 }: TextProps) => {
-  return (
-    <div
-      {...props}
-      className={cn(textVariants({ size, strong, decoration }), className)}
-    >
-      {children}
-    </div>
+  return createElement(
+    elementType,
+    {
+      ...props,
+      className: cn(textVariants({ size, strong, decoration }), className),
+    },
+    children,
   );
 };
 
