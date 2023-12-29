@@ -25,10 +25,9 @@ export const InputExample: StoryObj<typeof Input> = {
     onChange: event => {
       event.target.value;
     },
-    borderColor: 'default',
-    outlineColor: 'default',
     placeholder: '내용을 입력해주세요.',
     isBorderNone: false,
+    isBottomBorderOnly: false,
   },
   render: args => <Input {...args} />,
 };
