@@ -10,34 +10,18 @@ export default {
       control: 'text',
     },
     width: {
-      options: [
-        'small',
-        'medium',
-        'large',
-        'halfFull',
-        'full',
-        'screen',
-        'auto',
-      ],
+      options: ['small', 'halfFull', 'full', 'screen', 'auto'],
       control: 'inline-radio',
     },
     height: {
-      options: [
-        'small',
-        'medium',
-        'large',
-        'halfFull',
-        'full',
-        'screen',
-        'auto',
-      ],
+      options: ['small', 'halfFull', 'full', 'screen', 'auto'],
       control: 'inline-radio',
     },
     mode: {
       options: ['cover', 'fill', 'contain'],
       control: 'inline-radio',
     },
-    alt: {
+    imgAlt: {
       control: 'text',
     },
     className: {
@@ -45,7 +29,7 @@ export default {
     },
   },
   args: {
-    src: 'https://picsum.photos/200',
+    imgSrc: 'https://picsum.photos/200',
     mode: 'cover',
     placeholder: 'https://via.placeholder.com/200',
   },
@@ -64,7 +48,7 @@ export const Lazy: Story = {
     return (
       <div>
         {Array.from(new Array(20), (_, k) => k).map(i => (
-          <Image {...args} lazy key={i} src={`${args.src}?${i}`} />
+          <Image {...args} lazy key={i} imgSrc={`${args.imgSrc}?${i}`} />
         ))}
       </div>
     );

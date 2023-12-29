@@ -1,11 +1,9 @@
 import { cva } from 'class-variance-authority';
 
-export const ImageVariants = cva(``, {
+export const imageVariants = cva(``, {
   variants: {
     width: {
       small: 'w-20',
-      medium: 'w-40',
-      large: 'w-72',
       halfFull: 'w-1/2',
       full: 'w-full',
       screen: 'w-screen',
@@ -13,8 +11,6 @@ export const ImageVariants = cva(``, {
     },
     height: {
       small: 'h-20',
-      medium: 'h-40',
-      large: 'h-72',
       halfFull: 'h-1/2',
       full: 'h-full',
       screen: 'h-screen',
