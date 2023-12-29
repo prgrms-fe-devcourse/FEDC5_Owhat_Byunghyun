@@ -14,7 +14,7 @@ const Input = ({
   placeholder,
   className,
   onChange,
-  isBorderNone,
+  hasBorder,
   isBottomBorderOnly,
   ...props
 }: InputProps) => {
@@ -26,10 +26,10 @@ const Input = ({
       placeholder={placeholder}
       className={cn(
         InputVariants({
-          isBorderNone,
+          hasBorder,
           isBottomBorderOnly,
         }),
-        `${className}`,
+        className,
       )}
     />
   );

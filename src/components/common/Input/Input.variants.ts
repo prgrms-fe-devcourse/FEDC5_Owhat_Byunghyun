@@ -4,7 +4,7 @@ export const InputVariants = cva(
   `rounded-lg border border-gray-300 px-2 py-1 text-black placeholder:text-sm focus:border-primary focus:outline-none`,
   {
     variants: {
-      isBorderNone: {
+      hasBorder: {
         true: 'border-none',
         false: 'border',
       },
@@ -14,7 +14,7 @@ export const InputVariants = cva(
       },
     },
     defaultVariants: {
-      isBorderNone: false,
+      hasBorder: false,
       isBottomBorderOnly: false,
     },
   },
