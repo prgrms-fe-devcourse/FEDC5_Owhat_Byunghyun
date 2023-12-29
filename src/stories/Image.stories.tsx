@@ -3,17 +3,17 @@ import { Meta, StoryObj } from '@storybook/react';
 import Image from '~/components/common/Image';
 
 export default {
-  title: 'Components/Common/Image',
+  title: 'Common/Components/Image',
   component: Image,
   argTypes: {
     placeholder: {
       control: 'text',
     },
-    width: {
+    imgWidth: {
       options: ['small', 'halfFull', 'full', 'screen', 'auto'],
       control: 'inline-radio',
     },
-    height: {
+    imgHeight: {
       options: ['small', 'halfFull', 'full', 'screen', 'auto'],
       control: 'inline-radio',
     },
@@ -21,7 +21,7 @@ export default {
       options: ['cover', 'fill', 'contain'],
       control: 'inline-radio',
     },
-    imgAlt: {
+    alt: {
       control: 'text',
     },
     className: {
@@ -29,7 +29,7 @@ export default {
     },
   },
   args: {
-    imgSrc: 'https://picsum.photos/200',
+    src: 'https://picsum.photos/200',
     mode: 'cover',
     placeholder: 'https://via.placeholder.com/200',
   },
@@ -37,18 +37,14 @@ export default {
 
 type Story = StoryObj<typeof Image>;
 
-export const Default: Story = {
-  render: function Render(args) {
-    return <Image {...args} />;
-  },
-};
+export const Default: Story = {};
 
 export const Lazy: Story = {
   render: function Render(args) {
     return (
       <div>
         {Array.from(new Array(20), (_, k) => k).map(i => (
-          <Image {...args} lazy key={i} imgSrc={`${args.imgSrc}?${i}`} />
+          <Image {...args} lazy key={i} src={`${args.src}?${i}`} />
         ))}
       </div>
     );

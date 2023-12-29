@@ -1,5 +1,5 @@
 import { VariantProps } from 'class-variance-authority';
-import { HTMLAttributes, useRef } from 'react';
+import { ComponentProps, useRef } from 'react';
 
 import { cn } from '~/utils/cn';
 
@@ -8,25 +8,28 @@ import { imageVariants } from './Image.variants';
 
 export interface ImageProps
   extends VariantProps<typeof imageVariants>,
-    HTMLAttributes<HTMLImageElement> {
+    ComponentProps<'img'> {
   lazy?: boolean;
   threshold?: number;
-  imgSrc: string;
-  imgAlt?: string;
+  src: string;
+  alt?: string;
   placeholder?: string;
-  className?: string;
+  imgWidth?: 'small' | 'halfFull' | 'full' | 'screen' | 'auto';
+  imgHeight?: 'small' | 'halfFull' | 'full' | 'screen' | 'auto';
+  mode?: 'cover' | 'fill' | 'contain';
+  display?: 'block' | 'inlineBlock';
 }
 
 const Image = ({
   lazy,
   display,
   threshold = 0.5,
-  imgSrc,
+  src,
   placeholder = 'https://via.placeholder.com/200',
-  imgAlt,
+  alt,
   mode,
-  width,
-  height,
+  imgWidth,
+  imgHeight,
   className,
   ...props
 }: ImageProps) => {
@@ -36,9 +39,12 @@ const Image = ({
   return (
     <img
       ref={imgRef}
-      src={loaded ? imgSrc : placeholder}
-      alt={imgAlt}
-      className={cn(imageVariants({ width, height, mode, display }), className)}
+      src={loaded ? src : placeholder}
+      alt={alt}
+      className={cn(
+        imageVariants({ imgWidth, imgHeight, mode, display }),
+        className,
+      )}
       {...props}
     />
   );

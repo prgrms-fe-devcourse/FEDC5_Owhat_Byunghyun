@@ -2,14 +2,14 @@ import { cva } from 'class-variance-authority';
 
 export const imageVariants = cva(``, {
   variants: {
-    width: {
+    imgWidth: {
       small: 'w-20',
       halfFull: 'w-1/2',
       full: 'w-full',
       screen: 'w-screen',
       auto: 'w-auto',
     },
-    height: {
+    imgHeight: {
       small: 'h-20',
       halfFull: 'h-1/2',
       full: 'h-full',
@@ -28,8 +28,8 @@ export const imageVariants = cva(``, {
   },
   defaultVariants: {
     display: 'block',
-    width: 'small',
-    height: 'small',
+    imgWidth: 'small',
+    imgHeight: 'small',
     mode: 'cover',
   },
 });
