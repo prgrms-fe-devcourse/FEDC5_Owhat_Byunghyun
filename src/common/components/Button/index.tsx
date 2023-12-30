@@ -8,7 +8,6 @@ export interface ButtonProps extends ComponentProps<'button'> {
   children: React.ReactNode;
   loading?: boolean;
   fullwidth?: boolean;
-  type?: 'submit' | 'button' | 'reset';
   disabled?: boolean;
   border?: boolean;
 }
@@ -20,7 +19,6 @@ const Button = ({
   children,
   loading = false,
   fullwidth,
-  type,
   className,
   border = true,
   disabled,
@@ -33,7 +31,6 @@ const Button = ({
         className,
         `${fullwidth ? 'w-full' : ''}`,
       )}
-      type={type}
       disabled={disabled || loading}
     >
       {loading && (
