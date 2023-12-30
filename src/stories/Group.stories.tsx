@@ -32,6 +32,15 @@ const meta: Meta<typeof Group> = {
       control: 'boolean',
     },
   },
+  args: {
+    direction: 'row',
+    position: 'left',
+    align: 'start',
+    inline: false,
+    grow: false,
+    spacing: 'md',
+    noWrap: false,
+  },
 };
 
 export default meta;

@@ -3,11 +3,10 @@ import { cva } from 'class-variance-authority';
 export const groupVariants = cva(``, {
   variants: {
     direction: {
-      row: 'flex-row',
+      rows: 'flex-row',
       columns: 'flex-col',
     },
     position: {
-      default: 'left',
       left: 'justify-start',
       center: 'justify-center',
       right: 'justify-end',
@@ -27,13 +26,13 @@ export const groupVariants = cva(``, {
       false: 'flex-wrap',
     },
     grow: {
-      true: '[&>*]:grow-1 [&>*]:w-full',
+      true: '[&>*]:grow-1 flex-nowrap [&>*]:w-full',
       false: '[&>*]:grow-0',
     },
   },
   defaultVariants: {
-    direction: 'row',
-    position: 'default',
+    direction: 'rows',
+    position: 'left',
     align: 'start',
     inline: false,
     noWrap: false,
