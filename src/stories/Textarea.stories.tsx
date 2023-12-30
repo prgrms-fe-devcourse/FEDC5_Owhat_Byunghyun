@@ -15,6 +15,7 @@ export const Default: Story = {
   args: {
     size: 'sm',
     placeholder: 'Textarea 컴포넌트',
+    readonly: false,
     required: false,
     disabled: false,
   },
@@ -24,6 +25,7 @@ export const Default: Story = {
       options: ['sm', 'lg'],
     },
     placeholder: { control: 'text' },
+    readonly: { control: 'boolean' },
     required: { control: 'boolean' },
     disabled: { control: 'boolean' },
   },

@@ -5,6 +5,7 @@ import { cn } from '~/utils/cn';
 interface TextareaProps extends ComponentProps<'textarea'> {
   size?: 'sm' | 'lg';
   placeholder?: string;
+  readonly?: boolean;
   required?: boolean;
   disabled?: boolean;
 }
@@ -12,6 +13,7 @@ interface TextareaProps extends ComponentProps<'textarea'> {
 const Textarea = ({
   size = 'sm',
   placeholder = '',
+  readonly = false,
   required = false,
   disabled = false,
   className,
@@ -33,6 +35,7 @@ const Textarea = ({
   return (
     <textarea
       placeholder={placeholder}
+      readOnly={readonly}
       required={required}
       disabled={disabled}
       ref={textareaRef}
