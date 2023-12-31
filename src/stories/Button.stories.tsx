@@ -7,9 +7,9 @@ export default {
   title: 'Common/Components/Button',
   component: Button,
   argTypes: {
-    type: {
-      options: ['button', 'submit'],
-      control: 'options',
+    styleType: {
+      options: ['primary', 'secondary', 'outline', 'ghost'],
+      control: 'inline-radio',
     },
     fullwidth: {
       control: 'boolean',
@@ -20,11 +20,12 @@ export default {
     disabled: {
       control: 'boolean',
     },
-    border: {
-      control: 'boolean',
-    },
   },
-  args: {},
+  args: {
+    fullwidth: false,
+    loading: false,
+    disabled: false,
+  },
 } satisfies Meta<typeof Button>;
 
 type Story = StoryObj<typeof Button>;
@@ -34,18 +35,23 @@ export const Default: Story = {
     return (
       <>
         <div>
-          <Button {...args} className="bg-primary">
+          <Button {...args} styleType={'primary'}>
             button
           </Button>
         </div>
         <div>
-          <Button {...args} className="border-none text-primary">
+          <Button {...args} styleType={'secondary'}>
             완료
           </Button>
         </div>
 
         <div>
-          <Button {...args} className="border-gray">
+          <Button {...args} styleType={'outline'}>
+            작성
+          </Button>
+        </div>
+        <div>
+          <Button {...args} styleType={'ghost'}>
             <Icon id="search"></Icon>
           </Button>
         </div>

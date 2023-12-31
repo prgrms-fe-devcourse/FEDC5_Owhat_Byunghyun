@@ -1,37 +1,39 @@
+import { VariantProps } from 'class-variance-authority';
 import { ComponentProps } from 'react';
 
 import { cn } from '~/utils/cn';
 
 import Loading from '../Loading';
+import { buttonVarients } from './Button.variants';
 
-export interface ButtonProps extends ComponentProps<'button'> {
+export interface ButtonProps
+  extends VariantProps<typeof buttonVarients>,
+    ComponentProps<'button'> {
   children: React.ReactNode;
   loading?: boolean;
   fullwidth?: boolean;
   disabled?: boolean;
-  border?: boolean;
 }
-
-const ButtonStyle =
-  'rounded-md p-1 px-3 hover:opacity-50 transition-opacity relative ';
 
 const Button = ({
   children,
   loading = false,
   fullwidth,
   className,
-  border = true,
   disabled,
+  styleType,
+  ...props
 }: ButtonProps) => {
   return (
     <button
-      className={cn(
-        ButtonStyle,
-        { 'border-2 border-primary': border },
-        className,
-        `${fullwidth ? 'w-full' : ''}`,
-      )}
       disabled={disabled || loading}
+      className={cn(
+        buttonVarients({ styleType }),
+        className,
+        fullwidth ? 'w-full' : '',
+        disabled ? 'border-gray-300 bg-gray-300 text-white' : '',
+      )}
+      {...props}
     >
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center">
