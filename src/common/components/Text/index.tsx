@@ -15,17 +15,21 @@ export interface TextProps
 const Text = ({
   children,
   className,
-  size,
-  strong,
-  decoration,
+  size = 'md',
+  strong = false,
+  decoration = 'none',
   elementType = 'div',
+  isLogo = false,
   ...props
 }: TextProps) => {
   return createElement(
     elementType,
     {
       ...props,
-      className: cn(textVariants({ size, strong, decoration }), className),
+      className: cn(
+        textVariants({ size, strong, decoration, isLogo }),
+        className,
+      ),
     },
     children,
   );

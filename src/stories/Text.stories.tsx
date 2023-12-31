@@ -36,6 +36,9 @@ const meta = {
     strong: {
       control: 'boolean',
     },
+    isLogo: {
+      control: 'boolean',
+    },
   },
 } satisfies Meta<typeof Text>;
 
@@ -47,5 +50,6 @@ export const PrimaryText: StoryObj<typeof Text> = {
     size: 'md',
     decoration: 'none',
     strong: false,
+    isLogo: false,
   },
 };

@@ -21,10 +21,15 @@ export const textVariants = cva(`text-black`, {
       overline: 'overline',
       lineThrough: 'line-through',
     },
+    isLogo: {
+      true: 'font-logo',
+      false: 'font-sans',
+    },
   },
   defaultVariants: {
     size: 'md',
     strong: false,
     decoration: 'none',
+    isLogo: false,
   },
 });
