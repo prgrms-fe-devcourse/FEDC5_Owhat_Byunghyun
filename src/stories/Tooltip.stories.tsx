@@ -35,8 +35,8 @@ export const Default: StoryObj<typeof Tooltip> = {
 
 export const Hover: StoryObj<typeof Tooltip> = {
   render: args => (
-    <Tooltip {...args} eventType={'hover'} className="ml-3">
-      <Icon id="more-vert" />
+    <Tooltip {...args} eventType={'hover'}>
+      <Icon id="more-vert" className="ml-3" />
       <div>
         <p>댓글 수정하기</p>
         <p>댓글 삭제하기</p>
