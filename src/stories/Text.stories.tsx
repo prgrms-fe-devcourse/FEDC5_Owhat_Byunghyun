@@ -44,7 +44,7 @@ const meta = {
 
 export default meta;
 
-export const PrimaryText: StoryObj<typeof Text> = {
+export const Default: StoryObj<typeof Text> = {
   args: {
     children: 'Text',
     size: 'md',
