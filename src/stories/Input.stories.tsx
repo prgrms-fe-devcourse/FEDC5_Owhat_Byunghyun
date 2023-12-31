@@ -20,7 +20,7 @@ const meta = {
 
 export default meta;
 
-export const InputExample: StoryObj<typeof Input> = {
+export const Default: StoryObj<typeof Input> = {
   args: {
     hasBorder: false,
     isBottomBorderOnly: false,
