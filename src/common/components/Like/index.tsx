@@ -20,7 +20,9 @@ const Like = ({ initialState = false, onClick }: LikeProps) => {
   return (
     <button onClick={handleClick} className="outline-none">
       {on ? (
-        <Icon id="favorite-filled" className="fill-primary" />
+        <>
+          <Icon id="favorite-filled" className="animate-beat fill-red-400" />
+        </>
       ) : (
         <Icon id="favorite" />
       )}

@@ -25,6 +25,9 @@ export default {
         sans: ['LINE'],
         logo: ['Sigmar', 'sans-serif'],
       },
+      animation: {
+        beat: 'beat ease 0.3s forwards',
+      },
     },
   },
   plugins: [],

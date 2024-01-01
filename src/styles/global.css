@@ -13,4 +13,16 @@
   * {
     @apply font-sans;
   }
+
+  @keyframes beat {
+    0% {
+      transform: scale(1);
+    }
+    90% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
 }
