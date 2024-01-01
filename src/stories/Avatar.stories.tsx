@@ -6,39 +6,27 @@ export default {
   title: 'Common/Components/Avatar',
   component: Avatar,
   argTypes: {
-    imgSize: {
+    size: {
       options: ['small', 'full', 'auto'],
       control: 'inline-radio',
     },
-    svgSize: {
-      control: { type: 'range', min: 0, max: 100 },
-    },
-    mode: {
-      options: ['cover', 'fill', 'contain'],
+    display: {
+      options: ['block', 'inlineBlock'],
       control: 'inline-radio',
     },
-    alt: {
-      control: 'text',
-    },
-    className: {
-      control: 'text',
+    shape: {
+      options: ['circle', 'round', 'square'],
+      control: 'inline-radio',
     },
   },
   args: {
     src: 'https://picsum.photos/200',
-    mode: 'cover',
+    display: 'block',
+    size: 'small',
+    shape: 'circle',
   },
 } satisfies Meta<typeof Avatar>;
 
 type Story = StoryObj<typeof Avatar>;
 
-export const Default: Story = {
-  args: {
-    AvatarType: 'img',
-  },
-};
-export const svg: Story = {
-  args: {
-    AvatarType: 'svg',
-  },
-};
+export const Default: Story = {};

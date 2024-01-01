@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 
 export const avatarVariants = cva(
   `
-'relative inline-block overflow-hidden border-2 border-solid bg-stone-200'
+relative inline-block overflow-hidden border border-solid border-gray-300 bg-gray-200
 `,
   {
     variants: {
