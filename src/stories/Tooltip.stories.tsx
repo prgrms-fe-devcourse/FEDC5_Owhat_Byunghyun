@@ -7,14 +7,23 @@ const meta = {
   title: 'Common/Components/Tooltip',
   component: Tooltip,
   args: {
+    isShadowed: true,
     isArrow: true,
-    arrowPosition: 'left',
+    placement: 'bottom-left',
   },
   argTypes: {
     isShadowed: { control: 'boolean' },
     isArrow: { control: 'boolean' },
-    arrowPosition: {
-      options: ['left', 'center', 'right'],
+    placement: {
+      control: 'radio',
+      options: [
+        'top-left',
+        'top-center',
+        'top-right',
+        'bottom-left',
+        'bottom-center',
+        'bottom-right',
+      ],
     },
   },
 } satisfies Meta<typeof Tooltip>;
@@ -23,24 +32,28 @@ export default meta;
 
 export const Default: StoryObj<typeof Tooltip> = {
   render: args => (
-    <Tooltip {...args}>
-      <Icon id="more-vert" className="ml-3" />
-      <div>
-        <p>댓글 수정하기</p>
-        <p>댓글 삭제하기</p>
-      </div>
-    </Tooltip>
+    <div className="mt-[100px] flex flex-col items-center justify-center">
+      <Tooltip {...args}>
+        <Icon id="more-vert" />
+        <div>
+          <p>댓글 수정하기</p>
+          <p>댓글 삭제하기</p>
+        </div>
+      </Tooltip>
+    </div>
   ),
 };
 
 export const Hover: StoryObj<typeof Tooltip> = {
   render: args => (
-    <Tooltip {...args} eventType={'hover'}>
-      <Icon id="more-vert" className="ml-3" />
-      <div>
-        <p>댓글 수정하기</p>
-        <p>댓글 삭제하기</p>
-      </div>
-    </Tooltip>
+    <div className="flex justify-start">
+      <Tooltip {...args} eventType={'hover'}>
+        <Icon id="more-vert" />
+        <div>
+          <p>댓글 수정하기</p>
+          <p>댓글 삭제하기</p>
+        </div>
+      </Tooltip>
+    </div>
   ),
 };

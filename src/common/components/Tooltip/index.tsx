@@ -12,10 +12,8 @@ import {
 import { cn } from '~/utils/cn';
 
 import { useHandleTooltip } from './\bhooks/useHandleTooltip';
-import { tooltipVariants } from './Tooltip.variants';
+import { tooltipArrowVariants, tooltipVariants } from './Tooltip.variants';
 import { TooltipArrow } from './TooltipArrow';
-
-export type arrowPosition = 'left' | 'center' | 'right';
 
 export interface TooltipProps
   extends VariantProps<typeof tooltipVariants>,
@@ -23,16 +21,15 @@ export interface TooltipProps
   children: ReactNode | ReactNode[];
   eventType?: 'click' | 'hover';
   isArrow?: boolean;
-  arrowPosition?: arrowPosition;
 }
 
 const Tooltip = ({
   children,
   className,
   eventType = 'click',
-  isShadowed = false,
+  placement = 'bottom-left',
+  isShadowed = true,
   isArrow = true,
-  arrowPosition = 'left',
   ...props
 }: TooltipProps) => {
   const { isVisible, toggleVisibility, showTooltip, hideTooltip } =
@@ -47,10 +44,6 @@ const Tooltip = ({
   const firstChild =
     isValidElement<HTMLAttributes<ReactElement>>(childrenArray[0]) &&
     cloneElement(childrenArray[0], {
-      className: cn(
-        childrenArray[0].props.className,
-        'relative cursor-pointer',
-      ),
       ...(eventType === 'click' && { onClick: toggleVisibility }),
       ...(eventType === 'hover' && {
         onMouseEnter: showTooltip,
@@ -59,20 +52,22 @@ const Tooltip = ({
     });
 
   return (
-    <>
+    <div className="relative  cursor-pointer">
       {firstChild}
       <div
         className={cn(
-          tooltipVariants({ isShadowed }),
+          tooltipVariants({ isShadowed, placement }),
           `${isVisible ? 'opacity-100' : 'opacity-0'}`,
           className,
         )}
         {...props}
       >
         {childrenArray[1]}
-        {isArrow && <TooltipArrow position={arrowPosition} />}
+        {isArrow && (
+          <TooltipArrow className={cn(tooltipArrowVariants({ placement }))} />
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
