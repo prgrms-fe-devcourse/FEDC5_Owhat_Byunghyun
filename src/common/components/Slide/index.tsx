@@ -12,18 +12,17 @@ interface SlideProps extends ComponentProps<'div'> {
   useButton?: boolean;
   groupGap?: number;
 }
-//TODO : div에 onMouseDown와 같은 이벤트를 적용하면 비네이티브(div)의 상호작용 요소에 대해 웹 접근성 관련 경고가 뜨게 됨. 현재는 상호작용 요소가 필요해서 접근성을 향상 시키기 위해 role과 tabIndex 추가
 
-//presention : div가 아니다! 라는 의미 -> 찾아봐야 함-> ㅠㅕㅅ새ㅜdl skdma
 const Slide = ({
   children,
   itemsToShow = 4,
   childSize = 100,
   useButton = false,
   groupGap = 5,
+  ...props
 }: SlideProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const itemToShowWidth = itemsToShow * childSize;
+  const itemToShowWidth = itemsToShow * (childSize + groupGap);
   const totalSlides = Children.count(children);
 
   const {
@@ -34,14 +33,14 @@ const Slide = ({
     handleMouseUp,
   } = useDragSlide({
     containerRef,
-    childSize,
+    childSize: childSize + groupGap,
   });
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center" {...props}>
       <div
         ref={containerRef}
-        className="order-2 flex h-full w-[400px] snap-x overflow-hidden scroll-smooth border border-gray-300 first-letter:scroll-pl-6"
+        className="order-2 flex snap-x overflow-hidden scroll-smooth border-b-2 border-t-2 border-gray-300 py-2"
         style={{ width: `${itemToShowWidth}px` }}
         role="slider"
         aria-valuenow={itemsToShow}
@@ -53,17 +52,16 @@ const Slide = ({
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
-        {Children.map(children, child => (
-          <Group
-            spacing={groupGap}
-            align={'center'}
-            position={'center'}
-            className="box-border flex flex-none snap-start transition-transform"
-            style={{ width: `${childSize}px` }}
-          >
-            {child}
-          </Group>
-        ))}
+        <Group spacing={groupGap} align={'center'} position={'center'} noWrap>
+          {Children.map(children, child => (
+            <div
+              className="flex-none snap-start"
+              style={{ width: `${childSize}px` }}
+            >
+              {child}
+            </div>
+          ))}
+        </Group>
       </div>
 
       {useButton && (

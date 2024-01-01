@@ -34,13 +34,8 @@ export const Default: Story = {
     return (
       <Slide {...args}>
         {Array.from(new Array(20), (_, k) => k).map(i => (
-          <div>
-            <img
-              key={i}
-              className="w-[100px] rounded-full bg-cover"
-              alt="아바타"
-              src={`https://picsum.photos/200?${i}`}
-            />
+          <div className="w-[70px] overflow-hidden rounded-full bg-cover">
+            <img key={i} alt="아바타" src={`https://picsum.photos/200?${i}`} />
           </div>
         ))}
       </Slide>
