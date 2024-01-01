@@ -4,18 +4,12 @@ import { cn } from '~/utils/cn';
 
 interface TextareaProps extends ComponentProps<'textarea'> {
   size?: 'sm' | 'lg';
-  placeholder?: string;
   readonly?: boolean;
-  required?: boolean;
-  disabled?: boolean;
 }
 
 const Textarea = ({
   size = 'sm',
-  placeholder = '',
-  readonly = false,
-  required = false,
-  disabled = false,
+  readonly,
   className,
   ...props
 }: TextareaProps) => {
@@ -23,11 +17,8 @@ const Textarea = ({
 
   return (
     <textarea
-      placeholder={placeholder}
       readOnly={readonly}
-      required={required}
-      disabled={disabled}
-      onFocus={() => setRow(2)}
+      onFocus={() => !readonly && setRow(2)}
       onBlur={() => setRow(1)}
       rows={row}
       className={cn(
