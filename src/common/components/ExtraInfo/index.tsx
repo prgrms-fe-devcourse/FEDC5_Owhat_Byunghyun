@@ -4,10 +4,10 @@ import { ClassNameValue } from 'tailwind-merge';
 
 import { cn } from '~/utils/cn';
 
-import { ExtraInfoVariants } from './ExtraInfo.variants';
+import { extraInfoVariants } from './ExtraInfo.variants';
 
 export interface TextProps
-  extends VariantProps<typeof ExtraInfoVariants>,
+  extends VariantProps<typeof extraInfoVariants>,
     ComponentProps<'div'> {
   children: ReactNode | ReactNode[];
   dividerClassName?: ClassNameValue;
@@ -20,12 +20,12 @@ const ExtraInfo = ({ className, gap = 1, children }: TextProps) => {
     <ul
       className={cn(
         'flex text-sm font-thin text-gray-300',
-        ExtraInfoVariants({ gap }),
+        extraInfoVariants({ gap }),
         className,
       )}
     >
       {childComponents.map((child, index) => (
-        <li key={index} className={cn('flex', ExtraInfoVariants({ gap }))}>
+        <li key={index} className={cn('flex', extraInfoVariants({ gap }))}>
           {child}
           {index < childComponents.length - 1 && <span>·</span>}
         </li>

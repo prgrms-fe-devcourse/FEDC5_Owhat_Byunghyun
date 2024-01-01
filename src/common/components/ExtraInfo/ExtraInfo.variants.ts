@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-export const ExtraInfoVariants = cva(``, {
+export const extraInfoVariants = cva(``, {
   variants: {
     gap: {
       0: `gap-0`,
