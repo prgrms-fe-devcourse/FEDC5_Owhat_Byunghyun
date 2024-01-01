@@ -52,7 +52,7 @@ const Tooltip = ({
     });
 
   return (
-    <div className="relative  cursor-pointer">
+    <div className="relative cursor-pointer">
       {firstChild}
       <div
         className={cn(
