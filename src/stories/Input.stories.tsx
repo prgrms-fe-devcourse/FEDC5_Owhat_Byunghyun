@@ -22,7 +22,7 @@ export default meta;
 
 export const Default: StoryObj<typeof Input> = {
   args: {
-    hasBorder: false,
+    hasBorder: true,
     isBottomBorderOnly: false,
   },
 };
