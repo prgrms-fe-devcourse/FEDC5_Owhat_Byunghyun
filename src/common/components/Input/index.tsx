@@ -3,10 +3,10 @@ import { ComponentProps } from 'react';
 
 import { cn } from '~/utils/cn';
 
-import { InputVariants } from './Input.variants';
+import { inputVariants } from './Input.variants';
 
 interface InputProps
-  extends VariantProps<typeof InputVariants>,
+  extends VariantProps<typeof inputVariants>,
     ComponentProps<'input'> {}
 
 const Input = ({
@@ -19,7 +19,7 @@ const Input = ({
     <input
       {...props}
       className={cn(
-        InputVariants({
+        inputVariants({
           hasBorder,
           isBottomBorderOnly,
         }),
