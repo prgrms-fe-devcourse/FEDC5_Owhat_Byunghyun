@@ -13,4 +13,6 @@ export type IconName =
   | 'notifications'
   | 'search'
   | 'send'
-  | 'more-vert';
+  | 'more-vert'
+  | 'arrow-circle-right'
+  | 'arrow-circle-left';
