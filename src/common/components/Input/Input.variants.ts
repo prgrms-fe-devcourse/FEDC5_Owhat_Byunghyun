@@ -5,8 +5,8 @@ export const inputVariants = cva(
   {
     variants: {
       hasBorder: {
-        true: 'border-none',
-        false: 'border',
+        true: 'border',
+        false: 'border-none',
       },
       isBottomBorderOnly: {
         true: 'rounded-none border-x-0 border-t-0',
@@ -14,7 +14,7 @@ export const inputVariants = cva(
       },
     },
     defaultVariants: {
-      hasBorder: false,
+      hasBorder: true,
       isBottomBorderOnly: false,
     },
   },
