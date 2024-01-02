@@ -9,7 +9,6 @@ const meta = {
   args: {
     isShadowed: true,
     isArrow: true,
-    placement: 'bottom-left',
   },
   argTypes: {
     isShadowed: { control: 'boolean' },
@@ -31,6 +30,9 @@ const meta = {
 export default meta;
 
 export const Default: StoryObj<typeof Tooltip> = {
+  args: {
+    placement: 'bottom-left',
+  },
   render: args => (
     <div className="ml-32 mt-32">
       <Tooltip {...args}>
@@ -44,18 +46,11 @@ export const Default: StoryObj<typeof Tooltip> = {
   ),
 };
 
-export const Hover: StoryObj<typeof Tooltip> = {
+export const SmartTooltip: StoryObj<typeof Tooltip> = {
   render: args => (
-    <>
-      <Tooltip {...args} eventType={'hover'}>
-        <Icon id="more-vert" />
-        <div>
-          <p>댓글 수정하기</p>
-          <p>댓글 삭제하기</p>
-        </div>
-      </Tooltip>
-      <div className="flex justify-end">
-        <Tooltip {...args} eventType={'hover'}>
+    <div className="flex w-full flex-row justify-between">
+      <div>
+        <Tooltip {...args}>
           <Icon id="more-vert" />
           <div>
             <p>댓글 수정하기</p>
@@ -63,6 +58,24 @@ export const Hover: StoryObj<typeof Tooltip> = {
           </div>
         </Tooltip>
       </div>
-    </>
+      <div>
+        <Tooltip {...args}>
+          <Icon id="more-vert" />
+          <div>
+            <p>댓글 수정하기</p>
+            <p>댓글 삭제하기</p>
+          </div>
+        </Tooltip>
+      </div>
+      <div>
+        <Tooltip {...args}>
+          <Icon id="more-vert" />
+          <div>
+            <p>댓글 수정하기</p>
+            <p>댓글 삭제하기</p>
+          </div>
+        </Tooltip>
+      </div>
+    </div>
   ),
 };
