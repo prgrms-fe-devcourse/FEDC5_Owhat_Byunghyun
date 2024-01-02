@@ -12,6 +12,7 @@ import {
 import { cn } from '~/utils/cn';
 
 import { useHandleTooltip } from './\bhooks/useHandleTooltip';
+import useTooltipPlacement, { Placement } from './\bhooks/useTooltipPlacement';
 import { tooltipArrowVariants, tooltipVariants } from './Tooltip.variants';
 import { TooltipArrow } from './TooltipArrow';
 
@@ -21,6 +22,7 @@ export interface TooltipProps
   children: ReactNode | ReactNode[];
   eventType?: 'click' | 'hover';
   isArrow?: boolean;
+  placement?: Placement;
 }
 
 const Tooltip = ({
@@ -34,6 +36,8 @@ const Tooltip = ({
 }: TooltipProps) => {
   const { isVisible, toggleVisibility, showTooltip, hideTooltip } =
     useHandleTooltip();
+
+  const { newPlacement, tooltipRef } = useTooltipPlacement(placement);
 
   const childrenArray = Children.toArray(children);
 
@@ -51,12 +55,20 @@ const Tooltip = ({
       }),
     });
 
+  // if (tooltipRef.current) {
+  //   const tooltipRect: DOMRect = tooltipRef.current.getBoundingClientRect();
+  //   const result = calculateTooltipPlacement(tooltipRect, placement);
+
+  //   placement = result;
+  // }
+
   return (
     <div className="relative cursor-pointer">
       {firstChild}
       <div
+        ref={tooltipRef}
         className={cn(
-          tooltipVariants({ isShadowed, placement }),
+          tooltipVariants({ isShadowed, placement: newPlacement }),
           `${isVisible ? 'opacity-100' : 'opacity-0'}`,
           className,
         )}
@@ -64,7 +76,9 @@ const Tooltip = ({
       >
         {childrenArray[1]}
         {isArrow && (
-          <TooltipArrow className={cn(tooltipArrowVariants({ placement }))} />
+          <TooltipArrow
+            className={cn(tooltipArrowVariants({ placement: newPlacement }))}
+          />
         )}
       </div>
     </div>
