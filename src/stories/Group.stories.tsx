@@ -8,7 +8,7 @@ const meta: Meta<typeof Group> = {
   argTypes: {
     direction: {
       control: 'radio',
-      options: ['row', 'columns'],
+      options: ['rows', 'columns'],
     },
     position: {
       control: 'radio',
