@@ -14,5 +14,5 @@ export type IconName =
   | 'search'
   | 'send'
   | 'more-vert'
-  | 'arrow-circle-right'
-  | 'arrow-circle-left';
+  | 'chevron-right'
+  | 'chevron-left';

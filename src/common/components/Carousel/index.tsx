@@ -3,9 +3,9 @@ import { Children, ComponentProps, ReactNode, useRef } from 'react';
 import Group from '~/common/components/Group';
 import Icon from '~/common/components/Icon';
 
-import useDragSlide from './useDragSlide';
+import useDragScroll from './useDragScroll';
 
-interface SlideProps extends ComponentProps<'div'> {
+interface CarouselProps extends ComponentProps<'div'> {
   children: ReactNode;
   itemsToShow?: number;
   childSize?: number;
@@ -13,25 +13,29 @@ interface SlideProps extends ComponentProps<'div'> {
   groupGap?: number;
 }
 
-const Slide = ({
+const Carousel = ({
   children,
   itemsToShow = 4,
   childSize = 100,
   useButton = false,
   groupGap = 5,
+  className,
   ...props
-}: SlideProps) => {
+}: CarouselProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const itemToShowWidth = itemsToShow * (childSize + groupGap);
-  const totalSlides = Children.count(children);
+  const itemToShowWidth =
+    itemsToShow * (childSize + groupGap) + (childSize + groupGap) / 2;
+  const totalCarousels = Children.count(children);
 
   const {
+    isLeftButtonActive,
+    isRightButtonActive,
     buttonScrollLeft,
     buttonScrollRight,
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
-  } = useDragSlide({
+  } = useDragScroll({
     containerRef,
     childSize: childSize + groupGap,
   });
@@ -40,12 +44,12 @@ const Slide = ({
     <div className="flex items-center" {...props}>
       <div
         ref={containerRef}
-        className="order-2 flex snap-x overflow-hidden scroll-smooth border-b-2 border-t-2 border-gray-300 py-2"
+        className={`order-2 flex snap-x overflow-hidden scroll-smooth py-2 ${className}`}
         style={{ width: `${itemToShowWidth}px` }}
         role="slider"
         aria-valuenow={itemsToShow}
         aria-valuemin={1}
-        aria-valuemax={totalSlides}
+        aria-valuemax={totalCarousels}
         tabIndex={0}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
@@ -55,7 +59,7 @@ const Slide = ({
         <Group spacing={groupGap} align={'center'} position={'center'} noWrap>
           {Children.map(children, child => (
             <div
-              className="flex-none snap-start"
+              className="flex snap-start flex-nowrap justify-center"
               style={{ width: `${childSize}px` }}
             >
               {child}
@@ -66,12 +70,33 @@ const Slide = ({
 
       {useButton && (
         <>
-          <button onClick={buttonScrollLeft} className="order-1 px-4 py-2">
-            <Icon id="arrow-circle-left" />
+          <button
+            onClick={buttonScrollLeft}
+            className="order-1"
+            disabled={isLeftButtonActive}
+          >
+            <Icon
+              id="chevron-left"
+              className={`${
+                isLeftButtonActive
+                  ? 'cursor-pointer fill-black hover:fill-primary'
+                  : 'fill-gray-400'
+              }`}
+            />
           </button>
-
-          <button onClick={buttonScrollRight} className="order-3 px-4 py-2">
-            <Icon id="arrow-circle-right" />
+          <button
+            onClick={buttonScrollRight}
+            className="order-3"
+            disabled={isRightButtonActive}
+          >
+            <Icon
+              id="chevron-right"
+              className={`${
+                isRightButtonActive
+                  ? 'cursor-pointer fill-black hover:fill-primary'
+                  : 'fill-gray-400'
+              } `}
+            />
           </button>
         </>
       )}
@@ -79,4 +104,4 @@ const Slide = ({
   );
 };
 
-export default Slide;
+export default Carousel;

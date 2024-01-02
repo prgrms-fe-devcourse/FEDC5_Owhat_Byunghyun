@@ -12,7 +12,7 @@ interface SliderProps extends ComponentProps<'div'> {
   children: ReactNode;
   itemsToShow?: number;
 }
-// 현재 이 파일은 Slide의 기능과 무관함
+
 //TODO: translateX를 이용해서 구현하는 방법도 구상해야함
 const SlideTranslate = ({ children, itemsToShow = 4 }: SliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
