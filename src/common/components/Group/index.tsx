@@ -12,7 +12,7 @@ export interface GroupProps
 }
 
 const Group = ({
-  direction = 'row',
+  direction = 'rows',
   position = 'left',
   align = 'start',
   inline = false,
