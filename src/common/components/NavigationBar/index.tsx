@@ -1,5 +1,6 @@
 import { VariantProps } from 'class-variance-authority';
 import { ComponentProps } from 'react';
+import { Link } from 'react-router-dom';
 
 import { cn } from '~/utils/cn';
 
@@ -13,10 +14,18 @@ export interface NavigationBarProps
 const NavigationBar = ({ className, ...props }: NavigationBarProps) => {
   return (
     <div className={cn(NavigationBarVariants(), className)} {...props}>
-      <Icon id="home" />
-      <Icon id="message" />
-      <Icon id="notifications" />
-      <Icon id="account-circle" />
+      <Link to={'/'}>
+        <Icon id="home" />
+      </Link>
+      <Link to={'/message'}>
+        <Icon id="message" />
+      </Link>
+      <Link to={'/notification'}>
+        <Icon id="notifications" />
+      </Link>
+      <Link to={'/account'}>
+        <Icon id="account-circle" />
+      </Link>
     </div>
   );
 };
