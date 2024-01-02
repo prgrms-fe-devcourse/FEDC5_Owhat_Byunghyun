@@ -11,7 +11,7 @@ import {
 
 import { cn } from '~/utils/cn';
 
-import TabItem from './TabItem';
+import TabItem, { TabItemProps } from './TabItem';
 
 interface TabProps extends ComponentProps<'div'> {
   children: ReactNode;
@@ -40,25 +40,26 @@ const Tab = ({ children, activeLabel, className, ...props }: TabProps) => {
       return activeLabel;
     }
 
-    const label = (childrenToArray(children, 'Tab.Item') as ReactElement[])[0]
-      .props.label;
+    const label = (
+      childrenToArray(children, 'Tab.Item') as ReactElement<TabItemProps>[]
+    )[0].props.label;
 
     return label;
   });
 
   const items = useMemo(() => {
-    return (childrenToArray(children, 'Tab.Item') as ReactElement[]).map(
-      element => {
-        return cloneElement(element, {
-          ...element.props,
-          key: element.props.label,
-          active: element.props.label === currentActive,
-          onClick: () => {
-            setCurrentActive(element.props.label);
-          },
-        });
-      },
-    );
+    return (
+      childrenToArray(children, 'Tab.Item') as ReactElement<TabItemProps>[]
+    ).map(element => {
+      return cloneElement(element, {
+        ...element.props,
+        key: element.props.label,
+        active: element.props.label === currentActive,
+        onClick: () => {
+          setCurrentActive(element.props.label);
+        },
+      });
+    });
   }, [children, currentActive]);
 
   const activeItem = useMemo(

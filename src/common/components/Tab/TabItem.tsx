@@ -3,7 +3,7 @@ import { ComponentProps } from 'react';
 import Text from '~/common/components/Text';
 import { cn } from '~/utils/cn';
 
-interface TabItemProps extends ComponentProps<'div'> {
+export interface TabItemProps extends ComponentProps<'div'> {
   title: string;
   label: string;
   active?: boolean;
