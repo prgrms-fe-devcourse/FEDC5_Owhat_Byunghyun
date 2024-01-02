@@ -1,11 +1,12 @@
 import { VariantProps } from 'class-variance-authority';
 import { ComponentProps } from 'react';
 
+import Loading from '~/common/components/Loading';
 import { cn } from '~/utils/cn';
 
-import Loading from '../Loading';
 import { buttonVarients } from './Button.variants';
 
+//TODO: invisible 사용고려 - loading을 감싸는 rounded가 통일 되지않아 튀어나오는 버그 -> main 머지 후 해결 가능
 export interface ButtonProps
   extends VariantProps<typeof buttonVarients>,
     ComponentProps<'button'> {
@@ -30,7 +31,7 @@ const Button = ({
       className={cn(
         buttonVarients({ styleType }),
         className,
-        fullwidth ? 'w-full' : '',
+        fullwidth && 'w-full',
         disabled ? 'border-gray-300 bg-gray-300 text-white' : '',
       )}
       {...props}
