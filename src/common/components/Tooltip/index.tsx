@@ -12,7 +12,7 @@ import {
 import { cn } from '~/utils/cn';
 
 import { useHandleTooltip } from './\bhooks/useHandleTooltip';
-import useTooltipPlacement, { Placement } from './\bhooks/useTooltipPlacement';
+import useSmartTooltip, { Placement } from './\bhooks/useSmartTooltip';
 import { tooltipArrowVariants, tooltipVariants } from './Tooltip.variants';
 import { TooltipArrow } from './TooltipArrow';
 
@@ -37,7 +37,7 @@ const Tooltip = ({
   const { isVisible, toggleVisibility, showTooltip, hideTooltip } =
     useHandleTooltip();
 
-  const { newPlacement, tooltipRef } = useTooltipPlacement(placement);
+  const { newPlacement, tooltipRef } = useSmartTooltip(placement);
 
   const childrenArray = Children.toArray(children);
 

@@ -8,17 +8,24 @@ export type Placement =
   | 'bottom-center'
   | 'bottom-right';
 
-export default function useTooltipPlacement(initialPlacement: Placement) {
+export default function useSmartTooltip(initialPlacement: Placement) {
   const [newPlacement, setNewPlacement] = useState<Placement>(initialPlacement);
   const tooltipRef = useRef<HTMLDivElement>(null);
 
-  function calculateTooltipPlacement(
+  const calculateTooltipPlacement = (
     tooltipRect: DOMRect,
     placement: Placement,
-  ): Placement {
+  ): Placement => {
     const viewPortWidth = window.innerWidth;
 
     const placementXAxis: { [key in Placement]?: Placement } = {
+      'top-left': 'top-right',
+      'top-right': 'top-left',
+      'bottom-left': 'bottom-right',
+      'bottom-right': 'bottom-left',
+    };
+
+    const placementYAxis: { [key in Placement]?: Placement } = {
       'top-left': 'bottom-left',
       'top-center': 'bottom-center',
       'top-right': 'bottom-right',
@@ -27,28 +34,28 @@ export default function useTooltipPlacement(initialPlacement: Placement) {
       'bottom-right': 'top-right',
     };
 
-    const placementYAxis: { [key in Placement]?: Placement } = {
-      'bottom-left': 'bottom-right',
-      'top-left': 'top-right',
-      'bottom-right': 'bottom-left',
-      'top-right': 'top-left',
-    };
-
-    if (tooltipRect.x < 0) {
-      placement = placementYAxis[placement] || placement;
-    } else if (
-      tooltipRect.y < tooltipRect.height &&
-      placement.startsWith('top')
+    if (
+      (tooltipRect.y < tooltipRect.height && placement.startsWith('top')) ||
+      (tooltipRect.bottom > window.innerHeight &&
+        placement.startsWith('bottom'))
     ) {
-      placement = placementXAxis[placement] || placement;
-    } else if (tooltipRect.right > viewPortWidth) {
-      placement = placementYAxis[placement] || placement;
-    } else if (tooltipRect.left > viewPortWidth) {
       placement = placementYAxis[placement] || placement;
     }
 
+    if (tooltipRect.left < 0) {
+      placement === 'top-center' && (placement = 'top-right');
+      placement === 'bottom-center' && (placement = 'bottom-right');
+      placement = placementXAxis[placement] || placement;
+    }
+
+    if (tooltipRect.right > viewPortWidth) {
+      placement === 'top-center' && (placement = 'top-left');
+      placement === 'bottom-center' && (placement = 'bottom-left');
+      placement = placementXAxis[placement] || placement;
+    }
+
     return placement;
-  }
+  };
 
   useEffect(() => {
     if (tooltipRef.current) {
