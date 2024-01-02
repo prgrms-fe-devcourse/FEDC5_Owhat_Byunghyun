@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-export const extraInfoVariants = cva(``, {
+export const extraInfoVariants = cva(`flex text-sm font-thin text-gray-300`, {
   variants: {
     gap: {
       0: `gap-0`,

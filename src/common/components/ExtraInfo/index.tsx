@@ -1,6 +1,5 @@
 import { VariantProps } from 'class-variance-authority';
 import { Children, ComponentProps, ReactNode } from 'react';
-import { ClassNameValue } from 'tailwind-merge';
 
 import { cn } from '~/utils/cn';
 
@@ -8,24 +7,17 @@ import { extraInfoVariants } from './ExtraInfo.variants';
 
 export interface TextProps
   extends VariantProps<typeof extraInfoVariants>,
-    ComponentProps<'div'> {
+    ComponentProps<'ul'> {
   children: ReactNode | ReactNode[];
-  dividerClassName?: ClassNameValue;
 }
 
-const ExtraInfo = ({ className, gap = 1, children }: TextProps) => {
+const ExtraInfo = ({ className, gap = 1, children, ...props }: TextProps) => {
   const childComponents = Children.toArray(children);
 
   return (
-    <ul
-      className={cn(
-        'flex text-sm font-thin text-gray-300',
-        extraInfoVariants({ gap }),
-        className,
-      )}
-    >
+    <ul className={cn(extraInfoVariants({ gap }), className)} {...props}>
       {childComponents.map((child, index) => (
-        <li key={index} className={cn('flex', extraInfoVariants({ gap }))}>
+        <li key={index} className={cn(extraInfoVariants({ gap }))}>
           {child}
           {index < childComponents.length - 1 && <span>·</span>}
         </li>
