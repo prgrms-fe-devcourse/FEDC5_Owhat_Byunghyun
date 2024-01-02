@@ -23,14 +23,6 @@ export const Default: Story = {
             Content 2
           </Tab.Item>
         </Tab>
-        <Tab activeLabel="item2">
-          <Tab.Item title="팔로워" label="item1">
-            팔로워 목록
-          </Tab.Item>
-          <Tab.Item title="팔로잉" label="item2">
-            팔로잉 목록
-          </Tab.Item>
-        </Tab>
       </>
     );
   },
