@@ -73,7 +73,7 @@ const Carousel = ({
           <button
             onClick={buttonScrollLeft}
             className="order-1"
-            disabled={isLeftButtonActive}
+            disabled={!isLeftButtonActive}
           >
             <Icon
               id="chevron-left"
@@ -87,7 +87,7 @@ const Carousel = ({
           <button
             onClick={buttonScrollRight}
             className="order-3"
-            disabled={isRightButtonActive}
+            disabled={!isRightButtonActive}
           >
             <Icon
               id="chevron-right"
