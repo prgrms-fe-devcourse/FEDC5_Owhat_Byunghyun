@@ -11,6 +11,24 @@
 
 @layer base {
   * {
-    @apply font-sans;
+    @apply m-0 p-0 font-sans outline-none;
+  }
+
+  h1 {
+    @apply text-heading-1 font-bold;
+  }
+
+  h2 {
+    @apply text-heading-2 font-bold;
+  }
+
+  h3 {
+    @apply text-heading-3 font-bold;
+  }
+
+  div,
+  span,
+  p {
+    @apply text-base text-black;
   }
 }
