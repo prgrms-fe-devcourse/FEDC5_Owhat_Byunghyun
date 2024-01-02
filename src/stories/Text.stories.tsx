@@ -2,39 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Text from '~/common/components/Text';
 
-const meta = {
-  title: 'Common/Components/Text',
-  component: Text,
-} satisfies Meta<typeof Text>;
-
-export default meta;
-
-type fontColorOption =
-  | 'primary'
-  | 'error'
-  | 'success'
-  | 'online'
-  | 'black'
-  | 'white'
-  | 'lightGray'
-  | 'gray';
-
 type fontSizeOption = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 
 type decorationOption = 'none' | 'underline' | 'overline' | 'lineThrough';
 
-const fontColorOption: Array<fontColorOption> = [
-  'primary',
-  'error',
-  'success',
-  'online',
-  'black',
-  'white',
-  'lightGray',
-  'gray',
-];
-
-const fontSizeOption: Array<fontSizeOption> = [
+const sizeOption: Array<fontSizeOption> = [
   'xs',
   'sm',
   'md',
@@ -51,13 +23,12 @@ const decorationOption: Array<decorationOption> = [
   'lineThrough',
 ];
 
-export const PrimaryText: StoryObj<typeof Text> = {
+const meta = {
+  title: 'Common/Components/Text',
+  component: Text,
   argTypes: {
-    fontColor: {
-      options: fontColorOption,
-    },
-    fontSize: {
-      options: fontSizeOption,
+    size: {
+      options: sizeOption,
     },
     decoration: {
       options: decorationOption,
@@ -65,12 +36,20 @@ export const PrimaryText: StoryObj<typeof Text> = {
     strong: {
       control: 'boolean',
     },
+    isLogo: {
+      control: 'boolean',
+    },
   },
+} satisfies Meta<typeof Text>;
+
+export default meta;
+
+export const Default: StoryObj<typeof Text> = {
   args: {
     children: 'Text',
-    fontColor: 'primary',
-    fontSize: 'md',
+    size: 'md',
     decoration: 'none',
     strong: false,
+    isLogo: false,
   },
 };
