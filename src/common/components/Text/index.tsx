@@ -1,16 +1,24 @@
 import { VariantProps } from 'class-variance-authority';
-import { ComponentProps, createElement, ReactNode } from 'react';
+import { ComponentProps, HTMLAttributes, ReactNode } from 'react';
 
 import { cn } from '~/utils/cn';
 
 import { textVariants } from './Text.variants';
 
-export interface TextProps
-  extends VariantProps<typeof textVariants>,
-    ComponentProps<'div'> {
-  children: ReactNode;
-  elementType?: 'div' | 'span' | 'p';
-}
+type ElementType = 'div' | 'span' | 'p';
+
+type ElementProps = {
+  div: HTMLAttributes<HTMLDivElement>;
+  span: HTMLAttributes<HTMLSpanElement>;
+  p: HTMLAttributes<HTMLParagraphElement>;
+};
+
+type TextProps<T extends ElementType> = ElementProps[T] &
+  VariantProps<typeof textVariants> & {
+    children: ReactNode;
+    elementType?: T;
+    className?: ComponentProps<typeof cn>;
+  };
 
 const Text = ({
   children,
@@ -21,17 +29,19 @@ const Text = ({
   elementType = 'div',
   isLogo = false,
   ...props
-}: TextProps) => {
-  return createElement(
-    elementType,
-    {
-      ...props,
-      className: cn(
+}: TextProps<ElementType>) => {
+  const Element = elementType;
+
+  return (
+    <Element
+      {...props}
+      className={cn(
         textVariants({ size, strong, decoration, isLogo }),
         className,
-      ),
-    },
-    children,
+      )}
+    >
+      {children}
+    </Element>
   );
 };
 
