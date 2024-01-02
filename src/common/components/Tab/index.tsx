@@ -38,12 +38,12 @@ const Tab = ({ children, activeLabel, className, ...props }: TabProps) => {
   const [currentActive, setCurrentActive] = useState(() => {
     if (activeLabel) {
       return activeLabel;
-    } else {
-      const label = (childrenToArray(children, 'Tab.Item') as ReactElement[])[0]
-        .props.label;
-
-      return label;
     }
+
+    const label = (childrenToArray(children, 'Tab.Item') as ReactElement[])[0]
+      .props.label;
+
+    return label;
   });
 
   const items = useMemo(() => {
