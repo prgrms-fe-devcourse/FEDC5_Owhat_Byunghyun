@@ -14,10 +14,9 @@ const NavigationBar = ({ className, ...props }: NavigationBarProps) => {
   return (
     <div className={cn(NavigationBarVariants(), className)} {...props}>
       <Icon id="home" />
-      <Icon id="sms" />
+      <Icon id="message" />
       <Icon id="notifications" />
       <Icon id="account-circle" />
-      {/* message 아이콘이 없어서, 임시로 sms 아이콘 사용 */}
     </div>
   );
 };
