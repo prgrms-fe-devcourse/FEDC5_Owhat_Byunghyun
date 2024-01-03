@@ -7,12 +7,13 @@ const meta = {
   title: 'Common/Components/Tooltip',
   component: Tooltip,
   args: {
-    isArrow: true,
+    placement: 'bottom-left',
+    targetElement: <Icon id="more-vert" />,
   },
   argTypes: {
     isArrow: { control: 'boolean' },
     placement: {
-      control: 'radio',
+      control: 'select',
       options: [
         'top-left',
         'top-center',
@@ -28,12 +29,9 @@ const meta = {
 export default meta;
 
 export const Default: StoryObj<typeof Tooltip> = {
-  args: {
-    placement: 'bottom-left',
-  },
   render: args => (
     <div className="ml-32 mt-32">
-      <Tooltip {...args} targetElement={<Icon id="more-vert" />}>
+      <Tooltip {...args}>
         <div>
           <p>댓글 수정하기</p>
           <p>댓글 삭제하기</p>
@@ -47,7 +45,7 @@ export const SmartTooltip: StoryObj<typeof Tooltip> = {
   render: args => (
     <div className="flex w-full flex-row justify-between">
       <div>
-        <Tooltip {...args} targetElement={<Icon id="more-vert" />}>
+        <Tooltip {...args}>
           <div>
             <p>댓글 수정하기</p>
             <p>댓글 삭제하기</p>
@@ -55,7 +53,7 @@ export const SmartTooltip: StoryObj<typeof Tooltip> = {
         </Tooltip>
       </div>
       <div>
-        <Tooltip {...args} targetElement={<Icon id="more-vert" />}>
+        <Tooltip {...args}>
           <div>
             <p>댓글 수정하기</p>
             <p>댓글 삭제하기</p>
@@ -63,7 +61,7 @@ export const SmartTooltip: StoryObj<typeof Tooltip> = {
         </Tooltip>
       </div>
       <div>
-        <Tooltip {...args} targetElement={<Icon id="more-vert" />}>
+        <Tooltip {...args}>
           <div>
             <p>댓글 수정하기</p>
             <p>댓글 삭제하기</p>
