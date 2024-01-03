@@ -49,7 +49,7 @@ const Tooltip = ({
     });
 
   return (
-    <div className="relative cursor-pointer">
+    <div className="relative max-w-fit cursor-pointer">
       {target}
       <div
         ref={tooltipRef}
