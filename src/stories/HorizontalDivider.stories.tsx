@@ -19,13 +19,13 @@ export default {
 
 type Story = StoryObj<typeof HorizontalDivider>;
 
-export const Vertical: Story = {
+export const Horizontal: Story = {
   render: function Render(args) {
     return (
       <>
-        <Text>위</Text>
+        <Text elementType="span">왼쪽</Text>
         <HorizontalDivider {...args} />
-        <Text>아래</Text>
+        <Text elementType="span">오른쪽</Text>
       </>
     );
   },

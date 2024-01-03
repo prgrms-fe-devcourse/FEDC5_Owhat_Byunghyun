@@ -3,10 +3,10 @@ import { ComponentProps } from 'react';
 
 import { cn } from '~/utils/cn';
 
-import { VerticalDividerVariants } from './VerticalDivider.variants';
+import { verticalDividerVariants } from './VerticalDivider.variants';
 
 interface VerticalDividerProps
-  extends VariantProps<typeof VerticalDividerVariants>,
+  extends VariantProps<typeof verticalDividerVariants>,
     ComponentProps<'div'> {}
 
 const VerticalDivider = ({
@@ -17,7 +17,7 @@ const VerticalDivider = ({
   return (
     <div
       {...props}
-      className={cn(VerticalDividerVariants({ size }), className)}
+      className={cn(verticalDividerVariants({ size }), className)}
     />
   );
 };

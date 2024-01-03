@@ -23,9 +23,9 @@ export const Vertical: Story = {
   render: function Render(args) {
     return (
       <>
-        <Text elementType="span">왼쪽</Text>
+        <Text>위</Text>
         <VerticalDivider {...args} />
-        <Text elementType="span">오른쪽</Text>
+        <Text>아래</Text>
       </>
     );
   },
