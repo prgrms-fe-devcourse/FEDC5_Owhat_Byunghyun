@@ -52,7 +52,7 @@ export default {
         'heading-2': ['1.5rem', '2rem'],
         'heading-3': ['1.125rem', '1.625rem'],
       },
-      radius: {
+      borderRadius: {
         DEFAULT: '0.7rem',
         small: '0.35rem',
         large: '1.05rem',
