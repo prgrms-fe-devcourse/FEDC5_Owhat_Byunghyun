@@ -1,6 +1,7 @@
 import { VariantProps } from 'class-variance-authority';
 import { ComponentProps, useEffect, useState } from 'react';
 
+import DEFAULT_IMAGE from '~/assets/images/default_profile.webp';
 import ImageComponent from '~/common/components/Image';
 import { cn } from '~/utils/cn';
 
@@ -16,7 +17,7 @@ export interface AvatarProps
 }
 
 const Avatar = ({
-  src = 'src/assets/images/default_profile.webp',
+  src = DEFAULT_IMAGE,
   size = 'small',
   shape = 'circle',
   alt = '아바타 이미지',
