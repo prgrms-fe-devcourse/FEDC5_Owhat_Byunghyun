@@ -61,7 +61,7 @@ const Tooltip = ({
         ref={tooltipRef}
         className={cn(
           tooltipVariants({ placement: newPlacement }),
-          `${isVisible ? 'opacity-100' : 'opacity-0'}`,
+          isVisible ? 'opacity-100' : 'opacity-0',
           className,
         )}
         {...props}
