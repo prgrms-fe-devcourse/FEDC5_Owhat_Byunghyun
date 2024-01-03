@@ -16,7 +16,7 @@ export default {
     },
   },
   args: {
-    src: 'https://picsum.photos/200',
+    src: 'src/assets/images/default_profile.webp',
     size: 'small',
     shape: 'circle',
   },
