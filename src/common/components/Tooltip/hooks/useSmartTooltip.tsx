@@ -58,12 +58,14 @@ export default function useSmartTooltip(initialPlacement: Placement) {
   };
 
   useEffect(() => {
-    if (tooltipRef.current) {
-      const tooltipRect: DOMRect = tooltipRef.current.getBoundingClientRect();
-      const result = calculateTooltipPlacement(tooltipRect, initialPlacement);
-
-      setNewPlacement(result);
+    if (!tooltipRef.current) {
+      return;
     }
+
+    const tooltipRect: DOMRect = tooltipRef.current.getBoundingClientRect();
+    const result = calculateTooltipPlacement(tooltipRect, initialPlacement);
+
+    setNewPlacement(result);
   }, [initialPlacement]);
 
   return { newPlacement, tooltipRef };
