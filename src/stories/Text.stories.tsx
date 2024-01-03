@@ -2,18 +2,24 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Text from '~/common/components/Text';
 
-type fontSizeOption = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+type fontSizeOption =
+  | 'xsmall'
+  | 'small'
+  | 'base'
+  | 'large'
+  | 'xlarge'
+  | '2xlarge'
+  | '3xl';
 
 type decorationOption = 'none' | 'underline' | 'overline' | 'lineThrough';
 
 const sizeOption: Array<fontSizeOption> = [
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  '2xl',
-  '3xl',
+  'xsmall',
+  'small',
+  'base',
+  'large',
+  'xlarge',
+  '2xlarge',
 ];
 
 const decorationOption: Array<decorationOption> = [
@@ -47,7 +53,7 @@ export default meta;
 export const Default: StoryObj<typeof Text> = {
   args: {
     children: 'Text',
-    size: 'md',
+    size: 'base',
     decoration: 'none',
     strong: false,
     isLogo: false,

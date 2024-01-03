@@ -23,7 +23,7 @@ type TextProps<T extends ElementType> = ElementProps[T] &
 const Text = ({
   children,
   className,
-  size = 'md',
+  size = 'base',
   strong = false,
   decoration = 'none',
   elementType = 'div',

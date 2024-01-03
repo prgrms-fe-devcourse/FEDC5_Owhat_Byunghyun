@@ -3,13 +3,12 @@ import { cva } from 'class-variance-authority';
 export const textVariants = cva(`text-black`, {
   variants: {
     size: {
-      xs: `text-xs`,
-      sm: `text-sm`,
-      md: `text-md`,
-      lg: `text-lg`,
-      xl: `text-xl`,
-      '2xl': `text-2xl`,
-      '3xl': `text-3xl`,
+      xsmall: `text-caption`,
+      small: `text-base-small`,
+      base: `text-base`,
+      large: `text-heading-3`,
+      xlarge: `text-heading-2`,
+      '2xlarge': `text-heading-1`,
     },
     strong: {
       true: 'font-bold',
@@ -27,7 +26,7 @@ export const textVariants = cva(`text-black`, {
     },
   },
   defaultVariants: {
-    size: 'md',
+    size: 'base',
     strong: false,
     decoration: 'none',
     isLogo: false,
