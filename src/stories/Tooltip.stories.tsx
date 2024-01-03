@@ -7,11 +7,9 @@ const meta = {
   title: 'Common/Components/Tooltip',
   component: Tooltip,
   args: {
-    isShadowed: true,
     isArrow: true,
   },
   argTypes: {
-    isShadowed: { control: 'boolean' },
     isArrow: { control: 'boolean' },
     placement: {
       control: 'radio',

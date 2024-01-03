@@ -30,7 +30,6 @@ const Tooltip = ({
   className,
   eventType = 'click',
   placement = 'bottom-left',
-  isShadowed = true,
   isArrow = true,
   ...props
 }: TooltipProps) => {
@@ -61,7 +60,7 @@ const Tooltip = ({
       <div
         ref={tooltipRef}
         className={cn(
-          tooltipVariants({ isShadowed, placement: newPlacement }),
+          tooltipVariants({ placement: newPlacement }),
           `${isVisible ? 'opacity-100' : 'opacity-0'}`,
           className,
         )}
