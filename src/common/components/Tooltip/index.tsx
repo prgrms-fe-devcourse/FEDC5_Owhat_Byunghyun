@@ -1,6 +1,5 @@
 import { VariantProps } from 'class-variance-authority';
 import {
-  Children,
   cloneElement,
   ComponentProps,
   HTMLAttributes,
@@ -19,7 +18,7 @@ import { TooltipArrow } from './TooltipArrow';
 export interface TooltipProps
   extends VariantProps<typeof tooltipVariants>,
     ComponentProps<'div'> {
-  children: ReactNode | ReactNode[];
+  targetElement: ReactNode;
   eventType?: 'click' | 'hover';
   isArrow?: boolean;
   placement?: Placement;
@@ -27,6 +26,7 @@ export interface TooltipProps
 
 const Tooltip = ({
   children,
+  targetElement,
   className,
   eventType = 'click',
   placement = 'bottom-left',
@@ -38,15 +38,9 @@ const Tooltip = ({
 
   const { newPlacement, tooltipRef } = useSmartTooltip(placement);
 
-  const childrenArray = Children.toArray(children);
-
-  if (!isValidElement<HTMLAttributes<ReactElement>>(childrenArray[0])) {
-    throw new Error('유효한 리액트 element가 아닙니다.');
-  }
-
-  const firstChild =
-    isValidElement<HTMLAttributes<ReactElement>>(childrenArray[0]) &&
-    cloneElement(childrenArray[0], {
+  const target =
+    isValidElement<HTMLAttributes<ReactElement>>(targetElement) &&
+    cloneElement(targetElement, {
       ...(eventType === 'click' && { onClick: toggleVisibility }),
       ...(eventType === 'hover' && {
         onMouseEnter: showTooltip,
@@ -56,7 +50,7 @@ const Tooltip = ({
 
   return (
     <div className="relative cursor-pointer">
-      {firstChild}
+      {target}
       <div
         ref={tooltipRef}
         className={cn(
@@ -66,7 +60,7 @@ const Tooltip = ({
         )}
         {...props}
       >
-        {childrenArray[1]}
+        {children}
         {isArrow && (
           <TooltipArrow
             className={cn(tooltipArrowVariants({ placement: newPlacement }))}

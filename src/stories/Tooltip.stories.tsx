@@ -33,8 +33,7 @@ export const Default: StoryObj<typeof Tooltip> = {
   },
   render: args => (
     <div className="ml-32 mt-32">
-      <Tooltip {...args}>
-        <Icon id="more-vert" />
+      <Tooltip {...args} targetElement={<Icon id="more-vert" />}>
         <div>
           <p>댓글 수정하기</p>
           <p>댓글 삭제하기</p>
@@ -48,8 +47,7 @@ export const SmartTooltip: StoryObj<typeof Tooltip> = {
   render: args => (
     <div className="flex w-full flex-row justify-between">
       <div>
-        <Tooltip {...args}>
-          <Icon id="more-vert" />
+        <Tooltip {...args} targetElement={<Icon id="more-vert" />}>
           <div>
             <p>댓글 수정하기</p>
             <p>댓글 삭제하기</p>
@@ -57,8 +55,7 @@ export const SmartTooltip: StoryObj<typeof Tooltip> = {
         </Tooltip>
       </div>
       <div>
-        <Tooltip {...args}>
-          <Icon id="more-vert" />
+        <Tooltip {...args} targetElement={<Icon id="more-vert" />}>
           <div>
             <p>댓글 수정하기</p>
             <p>댓글 삭제하기</p>
@@ -66,8 +63,7 @@ export const SmartTooltip: StoryObj<typeof Tooltip> = {
         </Tooltip>
       </div>
       <div>
-        <Tooltip {...args}>
-          <Icon id="more-vert" />
+        <Tooltip {...args} targetElement={<Icon id="more-vert" />}>
           <div>
             <p>댓글 수정하기</p>
             <p>댓글 삭제하기</p>
