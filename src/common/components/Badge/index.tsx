@@ -53,7 +53,10 @@ const Badge = ({
           className={`${cn(badgePositionVariants({ translateX, translateY }))}`}
         >
           <span
-            className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${badgeStyles}`}
+            className={`${cn(
+              'absolute inline-flex h-full w-full animate-ping rounded-full opacity-75',
+              badgeStyles,
+            )}`}
           />
           <span
             className={`${cn(
