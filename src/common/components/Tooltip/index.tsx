@@ -55,13 +55,6 @@ const Tooltip = ({
       }),
     });
 
-  // if (tooltipRef.current) {
-  //   const tooltipRect: DOMRect = tooltipRef.current.getBoundingClientRect();
-  //   const result = calculateTooltipPlacement(tooltipRect, placement);
-
-  //   placement = result;
-  // }
-
   return (
     <div className="relative cursor-pointer">
       {firstChild}

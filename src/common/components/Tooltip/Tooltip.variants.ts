@@ -9,18 +9,18 @@ export const tooltipVariants = cva(
         false: 'shadow-none',
       },
       placement: {
-        'bottom-left': `top-full left-0 translate-y-[8px]`,
-        'bottom-right': `top-full right-full translate-x-[1.3rem] translate-y-[8px]`,
+        'bottom-left': `top-full right-full translate-x-[1.3rem] translate-y-[8px]`,
+        'bottom-right': `top-full left-0 translate-y-[8px]`,
         'bottom-center': `top-full left-0 -translate-x-[41%] translate-y-[8px]`,
-        'top-left': `bottom-full left-0 -translate-y-[8px]`,
-        'top-right': `bottom-full right-full translate-x-[1.3rem] -translate-y-[8px]`,
+        'top-left': `bottom-full right-full translate-x-[1.3rem] -translate-y-[8px]`,
+        'top-right': `bottom-full left-0 -translate-y-[8px]`,
         'top-center':
           'bottom-full left-0 -translate-x-[41%] -translate-y-[8px]',
       },
     },
     defaultVariants: {
       isShadowed: false,
-      placement: 'bottom-left',
+      placement: 'bottom-right',
     },
   },
 );
@@ -30,12 +30,12 @@ export const tooltipArrowVariants = cva(
   {
     variants: {
       placement: {
-        'bottom-left': `top-0 left-[11px] -translate-x-1/2 -translate-y-1/2  border-r-0 border-b-0`,
+        'bottom-left': `top-0 left-full -translate-x-[153%] -translate-y-1/2  border-r-0 border-b-0`,
         'bottom-center': `top-0 left-[56px] -translate-x-1/2 -translate-y-1/2 border-r-0 border-b-0`,
-        'bottom-right': `top-0 left-full -translate-x-[153%] -translate-y-1/2  border-r-0 border-b-0`,
-        'top-left': `bottom-0 left-[11px] -translate-x-[42%] translate-y-1/2  border-l-0 border-t-0 `,
+        'bottom-right': `top-0 left-[11px] -translate-x-1/2 -translate-y-1/2  border-r-0 border-b-0`,
+        'top-left': `bottom-0 left-full -translate-x-[153%] translate-y-1/2 border-l-0 border-t-0`,
         'top-center': `bottom-0 left-[56px] -translate-x-1/2 translate-y-1/2 border-l-0 border-t-0`,
-        'top-right': `bottom-0 left-full -translate-x-[153%] translate-y-1/2 border-l-0 border-t-0`,
+        'top-right': `bottom-0 left-[11px] -translate-x-[42%] translate-y-1/2  border-l-0 border-t-0 `,
       },
     },
   },
