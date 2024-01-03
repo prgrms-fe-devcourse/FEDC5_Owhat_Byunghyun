@@ -43,14 +43,14 @@ export default function useSmartTooltip(initialPlacement: Placement) {
     }
 
     if (tooltipRect.left < 0) {
-      placement === 'top-center' && (placement = 'top-left');
-      placement === 'bottom-center' && (placement = 'bottom-left');
+      placement === 'top-center' && (placement = 'top-right');
+      placement === 'bottom-center' && (placement = 'bottom-right');
       placement = placementXAxis[placement] || placement;
     }
 
     if (tooltipRect.right > viewPortWidth) {
-      placement === 'top-center' && (placement = 'top-right');
-      placement === 'bottom-center' && (placement = 'bottom-right');
+      placement === 'top-center' && (placement = 'top-left');
+      placement === 'bottom-center' && (placement = 'bottom-left');
       placement = placementXAxis[placement] || placement;
     }
 
