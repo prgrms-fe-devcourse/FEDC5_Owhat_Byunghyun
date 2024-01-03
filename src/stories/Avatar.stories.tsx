@@ -10,10 +10,6 @@ export default {
       options: ['small', 'full', 'auto'],
       control: 'inline-radio',
     },
-    display: {
-      options: ['block', 'inlineBlock'],
-      control: 'inline-radio',
-    },
     shape: {
       options: ['circle', 'round', 'square'],
       control: 'inline-radio',
@@ -21,7 +17,6 @@ export default {
   },
   args: {
     src: 'https://picsum.photos/200',
-    display: 'block',
     size: 'small',
     shape: 'circle',
   },
