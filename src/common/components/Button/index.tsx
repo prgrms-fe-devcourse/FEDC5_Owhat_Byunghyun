@@ -41,7 +41,9 @@ const Button = ({
           <Loading />
         </div>
       )}
-      <span className={`${loading ? 'invisible' : 'flex'} justify-center `}>
+      <span
+        className={`${loading ? 'invisible' : 'inline-block'} align-baseline`}
+      >
         {children}
       </span>
     </button>
