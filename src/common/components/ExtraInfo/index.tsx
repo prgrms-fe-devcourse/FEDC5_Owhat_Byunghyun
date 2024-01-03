@@ -15,10 +15,7 @@ const ExtraInfo = ({ className, gap = 1, children, ...props }: TextProps) => {
   const childComponents = Children.toArray(children);
 
   return (
-    <ul
-      className={cn('flex', extraInfoVariants({ gap }), className)}
-      {...props}
-    >
+    <ul className={cn(extraInfoVariants({ gap }), className)} {...props}>
       {childComponents.map((child, index) => (
         <li
           key={index}
