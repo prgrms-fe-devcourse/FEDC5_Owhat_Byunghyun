@@ -43,8 +43,7 @@ const Button = ({
       )}
       <span
         className={cn(
-          loading ? 'invisible' : 'inline-block',
-          'align-middle',
+          loading ? 'invisible' : 'flex',
           fontColorVarients({ styleType, disabled }),
         )}
       >

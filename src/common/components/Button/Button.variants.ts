@@ -24,7 +24,7 @@ export const buttonVarients = cva(
     },
   },
 );
-export const fontColorVarients = cva('', {
+export const fontColorVarients = cva('leading-tight', {
   variants: {
     styleType: {
       primary: 'fill-white text-white',
