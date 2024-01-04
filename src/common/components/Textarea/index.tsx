@@ -9,7 +9,7 @@ interface TextareaProps extends ComponentProps<'textarea'> {
 
 const Textarea = ({
   size = 'sm',
-  readonly,
+  readonly = false,
   className,
   ...props
 }: TextareaProps) => {
@@ -22,7 +22,7 @@ const Textarea = ({
       onBlur={() => setRow(1)}
       rows={row}
       className={cn(
-        'box-border w-full resize-none overscroll-contain px-3 py-1.5 outline-none',
+        'box-border w-full resize-none overscroll-contain px py-small outline-none',
         size === 'lg' && 'h-full',
         className,
       )}
