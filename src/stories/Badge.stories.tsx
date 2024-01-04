@@ -19,18 +19,10 @@ export default {
       options: ['xsmall', 'small', 'medium', 'large', 'xlarge'],
       control: 'inline-radio',
     },
-    translateX: {
-      control: { type: 'range', min: 1, max: 11, step: 1 },
-    },
-    translateY: {
-      control: { type: 'range', min: 1, max: 11, step: 1 },
-    },
   },
   args: {
     badgeType: 'alarm',
     corner: 'top-right',
-    translateX: 5,
-    translateY: 7,
   },
 } satisfies Meta<typeof Badge>;
 
@@ -40,11 +32,22 @@ export const Default: Story = {
   render: function Render(args) {
     return (
       <Badge {...args}>
-        <Avatar size="small" src="http://picsum.photos/60"></Avatar>
+        <Avatar size="small" src="http://picsum.photos/200"></Avatar>
       </Badge>
     );
   },
 };
+
+export const BigElement: Story = {
+  render: function Render(args) {
+    return (
+      <Badge {...args}>
+        <Avatar size="screen" src="http://picsum.photos/200"></Avatar>
+      </Badge>
+    );
+  },
+};
+
 export const IconBadge: Story = {
   render: function Render(args) {
     return (
