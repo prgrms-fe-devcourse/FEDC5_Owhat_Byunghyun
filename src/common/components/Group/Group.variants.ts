@@ -27,7 +27,7 @@ export const groupVariants = cva(``, {
     },
     grow: {
       true: '[&>*]:grow-1 flex-nowrap [&>*]:w-full',
-      false: '[&>*]:grow-0',
+      false: '',
     },
   },
   defaultVariants: {
