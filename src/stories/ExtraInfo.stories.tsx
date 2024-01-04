@@ -6,7 +6,7 @@ const meta = {
   title: 'Common/Components/ExtraInfo',
   component: ExtraInfo,
   argTypes: {
-    gap: { control: { type: 'range', min: 0, max: 10, step: 1 } },
+    gap: { control: { type: 'range', min: 0, max: 5, step: 1 } },
   },
   args: {
     gap: 1,
