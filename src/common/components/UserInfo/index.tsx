@@ -25,11 +25,11 @@ const UserInfo = ({
   return (
     <>
       <Group spacing={'md'} align={'center'}>
-        <Link to={`/profile/${_id}`}>
+        <Link to={`/account/${_id}`}>
           <Avatar src={profileImage}></Avatar>
         </Link>
         <div>
-          <Link to={`/profile/${_id}`}>
+          <Link to={`/account/${_id}`}>
             <Text id={_id} strong>
               {author}
             </Text>
