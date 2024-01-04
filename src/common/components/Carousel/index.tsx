@@ -8,8 +8,8 @@ import {
 } from 'react';
 
 import Group from '~/common/components/Group';
-import Icon from '~/common/components/Icon';
 
+import CarouselButton from './CarouselButton';
 import useDragScroll from './useDragScroll';
 
 interface CarouselProps extends ComponentProps<'div'> {
@@ -83,34 +83,18 @@ const Carousel = ({
 
       {useButton && (
         <>
-          <button
+          <CarouselButton
             onClick={buttonScrollLeft}
             className="order-1"
             disabled={!isLeftButtonActive}
-          >
-            <Icon
-              id="chevron-left"
-              className={`${
-                isLeftButtonActive
-                  ? 'cursor-pointer fill-black hover:fill-primary'
-                  : 'fill-gray-400'
-              }`}
-            />
-          </button>
-          <button
+            iconId="chevron-left"
+          />
+          <CarouselButton
             onClick={buttonScrollRight}
             className="order-3"
             disabled={!isRightButtonActive}
-          >
-            <Icon
-              id="chevron-right"
-              className={`${
-                isRightButtonActive
-                  ? 'cursor-pointer fill-black hover:fill-primary'
-                  : 'fill-gray-400'
-              } `}
-            />
-          </button>
+            iconId="chevron-right"
+          />
         </>
       )}
     </div>
