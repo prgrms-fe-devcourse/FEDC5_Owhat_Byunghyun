@@ -7,6 +7,7 @@ export type IconName =
   | 'close'
   | 'forum'
   | 'favorite'
+  | 'favorite-filled'
   | 'edit'
   | 'home'
   | 'sms'
