@@ -32,13 +32,13 @@ const useDragScroll = ({
   });
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    if (!containerRef || !containerRef.current) return;
     e.preventDefault();
     e.stopPropagation();
-    if (containerRef.current) {
-      setIsDragging(true);
-      setStartX(e.pageX - containerRef.current.offsetLeft);
-      setScrollLeft(containerRef.current.scrollLeft || 0);
-    }
+
+    setIsDragging(true);
+    setStartX(e.pageX - containerRef.current.offsetLeft);
+    setScrollLeft(containerRef.current.scrollLeft || 0);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -69,15 +69,15 @@ const useDragScroll = ({
     const handleScroll = () => {
       const currentContainerRef = containerRef.current;
 
-      if (currentContainerRef) {
-        const { scrollLeft, scrollWidth, clientWidth } = currentContainerRef;
-        const maxScrollLeft = scrollWidth - clientWidth;
+      if (!currentContainerRef) return;
 
-        setButtonState({
-          isLeftButtonActive: scrollLeft > 0,
-          isRightButtonActive: scrollLeft < maxScrollLeft,
-        });
-      }
+      const { scrollLeft, scrollWidth, clientWidth } = currentContainerRef;
+      const maxScrollLeft = scrollWidth - clientWidth;
+
+      setButtonState({
+        isLeftButtonActive: scrollLeft > 0,
+        isRightButtonActive: scrollLeft < maxScrollLeft,
+      });
     };
 
     const currentContainerRef = containerRef.current;
