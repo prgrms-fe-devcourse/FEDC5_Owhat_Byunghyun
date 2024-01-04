@@ -71,7 +71,7 @@ const Tab = ({ children, activeLabel, className, ...props }: TabProps) => {
 
   return (
     <div>
-      <div className={cn('mb-4 flex w-full', className)} {...props}>
+      <div className={cn('mb flex w-full', className)} {...props}>
         {items}
       </div>
       <div>{activeItemContent}</div>
