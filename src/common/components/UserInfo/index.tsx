@@ -18,7 +18,7 @@ interface UserInfoProps {
 const UserInfo = ({
   _id,
   profileImage,
-  author,
+  author = '유효하지 않은 사용자',
   channel,
   createdAt,
 }: UserInfoProps) => {
