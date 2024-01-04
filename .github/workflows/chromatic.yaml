@@ -1,0 +1,44 @@
+name: 'Chromatic'
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-storybook
+
+      - name: Install dependencies
+        if: ${{ steps.cache.outputs.cache-hit }} != 'true'
+        run: npm ci
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@latest
+        id: chromatic
+        with:
+          # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          onlyChanged: true
+          exitZeroOnChanges: true
+          autoAcceptChanges: true
+
+      - name: comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: '🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}'

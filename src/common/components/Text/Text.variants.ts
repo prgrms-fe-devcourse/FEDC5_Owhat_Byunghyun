@@ -1,45 +1,34 @@
 import { cva } from 'class-variance-authority';
 
-export const TextVariants = cva(``, {
+export const textVariants = cva(`text-black`, {
   variants: {
-    fontColor: {
-      default: 'text-black',
-      primary: 'text-primary',
-      error: 'text-error',
-      success: 'text-success',
-      online: 'text-online',
-      black: 'text-black',
-      white: 'text-white',
-      lightGray: 'text-gray-300',
-      gray: 'text-gray-700',
-    },
-    fontSize: {
-      default: 'text-md',
-      xs: `text-xs`,
-      sm: `text-sm`,
-      md: `text-md`,
-      lg: `text-lg`,
-      xl: `text-xl`,
-      '2xl': `text-2xl`,
-      '3xl': `text-3xl`,
+    size: {
+      xsmall: `text-caption`,
+      small: `text-base-small`,
+      base: `text-base`,
+      large: `text-heading-3`,
+      xlarge: `text-heading-2`,
+      '2xlarge': `text-heading-1`,
     },
     strong: {
-      default: 'font-normal',
       true: 'font-bold',
       false: 'font-normal',
     },
     decoration: {
-      default: 'no-underline',
       none: 'no-underline',
       underline: 'underline',
       overline: 'overline',
       lineThrough: 'line-through',
     },
+    isLogo: {
+      true: 'font-logo',
+      false: 'font-sans',
+    },
   },
   defaultVariants: {
-    fontColor: 'default',
-    fontSize: 'default',
-    strong: 'default',
-    decoration: 'default',
+    size: 'base',
+    strong: false,
+    decoration: 'none',
+    isLogo: false,
   },
 });

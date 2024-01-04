@@ -11,6 +11,30 @@
 
 @layer base {
   * {
-    @apply font-sans;
+    @apply m-0 p-0 font-sans text-black  outline-none;
+  }
+
+  h1 {
+    @apply text-heading-1 font-bold;
+  }
+
+  h2 {
+    @apply text-heading-2 font-bold;
+  }
+
+  h3 {
+    @apply text-heading-3 font-bold;
+  }
+
+  @keyframes beat {
+    0% {
+      transform: scale(1);
+    }
+    90% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1.1);
+    }
   }
 }
