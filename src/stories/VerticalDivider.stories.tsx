@@ -4,7 +4,7 @@ import Text from '~/common/components/Text';
 import VerticalDivider from '~/common/components/VerticalDivider';
 
 export default {
-  title: 'Common/Components/verticalDivider',
+  title: 'Common/Components/Divider',
   component: VerticalDivider,
   argTypes: {
     size: {
@@ -23,9 +23,9 @@ export const Vertical: Story = {
   render: function Render(args) {
     return (
       <>
-        <Text>위</Text>
+        <Text elementType="span">왼쪽</Text>
         <VerticalDivider {...args} />
-        <Text>아래</Text>
+        <Text elementType="span">오른쪽</Text>
       </>
     );
   },

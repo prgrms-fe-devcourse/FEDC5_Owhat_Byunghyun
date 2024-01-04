@@ -4,7 +4,7 @@ import HorizontalDivider from '~/common/components/HorizontalDivider';
 import Text from '~/common/components/Text';
 
 export default {
-  title: 'Common/Components/horizontalDivider',
+  title: 'Common/Components/Divider',
   component: HorizontalDivider,
   argTypes: {
     size: {
@@ -23,9 +23,9 @@ export const Horizontal: Story = {
   render: function Render(args) {
     return (
       <>
-        <Text elementType="span">왼쪽</Text>
+        <Text>위</Text>
         <HorizontalDivider {...args} />
-        <Text elementType="span">오른쪽</Text>
+        <Text>아래</Text>
       </>
     );
   },

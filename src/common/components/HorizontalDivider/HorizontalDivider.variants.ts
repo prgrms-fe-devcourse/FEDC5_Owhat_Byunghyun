@@ -1,15 +1,14 @@
 import { cva } from 'class-variance-authority';
 
 export const horizontalDividerVariants = cva(
-  'relative -top-px inline-block h-[13px] w-[1px] border-none bg-gray-400 align-middle',
+  'block h-px w-full border-none bg-gray-400',
   {
     variants: {
       size: {
-        xsmall: 'mx-xsmall',
-        small: 'mx-small',
-
-        large: 'mx-large',
-        xlarge: 'mx-xlarge',
+        xsmall: 'my-xsmall',
+        small: 'my-small',
+        large: 'my-large',
+        xlarge: 'my-xlarge',
       },
     },
     defaultVariants: { size: 'small' },

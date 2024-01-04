@@ -5,7 +5,7 @@ import { cn } from '~/utils/cn';
 
 import { horizontalDividerVariants } from './HorizontalDivider.variants';
 
-interface HorizontalDividerProps
+interface VerticalDividerProps
   extends VariantProps<typeof horizontalDividerVariants>,
     ComponentProps<'div'> {}
 
@@ -13,7 +13,7 @@ const HorizontalDivider = ({
   size = 'small',
   className,
   ...props
-}: HorizontalDividerProps) => {
+}: VerticalDividerProps) => {
   return (
     <div
       {...props}
