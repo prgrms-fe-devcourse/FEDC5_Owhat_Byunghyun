@@ -1,4 +1,11 @@
-import { Children, ComponentProps, ReactNode, useRef } from 'react';
+import {
+  Children,
+  cloneElement,
+  ComponentProps,
+  isValidElement,
+  ReactNode,
+  useRef,
+} from 'react';
 
 import Group from '~/common/components/Group';
 import Icon from '~/common/components/Icon';
@@ -23,9 +30,16 @@ const Carousel = ({
   ...props
 }: CarouselProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const itemToShowWidth =
-    itemsToShow * (childSize + groupGap) + (childSize + groupGap) / 2;
+  const itemToShowWidth = itemsToShow * (childSize + groupGap) + childSize / 2;
   const totalCarousels = Children.count(children);
+
+  const avatars = Children.toArray(children).map((child: ReactNode) => {
+    if (isValidElement(child)) {
+      return cloneElement(child as JSX.Element, {
+        style: { width: `${childSize}px` },
+      });
+    }
+  });
 
   const {
     isLeftButtonActive,
@@ -56,15 +70,14 @@ const Carousel = ({
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
-        <Group spacing={groupGap} align={'center'} position={'center'} noWrap>
-          {Children.map(children, child => (
-            <div
-              className="flex snap-start flex-nowrap justify-center"
-              style={{ width: `${childSize}px` }}
-            >
-              {child}
-            </div>
-          ))}
+        <Group
+          spacing={groupGap}
+          align={'center'}
+          position={'center'}
+          noWrap
+          className="flex snap-start flex-nowrap justify-center "
+        >
+          {avatars}
         </Group>
       </div>
 
