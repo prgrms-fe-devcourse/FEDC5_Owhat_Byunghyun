@@ -32,16 +32,15 @@ const useDragScroll = ({
   });
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
     e.preventDefault();
     e.stopPropagation();
 
-    if (containerRef.current) {
-      const { offsetLeft, scrollLeft } = containerRef.current;
+    const { offsetLeft, scrollLeft } = containerRef.current;
 
-      setIsDragging(true);
-      setStartX(e.pageX - offsetLeft);
-      setScrollLeft(scrollLeft || 0);
-    }
+    setIsDragging(true);
+    setStartX(e.pageX - offsetLeft);
+    setScrollLeft(scrollLeft || 0);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
