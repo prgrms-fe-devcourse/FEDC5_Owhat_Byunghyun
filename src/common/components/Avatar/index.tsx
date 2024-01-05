@@ -42,6 +42,7 @@ const Avatar = ({
         src={src}
         alt={alt}
         placeholder={placeholder}
+        draggable="false"
         className={`${
           loaded ? 'opacity-100' : 'opacity-0'
         } select-none transition-opacity duration-200 ease-out`}

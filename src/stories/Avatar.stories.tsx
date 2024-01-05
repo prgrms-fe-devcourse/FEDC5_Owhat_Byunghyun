@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import DEFAULT_IMAGE from '~/assets/images/default_profile.webp';
 import Avatar from '~/common/components/Avatar';
 
 export default {
@@ -16,7 +17,7 @@ export default {
     },
   },
   args: {
-    src: 'src/assets/images/default_profile.webp',
+    src: DEFAULT_IMAGE,
     size: 'small',
     shape: 'circle',
   },
