@@ -1,21 +1,27 @@
 import { cva } from 'class-variance-authority';
 
 export const buttonVarients = cva(
-  `text-md relative px-4 py-2 font-semibold transition-colors`,
+  'group relative flex p-small text-base font-semibold transition-colors',
   {
     variants: {
       styleType: {
         primary:
-          'rounded-lg bg-primary text-white hover:bg-[#cc6600] focus:outline-none',
+          'rounded-small bg-primary fill-white text-white hover:bg-primary-darker focus:outline-none',
         secondary:
-          'rounded-md bg-white text-primary hover:bg-primary hover:text-white focus:outline-none',
+          'rounded-small bg-white fill-primary text-primary hover:bg-primary hover:fill-white hover:text-white focus:outline-none',
         outline:
-          'rounded-md border border-primary text-primary hover:bg-primary hover:text-white focus:outline-none',
-        ghost: 'hover:fill-gray-600 focus:outline-none rounded-md text-primary',
+          'focus:outline-nonefill-primary rounded-small border border-primary fill-primary text-primary hover:bg-primary hover:fill-white hover:text-white ',
+        ghost:
+          'rounded-small text-primary hover:fill-gray-600 hover:fill-gray-600 hover:text-primary-darker focus:outline-none',
+      },
+      disabled: {
+        true: 'pointer-events-none border-gray-300 bg-gray-400 fill-white',
+        false: '',
       },
     },
     defaultVariants: {
       styleType: 'primary',
+      disabled: false,
     },
   },
 );

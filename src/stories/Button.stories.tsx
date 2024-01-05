@@ -35,23 +35,17 @@ export const Default: Story = {
     return (
       <>
         <div>
-          <Button {...args} styleType={'primary'}>
-            button
-          </Button>
+          <Button {...args}>button</Button>
         </div>
         <div>
-          <Button {...args} styleType={'secondary'}>
-            완료
-          </Button>
+          <Button {...args}>완료</Button>
         </div>
 
         <div>
-          <Button {...args} styleType={'outline'}>
-            작성
-          </Button>
+          <Button {...args}>작성</Button>
         </div>
         <div>
-          <Button {...args} styleType={'ghost'}>
+          <Button {...args}>
             <Icon id="search"></Icon>
           </Button>
         </div>
