@@ -31,27 +31,26 @@ const useDragScroll = ({
     isRightButtonActive: true,
   });
 
-  const currentContainerRef = containerRef.current;
-
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (!currentContainerRef) return;
     e.preventDefault();
     e.stopPropagation();
 
-    const { offsetLeft, scrollLeft } = currentContainerRef;
+    if (containerRef.current) {
+      const { offsetLeft, scrollLeft } = containerRef.current;
 
-    setIsDragging(true);
-    setStartX(e.pageX - offsetLeft);
-    setScrollLeft(scrollLeft || 0);
+      setIsDragging(true);
+      setStartX(e.pageX - offsetLeft);
+      setScrollLeft(scrollLeft || 0);
+    }
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !currentContainerRef) return;
-    const { offsetLeft } = currentContainerRef;
+    if (!isDragging || !containerRef.current) return;
+    const { offsetLeft } = containerRef.current;
 
     const x = e.pageX - offsetLeft;
     const walk = (x - startX) * 2;
-    currentContainerRef.scrollLeft = scrollLeft - walk;
+    containerRef.current.scrollLeft = scrollLeft - walk;
   };
 
   const handleMouseUp = () => {
@@ -59,22 +58,22 @@ const useDragScroll = ({
   };
 
   const buttonScrollLeft = () => {
-    if (currentContainerRef) {
-      currentContainerRef.scrollLeft -= childSize;
+    if (containerRef.current) {
+      containerRef.current.scrollLeft -= childSize;
     }
   };
 
   const buttonScrollRight = () => {
-    if (currentContainerRef) {
-      currentContainerRef.scrollLeft += childSize;
+    if (containerRef.current) {
+      containerRef.current.scrollLeft += childSize;
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!currentContainerRef) return;
+      if (!containerRef.current) return;
 
-      const { scrollLeft, scrollWidth, clientWidth } = currentContainerRef;
+      const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
       const maxScrollLeft = scrollWidth - clientWidth;
 
       setButtonState({
@@ -83,16 +82,16 @@ const useDragScroll = ({
       });
     };
 
-    if (currentContainerRef) {
-      currentContainerRef.addEventListener('scroll', handleScroll);
+    if (containerRef.current) {
+      containerRef.current.addEventListener('scroll', handleScroll);
     }
 
     return () => {
-      if (currentContainerRef) {
-        currentContainerRef.removeEventListener('scroll', handleScroll);
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('scroll', handleScroll);
       }
     };
-  }, [currentContainerRef]);
+  }, [containerRef.current]);
 
   return {
     isLeftButtonActive: buttonState.isLeftButtonActive,
