@@ -10,6 +10,7 @@ import {
 import Group from '~/common/components/Group';
 import { cn } from '~/utils/cn';
 
+import Icon from '../Icon';
 import CarouselButton from './CarouselButton';
 import useDragScroll from './useDragScroll';
 
@@ -38,9 +39,7 @@ const Carousel = ({
     if (isValidElement(child)) {
       return cloneElement(child as JSX.Element, {
         style: { width: `${childSize}px` },
-        className: `${
-          child.props.className ? child.props.className + ' ' : ''
-        }snap-start`,
+        className: `${child.props.className || ''} snap-start`,
       });
     }
   });
@@ -77,13 +76,7 @@ const Carousel = ({
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
-        <Group
-          spacing={groupGap}
-          align="center"
-          position="center"
-          noWrap
-          className="flex"
-        >
+        <Group spacing={groupGap} align="center" position="center" noWrap>
           {avatars}
         </Group>
       </div>
@@ -94,14 +87,30 @@ const Carousel = ({
             onClick={buttonScrollLeft}
             className="order-1"
             disabled={!isLeftButtonActive}
-            iconId="chevron-left"
-          />
+          >
+            <Icon
+              id="chevron-left"
+              className={
+                !isLeftButtonActive
+                  ? 'fill-gray-400'
+                  : 'cursor-pointer fill-black hover:fill-primary'
+              }
+            />
+          </CarouselButton>
           <CarouselButton
             onClick={buttonScrollRight}
             className="order-3"
             disabled={!isRightButtonActive}
-            iconId="chevron-right"
-          />
+          >
+            <Icon
+              id="chevron-right"
+              className={
+                !isRightButtonActive
+                  ? 'fill-gray-400'
+                  : 'cursor-pointer fill-black hover:fill-primary'
+              }
+            />
+          </CarouselButton>
         </>
       )}
     </div>
