@@ -8,6 +8,7 @@ import {
 } from 'react';
 
 import Group from '~/common/components/Group';
+import { cn } from '~/utils/cn';
 
 import CarouselButton from './CarouselButton';
 import useDragScroll from './useDragScroll';
@@ -61,7 +62,10 @@ const Carousel = ({
     <div className="flex items-center" {...props}>
       <div
         ref={containerRef}
-        className={`order-2 flex snap-x scroll-pl-2 overflow-hidden scroll-smooth px-2 py-2 ${className}`}
+        className={cn(
+          'order-2 flex snap-x scroll-pl-2 overflow-hidden scroll-smooth px-2 py-2',
+          className,
+        )}
         style={{ width: `${itemToShowWidth}px` }}
         role="slider"
         aria-valuenow={itemsToShow}
@@ -75,8 +79,8 @@ const Carousel = ({
       >
         <Group
           spacing={groupGap}
-          align={'center'}
-          position={'center'}
+          align="center"
+          position="center"
           noWrap
           className="flex"
         >

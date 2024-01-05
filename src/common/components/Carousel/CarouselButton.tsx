@@ -16,11 +16,11 @@ const CarouselButton = ({
   <button onClick={onClick} className={className} disabled={disabled}>
     <Icon
       id={iconId}
-      className={`${
+      className={
         disabled
           ? 'fill-gray-400'
           : 'cursor-pointer fill-black hover:fill-primary'
-      }`}
+      }
     />
   </button>
 );
