@@ -37,6 +37,9 @@ const Carousel = ({
     if (isValidElement(child)) {
       return cloneElement(child as JSX.Element, {
         style: { width: `${childSize}px` },
+        className: `${
+          child.props.className ? child.props.className + ' ' : ''
+        }snap-start`,
       });
     }
   });
@@ -58,7 +61,7 @@ const Carousel = ({
     <div className="flex items-center" {...props}>
       <div
         ref={containerRef}
-        className={`order-2 flex snap-x overflow-hidden scroll-smooth py-2 ${className}`}
+        className={`order-2 flex snap-x scroll-pl-2 overflow-hidden scroll-smooth px-2 py-2 ${className}`}
         style={{ width: `${itemToShowWidth}px` }}
         role="slider"
         aria-valuenow={itemsToShow}
@@ -75,7 +78,7 @@ const Carousel = ({
           align={'center'}
           position={'center'}
           noWrap
-          className="flex snap-start flex-nowrap justify-center "
+          className="flex"
         >
           {avatars}
         </Group>
