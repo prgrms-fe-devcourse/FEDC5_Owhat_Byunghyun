@@ -19,9 +19,11 @@ export const Horizontal: Story = {
   render: function Render(args) {
     return (
       <>
-        <Text>위</Text>
-        <Divider {...args} type="horizontal" />
-        <Text>아래</Text>
+        <div>
+          <Text>위</Text>
+          <Divider {...args} type="horizontal" />
+          <Text>아래</Text>
+        </div>
       </>
     );
   },
@@ -33,7 +35,7 @@ export const Vertical: Story = {
       <>
         <div>
           <Text elementType="span">왼쪽</Text>
-          <Divider {...args} type="vertical" className="h-full" />
+          <Divider {...args} type="vertical" />
           <Text elementType="span">오른쪽</Text>
         </div>
       </>
