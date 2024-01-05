@@ -10,8 +10,8 @@ import {
 
 import { cn } from '~/utils/cn';
 
-import { useHandleTooltip } from './\bhooks/useHandleTooltip';
-import useSmartTooltip, { Placement } from './\bhooks/useSmartTooltip';
+import { useHandleTooltip } from './hooks/useHandleTooltip';
+import useSmartTooltip, { Placement } from './hooks/useSmartTooltip';
 import { tooltipArrowVariants, tooltipVariants } from './Tooltip.variants';
 import { TooltipArrow } from './TooltipArrow';
 
