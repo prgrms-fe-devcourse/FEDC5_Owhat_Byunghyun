@@ -5,12 +5,12 @@ export const badgeVariants = cva(
   {
     variants: {
       corner: {
-        'top-left': ' left-[10%] top-[15%] -translate-x-1/2 -translate-y-1/2',
-        'top-right': 'right-[10%] top-[15%] -translate-y-1/2 translate-x-1/2',
+        'top-left': ' left-[12%] top-[17%] -translate-x-1/2 -translate-y-1/2',
+        'top-right': 'right-[12%] top-[17%] -translate-y-1/2 translate-x-1/2',
         'bottom-left':
-          'bottom-[15%] left-[10%] -translate-x-1/2 translate-y-1/2',
+          'bottom-[17%] left-[12%] -translate-x-1/2 translate-y-1/2',
         'bottom-right':
-          'bottom-[15%] right-[10%] translate-x-1/2 translate-y-1/2',
+          'bottom-[17%] right-[12%] translate-x-1/2 translate-y-1/2',
       },
       badgeType: {
         online: '[&>span]:bg-online',

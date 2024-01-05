@@ -22,7 +22,7 @@ const Badge = ({
   ...props
 }: BadgeProps) => {
   return (
-    <div className="relative inline-block" {...props}>
+    <div className="relative inline-flex" {...props}>
       {children}
       {isActive === true && (
         <span

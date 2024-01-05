@@ -42,7 +42,7 @@ export const BigElement: Story = {
   render: function Render(args) {
     return (
       <Badge {...args}>
-        <Avatar size="screen" src="http://picsum.photos/200"></Avatar>
+        <Avatar size="full" src="http://picsum.photos/200"></Avatar>
       </Badge>
     );
   },
