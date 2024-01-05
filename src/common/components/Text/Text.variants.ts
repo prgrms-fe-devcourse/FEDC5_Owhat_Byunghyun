@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-export const textVariants = cva(`text-black`, {
+export const textVariants = cva(`text-black text-inherit`, {
   variants: {
     size: {
       xsmall: `text-caption`,

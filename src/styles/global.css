@@ -11,7 +11,7 @@
 
 @layer base {
   * {
-    @apply m-0 p-0 font-sans text-black  outline-none;
+    @apply m-0 p-0 font-sans outline-none;
   }
 
   h1 {
