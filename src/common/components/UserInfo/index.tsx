@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { getElapsedTime } from '~/utils/getElaspedTime';
+import { elapsedTime } from '~/utils/time';
 
 import Avatar from '../Avatar';
 import ExtraInfo from '../ExtraInfo';
@@ -34,7 +34,7 @@ const UserInfo = ({
           </Link>
           <ExtraInfo>
             {channel ? <span>{channel}</span> : null}
-            <span>{getElapsedTime(createdAt)}</span>
+            <span>{elapsedTime(createdAt)}</span>
           </ExtraInfo>
         </div>
       </Group>
