@@ -13,7 +13,7 @@ export const badgeVariants = cva(
           'bottom-[15%] right-[10%] translate-x-1/2 translate-y-1/2',
       },
       badgeType: {
-        online: '[&>span]:bg-success',
+        online: '[&>span]:bg-online',
         offline: '[&>span]:bg-gray-700 ',
         alarm: '[&>span]:bg-primary',
       },
