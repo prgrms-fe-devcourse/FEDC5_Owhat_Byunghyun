@@ -3,25 +3,16 @@ import Icon from '../Icon';
 import Image from '../Image';
 import Like from '../Like';
 import Text from '../Text';
-import DUMMY_DATA from './DUMMY_DATA.json';
 
 interface FeedProps {
   title?: string;
   body?: string;
-  image?: string;
-  likes?: object[];
-  comments?: object[];
+  image: string;
+  likes: object[];
+  comments: object[];
 }
 
-const data = DUMMY_DATA[0];
-
-const Feed = ({
-  title = data.title[0].title,
-  body = data.title[0].body,
-  image = data.image,
-  likes = data.likes,
-  comments = data.comments,
-}: FeedProps) => {
+const Feed = ({ title, body, image, likes, comments }: FeedProps) => {
   return (
     <Group direction="columns" spacing="md">
       <Text size="xlarge" strong={true}>
