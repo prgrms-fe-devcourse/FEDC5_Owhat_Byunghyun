@@ -30,9 +30,7 @@ const UserInfo = ({
         </Link>
         <div>
           <Link to={`/account/${_id}`}>
-            <Text id={_id} strong>
-              {author}
-            </Text>
+            <Text strong>{author}</Text>
           </Link>
           <ExtraInfo>
             {channel ? <span>{channel}</span> : null}
