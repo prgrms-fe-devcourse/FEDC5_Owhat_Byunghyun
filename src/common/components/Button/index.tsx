@@ -40,9 +40,7 @@ const Button = ({
           <Loading />
         </div>
       )}
-      <span
-        className={cn(loading ? 'invisible' : 'inline-block', 'text-inherit')}
-      >
+      <span className={cn(loading ? 'invisible' : 'visible', 'text-inherit')}>
         {children}
       </span>
     </button>
