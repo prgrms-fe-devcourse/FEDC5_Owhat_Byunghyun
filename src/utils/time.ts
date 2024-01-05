@@ -26,13 +26,8 @@ export const elapsedTime = (date: string) => {
   for (const value of times) {
     const betweenTime = Math.floor(diff / value.milliSeconds);
 
-    if (betweenTime > 0) {
-      if (betweenTime === 7) {
-        return dateDetail.slice(0, -1);
-      }
-
-      return formatter.format(betweenTime * -1, value.name);
-    }
+    if (betweenTime === 7) return dateDetail.slice(0, -1);
+    if (betweenTime > 0) return formatter.format(betweenTime * -1, value.name);
   }
 
   return '방금 전';
