@@ -1,17 +1,18 @@
 import { cva } from 'class-variance-authority';
 
 export const buttonVarients = cva(
-  'group relative p-small text-base font-semibold transition-colors',
+  'group relative flex p-small text-base font-semibold transition-colors',
   {
     variants: {
       styleType: {
         primary:
-          'rounded-small bg-primary hover:bg-[#cc6600] focus:outline-none',
+          'rounded-small bg-primary fill-white text-white hover:bg-primary-darker focus:outline-none',
         secondary:
-          'rounded-small bg-white hover:bg-primary hover:fill-white focus:outline-none',
+          'rounded-small bg-white fill-primary text-primary hover:bg-primary hover:fill-white hover:text-white focus:outline-none',
         outline:
-          'rounded-small border border-primary hover:bg-primary focus:outline-none',
-        ghost: 'rounded-small hover:fill-gray-600 focus:outline-none',
+          'focus:outline-nonefill-primary rounded-small border border-primary fill-primary text-primary hover:bg-primary hover:fill-white hover:text-white ',
+        ghost:
+          'rounded-small text-primary hover:fill-gray-600 hover:fill-gray-600 hover:text-primary-darker focus:outline-none',
       },
       disabled: {
         true: 'pointer-events-none border-gray-300 bg-gray-400 fill-white',
@@ -24,21 +25,3 @@ export const buttonVarients = cva(
     },
   },
 );
-export const fontColorVarients = cva('leading-tight', {
-  variants: {
-    styleType: {
-      primary: 'fill-white text-white',
-      secondary: 'text-primary group-hover:fill-white  group-hover:text-white ',
-      outline: 'text-primary group-hover:fill-white  group-hover:text-white ',
-      ghost:
-        'text-primary group-hover:fill-gray-600  group-hover:text-primary-darker ',
-    },
-    disabled: {
-      true: 'pointer-events-none border-gray-300 bg-gray-400 fill-white text-white',
-      false: '',
-    },
-  },
-  defaultVariants: {
-    styleType: 'primary',
-  },
-});

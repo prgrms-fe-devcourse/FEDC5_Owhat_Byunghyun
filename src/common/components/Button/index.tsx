@@ -4,13 +4,12 @@ import { ComponentProps } from 'react';
 import Loading from '~/common/components/Loading';
 import { cn } from '~/utils/cn';
 
-import { buttonVarients, fontColorVarients } from './Button.variants';
+import { buttonVarients } from './Button.variants';
 
 //TODO: invisible 사용고려 - loading을 감싸는 rounded가 통일 되지않아 튀어나오는 버그 -> main 머지 후 해결 가능
 export interface ButtonProps
   extends ComponentProps<'button'>,
-    VariantProps<typeof buttonVarients>,
-    VariantProps<typeof fontColorVarients> {
+    VariantProps<typeof buttonVarients> {
   children: React.ReactNode;
   loading?: boolean;
   fullwidth?: boolean;
@@ -42,10 +41,7 @@ const Button = ({
         </div>
       )}
       <span
-        className={cn(
-          loading ? 'invisible' : 'flex',
-          fontColorVarients({ styleType, disabled }),
-        )}
+        className={cn(loading ? 'invisible' : 'inline-block', 'text-inherit')}
       >
         {children}
       </span>
