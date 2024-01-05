@@ -18,27 +18,25 @@ interface UserInfoProps {
 const UserInfo = ({
   _id,
   profileImage,
-  author = '유효하지 않은 사용자',
+  author,
   channel,
   createdAt,
 }: UserInfoProps) => {
   return (
-    <>
-      <Group spacing={'md'} align={'center'}>
+    <Group spacing={'md'} align={'center'}>
+      <Link to={`/account/${_id}`}>
+        <Avatar src={profileImage}></Avatar>
+      </Link>
+      <div>
         <Link to={`/account/${_id}`}>
-          <Avatar src={profileImage}></Avatar>
+          <Text strong>{author}</Text>
         </Link>
-        <div>
-          <Link to={`/account/${_id}`}>
-            <Text strong>{author}</Text>
-          </Link>
-          <ExtraInfo>
-            {channel ? <span>{channel}</span> : null}
-            <span>{elapsedTime(createdAt)}</span>
-          </ExtraInfo>
-        </div>
-      </Group>
-    </>
+        <ExtraInfo>
+          {channel && <span>{channel}</span>}
+          <span>{elapsedTime(createdAt)}</span>
+        </ExtraInfo>
+      </div>
+    </Group>
   );
 };
 
