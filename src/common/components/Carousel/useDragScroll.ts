@@ -82,16 +82,18 @@ const useDragScroll = ({
       });
     };
 
-    if (containerRef.current) {
-      containerRef.current.addEventListener('scroll', handleScroll);
+    const currentContainerRef = containerRef.current;
+
+    if (currentContainerRef) {
+      currentContainerRef.addEventListener('scroll', handleScroll);
     }
 
     return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener('scroll', handleScroll);
+      if (currentContainerRef) {
+        currentContainerRef.removeEventListener('scroll', handleScroll);
       }
     };
-  }, [containerRef.current]);
+  }, [containerRef]);
 
   return {
     isLeftButtonActive: buttonState.isLeftButtonActive,
