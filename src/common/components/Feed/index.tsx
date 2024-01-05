@@ -2,26 +2,27 @@ import Group from '../Group';
 import Icon from '../Icon';
 import Image from '../Image';
 import Text from '../Text';
+import DUMMY_DATA from './DUMMY_DATA.json';
 
 const Feed = () => {
+  const title = DUMMY_DATA[0].title[0].title;
+  const body = DUMMY_DATA[0].title[0].body;
+  const image = DUMMY_DATA[0].image;
+  const likes = DUMMY_DATA[0].likes;
+  const comments = DUMMY_DATA[0].comments;
+
   return (
     <Group direction="columns" spacing="md">
       <Text size="xlarge" strong={true}>
-        제목입니다
+        {title}
       </Text>
-      <Image
-        src="https://cdn.pixabay.com/photo/2023/09/22/18/39/bear-8269620_1280.jpg"
-        alt="피드 이미지입니다"
-        imgWidth="full"
-        imgHeight="auto"
-        lazy={true}
-      />
-      <Text>내용입니다.</Text>
+      <Image src={image} imgWidth="full" imgHeight="auto" lazy={true} />
+      <Text>{body}</Text>
       <Group spacing="sm" align="center">
         <Icon id="favorite" />
-        <Text size="small">2</Text>
+        <Text size="small">{likes.length}</Text>
         <Icon id="sms" />
-        <Text size="small">5</Text>
+        <Text size="small">{comments.length}</Text>
       </Group>
     </Group>
   );
