@@ -15,6 +15,7 @@ export const Default: Story = {
   args: {
     size: 'sm',
     placeholder: 'Textarea 컴포넌트',
+    readonly: false,
     required: false,
     disabled: false,
   },
@@ -24,6 +25,7 @@ export const Default: Story = {
       options: ['sm', 'lg'],
     },
     placeholder: { control: 'text' },
+    readonly: { control: 'boolean' },
     required: { control: 'boolean' },
     disabled: { control: 'boolean' },
   },
@@ -34,11 +36,13 @@ export const Default: Story = {
         <Textarea placeholder="메시지 보내기" className="bg-gray-100" />
         <Textarea placeholder="댓글을 등록하려면 로그인 해야합니다." disabled />
         <Textarea placeholder="댓글을 입력하세요." className="bg-gray-100" />
-        <Textarea
-          size="lg"
-          placeholder="내용을 입력하세요"
-          className="bg-gray-100"
-        />
+        <div className="h-60">
+          <Textarea
+            size="lg"
+            placeholder="내용을 입력하세요"
+            className="bg-gray-100"
+          />
+        </div>
       </>
     );
   },
