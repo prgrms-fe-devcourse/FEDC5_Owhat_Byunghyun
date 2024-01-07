@@ -18,10 +18,11 @@ interface RegisterData {
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
-  //Email 중복확인에 state가 3개가 필요함(중복인지 아닌지, 중복체크메시지,중복확인을 눌렀는지)
   const [isEmailDuplicate, setIsEmailDuplicate] = useState(false);
   const [emailCheckMessage, setEmailCheckMessage] = useState('');
   const [isEmailCheckComplete, setIsEmailCheckComplete] = useState(false);
+  const [username, setUsername] = useState('');
+  const [isUsernameValid, setIsUsernameValid] = useState(false);
 
   const validateEmail = (value: string) => {
     const isValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
@@ -34,7 +35,6 @@ const RegisterForm = () => {
     validateEmail(email);
   }, [email]);
 
-  //중복확인 API
   const checkDuplicateId = async (email: string) => {
     try {
       const response = await fetch(`${API_HOST}/users/get-users`, {
@@ -64,6 +64,23 @@ const RegisterForm = () => {
     }
   };
 
+  const validateUsername = (value: string) => {
+    const hasMinLength = value.length >= 3;
+
+    const hasOnlyKoreanOrEnglish = /^[가-힣a-zA-Z]+$/.test(value);
+
+    const hasAccurateVowelsAndConsonants =
+      /^[가-힣]*([ㄱ-ㅎㅏ-ㅣ])*[가-힣]*$/.test(value);
+
+    setIsUsernameValid(
+      hasMinLength && hasOnlyKoreanOrEnglish && hasAccurateVowelsAndConsonants,
+    );
+  };
+
+  useEffect(() => {
+    validateUsername(username);
+  }, [username]);
+
   const registerUser = async (userData: RegisterData) => {
     const response = await fetch(`${API_HOST}/signup`, {
       method: 'POST',
@@ -90,13 +107,15 @@ const RegisterForm = () => {
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
+      if (!isEmailValid || isEmailDuplicate || isUsernameValid) return;
+
       const elements = e.currentTarget;
       const email = elements.email.value;
       const fullName = elements.fullName.value;
       const password = elements.password.value;
       mutation.mutate({ email, fullName, password });
     },
-    [mutation],
+    [mutation, isEmailValid, isEmailDuplicate, isUsernameValid],
   );
 
   return (
@@ -150,9 +169,14 @@ const RegisterForm = () => {
           <Input
             type="text"
             name="fullName"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
             placeholder="이름을 입력해주세요."
             className="w-full"
           />
+          {!isUsernameValid && (
+            <Text size="small">이름을 3글자 이상으로 입력해주세요</Text>
+          )}
         </Group>
         <Group direction="columns" spacing="sm" className="w-full">
           <Text size="small" elementType="span">
