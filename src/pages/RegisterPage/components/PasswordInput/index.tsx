@@ -4,7 +4,11 @@ import Text from '~/common/components/Text';
 
 import usePasswordValidation from './usePasswordValidation';
 
-const PasswordInput = () => {
+interface PasswordInputProps {
+  onPasswordCompleted: (isValid: boolean) => void;
+}
+
+const PasswordInput = ({ onPasswordCompleted }: PasswordInputProps) => {
   const {
     password,
     confirmPassword,
@@ -12,6 +16,8 @@ const PasswordInput = () => {
     handlePasswordChange,
     handleConfirmPasswordChange,
   } = usePasswordValidation();
+
+  onPasswordCompleted(password.length >= 4 && isPasswordMatch);
 
   return (
     <>
