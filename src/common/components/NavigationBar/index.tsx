@@ -24,6 +24,9 @@ const NavigationBar = ({ className, ...props }: NavigationBarProps) => {
       <Link to={'/'}>
         <Icon id="home" />
       </Link>
+      <Link to={'/search'}>
+        <Icon id="search" />
+      </Link>
       <Link to={'/message'}>
         <Icon id="message" />
       </Link>
