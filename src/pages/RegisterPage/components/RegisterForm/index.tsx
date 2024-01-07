@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
@@ -15,6 +15,20 @@ interface RegisterData {
 }
 
 const RegisterForm = () => {
+  const [email, setEmail] = useState('');
+  const [isEmailValid, setIsEmailValid] = useState(false);
+
+  const validateEmail = (value: string) => {
+    const isValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
+      value,
+    );
+    setIsEmailValid(isValid);
+  };
+
+  useEffect(() => {
+    validateEmail(email);
+  }, [email]);
+
   const registerUser = async (userData: RegisterData) => {
     const response = await fetch(`${API_HOST}/signup`, {
       method: 'POST',
@@ -61,11 +75,21 @@ const RegisterForm = () => {
             <Input
               type="email"
               name="email"
+              value={email}
+              onChange={e => {
+                setEmail(e.target.value);
+                validateEmail(e.target.value);
+              }}
               placeholder="이메일을 입력해주세요."
               disabled={mutation.isPending}
             />
 
-            <Button type="button" styleType="ghost" className="text-sm">
+            <Button
+              type="button"
+              styleType="ghost"
+              className="text-sm"
+              disabled={!isEmailValid}
+            >
               중복 확인
             </Button>
           </Group>
