@@ -10,7 +10,8 @@ const useUsernameValidation = () => {
     const hasOnlyKoreanOrEnglish = /^[가-힣a-zA-Z]+$/.test(value);
 
     const hasAccurateVowelsAndConsonants =
-      /^[가-힣]*([ㄱ-ㅎㅏ-ㅣ])*[가-힣]*$/.test(value);
+      /^[가-힣]*([ㄱ-ㅎㅏ-ㅣ])*[가-힣]*$/.test(value) ||
+      /^[a-zA-Z]+$/.test(value);
 
     setIsUsernameValid(
       hasMinLength && hasOnlyKoreanOrEnglish && hasAccurateVowelsAndConsonants,
