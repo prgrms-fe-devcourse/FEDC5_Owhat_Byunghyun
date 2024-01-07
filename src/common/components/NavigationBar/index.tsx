@@ -12,28 +12,28 @@ export interface NavigationBarProps
   extends VariantProps<typeof NavigationBarVariants>,
     ComponentProps<'div'> {}
 
-const NavigationBar = ({ className, ...props }: NavigationBarProps) => {
+const NavigationBar = ({ ...props }: NavigationBarProps) => {
   return (
     <Group
       position="evenly"
       align="center"
       spacing="md"
-      className={cn(NavigationBarVariants(), className)}
+      className="absolute bottom-0 h-14 w-full rounded border-2 border-primary-lighter bg-primary-lighter"
       {...props}
     >
-      <Link to={'/'}>
+      <Link to={'/'} className={cn(NavigationBarVariants())}>
         <Icon id="home" />
       </Link>
-      <Link to={'/search'}>
+      <Link to={'/search'} className={cn(NavigationBarVariants())}>
         <Icon id="search" />
       </Link>
-      <Link to={'/message'}>
+      <Link to={'/message'} className={cn(NavigationBarVariants())}>
         <Icon id="message" />
       </Link>
-      <Link to={'/notification'}>
+      <Link to={'/notification'} className={cn(NavigationBarVariants())}>
         <Icon id="notifications" />
       </Link>
-      <Link to={'/account'}>
+      <Link to={'/account'} className={cn(NavigationBarVariants())}>
         <Icon id="account-circle" />
       </Link>
     </Group>
