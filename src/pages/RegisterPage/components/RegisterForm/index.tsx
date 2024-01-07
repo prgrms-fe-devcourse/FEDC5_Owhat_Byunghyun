@@ -23,6 +23,9 @@ const RegisterForm = () => {
   const [isEmailCheckComplete, setIsEmailCheckComplete] = useState(false);
   const [username, setUsername] = useState('');
   const [isUsernameValid, setIsUsernameValid] = useState(false);
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isPasswordMatch, setIsPasswordMatch] = useState(true);
 
   const validateEmail = (value: string) => {
     const isValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
@@ -81,6 +84,18 @@ const RegisterForm = () => {
     validateUsername(username);
   }, [username]);
 
+  const handlePasswordChange = (value: string) => {
+    setPassword(value);
+
+    setIsPasswordMatch(value === confirmPassword);
+  };
+
+  const handleConfirmPasswordChange = (value: string) => {
+    setConfirmPassword(value);
+
+    setIsPasswordMatch(password === value);
+  };
+
   const registerUser = async (userData: RegisterData) => {
     const response = await fetch(`${API_HOST}/signup`, {
       method: 'POST',
@@ -107,7 +122,13 @@ const RegisterForm = () => {
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      if (!isEmailValid || isEmailDuplicate || isUsernameValid) return;
+      if (
+        !isPasswordMatch ||
+        !isEmailValid ||
+        isEmailDuplicate ||
+        isUsernameValid
+      )
+        return;
 
       const elements = e.currentTarget;
       const email = elements.email.value;
@@ -115,7 +136,13 @@ const RegisterForm = () => {
       const password = elements.password.value;
       mutation.mutate({ email, fullName, password });
     },
-    [mutation, isEmailValid, isEmailDuplicate, isUsernameValid],
+    [
+      mutation,
+      isEmailValid,
+      isEmailDuplicate,
+      isUsernameValid,
+      isPasswordMatch,
+    ],
   );
 
   return (
@@ -185,6 +212,8 @@ const RegisterForm = () => {
           <Input
             type="password"
             name="password"
+            value={password}
+            onChange={e => handlePasswordChange(e.target.value)}
             placeholder="비밀번호를 입력해주세요."
             className="w-full"
           />
@@ -196,9 +225,16 @@ const RegisterForm = () => {
           <Input
             type="password"
             name="confirmpassword"
+            value={confirmPassword}
+            onChange={e => handleConfirmPasswordChange(e.target.value)}
             placeholder="비밀번호를 다시 한번 입력해주세요"
             className="w-full"
           />
+          {!isPasswordMatch && (
+            <Text size="small" className="text-error">
+              비밀번호가 일치하지 않습니다.
+            </Text>
+          )}
         </Group>
         <Button
           loading={mutation.isPending}
