@@ -6,8 +6,8 @@ import Text from '~/common/components/Text';
 import useEmailValidation from './useEmailValidation';
 
 interface EmailInputProps {
-  mutation: { isPending: boolean };
-  onEmailCompleted: (isValid: boolean) => void;
+  mutation?: { isPending: boolean };
+  onEmailCompleted?: (isValid: boolean) => void;
 }
 
 const EmailInput = ({ mutation, onEmailCompleted }: EmailInputProps) => {
@@ -21,7 +21,7 @@ const EmailInput = ({ mutation, onEmailCompleted }: EmailInputProps) => {
     checkDuplicateId,
   } = useEmailValidation();
 
-  onEmailCompleted(isEmailCheckComplete);
+  onEmailCompleted && onEmailCompleted(isEmailCheckComplete);
 
   return (
     <>
@@ -38,7 +38,7 @@ const EmailInput = ({ mutation, onEmailCompleted }: EmailInputProps) => {
               handleEmailChange(e.target.value);
             }}
             placeholder="이메일을 입력해주세요."
-            disabled={mutation.isPending}
+            disabled={mutation?.isPending}
           />
 
           <Button
