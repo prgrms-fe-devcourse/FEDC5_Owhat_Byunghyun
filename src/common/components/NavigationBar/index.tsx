@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { cn } from '~/utils/cn';
 
+import Group from '../Group';
 import Icon from '../Icon/index';
 import { NavigationBarVariants } from './NavigationBar.variants';
 
@@ -13,7 +14,13 @@ export interface NavigationBarProps
 
 const NavigationBar = ({ className, ...props }: NavigationBarProps) => {
   return (
-    <div className={cn(NavigationBarVariants(), className)} {...props}>
+    <Group
+      position="evenly"
+      align="center"
+      spacing="md"
+      className={cn(NavigationBarVariants(), className)}
+      {...props}
+    >
       <Link to={'/'}>
         <Icon id="home" />
       </Link>
@@ -26,7 +33,7 @@ const NavigationBar = ({ className, ...props }: NavigationBarProps) => {
       <Link to={'/account'}>
         <Icon id="account-circle" />
       </Link>
-    </div>
+    </Group>
   );
 };
 
