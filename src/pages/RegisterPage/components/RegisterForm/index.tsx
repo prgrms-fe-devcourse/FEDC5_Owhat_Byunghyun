@@ -4,12 +4,12 @@ import { useCallback } from 'react';
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 
-import useEmailValidation from '../../hooks/useEmailValidation';
-import useUsernameValidation from '../../hooks/useNameValidation';
-import usePasswordValidation from '../../hooks/usePasswordValidation';
 import EmailInput from '../EmailInput';
+import useEmailValidation from '../EmailInput/useEmailValidation';
 import PasswordInput from '../PasswordInput';
+import usePasswordValidation from '../PasswordInput/usePasswordValidation';
 import UsernameInput from '../UsernameInput';
+import useUsernameValidation from '../UsernameInput/useNameValidation';
 
 const API_HOST = import.meta.env.VITE_API_HOST;
 
