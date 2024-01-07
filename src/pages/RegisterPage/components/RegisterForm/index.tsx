@@ -240,7 +240,16 @@ const RegisterForm = () => {
           loading={mutation.isPending}
           type="submit"
           fullwidth={true}
-          disabled={mutation.isPending}
+          disabled={
+            mutation.isPending ||
+            !isEmailValid ||
+            isEmailDuplicate ||
+            !username ||
+            !isUsernameValid ||
+            !password ||
+            !confirmPassword ||
+            !isPasswordMatch
+          }
         >
           회원가입
         </Button>
