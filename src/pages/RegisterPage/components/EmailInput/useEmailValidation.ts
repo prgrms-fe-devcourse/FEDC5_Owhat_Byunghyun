@@ -4,7 +4,7 @@ import { User } from '~/common/api/types';
 
 const API_HOST = 'https://kdt.frontend.5th.programmers.co.kr:5007';
 
-const useEmail = () => {
+const useEmailValidation = () => {
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isEmailDuplicate, setIsEmailDuplicate] = useState(false);
@@ -70,4 +70,4 @@ const useEmail = () => {
   };
 };
 
-export default useEmail;
+export default useEmailValidation;

@@ -3,27 +3,23 @@ import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
 
+import useEmailValidation from './useEmailValidation';
+
 interface EmailInputProps {
-  email: string;
-  handleEmailChange: (value: string) => void;
   mutation: { isPending: boolean };
-  checkDuplicateId: (email: string) => void;
-  isEmailValid: boolean;
-  isEmailCheckComplete: boolean;
-  isEmailDuplicate: boolean;
-  emailCheckMessage: string;
 }
 
-const EmailInput = ({
-  email,
-  handleEmailChange,
-  mutation,
-  checkDuplicateId,
-  isEmailValid,
-  isEmailCheckComplete,
-  isEmailDuplicate,
-  emailCheckMessage,
-}: EmailInputProps) => {
+const EmailInput = ({ mutation }: EmailInputProps) => {
+  const {
+    email,
+    isEmailValid,
+    isEmailDuplicate,
+    emailCheckMessage,
+    isEmailCheckComplete,
+    handleEmailChange,
+    checkDuplicateId,
+  } = useEmailValidation();
+
   return (
     <>
       <Group direction="columns" spacing="sm">

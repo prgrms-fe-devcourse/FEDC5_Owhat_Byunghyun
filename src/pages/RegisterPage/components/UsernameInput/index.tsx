@@ -2,17 +2,15 @@ import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
 
-interface UsernameInput {
-  username: string;
-  setUsernameValidation: (value: string) => void;
-  isUsernameValid: boolean;
-}
+import useUsernameValidation from './useNameValidation';
 
-const UsernameInput = ({
-  username,
-  setUsernameValidation,
-  isUsernameValid,
-}: UsernameInput) => {
+const UsernameInput = () => {
+  const {
+    username,
+    isUsernameValid,
+    setUsername: setUsernameValidation,
+  } = useUsernameValidation();
+
   return (
     <>
       <Group direction="columns" spacing="sm" className="w-full">

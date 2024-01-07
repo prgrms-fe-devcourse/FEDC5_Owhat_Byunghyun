@@ -2,21 +2,17 @@ import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
 
-interface PasswordInput {
-  password: string;
-  handlePasswordChange: (value: string) => void;
-  handleConfirmPasswordChange: (value: string) => void;
-  confirmPassword: string;
-  isPasswordMatch: boolean;
-}
+import usePasswordValidation from './usePasswordValidation';
 
-const PasswordInput = ({
-  password,
-  handlePasswordChange,
-  confirmPassword,
-  handleConfirmPasswordChange,
-  isPasswordMatch,
-}: PasswordInput) => {
+const PasswordInput = () => {
+  const {
+    password,
+    confirmPassword,
+    isPasswordMatch,
+    handlePasswordChange,
+    handleConfirmPasswordChange,
+  } = usePasswordValidation();
+
   return (
     <>
       <Group direction="columns" spacing="sm" className="w-full">
