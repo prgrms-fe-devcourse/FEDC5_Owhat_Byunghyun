@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useCallback, useEffect, useState } from 'react';
 
+import { User } from '~/common/api/types';
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
@@ -17,6 +18,10 @@ interface RegisterData {
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
+  //Email 중복확인에 state가 3개가 필요함(중복인지 아닌지, 중복체크메시지,중복확인을 눌렀는지)
+  const [isEmailDuplicate, setIsEmailDuplicate] = useState(false);
+  const [emailCheckMessage, setEmailCheckMessage] = useState('');
+  const [isEmailCheckComplete, setIsEmailCheckComplete] = useState(false);
 
   const validateEmail = (value: string) => {
     const isValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
@@ -28,6 +33,36 @@ const RegisterForm = () => {
   useEffect(() => {
     validateEmail(email);
   }, [email]);
+
+  //중복확인 API
+  const checkDuplicateId = async (email: string) => {
+    try {
+      const response = await fetch(`${API_HOST}/users/get-users`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('서버에서 오류 응답');
+      }
+
+      const users: User[] = await response.json();
+      const isDuplicate = users.some(user => user.email === email);
+
+      setIsEmailDuplicate(isDuplicate);
+
+      if (isDuplicate) {
+        setEmailCheckMessage('이메일이 이미 사용 중입니다.');
+      } else {
+        setIsEmailCheckComplete(true);
+        setEmailCheckMessage('가입 가능한 이메일입니다.');
+      }
+    } catch (error) {
+      console.error('에러 발생:', (error as Error).message);
+    }
+  };
 
   const registerUser = async (userData: RegisterData) => {
     const response = await fetch(`${API_HOST}/signup`, {
@@ -79,20 +114,34 @@ const RegisterForm = () => {
               onChange={e => {
                 setEmail(e.target.value);
                 validateEmail(e.target.value);
+                setIsEmailDuplicate(false);
+                setEmailCheckMessage('');
+                setIsEmailCheckComplete(false);
               }}
               placeholder="이메일을 입력해주세요."
               disabled={mutation.isPending}
             />
 
             <Button
+              onClick={() => checkDuplicateId(email)}
               type="button"
               styleType="ghost"
               className="text-sm"
-              disabled={!isEmailValid}
+              disabled={
+                !isEmailValid || (isEmailCheckComplete && !isEmailDuplicate)
+              }
             >
               중복 확인
             </Button>
           </Group>
+          {emailCheckMessage && (
+            <Text
+              size="small"
+              className={isEmailDuplicate ? 'text-error' : 'text-success'}
+            >
+              {emailCheckMessage}
+            </Text>
+          )}
         </Group>
         <Group direction="columns" spacing="sm" className="w-full">
           <Text size="small" elementType="span">
