@@ -11,6 +11,7 @@ interface FeedProps {
   body?: string;
   likes: string[];
   comments: string[];
+  imgAspect?: boolean;
 }
 
 const Feed = ({
@@ -20,7 +21,9 @@ const Feed = ({
   body,
   likes,
   comments,
+  imgAspect = true,
 }: FeedProps) => {
+  const fullImage = imgAspect ? 'aspect-video' : '';
   return (
     <Group direction="columns" spacing="md">
       <Text size="xlarge" strong={true}>
@@ -33,6 +36,7 @@ const Feed = ({
           imgHeight="auto"
           lazy={true}
           threshold={0}
+          className={fullImage}
         />
       )}
       <Text>{body}</Text>
