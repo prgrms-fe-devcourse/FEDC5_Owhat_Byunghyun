@@ -7,7 +7,7 @@ import Text from '../Text';
 interface FeedProps {
   initialState: boolean;
   title: string;
-  image?: string;
+  image: string;
   body?: string;
   likes: object[];
   comments: object[];
@@ -26,13 +26,15 @@ const Feed = ({
       <Text size="xlarge" strong={true}>
         {title}
       </Text>
-      <Image
-        src={image}
-        imgWidth="full"
-        imgHeight="auto"
-        lazy={true}
-        threshold={0}
-      />
+      {Boolean(image) === true ? (
+        <Image
+          src={image}
+          imgWidth="full"
+          imgHeight="auto"
+          lazy={true}
+          threshold={0}
+        />
+      ) : null}
       <Text>{body}</Text>
       <Group spacing="sm" align="center">
         <Like initialState={initialState} />
