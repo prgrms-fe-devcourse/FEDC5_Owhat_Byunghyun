@@ -8,7 +8,7 @@ export const buttonVarients = cva(
         primary:
           'rounded-small border-transparent bg-primary fill-white text-white hover:bg-primary-darker focus:outline-none disabled:pointer-events-none disabled:bg-primary-lighter',
         secondary:
-          'focus:outline- rounded-small border-transparent bg-white fill-primary text-primary hover:bg-primary hover:fill-white hover:text-white disabled:pointer-events-none disabled:bg-gray-300 disabled:bg-primary-lighter disabled:fill-white disabled:text-white',
+          'focus:outline- rounded-small border-transparent bg-white fill-primary text-primary hover:bg-primary hover:fill-white hover:text-white disabled:pointer-events-none disabled:fill-primary-lighter disabled:text-primary-lighter',
         outline:
           'focus:outline-nonefill-primary box-border rounded-small border border-primary fill-primary text-primary hover:bg-primary hover:fill-white hover:text-white disabled:pointer-events-none disabled:border-primary-lighter disabled:fill-primary-lighter disabled:text-primary-lighter',
         ghost:
