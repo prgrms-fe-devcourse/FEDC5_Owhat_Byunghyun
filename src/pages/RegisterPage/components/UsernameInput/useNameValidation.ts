@@ -7,14 +7,16 @@ const useUsernameValidation = () => {
   const validateUsername = (value: string) => {
     const hasMinLength = value.length >= 3;
 
-    const hasOnlyKoreanOrEnglish = /^[가-힣a-zA-Z]+$/.test(value);
+    const hasOnlyKoreanOrEnglishOrDigits = /^[가-힣a-zA-Z0-9]+$/.test(value);
 
     const hasAccurateVowelsAndConsonants =
-      /^[가-힣]*([ㄱ-ㅎㅏ-ㅣ])*[가-힣]*$/.test(value) ||
-      /^[a-zA-Z]+$/.test(value);
+      /^[가-힣]*([ㄱ-ㅎㅏ-ㅣ])*[가-힣0-9]*$/.test(value) ||
+      /^[a-zA-Z0-9]+$/.test(value);
 
     setIsUsernameValid(
-      hasMinLength && hasOnlyKoreanOrEnglish && hasAccurateVowelsAndConsonants,
+      hasMinLength &&
+        hasOnlyKoreanOrEnglishOrDigits &&
+        hasAccurateVowelsAndConsonants,
     );
   };
 
