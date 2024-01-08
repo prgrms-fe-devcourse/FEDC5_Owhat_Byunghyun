@@ -8,7 +8,7 @@ interface FeedProps {
   initialState: boolean;
   title: string;
   image: string;
-  body?: string;
+  body: string;
   likes: string[];
   comments: string[];
   imgAspect?: boolean;
