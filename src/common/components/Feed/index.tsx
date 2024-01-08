@@ -26,7 +26,13 @@ const Feed = ({
       <Text size="xlarge" strong={true}>
         {title}
       </Text>
-      <Image src={image} imgWidth="full" imgHeight="auto" lazy={true} />
+      <Image
+        src={image}
+        imgWidth="full"
+        imgHeight="auto"
+        lazy={true}
+        threshold={0}
+      />
       <Text>{body}</Text>
       <Group spacing="sm" align="center">
         <Like initialState={initialState} />
