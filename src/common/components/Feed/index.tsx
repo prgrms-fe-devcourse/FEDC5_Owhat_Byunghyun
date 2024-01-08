@@ -9,8 +9,8 @@ interface FeedProps {
   title: string;
   image: string;
   body?: string;
-  likes: object[];
-  comments: object[];
+  likes: string[];
+  comments: string[];
 }
 
 const Feed = ({
