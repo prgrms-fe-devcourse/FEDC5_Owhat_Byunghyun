@@ -23,19 +23,19 @@ const UserInfo = ({
   createdAt,
 }: UserInfoProps) => {
   return (
-    <Group spacing={'md'} align={'center'}>
-      <Link to={`/account/${_id}`}>
-        <Avatar src={profileImage}></Avatar>
+    <Group spacing={'sm'} align={'center'}>
+      <Link to={`/account/${_id}`} className="flex items-center">
+        <Avatar src={profileImage} size="auto" className="h-14 w-14"></Avatar>
       </Link>
-      <div>
+      <Group spacing={2} direction={'columns'}>
         <Link to={`/account/${_id}`}>
           <Text strong>{author}</Text>
         </Link>
         <ExtraInfo>
-          {channel && <span>{channel}</span>}
-          <span>{elapsedTime(createdAt)}</span>
+          {channel && <Text elementType="span">{channel}</Text>}
+          <Text elementType="span">{elapsedTime(createdAt)}</Text>
         </ExtraInfo>
-      </div>
+      </Group>
     </Group>
   );
 };
