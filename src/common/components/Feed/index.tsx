@@ -6,8 +6,8 @@ import Text from '../Text';
 
 interface FeedProps {
   initialState: boolean;
-  title?: string;
-  image: string;
+  title: string;
+  image?: string;
   body?: string;
   likes: object[];
   comments: object[];
