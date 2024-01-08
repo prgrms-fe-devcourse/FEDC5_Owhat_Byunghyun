@@ -8,7 +8,7 @@ import EmailInput from '../EmailInput';
 import PasswordInput from '../PasswordInput';
 import UsernameInput from '../UsernameInput';
 
-const API_HOST = import.meta.env.VITE_API_HOST;
+const API_HOST = import.meta.env.VITE_BASE_URL;
 
 interface RegisterData {
   email: string;

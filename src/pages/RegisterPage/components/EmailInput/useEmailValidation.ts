@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { User } from '~/common/api/types';
+import { User } from '~/pages/RegisterPage/types';
 
-const API_HOST = 'https://kdt.frontend.5th.programmers.co.kr:5007';
+const API_HOST = import.meta.env.VITE_BASE_URL;
 
 const useEmailValidation = () => {
   const [email, setEmail] = useState('');
