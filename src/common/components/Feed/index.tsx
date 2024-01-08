@@ -5,6 +5,7 @@ import Like from '../Like';
 import Text from '../Text';
 
 interface FeedProps {
+  initialState: boolean;
   title?: string;
   image: string;
   body?: string;
@@ -12,7 +13,14 @@ interface FeedProps {
   comments: object[];
 }
 
-const Feed = ({ title, image, body, likes, comments }: FeedProps) => {
+const Feed = ({
+  initialState = false,
+  title,
+  image,
+  body,
+  likes,
+  comments,
+}: FeedProps) => {
   return (
     <Group direction="columns" spacing="md">
       <Text size="xlarge" strong={true}>
@@ -21,7 +29,7 @@ const Feed = ({ title, image, body, likes, comments }: FeedProps) => {
       <Image src={image} imgWidth="full" imgHeight="auto" lazy={true} />
       <Text>{body}</Text>
       <Group spacing="sm" align="center">
-        <Like initialState={false} />
+        <Like initialState={initialState} />
         <Text size="small">{likes.length}</Text>
         <Icon id="sms" />
         <Text size="small">{comments.length}</Text>

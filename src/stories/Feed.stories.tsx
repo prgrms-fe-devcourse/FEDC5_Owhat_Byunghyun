@@ -6,6 +6,7 @@ const meta: Meta<typeof Feed> = {
   title: 'Common/Components/Feed',
   component: Feed,
   argTypes: {
+    initialState: { options: [true, false], control: 'boolean' },
     title: {
       options: ['제목0', '제목1', '제목2'],
       control: 'inline-radio',
