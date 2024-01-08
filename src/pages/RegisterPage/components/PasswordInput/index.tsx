@@ -13,6 +13,7 @@ const PasswordInput = ({ onPasswordCompleted }: PasswordInputProps) => {
     password,
     confirmPassword,
     isPasswordMatch,
+    isPasswordValid,
     handlePasswordChange,
     handleConfirmPasswordChange,
   } = usePasswordValidation({ onPasswordCompleted });
@@ -31,6 +32,12 @@ const PasswordInput = ({ onPasswordCompleted }: PasswordInputProps) => {
           placeholder="비밀번호를 입력해주세요."
           className="w-full"
         />
+        {!isPasswordValid && (
+          <Text className="text-wrap text-xs text-error">
+            비밀번호는 8자 이상이어야 하며, 영문 대/소문자, 숫자, 특수문자를
+            포함해야 합니다.
+          </Text>
+        )}
       </Group>
       <Group direction="columns" spacing="sm" className="w-full">
         <Text size="small" elementType="span">
@@ -45,7 +52,7 @@ const PasswordInput = ({ onPasswordCompleted }: PasswordInputProps) => {
           className="w-full"
         />
         {!isPasswordMatch && (
-          <Text size="small" className="text-error">
+          <Text className="text-xs text-error">
             비밀번호가 일치하지 않습니다.
           </Text>
         )}
