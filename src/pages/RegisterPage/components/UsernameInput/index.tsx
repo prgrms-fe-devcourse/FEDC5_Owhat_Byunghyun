@@ -5,7 +5,7 @@ import Text from '~/common/components/Text';
 import useUsernameValidation from './useNameValidation';
 
 interface UsernameInputProps {
-  onFullNameCompleted?: (isValid: boolean) => void;
+  onFullNameCompleted: (isValid: boolean) => void;
 }
 
 const UsernameInput = ({ onFullNameCompleted }: UsernameInputProps) => {
@@ -13,9 +13,7 @@ const UsernameInput = ({ onFullNameCompleted }: UsernameInputProps) => {
     username,
     isUsernameValid,
     setUsername: setUsernameValidation,
-  } = useUsernameValidation();
-
-  onFullNameCompleted && onFullNameCompleted(isUsernameValid);
+  } = useUsernameValidation({ onFullNameCompleted });
 
   return (
     <>

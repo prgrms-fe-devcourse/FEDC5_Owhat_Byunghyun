@@ -7,7 +7,7 @@ import useEmailValidation from './useEmailValidation';
 
 interface EmailInputProps {
   mutation?: { isPending: boolean };
-  onEmailCompleted?: (isValid: boolean) => void;
+  onEmailCompleted: (isValid: boolean) => void;
 }
 
 const EmailInput = ({ mutation, onEmailCompleted }: EmailInputProps) => {
@@ -19,9 +19,7 @@ const EmailInput = ({ mutation, onEmailCompleted }: EmailInputProps) => {
     isEmailCheckComplete,
     handleEmailChange,
     checkDuplicateId,
-  } = useEmailValidation();
-
-  onEmailCompleted && onEmailCompleted(isEmailCheckComplete);
+  } = useEmailValidation({ onEmailCompleted });
 
   return (
     <>

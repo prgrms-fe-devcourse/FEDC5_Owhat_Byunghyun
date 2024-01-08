@@ -1,6 +1,12 @@
 import { useState } from 'react';
 
-const usePasswordValidation = () => {
+interface usePasswordValidationParams {
+  onPasswordCompleted: (value: boolean) => void;
+}
+
+const usePasswordValidation = ({
+  onPasswordCompleted,
+}: usePasswordValidationParams) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isPasswordMatch, setIsPasswordMatch] = useState(true);
@@ -19,7 +25,10 @@ const usePasswordValidation = () => {
     newPassword: string,
     newConfirmPassword: string,
   ) => {
-    setIsPasswordMatch(newPassword === newConfirmPassword);
+    const isValidPassword =
+      newPassword === newConfirmPassword && newPassword.length >= 8;
+    setIsPasswordMatch(isValidPassword);
+    onPasswordCompleted(isValidPassword);
   };
 
   return {

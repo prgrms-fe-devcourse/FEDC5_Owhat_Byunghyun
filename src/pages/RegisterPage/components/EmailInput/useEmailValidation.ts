@@ -3,8 +3,13 @@ import { useEffect, useState } from 'react';
 import { User } from '~/pages/RegisterPage/types';
 
 const API_HOST = import.meta.env.VITE_BASE_URL;
+const PORT = import.meta.env.VITE_PORT;
 
-const useEmailValidation = () => {
+interface useEmailValidationParams {
+  onEmailCompleted: (value: boolean) => void;
+}
+
+const useEmailValidation = ({ onEmailCompleted }: useEmailValidationParams) => {
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isEmailDuplicate, setIsEmailDuplicate] = useState(false);
@@ -20,7 +25,7 @@ const useEmailValidation = () => {
 
   const checkDuplicateId = async (email: string) => {
     try {
-      const response = await fetch(`${API_HOST}/users/get-users`, {
+      const response = await fetch(`${API_HOST}:${PORT}/users/get-use`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -41,6 +46,7 @@ const useEmailValidation = () => {
       } else {
         setIsEmailCheckComplete(true);
         setEmailCheckMessage('가입 가능한 이메일입니다.');
+        onEmailCompleted(true);
       }
     } catch (error) {
       console.error('에러 발생:', (error as Error).message);

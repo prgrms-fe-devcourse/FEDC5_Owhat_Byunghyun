@@ -1,6 +1,12 @@
 import { useState } from 'react';
 
-const useUsernameValidation = () => {
+interface useUsernameValidationParams {
+  onFullNameCompleted: (value: boolean) => void;
+}
+
+const useUsernameValidation = ({
+  onFullNameCompleted,
+}: useUsernameValidationParams) => {
   const [username, setUsername] = useState('');
   const [isUsernameValid, setIsUsernameValid] = useState(false);
 
@@ -14,6 +20,11 @@ const useUsernameValidation = () => {
       /^[a-zA-Z0-9]+$/.test(value);
 
     setIsUsernameValid(
+      hasMinLength &&
+        hasOnlyKoreanOrEnglishOrDigits &&
+        hasAccurateVowelsAndConsonants,
+    );
+    onFullNameCompleted(
       hasMinLength &&
         hasOnlyKoreanOrEnglishOrDigits &&
         hasAccurateVowelsAndConsonants,
