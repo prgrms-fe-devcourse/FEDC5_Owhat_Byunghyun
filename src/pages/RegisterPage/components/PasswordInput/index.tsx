@@ -20,7 +20,7 @@ const PasswordInput = ({ onPasswordCompleted }: PasswordInputProps) => {
 
   return (
     <>
-      <Group direction="columns" spacing="sm" className="w-full">
+      <Group direction="columns" spacing="sm" grow={true}>
         <Text size="small" elementType="span">
           비밀번호
         </Text>
@@ -30,7 +30,6 @@ const PasswordInput = ({ onPasswordCompleted }: PasswordInputProps) => {
           value={password}
           onChange={e => handlePasswordChange(e.target.value)}
           placeholder="비밀번호를 입력해주세요."
-          className="w-full"
         />
         {!isPasswordValid && (
           <Text className="text-wrap text-xs text-error">
@@ -39,7 +38,7 @@ const PasswordInput = ({ onPasswordCompleted }: PasswordInputProps) => {
           </Text>
         )}
       </Group>
-      <Group direction="columns" spacing="sm" className="w-full">
+      <Group direction="columns" spacing="sm" grow={true}>
         <Text size="small" elementType="span">
           비밀번호 확인
         </Text>
@@ -49,7 +48,6 @@ const PasswordInput = ({ onPasswordCompleted }: PasswordInputProps) => {
           value={confirmPassword}
           onChange={e => handleConfirmPasswordChange(e.target.value)}
           placeholder="비밀번호를 다시 한번 입력해주세요"
-          className="w-full"
         />
         {!isPasswordMatch && (
           <Text className="text-xs text-error">

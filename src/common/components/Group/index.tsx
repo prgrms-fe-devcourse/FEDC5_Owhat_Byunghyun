@@ -28,7 +28,6 @@ const Group = ({
   return (
     <div
       className={cn(
-        className,
         groupVariants({
           direction,
           position,
@@ -37,6 +36,7 @@ const Group = ({
           noWrap,
           grow: grow && !inline,
         }),
+        className,
       )}
       style={{ gap: groupSpacing }}
       {...props}

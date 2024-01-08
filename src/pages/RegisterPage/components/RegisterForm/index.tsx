@@ -73,7 +73,7 @@ const RegisterForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Group direction="columns" spacing="md">
+      <Group direction="columns" spacing="md" grow={true} className="w-[360px]">
         <EmailInput
           mutation={mutation}
           onEmailCompleted={handleEmailCompleted}

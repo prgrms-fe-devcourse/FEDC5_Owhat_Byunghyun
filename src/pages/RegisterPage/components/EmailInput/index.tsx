@@ -23,11 +23,11 @@ const EmailInput = ({ mutation, onEmailCompleted }: EmailInputProps) => {
 
   return (
     <>
-      <Group direction="columns" spacing="sm">
+      <Group direction="columns" spacing="sm" grow={true}>
         <Text size="small" elementType="span">
           이메일
         </Text>
-        <Group direction="rows" spacing="sm">
+        <Group direction="rows" spacing="sm" grow={true}>
           <Input
             type="email"
             name="email"
@@ -43,7 +43,7 @@ const EmailInput = ({ mutation, onEmailCompleted }: EmailInputProps) => {
             onClick={() => checkDuplicateId(email)}
             type="button"
             styleType="ghost"
-            className="text-sm"
+            className="text-sm "
             disabled={
               !isEmailValid || (isEmailCheckComplete && !isEmailDuplicate)
             }
