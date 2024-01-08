@@ -25,7 +25,7 @@ const useEmailValidation = ({ onEmailCompleted }: useEmailValidationParams) => {
 
   const checkDuplicateId = async (email: string) => {
     try {
-      const response = await fetch(`${API_HOST}:${PORT}/users/get-use`, {
+      const response = await fetch(`${API_HOST}:${PORT}/users/get-users`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

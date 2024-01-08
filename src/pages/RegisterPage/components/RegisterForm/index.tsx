@@ -9,6 +9,7 @@ import PasswordInput from '../PasswordInput';
 import UsernameInput from '../UsernameInput';
 
 const API_HOST = import.meta.env.VITE_BASE_URL;
+const PORT = import.meta.env.VITE_PORT;
 
 interface RegisterData {
   email: string;
@@ -34,7 +35,7 @@ const RegisterForm = () => {
   };
 
   const registerUser = async (userData: RegisterData) => {
-    const response = await fetch(`${API_HOST}/signup`, {
+    const response = await fetch(`${API_HOST}:${PORT}/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
