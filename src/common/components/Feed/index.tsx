@@ -26,7 +26,7 @@ const Feed = ({
       <Text size="xlarge" strong={true}>
         {title}
       </Text>
-      {Boolean(image) === true ? (
+      {image && (
         <Image
           src={image}
           imgWidth="full"
@@ -34,7 +34,7 @@ const Feed = ({
           lazy={true}
           threshold={0}
         />
-      ) : null}
+      )}
       <Text>{body}</Text>
       <Group spacing="sm" align="center">
         <Like initialState={initialState} />
