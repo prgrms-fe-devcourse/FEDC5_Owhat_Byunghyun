@@ -6,13 +6,13 @@ import Text from '../Text';
 
 interface FeedProps {
   title?: string;
-  body?: string;
   image: string;
+  body?: string;
   likes: object[];
   comments: object[];
 }
 
-const Feed = ({ title, body, image, likes, comments }: FeedProps) => {
+const Feed = ({ title, image, body, likes, comments }: FeedProps) => {
   return (
     <Group direction="columns" spacing="md">
       <Text size="xlarge" strong={true}>
