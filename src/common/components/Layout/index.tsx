@@ -21,11 +21,7 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
     right: null,
   });
 
-  const changeMeta = ({
-    title,
-    left,
-    right,
-  }: Omit<ILayoutContext, 'changeMeta'>) => {
+  const changeMeta = ({ title, left, right }: HeaderProps) => {
     setTemplate({
       ...template,
       title: title || template.title,

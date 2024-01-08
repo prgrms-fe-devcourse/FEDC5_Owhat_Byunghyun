@@ -2,7 +2,7 @@ import Text from '../Text';
 
 const Logo = () => {
   return (
-    <Text elementType="span" isLogo className="cursor-pointer text-primary">
+    <Text isLogo className="text-primary">
       Owhat
     </Text>
   );

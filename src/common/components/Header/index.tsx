@@ -10,14 +10,10 @@ export interface HeaderProps {
 
 const Header = ({ title, left, right }: HeaderProps) => {
   return (
-    <header className="relative mb w-full border-b py text-center">
-      <div className="absolute left-0 top-1/2 w-max max-w-16 -translate-y-1/2 overflow-hidden text-ellipsis text-nowrap">
-        {left}
-      </div>
+    <header className="mb grid w-full grid-cols-[1fr,4fr,1fr] items-center border-b px-small py text-center">
+      <span className="justify-self-start">{left}</span>
       {title ? <b>{title}</b> : <Logo />}
-      <div className="absolute right-0 top-1/2 w-max max-w-16 -translate-y-1/2 overflow-hidden text-ellipsis text-nowrap">
-        {right}
-      </div>
+      <span className="justify-self-end">{right}</span>
     </header>
   );
 };
