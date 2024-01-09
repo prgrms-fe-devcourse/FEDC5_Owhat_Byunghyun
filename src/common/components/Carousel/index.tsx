@@ -10,8 +10,8 @@ import {
 import Group from '~/common/components/Group';
 import { cn } from '~/utils/cn';
 
+import Button from '../Button';
 import Icon from '../Icon';
-import CarouselButton from './CarouselButton';
 import useDragScroll from './useDragScroll';
 
 interface CarouselProps extends ComponentProps<'div'> {
@@ -83,34 +83,22 @@ const Carousel = ({
 
       {useButton && (
         <>
-          <CarouselButton
+          <Button
             onClick={buttonScrollLeft}
             className="order-1"
             disabled={!isLeftButtonActive}
+            styleType="ghost"
           >
-            <Icon
-              id="chevron-left"
-              className={
-                !isLeftButtonActive
-                  ? 'fill-gray-400'
-                  : 'cursor-pointer fill-black hover:fill-primary'
-              }
-            />
-          </CarouselButton>
-          <CarouselButton
+            <Icon id="chevron-left" />
+          </Button>
+          <Button
             onClick={buttonScrollRight}
             className="order-3"
             disabled={!isRightButtonActive}
+            styleType="ghost"
           >
-            <Icon
-              id="chevron-right"
-              className={
-                !isRightButtonActive
-                  ? 'fill-gray-400'
-                  : 'cursor-pointer fill-black hover:fill-primary'
-              }
-            />
-          </CarouselButton>
+            <Icon id="chevron-right" />
+          </Button>
         </>
       )}
     </div>
