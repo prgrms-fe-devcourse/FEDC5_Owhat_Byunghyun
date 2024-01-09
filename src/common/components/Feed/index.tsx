@@ -52,9 +52,13 @@ const Feed = ({
       <Text className={abbreviationBody}>{body}</Text>
       <Group spacing="sm" align="center">
         <Like initialState={initialState} onClick={handleLike} />
-        <Text size="small">{likeLength}</Text>
+        <Text size="small" className="w-6">
+          {likeLength}
+        </Text>
         <Icon id="sms" aria-label="댓글 아이콘" />
-        <Text size="small">{commentsLength}</Text>
+        <Text size="small" className="w-6">
+          {commentsLength}
+        </Text>
       </Group>
     </Group>
   );
