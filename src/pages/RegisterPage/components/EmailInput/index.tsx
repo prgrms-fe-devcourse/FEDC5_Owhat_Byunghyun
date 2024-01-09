@@ -27,7 +27,7 @@ const EmailInput = ({ mutation, onEmailCompleted }: EmailInputProps) => {
         <Text size="small" elementType="span">
           이메일
         </Text>
-        <Group direction="rows" spacing="sm" grow={true}>
+        <Group direction="rows" spacing="sm">
           <Input
             type="email"
             name="email"
@@ -37,13 +37,14 @@ const EmailInput = ({ mutation, onEmailCompleted }: EmailInputProps) => {
             }}
             placeholder="이메일을 입력해주세요."
             disabled={mutation?.isPending}
+            className="grow"
           />
 
           <Button
             onClick={() => checkDuplicateId(email)}
             type="button"
             styleType="ghost"
-            className="text-sm "
+            className="text-sm"
             disabled={
               !isEmailValid || (isEmailCheckComplete && !isEmailDuplicate)
             }
