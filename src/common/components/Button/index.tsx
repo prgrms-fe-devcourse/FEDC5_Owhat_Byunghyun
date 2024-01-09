@@ -29,7 +29,7 @@ const Button = ({
     <button
       disabled={disabled || loading}
       className={cn(
-        buttonVarients({ styleType, disabled }),
+        buttonVarients({ styleType }),
         className,
         fullwidth && 'w-full',
       )}
