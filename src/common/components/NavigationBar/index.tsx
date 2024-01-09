@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { cn } from '~/utils/cn';
 
 import Group from '../Group';
-import Icon from '../Icon/index';
+import Icon from '../Icon';
 import { NavigationBarVariants } from './NavigationBar.variants';
 
 export interface NavigationBarProps
@@ -22,19 +22,19 @@ const NavigationBar = ({ ...props }: NavigationBarProps) => {
       {...props}
     >
       <Link to={'/'} className={cn(NavigationBarVariants())}>
-        <Icon id="home" />
+        <Icon id="home" aria-label="메인" />
       </Link>
       <Link to={'/search'} className={cn(NavigationBarVariants())}>
-        <Icon id="search" />
+        <Icon id="search" aria-label="검색" />
       </Link>
       <Link to={'/message'} className={cn(NavigationBarVariants())}>
-        <Icon id="message" />
+        <Icon id="message" aria-label="메세지" />
       </Link>
       <Link to={'/notification'} className={cn(NavigationBarVariants())}>
-        <Icon id="notifications" />
+        <Icon id="notifications" aria-label="알림" />
       </Link>
       <Link to={'/account'} className={cn(NavigationBarVariants())}>
-        <Icon id="account-circle" />
+        <Icon id="account-circle" aria-label="유저 정보" />
       </Link>
     </Group>
   );
