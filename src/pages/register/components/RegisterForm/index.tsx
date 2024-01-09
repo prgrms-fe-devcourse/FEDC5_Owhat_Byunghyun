@@ -53,6 +53,7 @@ const RegisterForm = () => {
               mutation.isPending ||
               !(isEmailCompleted && isPasswordCompleted && isFullNameCompleted)
             }
+            className="max-w-[360px]"
           >
             회원가입
           </Button>
