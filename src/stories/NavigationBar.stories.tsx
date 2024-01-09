@@ -18,7 +18,7 @@ export default meta;
 
 type Story = StoryObj<typeof NavigationBar>;
 
-export const Example: Story = {
+export const Default: Story = {
   argTypes: {
     className: { control: 'text' },
   },
