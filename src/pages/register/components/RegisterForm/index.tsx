@@ -1,60 +1,23 @@
-import { useMutation } from '@tanstack/react-query';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 
+import useMutationRegister from '../../hooks/useMutationRegister';
 import EmailInput from '../EmailInput';
 import PasswordInput from '../PasswordInput';
 import UsernameInput from '../UsernameInput';
 
-const API_HOST = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
-
-interface RegisterData {
-  email: string;
-  fullName: string;
-  password: string;
-}
-
 const RegisterForm = () => {
-  const [isEmailCompleted, setIsEmailCompleted] = useState(false);
-  const [isPasswordCompleted, setIsPasswordCompleted] = useState(false);
-  const [isFullNameCompleted, setIsFullNameCompleted] = useState(false);
-
-  const handleEmailCompleted = (isValid: boolean) => {
-    setIsEmailCompleted(isValid);
-  };
-
-  const handlePasswordCompleted = (isValid: boolean) => {
-    setIsPasswordCompleted(isValid);
-  };
-
-  const handleFullNameCompleted = (isValid: boolean) => {
-    setIsFullNameCompleted(isValid);
-  };
-
-  const registerUser = async (userData: RegisterData) => {
-    const response = await fetch(`${API_HOST}:${PORT}/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
-
-    if (!response.ok) {
-      throw new Error('Registration failed');
-    }
-
-    return response.json();
-  };
-
-  const mutation = useMutation({
-    mutationFn: (userData: RegisterData) => {
-      return registerUser(userData);
-    },
-  });
+  const {
+    mutation,
+    isEmailCompleted,
+    isPasswordCompleted,
+    isFullNameCompleted,
+    handleEmailCompleted,
+    handlePasswordCompleted,
+    handleFullNameCompleted,
+  } = useMutationRegister();
 
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
