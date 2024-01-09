@@ -53,7 +53,7 @@ const Feed = ({
       <Group spacing="sm" align="center">
         <Like initialState={initialState} onClick={handleLike} />
         <Text size="small">{likeLength}</Text>
-        <Icon id="sms" />
+        <Icon id="sms" aria-label="댓글 아이콘" />
         <Text size="small">{commentsLength}</Text>
       </Group>
     </Group>
