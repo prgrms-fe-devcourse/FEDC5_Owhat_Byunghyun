@@ -18,7 +18,7 @@ const EmailInput = ({ mutation, onEmailCompleted }: EmailInputProps) => {
     emailCheckMessage,
     isEmailCheckComplete,
     handleEmailChange,
-    checkDuplicateId,
+    checkDuplicateEmail,
   } = useEmailValidation({ onEmailCompleted });
 
   return (
@@ -41,7 +41,7 @@ const EmailInput = ({ mutation, onEmailCompleted }: EmailInputProps) => {
           />
 
           <Button
-            onClick={() => checkDuplicateId(email)}
+            onClick={() => checkDuplicateEmail(email)}
             type="button"
             styleType="ghost"
             className="text-sm"
