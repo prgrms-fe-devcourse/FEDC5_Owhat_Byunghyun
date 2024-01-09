@@ -31,6 +31,9 @@ const Feed = ({
   const abbreviationTitle = textOverflow ? 'line-clamp-1' : '';
   const abbreviationBody = textOverflow ? 'line-clamp-2' : '';
 
+  const likeLength = likes.length > 99 ? '99+' : likes.length;
+  const commentsLength = comments.length > 99 ? '99+' : comments.length;
+
   return (
     <Group direction="columns" spacing="md">
       <Text size="xlarge" strong={true} className={abbreviationTitle}>
@@ -49,9 +52,9 @@ const Feed = ({
       <Text className={abbreviationBody}>{body}</Text>
       <Group spacing="sm" align="center">
         <Like initialState={initialState} onClick={handleLike} />
-        <Text size="small">{likes.length}</Text>
+        <Text size="small">{likeLength}</Text>
         <Icon id="sms" />
-        <Text size="small">{comments.length}</Text>
+        <Text size="small">{commentsLength}</Text>
       </Group>
     </Group>
   );
