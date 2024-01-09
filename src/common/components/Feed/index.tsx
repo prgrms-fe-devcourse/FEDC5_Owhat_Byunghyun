@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Group from '../Group';
 import Icon from '../Icon';
 import Image from '../Image';
@@ -15,6 +13,7 @@ interface FeedProps {
   comments: string[];
   imgAspect?: boolean;
   textOverflow?: boolean;
+  handleLike?: () => void;
 }
 
 const Feed = ({
@@ -26,14 +25,11 @@ const Feed = ({
   comments,
   imgAspect = true,
   textOverflow = true,
+  handleLike,
 }: FeedProps) => {
   const fullImage = imgAspect ? 'aspect-video' : '';
   const abbreviationTitle = textOverflow ? 'line-clamp-1' : '';
   const abbreviationBody = textOverflow ? 'line-clamp-2' : '';
-
-  const [state, setState] = useState(initialState);
-
-  initialState = state;
 
   return (
     <Group direction="columns" spacing="md">
@@ -52,7 +48,7 @@ const Feed = ({
       )}
       <Text className={abbreviationBody}>{body}</Text>
       <Group spacing="sm" align="center">
-        <Like initialState={initialState} onClick={() => setState(!state)} />
+        <Like initialState={initialState} onClick={handleLike} />
         <Text size="small">{likes.length}</Text>
         <Icon id="sms" />
         <Text size="small">{comments.length}</Text>
