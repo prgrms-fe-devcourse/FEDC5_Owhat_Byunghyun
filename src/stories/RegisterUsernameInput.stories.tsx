@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import UsernameInput from '~/pages/RegisterPage/components/UsernameInput';
+import UsernameInput from '~/pages/register/components/UsernameInput';
 
 export default {
   title: 'Common/Components/UsernameInput',

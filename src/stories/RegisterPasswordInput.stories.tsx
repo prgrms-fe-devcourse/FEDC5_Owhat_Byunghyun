@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import PasswordInput from '~/pages/RegisterPage/components/PasswordInput';
+import PasswordInput from '~/pages/register/components/PasswordInput';
 
 export default {
   title: 'Common/Components/PasswordInput',

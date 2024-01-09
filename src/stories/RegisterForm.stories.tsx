@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import RegisterForm from '~/pages/RegisterPage/components/RegisterForm';
+import RegisterForm from '~/pages/register/components/RegisterForm';
 
 export default {
   title: 'Common/Components/RegisterForm',
