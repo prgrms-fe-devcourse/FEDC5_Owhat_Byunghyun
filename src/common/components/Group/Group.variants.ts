@@ -11,6 +11,7 @@ export const groupVariants = cva(``, {
       center: 'justify-center',
       right: 'justify-end',
       apart: 'justify-between',
+      evenly: 'justify-evenly',
     },
     align: {
       start: 'items-start',
