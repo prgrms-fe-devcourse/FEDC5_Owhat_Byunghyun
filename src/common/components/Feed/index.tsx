@@ -14,6 +14,7 @@ interface FeedProps {
   likes: string[];
   comments: string[];
   imgAspect?: boolean;
+  textOverflow?: boolean;
 }
 
 const Feed = ({
@@ -24,15 +25,19 @@ const Feed = ({
   likes,
   comments,
   imgAspect = true,
+  textOverflow = true,
 }: FeedProps) => {
   const fullImage = imgAspect ? 'aspect-video' : '';
+  const abbreviationTitle = textOverflow ? 'line-clamp-1' : '';
+  const abbreviationBody = textOverflow ? 'line-clamp-2' : '';
+
   const [state, setState] = useState(initialState);
 
   initialState = state;
 
   return (
     <Group direction="columns" spacing="md">
-      <Text size="xlarge" strong={true}>
+      <Text size="xlarge" strong={true} className={abbreviationTitle}>
         {title}
       </Text>
       {image && (
@@ -45,7 +50,7 @@ const Feed = ({
           className={fullImage}
         />
       )}
-      <Text>{body}</Text>
+      <Text className={abbreviationBody}>{body}</Text>
       <Group spacing="sm" align="center">
         <Like initialState={initialState} onClick={() => setState(!state)} />
         <Text size="small">{likes.length}</Text>
