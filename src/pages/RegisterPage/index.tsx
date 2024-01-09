@@ -18,7 +18,7 @@ const RegisterPage = () => {
   }, []);
 
   return (
-    <Group direction="columns" spacing="md" align="center">
+    <Group direction="columns" spacing="md" grow={true}>
       <RegisterForm />
     </Group>
   );
