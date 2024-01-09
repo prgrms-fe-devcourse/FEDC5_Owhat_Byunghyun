@@ -14,4 +14,6 @@ export type IconName =
   | 'notifications'
   | 'search'
   | 'send'
-  | 'more-vert';
+  | 'more-vert'
+  | 'chevron-right'
+  | 'chevron-left';
