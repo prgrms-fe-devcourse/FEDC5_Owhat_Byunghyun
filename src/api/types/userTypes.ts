@@ -7,21 +7,19 @@ export interface User {
   banned: boolean;
   isOnline: boolean;
   posts: Post[];
-  likes: Like[] | string[];
+  likes: Like[];
   comments: string[];
-  followers: Follow[] | string[];
-  following: Follow[] | string[];
-  notifications: Notification[] | string[];
-  messages: Message[] | string[];
+  followers: string[];
+  following: string[];
+  notifications: Notification[];
+  messages: Message[];
   _id: string;
   fullName: string;
   email: string;
-  password?: string;
   createdAt: string;
   updatedAt: string;
   coverImage?: string;
   image?: string;
-  __v?: number;
 }
 
 export interface Follow {
@@ -30,5 +28,4 @@ export interface Follow {
   follower: string;
   createdAt: string;
   updatedAt: string;
-  __v?: number;
 }

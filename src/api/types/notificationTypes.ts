@@ -1,19 +1,18 @@
 import { Comment, Like } from './postTypes';
-import { User } from './userTypes';
+import { Follow, User } from './userTypes';
 
 export interface Notification {
   seen: boolean;
   _id: string;
   author: User;
   user: User | string;
-  post: string | null;
-  follow?: string;
+  post?: string | null;
+  follow?: Follow;
   comment?: Comment;
   message?: string;
   like?: Like;
   createdAt: string;
   updatedAt: string;
-  __v?: number;
 }
 
 export interface Conversation {
