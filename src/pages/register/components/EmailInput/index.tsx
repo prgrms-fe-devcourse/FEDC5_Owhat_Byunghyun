@@ -3,7 +3,7 @@ import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
 
-import useEmailValidation from './useEmailValidation';
+import useEmailValidation from '../../hooks/useEmailValidation';
 
 interface EmailInputProps {
   mutation?: { isPending: boolean };

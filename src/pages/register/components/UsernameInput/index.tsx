@@ -2,7 +2,7 @@ import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
 
-import useUsernameValidation from './useNameValidation';
+import useUsernameValidation from '../../hooks/useNameValidation';
 
 interface UsernameInputProps {
   onFullNameCompleted: (isValid: boolean) => void;

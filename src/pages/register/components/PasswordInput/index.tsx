@@ -2,7 +2,7 @@ import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
 
-import usePasswordValidation from './usePasswordValidation';
+import usePasswordValidation from '../../hooks/usePasswordValidation';
 
 interface PasswordInputProps {
   onPasswordCompleted: (isValid: boolean) => void;

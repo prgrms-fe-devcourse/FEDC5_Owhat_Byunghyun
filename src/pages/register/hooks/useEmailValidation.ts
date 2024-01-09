@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { User } from '~/pages/RegisterPage/types';
+import { User } from '../types';
 
 const API_HOST = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
