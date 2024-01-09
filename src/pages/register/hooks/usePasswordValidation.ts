@@ -29,7 +29,7 @@ const usePasswordValidation = ({
   ) => {
     const isValidPassword = newPassword === newConfirmPassword;
     setIsPasswordMatch(isValidPassword);
-    onPasswordCompleted(isValidPassword);
+    onPasswordCompleted(isValidPassword && isPasswordValid);
   };
 
   const validatePasswordStrength = (newPassword: string) => {

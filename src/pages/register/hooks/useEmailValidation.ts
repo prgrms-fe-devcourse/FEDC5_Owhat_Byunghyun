@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { User } from '../types';
+import { instance } from '~/api';
 
-const API_HOST = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
+import { User } from '../types';
 
 interface useEmailValidationParams {
   onEmailCompleted: (value: boolean) => void;
@@ -25,18 +24,9 @@ const useEmailValidation = ({ onEmailCompleted }: useEmailValidationParams) => {
 
   const checkDuplicateId = async (email: string) => {
     try {
-      const response = await fetch(`${API_HOST}:${PORT}/users/get-users`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const { data } = await instance.get('/users/get-users');
 
-      if (!response.ok) {
-        throw new Error('서버에서 오류 응답');
-      }
-
-      const users: User[] = await response.json();
+      const users: User[] = data;
       const isDuplicate = users.some(user => user.email === email);
 
       setIsEmailDuplicate(isDuplicate);

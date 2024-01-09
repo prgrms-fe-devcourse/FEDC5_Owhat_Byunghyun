@@ -1,13 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 
+import { instance } from '~/api';
+
 interface RegisterData {
   email: string;
   fullName: string;
   password: string;
 }
-const API_HOST = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
 
 const useMutationRegister = () => {
   const [isEmailCompleted, setIsEmailCompleted] = useState(false);
@@ -27,19 +27,9 @@ const useMutationRegister = () => {
   };
 
   const registerUser = async (userData: RegisterData) => {
-    const response = await fetch(`${API_HOST}:${PORT}/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
+    const { data } = await instance.post('/signup', userData);
 
-    if (!response.ok) {
-      throw new Error('Registration failed');
-    }
-
-    return response.json();
+    return data;
   };
 
   const mutation = useMutation({
