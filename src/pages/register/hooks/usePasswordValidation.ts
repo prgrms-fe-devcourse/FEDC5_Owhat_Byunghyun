@@ -14,7 +14,7 @@ const usePasswordValidation = ({
 
   const handlePasswordChange = (value: string) => {
     setPassword(value);
-    validatePasswordMatch(value, confirmPassword);
+    confirmPassword && validatePasswordMatch(value, confirmPassword);
     validatePasswordStrength(value);
   };
 
@@ -27,8 +27,7 @@ const usePasswordValidation = ({
     newPassword: string,
     newConfirmPassword: string,
   ) => {
-    const isValidPassword =
-      newPassword === newConfirmPassword && newPassword.length >= 8;
+    const isValidPassword = newPassword === newConfirmPassword;
     setIsPasswordMatch(isValidPassword);
     onPasswordCompleted(isValidPassword);
   };
