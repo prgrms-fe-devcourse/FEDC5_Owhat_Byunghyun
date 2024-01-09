@@ -2,13 +2,19 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Feed from '~/common/components/Feed';
 
-const longCommentsArray = new Array(100)
-  .fill('댓글')
-  .map((_, index) => String('댓글' + index));
+type prefixType = '좋아요' | '댓글';
 
-const shortCommentsArray = new Array(5)
-  .fill('댓글')
-  .map((_, index) => String('댓글' + index));
+function generateArray(prefix: prefixType, length: number) {
+  return new Array(length).fill('').map((_, index) => String(prefix + index));
+}
+
+const longLikesArray = generateArray('좋아요', 100);
+const shortLikesArray = generateArray('좋아요', 5);
+const emptyLikesArray = generateArray('좋아요', 0);
+
+const longCommentsArray = generateArray('댓글', 100);
+const shortCommentsArray = generateArray('댓글', 5);
+const emptyCommentsArray = generateArray('댓글', 0);
 
 const meta: Meta<typeof Feed> = {
   title: 'Common/Components/Feed',
@@ -21,7 +27,11 @@ type Story = StoryObj<typeof Feed>;
 export const Default: Story = {
   argTypes: {
     comments: {
-      options: [longCommentsArray, shortCommentsArray],
+      options: [longCommentsArray, shortCommentsArray, emptyCommentsArray],
+      control: 'radio',
+    },
+    likes: {
+      options: [longLikesArray, shortLikesArray, emptyLikesArray],
       control: 'radio',
     },
   },
@@ -32,8 +42,8 @@ export const Default: Story = {
     image:
       'https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1024&h=1280&q=80',
     body: '메인, 마이 페이지, 상대방 마이 페이지의 피드의 내용입니다.. 이미지를 16:9 비율로 맞춰 출력합니다. 글의 제목과 내용이 길 경우 말줄임표(...) 처리를 해줍니다. 확인을 위해 여러번 작성해 줍니다. 메인, 마이 페이지, 상대방 마이 페이지의 피드의 내용입니다.. 이미지를 16:9 비율로 맞춰 출력합니다. 글의 제목과 내용이 길 경우 말줄임표(...) 처리를 해줍니다. 확인을 위해 여러번 작성해 줍니다.',
-    likes: ['좋아요1', '좋아요2'],
-    comments: longCommentsArray,
+    likes: longCommentsArray,
+    comments: longLikesArray,
     imgAspect: true,
     textOverflow: true,
   },
