@@ -1,25 +1,18 @@
 import { ComponentProps, useEffect, useState } from 'react';
 
-import { Comment, Like, Post } from '~/api/types/postTypes';
 import { Follow } from '~/api/types/userTypes';
 import Group from '~/common/components/Group';
 import Text from '~/common/components/Text';
 
 interface AlarmProps extends ComponentProps<'div'> {
   username: string;
-  follow?: Follow | string;
-  comment?: Comment | string;
+  follow?: Follow;
+  comment?: string;
   message?: string;
-  like?: Like | string;
+  like?: string;
 }
 
-const Alarm = ({
-  username,
-  follow = '',
-  comment = '',
-  message = '',
-  like = '',
-}: AlarmProps) => {
+const Alarm = ({ username, follow, comment, message, like }: AlarmProps) => {
   const [alarmMessage, setAlarmMessage] = useState('');
   const [postTitle, setPostTitle] = useState('');
 
@@ -27,12 +20,12 @@ const Alarm = ({
     if (follow) {
       setAlarmMessage('회원님을 팔로우하기 시작했습니다.');
     } else if (comment) {
-      setPostTitle(((comment as Comment).post as Post).title);
+      setPostTitle(comment);
       setAlarmMessage('게시글에 댓글을 달았습니다.');
     } else if (message) {
       setAlarmMessage('메시지를 보냈습니다.');
     } else if (like) {
-      setPostTitle(((like as Like).post as Post).title);
+      setPostTitle(like);
       setAlarmMessage('게시글을 좋아합니다.');
     }
   }, [follow, comment, message, like]);

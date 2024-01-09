@@ -7,32 +7,13 @@ const meta: Meta<typeof Alarm> = {
   title: 'Common/Components/Alarm',
   component: Alarm,
 };
+
 export default meta;
 
 type Story = StoryObj<typeof Alarm>;
 
 const username = '오왓';
-
-const comment = {
-  _id: 'id',
-  comment: '경성크리처 추천!!',
-  author: 'author',
-  post: {
-    likes: [],
-    comments: ['comment'],
-    _id: 'id',
-    title: '넷플릭스 오리지널 추천해주세요!',
-    channel: 'channel',
-    author: 'author',
-    createdAt: '2024-01-03T05:20:54.773Z',
-    updatedAt: '2024-01-03T05:23:37.555Z',
-    __v: 0,
-  },
-  createdAt: '2024-01-03T05:23:37.550Z',
-  updatedAt: '2024-01-03T05:23:37.550Z',
-  __v: 0,
-};
-
+const comment = '넷플릭스 오리지널 추천해주세요!';
 const follow = {
   _id: 'id',
   user: 'user',
@@ -41,26 +22,7 @@ const follow = {
   updatedAt: '2024-01-03T14:42:48.710Z',
   __v: 0,
 };
-
-const like = {
-  _id: 'id',
-  user: 'user',
-  post: {
-    likes: ['like'],
-    comments: ['comment'],
-    _id: 'id',
-    title: '넷플릭스 오리지널 추천해주세요!',
-    channel: 'channel',
-    author: 'author',
-    createdAt: '2024-01-03T05:20:54.773Z',
-    updatedAt: '2024-01-03T05:28:51.918Z',
-    __v: 0,
-  },
-  createdAt: '2024-01-03T05:28:51.915Z',
-  updatedAt: '2024-01-03T05:28:51.915Z',
-  __v: 0,
-};
-
+const like = '넷플릭스 오리지널 추천해주세요!';
 const message = 'message';
 
 export const Default: Story = {
@@ -76,18 +38,18 @@ export const Default: Story = {
   },
 };
 
-export const Comment: Story = {
+export const CommentType: Story = {
   args: { username, comment },
 };
 
-export const Follow: Story = {
+export const FollowType: Story = {
   args: { username, follow },
 };
 
-export const Like: Story = {
+export const LikeType: Story = {
   args: { username, like },
 };
 
-export const Message: Story = {
+export const MessageType: Story = {
   args: { username, message },
 };
