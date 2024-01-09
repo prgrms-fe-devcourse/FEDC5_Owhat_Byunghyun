@@ -28,7 +28,7 @@ const UsernameInput = ({ onFullNameCompleted }: UsernameInputProps) => {
           onChange={e => setUsernameValidation(e.target.value)}
           placeholder="이름을 입력해주세요."
         />
-        {!isUsernameValid && (
+        {!isUsernameValid && username && (
           <Text className="text-xs">이름을 3글자 이상으로 입력해주세요</Text>
         )}
       </Group>
