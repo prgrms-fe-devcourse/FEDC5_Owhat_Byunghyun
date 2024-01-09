@@ -7,6 +7,7 @@ import {
 
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
+import LoginPage from './pages/login';
 import { LayoutWrapper } from './routes';
 
 const router = createBrowserRouter(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
+      <Route path="/login" element={<LoginPage />} />
     </Route>,
   ),
 );
