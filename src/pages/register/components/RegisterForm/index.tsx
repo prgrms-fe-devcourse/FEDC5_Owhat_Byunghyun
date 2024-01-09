@@ -36,7 +36,7 @@ const RegisterForm = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="p-small">
       <Group direction="columns" spacing="md" grow={true}>
         <EmailInput
           mutation={mutation}
@@ -44,17 +44,19 @@ const RegisterForm = () => {
         />
         <UsernameInput onFullNameCompleted={handleFullNameCompleted} />
         <PasswordInput onPasswordCompleted={handlePasswordCompleted} />
-        <Button
-          loading={mutation.isPending}
-          type="submit"
-          fullwidth={true}
-          disabled={
-            mutation.isPending ||
-            !(isEmailCompleted && isPasswordCompleted && isFullNameCompleted)
-          }
-        >
-          회원가입
-        </Button>
+        <div className="fixed bottom-0 left-0 p">
+          <Button
+            loading={mutation.isPending}
+            type="submit"
+            fullwidth={true}
+            disabled={
+              mutation.isPending ||
+              !(isEmailCompleted && isPasswordCompleted && isFullNameCompleted)
+            }
+          >
+            회원가입
+          </Button>
+        </div>
       </Group>
     </form>
   );
