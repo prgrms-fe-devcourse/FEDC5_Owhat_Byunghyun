@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { instance } from '~/api';
 
@@ -10,6 +11,8 @@ interface RegisterData {
 }
 
 const useMutationRegister = () => {
+  const navigate = useNavigate();
+
   const [isEmailCompleted, setIsEmailCompleted] = useState(false);
   const [isPasswordCompleted, setIsPasswordCompleted] = useState(false);
   const [isFullNameCompleted, setIsFullNameCompleted] = useState(false);
@@ -28,9 +31,14 @@ const useMutationRegister = () => {
 
   const mutation = useMutation({
     mutationFn: async (userData: RegisterData) => {
-      return await instance.post('/signups', userData);
+      return await instance.post('/signup', userData);
+    },
+    onSuccess: () => {
+      alert('회원가입에 성공했습니다!');
+      navigate('/login');
     },
   });
+
   return {
     mutation,
     isEmailCompleted,
