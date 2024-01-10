@@ -10,7 +10,7 @@ interface FeedProps {
   initialState: boolean;
   title: string;
   image?: string;
-  content: string;
+  content?: string;
   likes: Like[] | string[];
   comments: Comment[] | string[];
   imgAspect?: boolean;
