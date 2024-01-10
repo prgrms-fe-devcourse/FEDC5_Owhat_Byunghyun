@@ -10,7 +10,7 @@ interface FeedProps {
   initialState: boolean;
   title: string;
   image?: string;
-  body: string;
+  content: string;
   likes: Like[] | string[];
   comments: Comment[] | string[];
   imgAspect?: boolean;
@@ -22,7 +22,7 @@ const Feed = ({
   initialState = false,
   title,
   image,
-  body,
+  content,
   likes,
   comments,
   imgAspect = true,
@@ -51,7 +51,7 @@ const Feed = ({
           className={fullImage}
         />
       )}
-      <Text className={abbreviationBody}>{body}</Text>
+      <Text className={abbreviationBody}>{content}</Text>
       <Group spacing={4} align="center">
         <LikeButton initialState={initialState} onClick={handleLike} />
         <Text size="small" className="w-6 text-center">
