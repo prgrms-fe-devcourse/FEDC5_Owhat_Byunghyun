@@ -13,6 +13,7 @@ interface UserInfoProps {
   author: string;
   channel?: string;
   createdAt: string;
+  isMyAccount?: boolean;
 }
 
 const UserInfo = ({
@@ -21,14 +22,18 @@ const UserInfo = ({
   author,
   channel,
   createdAt,
+  isMyAccount = false,
 }: UserInfoProps) => {
   return (
-    <Group spacing={'sm'} align={'center'}>
-      <Link to={`/account/${_id}`} className="flex items-center">
+    <Group spacing={'md'} align={'center'}>
+      <Link
+        to={isMyAccount ? `/account/${_id}` : ''}
+        className="flex items-center"
+      >
         <Avatar src={profileImage} size="auto" className="h-14 w-14"></Avatar>
       </Link>
       <Group spacing={2} direction={'columns'}>
-        <Link to={`/account/${_id}`}>
+        <Link to={isMyAccount ? `/account/${_id}` : ''}>
           <Text strong>{author}</Text>
         </Link>
         <ExtraInfo>

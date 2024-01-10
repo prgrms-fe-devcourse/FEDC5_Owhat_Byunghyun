@@ -27,7 +27,7 @@ export default meta;
 
 export const Default: StoryObj<typeof UserInfo> = {
   args: {
-    _id: '6169b2d3d5f8f3e7e8e5f5f5',
+    _id: '12315613213',
     author: '홍길동',
     channel: '넷플릭스',
   },
@@ -35,7 +35,7 @@ export const Default: StoryObj<typeof UserInfo> = {
 
 export const Comment: StoryObj<typeof UserInfo> = {
   args: {
-    _id: '6169b2d3d5f8f3e7e8e5f5f5',
+    _id: '1234567890',
     author: '홍길동',
   },
 };
