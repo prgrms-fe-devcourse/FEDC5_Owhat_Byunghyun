@@ -10,6 +10,7 @@ export type IconName =
   | 'favorite-filled'
   | 'edit'
   | 'home'
+  | 'message'
   | 'sms'
   | 'notifications'
   | 'search'
