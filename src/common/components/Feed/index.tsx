@@ -50,13 +50,13 @@ const Feed = ({
         />
       )}
       <Text className={abbreviationBody}>{body}</Text>
-      <Group spacing="sm" align="center">
+      <Group spacing={4} align="center">
         <Like initialState={initialState} onClick={handleLike} />
-        <Text size="small" className="w-6">
+        <Text size="small" className="w-6 text-center">
           {likeLength}
         </Text>
         <Icon id="sms" aria-label="댓글 아이콘" />
-        <Text size="small" className="w-6">
+        <Text size="small" className="w-6 text-center">
           {commentsLength}
         </Text>
       </Group>
