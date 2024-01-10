@@ -1,16 +1,18 @@
+import { Comment, Like } from '~/api/types/postTypes';
+
 import Group from '../Group';
 import Icon from '../Icon';
 import Image from '../Image';
-import Like from '../Like';
+import LikeButton from '../Like';
 import Text from '../Text';
 
 interface FeedProps {
   initialState: boolean;
   title: string;
-  image: string;
-  body: string;
-  likes: string[];
-  comments: string[];
+  image?: string;
+  content?: string;
+  likes: Like[] | string[];
+  comments: Comment[] | string[];
   imgAspect?: boolean;
   textOverflow?: boolean;
   handleLike?: () => void;
@@ -20,7 +22,7 @@ const Feed = ({
   initialState = false,
   title,
   image,
-  body,
+  content,
   likes,
   comments,
   imgAspect = true,
@@ -29,7 +31,7 @@ const Feed = ({
 }: FeedProps) => {
   const fullImage = imgAspect ? 'aspect-video' : '';
   const abbreviationTitle = textOverflow ? 'line-clamp-1' : '';
-  const abbreviationBody = textOverflow ? 'line-clamp-2' : '';
+  const abbreviationContent = textOverflow ? 'line-clamp-2' : '';
 
   const likeLength = likes.length > 99 ? '99+' : likes.length;
   const commentsLength = comments.length > 99 ? '99+' : comments.length;
@@ -49,9 +51,9 @@ const Feed = ({
           className={fullImage}
         />
       )}
-      <Text className={abbreviationBody}>{body}</Text>
+      <Text className={abbreviationContent}>{content}</Text>
       <Group spacing={4} align="center">
-        <Like initialState={initialState} onClick={handleLike} />
+        <LikeButton initialState={initialState} onClick={handleLike} />
         <Text size="small" className="w-6 text-center">
           {likeLength}
         </Text>
