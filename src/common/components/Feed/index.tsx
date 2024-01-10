@@ -31,7 +31,7 @@ const Feed = ({
 }: FeedProps) => {
   const fullImage = imgAspect ? 'aspect-video' : '';
   const abbreviationTitle = textOverflow ? 'line-clamp-1' : '';
-  const abbreviationBody = textOverflow ? 'line-clamp-2' : '';
+  const abbreviationContent = textOverflow ? 'line-clamp-2' : '';
 
   const likeLength = likes.length > 99 ? '99+' : likes.length;
   const commentsLength = comments.length > 99 ? '99+' : comments.length;
@@ -51,7 +51,7 @@ const Feed = ({
           className={fullImage}
         />
       )}
-      <Text className={abbreviationBody}>{content}</Text>
+      <Text className={abbreviationContent}>{content}</Text>
       <Group spacing={4} align="center">
         <LikeButton initialState={initialState} onClick={handleLike} />
         <Text size="small" className="w-6 text-center">
