@@ -9,8 +9,8 @@ export interface User {
   posts: Post[];
   likes: Like[];
   comments: string[];
-  followers: string[];
-  following: string[];
+  followers: Follow[] | string[];
+  following: Follow[] | string[];
   notifications: Notification[];
   messages: Message[];
   _id: string;
