@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { MemoryRouter } from 'react-router-dom';
 
 import LayoutProvider from '~/common/components/Layout';
 import register from '~/pages/register';
@@ -23,7 +24,9 @@ export default {
   decorators: Story => (
     <QueryClientProvider client={queryClient}>
       <LayoutProvider>
-        <Story />
+        <MemoryRouter>
+          <Story />
+        </MemoryRouter>
       </LayoutProvider>
     </QueryClientProvider>
   ),

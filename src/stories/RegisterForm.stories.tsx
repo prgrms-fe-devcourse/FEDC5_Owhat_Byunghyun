@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { MemoryRouter } from 'react-router-dom';
 
 import RegisterForm from '~/pages/register/components/RegisterForm';
 
@@ -21,7 +22,9 @@ export default {
   args: {},
   decorators: Story => (
     <QueryClientProvider client={queryClient}>
-      <Story />
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
     </QueryClientProvider>
   ),
 } satisfies Meta<typeof RegisterForm>;
