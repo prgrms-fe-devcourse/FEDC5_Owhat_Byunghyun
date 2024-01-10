@@ -29,7 +29,9 @@ const UsernameInput = ({ onFullNameCompleted }: UsernameInputProps) => {
           placeholder="이름을 입력해주세요."
         />
         {!isUsernameValid && username && (
-          <Text className="text-xs">이름을 3글자 이상으로 입력해주세요</Text>
+          <Text className="text-xs">
+            이름을 3글자 이상으로 올바르게 입력해주세요.
+          </Text>
         )}
       </Group>
     </>
