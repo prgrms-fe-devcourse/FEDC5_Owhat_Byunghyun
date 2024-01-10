@@ -27,9 +27,14 @@ const usePasswordValidation = ({
     newPassword: string,
     newConfirmPassword: string,
   ) => {
-    const isValidPassword = newPassword === newConfirmPassword;
-    setIsPasswordMatch(isValidPassword);
-    onPasswordCompleted(isValidPassword && isPasswordValid);
+    const isMatchPassword = newPassword === newConfirmPassword;
+    const isValidPassword =
+      newPassword.length >= 8 &&
+      /[a-zA-Z]/.test(newPassword) &&
+      /\d/.test(newPassword) &&
+      /[!@#$%^&*(),.?":{}|<>]/.test(newPassword);
+    setIsPasswordMatch(isMatchPassword);
+    onPasswordCompleted(isValidPassword && isMatchPassword);
   };
 
   const validatePasswordStrength = (newPassword: string) => {

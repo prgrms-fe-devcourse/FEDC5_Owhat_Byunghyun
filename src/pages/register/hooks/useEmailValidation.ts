@@ -55,6 +55,7 @@ const useEmailValidation = ({ onEmailCompleted }: useEmailValidationParams) => {
     setIsEmailDuplicate(false);
     setEmailCheckMessage('');
     setIsEmailCheckComplete(false);
+    onEmailCompleted(false);
   };
 
   useEffect(() => {
