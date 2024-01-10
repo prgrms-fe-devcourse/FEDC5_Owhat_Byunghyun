@@ -26,15 +26,9 @@ const useMutationRegister = () => {
     setIsFullNameCompleted(isValid);
   };
 
-  const registerUser = async (userData: RegisterData) => {
-    const { data } = await instance.post('/signup', userData);
-
-    return data;
-  };
-
   const mutation = useMutation({
-    mutationFn: (userData: RegisterData) => {
-      return registerUser(userData);
+    mutationFn: async (userData: RegisterData) => {
+      return await instance.post('/signups', userData);
     },
   });
   return {
