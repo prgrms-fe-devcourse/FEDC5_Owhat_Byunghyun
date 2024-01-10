@@ -1,30 +1,32 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Suspense } from 'react';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Outlet,
+  Route,
+} from 'react-router-dom';
 
-import AccountPage from './pages/account';
-import HomePage from './pages/HomePage';
-import MessagePage from './pages/message';
-import NotificationPage from './pages/notification';
-import SearchPage from './pages/search';
+import LayoutProvider from './common/components/Layout';
+import HomePage from './pages/home';
+import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <HomePage />,
-  },
-  {
-    path: '/search',
-    element: <SearchPage />,
-  },
-  {
-    path: '/message',
-    element: <MessagePage />,
-  },
-  {
-    path: '/notification',
-    element: <NotificationPage />,
-  },
-  {
-    path: '/account',
-    element: <AccountPage />,
-  },
-]);
+const LayoutWrapper = () => (
+  <LayoutProvider>
+    <Outlet />
+  </LayoutProvider>
+);
+
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={<LayoutWrapper />}>
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={<FeedSkeleton />}>
+            <HomePage />
+          </Suspense>
+        }
+      />
+    </Route>,
+  ),
+);
