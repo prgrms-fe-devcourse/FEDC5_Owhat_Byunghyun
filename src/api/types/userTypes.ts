@@ -7,12 +7,12 @@ export interface User {
   banned: boolean;
   isOnline: boolean;
   posts: Post[];
-  likes: Like[];
+  likes: Like[] | string[];
   comments: string[];
   followers: Follow[] | string[];
   following: Follow[] | string[];
-  notifications: Notification[];
-  messages: Message[];
+  notifications: Notification[] | string[];
+  messages: Message[] | string[];
   _id: string;
   fullName: string;
   email: string;
