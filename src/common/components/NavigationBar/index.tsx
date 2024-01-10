@@ -36,8 +36,8 @@ const NavigationBar = () => {
             to={to}
             className={({ isActive }) =>
               isActive
-                ? 'rounded-full bg-primary p-1'
-                : 'rounded-full p-1 hover:bg-primary'
+                ? 'rounded-full bg-primary fill-white p-1'
+                : 'rounded-full fill-white p-1 hover:bg-primary'
             }
           >
             <Icon id={id} aria-label={label} />
