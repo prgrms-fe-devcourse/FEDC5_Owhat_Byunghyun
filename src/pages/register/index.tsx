@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import Group from '~/common/components/Group';
 import Icon from '~/common/components/Icon';
 import useLayout from '~/common/hooks/useLayout';
 
 import RegisterForm from './components/RegisterForm';
+import { useRegisterMutation } from './hooks/queries/useRegisterMutation';
 
 const RegisterPage = () => {
+  const [isCompleted, setIsCompleted] = useState(false);
   const { changeMeta } = useLayout();
 
   useEffect(() => {
@@ -17,10 +18,30 @@ const RegisterPage = () => {
     });
   }, []);
 
+  const mutation = useRegisterMutation();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!isCompleted) return;
+
+    const elements = e.currentTarget;
+    const email = elements.email.value;
+    const fullName = elements.username.value;
+    const password = elements.password.value;
+    mutation.mutate({ email, fullName, password });
+  };
+
+  const handleFormCompleted = (isValid: boolean) => {
+    setIsCompleted(isValid);
+  };
+
   return (
-    <Group direction="columns" spacing="md" grow={true}>
-      <RegisterForm />
-    </Group>
+    <RegisterForm
+      mutation={mutation}
+      onRegisterCompleted={handleFormCompleted}
+      handleSubmit={handleSubmit}
+    />
   );
 };
 
