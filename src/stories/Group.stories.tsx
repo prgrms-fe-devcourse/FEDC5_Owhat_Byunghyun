@@ -33,7 +33,7 @@ const meta: Meta<typeof Group> = {
     },
   },
   args: {
-    direction: 'row',
+    direction: 'rows',
     position: 'left',
     align: 'start',
     inline: false,

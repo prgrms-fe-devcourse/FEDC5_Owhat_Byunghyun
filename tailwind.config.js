@@ -46,15 +46,13 @@ export default {
           '0.625rem',
           { lineHeight: '1.125rem', letterSpacing: '0.021875rem' },
         ],
-        base: {
-          DEFAULT: ['1rem', '1.5rem'],
-          small: ['0.875rem', '1.375rem'],
-        },
+        base: ['1rem', '1.5rem'],
+        'base-small': ['0.875rem', '1.375rem'],
         'heading-1': ['2rem', '2.5rem'],
         'heading-2': ['1.5rem', '2rem'],
         'heading-3': ['1.125rem', '1.625rem'],
       },
-      radius: {
+      borderRadius: {
         DEFAULT: '0.7rem',
         small: '0.35rem',
         large: '1.05rem',

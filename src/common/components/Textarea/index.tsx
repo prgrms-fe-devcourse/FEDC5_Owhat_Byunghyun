@@ -1,45 +1,29 @@
-import { ComponentProps, useRef } from 'react';
+import { ComponentProps, useState } from 'react';
 
 import { cn } from '~/utils/cn';
 
 interface TextareaProps extends ComponentProps<'textarea'> {
   size?: 'sm' | 'lg';
-  placeholder?: string;
-  required?: boolean;
-  disabled?: boolean;
+  readonly?: boolean;
 }
 
 const Textarea = ({
   size = 'sm',
-  placeholder = '',
-  required = false,
-  disabled = false,
+  readonly = false,
   className,
   ...props
 }: TextareaProps) => {
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-
-  const resizeTextarea = () => {
-    const textarea = textareaRef.current;
-
-    if (!textarea) return;
-
-    if (size === 'sm' && Number(textarea.scrollHeight) > 145) return;
-
-    textarea.style.height = 'auto';
-    textarea.style.height = `${textarea.scrollHeight}px`;
-  };
+  const [row, setRow] = useState(1);
 
   return (
     <textarea
-      placeholder={placeholder}
-      required={required}
-      disabled={disabled}
-      ref={textareaRef}
-      onInput={resizeTextarea}
-      rows={1}
+      readOnly={readonly}
+      onFocus={() => !readonly && setRow(2)}
+      onBlur={() => setRow(1)}
+      rows={row}
       className={cn(
-        'box-border w-full resize-none px-3 py-1.5 outline-none',
+        'box-border w-full resize-none overscroll-contain px py-small outline-none',
+        size === 'lg' && 'h-full',
         className,
       )}
       {...props}

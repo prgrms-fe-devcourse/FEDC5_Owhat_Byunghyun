@@ -26,12 +26,6 @@
     @apply text-heading-3 font-bold;
   }
 
-  div,
-  span,
-  p {
-    @apply text-base text-black;
-  }
-
   @keyframes beat {
     0% {
       transform: scale(1);
