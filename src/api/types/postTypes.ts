@@ -11,14 +11,14 @@ export interface Channel {
 }
 
 export interface Post {
-  likes: Like[];
-  comments: Comment[];
+  likes: Like[] | string[];
+  comments: Comment[] | string[];
   _id: string;
   image?: string;
   imagePublicId?: string;
   title: string;
-  channel: Channel;
-  author: User;
+  channel: Channel | string;
+  author: User | string;
   createdAt: string;
   updatedAt: string;
 }
@@ -26,7 +26,7 @@ export interface Post {
 export interface Like {
   _id: string;
   user: string;
-  post: string;
+  post: Post | string;
   createdAt: string;
   updatedAt: string;
 }
@@ -34,8 +34,8 @@ export interface Like {
 export interface Comment {
   _id: string;
   comment: string;
-  author: User;
-  post: string;
+  author: User | string;
+  post: Post | string;
   createdAt: string;
   updatedAt: string;
 }
