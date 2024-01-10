@@ -1,7 +1,9 @@
+import { Comment, Like } from '~/api/types/postTypes';
+
 import Group from '../Group';
 import Icon from '../Icon';
 import Image from '../Image';
-import Like from '../Like';
+import LikeButton from '../Like';
 import Text from '../Text';
 
 interface FeedProps {
@@ -9,8 +11,8 @@ interface FeedProps {
   title: string;
   image?: string;
   body: string;
-  likes: string[];
-  comments: string[];
+  likes: Like[] | string[];
+  comments: Comment[] | string[];
   imgAspect?: boolean;
   textOverflow?: boolean;
   handleLike?: () => void;
@@ -51,7 +53,7 @@ const Feed = ({
       )}
       <Text className={abbreviationBody}>{body}</Text>
       <Group spacing={4} align="center">
-        <Like initialState={initialState} onClick={handleLike} />
+        <LikeButton initialState={initialState} onClick={handleLike} />
         <Text size="small" className="w-6 text-center">
           {likeLength}
         </Text>
