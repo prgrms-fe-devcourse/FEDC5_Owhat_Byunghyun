@@ -3,14 +3,14 @@ import { useCallback } from 'react';
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 
-import useMutationRegister from '../../hooks/useMutationRegister';
+import { useRegisterMutation } from '../../hooks/queries/useRegisterMutation';
+import useMutationRegister from '../../hooks/useRegisterValidation';
 import EmailInput from '../EmailInput';
 import PasswordInput from '../PasswordInput';
 import UsernameInput from '../UsernameInput';
 
 const RegisterForm = () => {
   const {
-    mutation,
     isEmailCompleted,
     isPasswordCompleted,
     isFullNameCompleted,
@@ -18,6 +18,8 @@ const RegisterForm = () => {
     handlePasswordCompleted,
     handleFullNameCompleted,
   } = useMutationRegister();
+
+  const mutation = useRegisterMutation();
 
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {

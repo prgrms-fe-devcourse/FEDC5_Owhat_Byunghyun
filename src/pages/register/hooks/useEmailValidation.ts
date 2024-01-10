@@ -1,9 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
-import { instance } from '~/api';
-
 import { User } from '../types';
+import { useUserListQuery } from './queries/useUserListQuery';
 
 interface useEmailValidationParams {
   onEmailCompleted: (value: boolean) => void;
@@ -22,13 +20,8 @@ const useEmailValidation = ({ onEmailCompleted }: useEmailValidationParams) => {
     );
     setIsEmailValid(isValid);
   };
-  const { data } = useQuery({
-    queryKey: ['duplicateEmail'],
-    queryFn: async () => {
-      const { data } = await instance.get('/users/get-users');
-      return data;
-    },
-  });
+
+  const data = useUserListQuery();
 
   const checkDuplicateEmail = (email: string) => {
     try {
