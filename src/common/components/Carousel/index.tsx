@@ -74,6 +74,9 @@ const Carousel = ({
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
+        onTouchStart={handleMouseDown}
+        onTouchMove={handleMouseMove}
+        onTouchEnd={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
         <Group spacing={groupGap} align="center" position="center" noWrap>
