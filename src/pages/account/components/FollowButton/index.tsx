@@ -3,11 +3,11 @@ import { ComponentProps, useState } from 'react';
 
 import Button from '~/common/components/Button';
 import Text from '~/common/components/Text';
+import { useFollow } from '~/common/hooks/mutations/useFollow';
+import { useUnfollow } from '~/common/hooks/mutations/useUnfollow';
 import { cn } from '~/utils/cn';
 
 import { followButtonVariants } from './FollowButton.variants';
-import { useMutationFollow } from './useMutationFollow';
-import { useMutationUnfollow } from './useMutationUnfollow';
 
 interface FollowButtonProps
   extends VariantProps<typeof followButtonVariants>,
@@ -20,8 +20,8 @@ const FollowButton = ({ id, styleType = 'default' }: FollowButtonProps) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [isHover, setIsHover] = useState(false);
 
-  const follow = useMutationFollow();
-  const unfollow = useMutationUnfollow();
+  const follow = useFollow();
+  const unfollow = useUnfollow();
 
   const handleFollowButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>,

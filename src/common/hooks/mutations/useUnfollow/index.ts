@@ -2,10 +2,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { instance } from '~/api';
 
-export const useMutationFollow = () => {
-  const followCreate = async ({ id }: { id: string }) => {
+export const useUnfollow = () => {
+  const followDelete = async ({ id }: { id: string }) => {
     try {
-      await instance.post(`/follow/create/${id}`);
+      await instance.post(`/follow/Delete/${id}`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -14,7 +14,7 @@ export const useMutationFollow = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: followCreate,
+    mutationFn: followDelete,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['user'] });
     },

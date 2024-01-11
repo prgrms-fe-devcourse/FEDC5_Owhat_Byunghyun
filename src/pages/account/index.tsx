@@ -8,12 +8,12 @@ import Group from '~/common/components/Group';
 import Icon from '~/common/components/Icon';
 import Text from '~/common/components/Text';
 import UserInfo from '~/common/components/UserInfo';
+import { useUser } from '~/common/hooks/queries/useUser';
 import useLayout from '~/common/hooks/useLayout';
 
 import AccountExtraInfo from './components/AccountExtraInfo';
 import AccountImages from './components/AccountImages';
 import FollowButton from './components/FollowButton';
-import { useQueryUser } from './hooks/useQueryUser';
 
 export default function AccountPage() {
   const [isMyAccount, setIsMyAccount] = useState(false);
@@ -24,7 +24,7 @@ export default function AccountPage() {
   if (token === currentUserId) {
     setIsMyAccount(true);
   }
-  const { userData } = useQueryUser(currentUserId);
+  const { userData } = useUser(currentUserId);
 
   const { _id, fullName, coverImage, image, followers, following, posts } =
     userData;
