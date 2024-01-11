@@ -38,7 +38,7 @@ const AccountInfo = ({ user, isMyAccount }: AccountInfoProps) => {
 
       {isMyAccount ? (
         <Button className="mt-small">
-          <Link to={'/account/edit'}>내 정보 변경</Link>
+          <Link to={'/account-edit'}>내 정보 변경</Link>
         </Button>
       ) : (
         <FollowButton id={userId} />

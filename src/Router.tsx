@@ -2,13 +2,13 @@ import { Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import AccountPage from './pages/account';
-import AccountEditPage from './pages/account/edit';
-import UpdatePasswordPage from './pages/account/edit/password';
+import AccountEditPage from './pages/accountEdit';
 import FollowPage from './pages/follow';
 import HomePage from './pages/HomePage';
 import MessagePage from './pages/message';
 import NotificationPage from './pages/notification';
 import SearchPage from './pages/search';
+import UpdatePasswordPage from './pages/UpdatePassword';
 
 export const router = createBrowserRouter([
   {
@@ -36,11 +36,11 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/account/edit',
+    path: '/account-edit',
     element: <AccountEditPage />,
   },
   {
-    path: '/account/edit/password',
+    path: '/update-password',
     element: <UpdatePasswordPage />,
   },
   {
