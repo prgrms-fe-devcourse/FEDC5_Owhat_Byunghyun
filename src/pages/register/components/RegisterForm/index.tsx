@@ -66,43 +66,44 @@ const RegisterForm = ({
     onRegisterCompleted(isCompleted && !isEmailDuplicate);
   }, [isCompleted, isEmailDuplicate, onRegisterCompleted]);
 
+  const DuplicateButton = () => (
+    <Button
+      onClick={() => checkDuplicateEmail(values.email)}
+      type="button"
+      styleType="ghost"
+      className="absolute left-1/3 top-1/2 z-10 -translate-y-[5%] translate-x-[5%] text-sm"
+      disabled={
+        !isValid.email ||
+        (emailCheckMessage === '가입 가능한 이메일입니다.' && !isEmailDuplicate)
+      }
+    >
+      중복 확인
+    </Button>
+  );
+
   return (
     <form onSubmit={handleSubmit} className="pb-[100px]">
       <Group direction="columns" spacing="md" grow={true}>
-        <div className="relative">
-          <FormField
-            type="email"
-            name="email"
-            label="이메일"
-            placeholder="이메일을 입력해주세요."
-            onChange={handleChange}
-            value={values.email}
-            isValid={isValid.email}
-          />
-          {emailCheckMessage && (
-            <Text
-              className={
-                isEmailDuplicate ? 'text-sm text-error' : 'text-sm text-success'
-              }
-            >
-              {emailCheckMessage}
-            </Text>
-          )}
-
-          <Button
-            onClick={() => checkDuplicateEmail(values.email)}
-            type="button"
-            styleType="ghost"
-            className="absolute right-0 top-[33px] z-10 text-sm"
-            disabled={
-              !isValid.email ||
-              (emailCheckMessage === '가입 가능한 이메일입니다.' &&
-                !isEmailDuplicate)
+        <FormField
+          type="email"
+          name="email"
+          label="이메일"
+          placeholder="이메일을 입력해주세요."
+          onChange={handleChange}
+          value={values.email}
+          isValid={isValid.email}
+          right={<DuplicateButton />}
+        />
+        {emailCheckMessage && (
+          <Text
+            className={
+              isEmailDuplicate ? 'text-sm text-error' : 'text-sm text-success'
             }
           >
-            중복 확인
-          </Button>
-        </div>
+            {emailCheckMessage}
+          </Text>
+        )}
+
         <FormField
           type="text"
           name="username"
@@ -135,7 +136,6 @@ const RegisterForm = ({
         <div className="fixed bottom-0 left-0 w-full p">
           <Button
             loading={mutation.isPending}
-            type="submit"
             fullwidth={true}
             disabled={mutation.isPending || !(isCompleted && !isEmailDuplicate)}
             className="max-w-layout"

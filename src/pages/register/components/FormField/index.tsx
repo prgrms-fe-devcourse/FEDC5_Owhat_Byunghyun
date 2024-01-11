@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
@@ -11,6 +13,7 @@ interface FormFieldProps {
   isValid: boolean;
   errorMessage?: string;
   placeholder: string;
+  right?: ReactNode;
 }
 
 const FormField = ({
@@ -22,9 +25,10 @@ const FormField = ({
   isValid,
   errorMessage,
   placeholder,
+  right,
 }: FormFieldProps) => {
   return (
-    <Group direction="columns" spacing="sm" grow={true}>
+    <Group direction="columns" spacing="sm" grow={true} className="relative">
       <Text size="small" elementType="span">
         {label}
       </Text>
@@ -41,6 +45,7 @@ const FormField = ({
           {errorMessage || `올바른 ${label}을(를) 입력하세요.`}
         </Text>
       )}
+      {right}
     </Group>
   );
 };
