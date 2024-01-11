@@ -8,7 +8,7 @@ import HomePage from './pages/HomePage';
 import MessagePage from './pages/message';
 import NotificationPage from './pages/notification';
 import SearchPage from './pages/search';
-import UpdatePasswordPage from './pages/UpdatePassword';
+import UpdatePasswordPage from './pages/updatePassword';
 
 export const router = createBrowserRouter([
   {
