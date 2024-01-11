@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import { Like, Post } from '~/api/types/postTypes';
 import Feed from '~/common/components/Feed';
 import useLikeFromPost from '~/common/hooks/mutations/useLikeFromPost';
-import useUser from '~/common/hooks/queries/useUser';
+import useAuthUser from '~/common/hooks/queries/useAuthUser';
 
 interface FeedItemProps {
   feed: Post;
 }
 
 const FeedItem = ({ feed }: FeedItemProps) => {
-  const { user } = useUser();
+  const { user } = useAuthUser();
   const isLiked = feed.likes.find(like => {
     if (typeof like === 'string') return false;
 

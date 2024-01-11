@@ -1,15 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getUser } from '~/api/user';
+import { getAuthUser } from '~/api/user';
 import { QUERY_KEY } from '~/constants/queryKey';
 
-const useUser = () => {
+const useAuthUser = () => {
   const { data } = useQuery({
     queryKey: [QUERY_KEY.USER],
-    queryFn: getUser,
+    queryFn: getAuthUser,
   });
 
   return { user: data };
 };
 
-export default useUser;
+export default useAuthUser;
