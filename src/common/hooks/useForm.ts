@@ -26,6 +26,7 @@ const useForm = ({
   const [values, setValues] = useState<FormValues>(initialValues);
   const [isValid, setIsValid] = useState<FormIsValid>(isValidinitialValues);
   const [isCompleted, setIsCompleted] = useState(false);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
 
@@ -43,6 +44,7 @@ const useForm = ({
       }));
     }
   };
+
   const areAllValid = (obj: FormIsValid): boolean => {
     return Object.values(obj).every(value => value);
   };

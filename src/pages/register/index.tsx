@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import Icon from '~/common/components/Icon';
 import useLayout from '~/common/hooks/useLayout';
 
+import { useRegisterMutation } from '../../common/hooks/mutations/useRegister';
 import RegisterForm from './components/RegisterForm';
-import { useRegisterMutation } from './hooks/queries/useRegisterMutation';
 
 const RegisterPage = () => {
   const [isCompleted, setIsCompleted] = useState(false);

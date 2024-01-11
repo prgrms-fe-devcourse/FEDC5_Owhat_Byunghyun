@@ -1,12 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import Text from '~/common/components/Text';
-import { User } from '~/pages/register/types';
+import useForm from '~/common/hooks/useForm';
+import {
+  isValidEmail,
+  isValidPassword,
+  isValidPasswordMatch,
+  isValidUsername,
+} from '~/utils/isValid';
 
-import { useUserListQuery } from '../../hooks/queries/useUserListQuery';
-import useForm from '../../hooks/useForm';
+import useEmailDuplicate from '../../hooks/useEmailDuplicate';
 import FormField from '../FormField';
 
 interface RegisterFormProps {
@@ -15,35 +20,18 @@ interface RegisterFormProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const isValidEmail = (value: string) =>
-  /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value);
-
-const isValidPassword = (value: string) =>
-  value.length >= 8 &&
-  /[a-zA-Z]/.test(value) &&
-  /\d/.test(value) &&
-  /[!@#$%^&*(),.?":{}|<>]/.test(value);
-
-const isValidUsername = (value: string) =>
-  value.length >= 3 && /^[가-힣a-zA-Z0-9]+$/.test(value);
-
-const isValidPasswordMatch = ({
-  value,
-  newPassword,
-}: {
-  value: string;
-  newPassword: string;
-}) => {
-  return newPassword === value;
-};
-
 const RegisterForm = ({
   mutation,
   onRegisterCompleted,
   handleSubmit,
 }: RegisterFormProps) => {
-  const [emailCheckMessage, setEmailCheckMessage] = useState('');
-  const [isEmailDuplicate, setIsEmailDuplicate] = useState(false);
+  const {
+    emailCheckMessage,
+    setEmailCheckMessage,
+    isEmailDuplicate,
+    checkDuplicateEmail,
+  } = useEmailDuplicate();
+
   const { values, isValid, isCompleted, handleChange } = useForm({
     initialValues: {
       email: '',
@@ -69,29 +57,11 @@ const RegisterForm = ({
     },
   });
 
-  const data = useUserListQuery();
-
-  const checkDuplicateEmail = (email: string) => {
-    try {
-      const users: User[] = data;
-      const isDuplicate = users.some(user => user.email === email);
-
-      setIsEmailDuplicate(isDuplicate);
-
-      if (isDuplicate) {
-        setEmailCheckMessage('이메일이 이미 사용 중입니다.');
-      } else {
-        setEmailCheckMessage('가입 가능한 이메일입니다.');
-      }
-    } catch (error) {
-      console.error('에러 발생:', (error as Error).message);
-    }
-  };
-
   //TODO: Email 값이 지워지거나 바뀌면 이메일 중복확인 메시지사라지도록하는 기능 -> 다른방법 구상해야함
   useEffect(() => {
     setEmailCheckMessage('');
-  }, [values.email]);
+  }, [values.email, setEmailCheckMessage]);
+
   useEffect(() => {
     onRegisterCompleted(isCompleted && !isEmailDuplicate);
   }, [isCompleted, isEmailDuplicate, onRegisterCompleted]);
@@ -168,7 +138,7 @@ const RegisterForm = ({
             type="submit"
             fullwidth={true}
             disabled={mutation.isPending || !(isCompleted && !isEmailDuplicate)}
-            className="max-w-[360px]"
+            className="max-w-layout"
           >
             회원가입
           </Button>
