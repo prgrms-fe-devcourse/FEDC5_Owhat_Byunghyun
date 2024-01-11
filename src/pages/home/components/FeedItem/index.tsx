@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 import { Like, Post } from '~/api/types/postTypes';
 import Feed from '~/common/components/Feed';
-import useLikeFromPost from '~/common/queries/useLikeFromPost';
-import useUser from '~/common/queries/useUser';
+import useLikeFromPost from '~/common/hooks/mutations/useLikeFromPost';
+import useUser from '~/common/hooks/queries/useUser';
 
 interface FeedItemProps {
   feed: Post;

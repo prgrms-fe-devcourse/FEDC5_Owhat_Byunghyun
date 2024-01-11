@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 
-import useChannelList from '~/common/queries/useChannelList';
-import usePostListByChannel from '~/common/queries/usePostListByChannel';
+import useChannelList from '~/common/hooks/queries/useChannelList';
+import usePostListByChannel from '~/common/hooks/queries/usePostListByChannel';
 
 import ChannelList from './components/ChannelList';
 import FeedItem from './components/FeedItem';
