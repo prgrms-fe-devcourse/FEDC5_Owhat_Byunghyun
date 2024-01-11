@@ -1,18 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { MemoryRouter } from 'react-router-dom';
 
+import LayoutProvider from '~/common/components/Layout';
 import SearchPage from '~/pages/search';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5,
-      gcTime: 1000 * 60 * 5,
-      retry: 0,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 const meta: Meta<typeof SearchPage> = {
   title: 'Pages/Search',
@@ -20,7 +13,11 @@ const meta: Meta<typeof SearchPage> = {
   decorators: [
     Story => (
       <QueryClientProvider client={queryClient}>
-        <Story />
+        <MemoryRouter>
+          <LayoutProvider>
+            <Story />
+          </LayoutProvider>
+        </MemoryRouter>
       </QueryClientProvider>
     ),
   ],

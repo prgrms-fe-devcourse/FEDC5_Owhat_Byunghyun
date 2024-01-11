@@ -30,7 +30,7 @@ const PostItem = ({ post }: PostItemProps) => {
         position="apart"
         className="h-32 w-full p-small"
       >
-        <Group direction="columns" spacing="sm" className="w-9/12">
+        <Group direction="columns" spacing="sm" className="w-8/12">
           <Text strong className="w-full truncate">
             {postObj.title}
           </Text>

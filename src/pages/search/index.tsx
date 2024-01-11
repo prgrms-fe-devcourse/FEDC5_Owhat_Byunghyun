@@ -34,14 +34,16 @@ const SearchPage = () => {
         onChange={handleChange}
         className="mb-xlarge"
       />
-      <Tab>
-        <Tab.Item title="포스트 + 사용자" label="all">
-          <SearchResults mode="all" keyword={keyword} />
-        </Tab.Item>
-        <Tab.Item title="사용자" label="user">
-          <SearchResults mode="users" keyword={keyword} />
-        </Tab.Item>
-      </Tab>
+      {keyword && (
+        <Tab>
+          <Tab.Item title="포스트 + 사용자" label="all">
+            <SearchResults mode="all" keyword={keyword} />
+          </Tab.Item>
+          <Tab.Item title="사용자" label="user">
+            <SearchResults mode="users" keyword={keyword} />
+          </Tab.Item>
+        </Tab>
+      )}
     </>
   );
 };
