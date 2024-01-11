@@ -7,7 +7,8 @@ interface RegisterData {
 }
 
 export const getUserList = async () => {
-  return await instance.get('/users/get-users');
+  const { data } = await instance.get('/users/get-users');
+  return data;
 };
 
 export const postJoinUser = async (userData: RegisterData) => {
