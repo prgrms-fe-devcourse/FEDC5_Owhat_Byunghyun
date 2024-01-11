@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { instance } from '~/api';
 
-export const useEditAccount = ({ userId }: { userId: string }) => {
+export const useEditAccount = (userId: string) => {
   // 추후 user.ts로 이동
   const putUserSettings = async ({ fullName }: { fullName: string }) => {
     await instance.put(`/settings/update-user`, {
@@ -20,6 +20,7 @@ export const useEditAccount = ({ userId }: { userId: string }) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['user'] });
 
+      // AccountPage merge 후 route 수정되어 작동할 예정
       navigate(`/account/${userId}`);
     },
     onError: error => {

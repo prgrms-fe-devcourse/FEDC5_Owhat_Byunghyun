@@ -6,17 +6,15 @@ import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
 import { useEditAccount } from '~/common/hooks/mutations/useEditAccount';
+import { useUploadCoverImage } from '~/common/hooks/mutations/useUploadCoverImage';
+import { useUploadImage } from '~/common/hooks/mutations/useUploadImage';
 import { useAuthUser } from '~/common/hooks/queries/useAuthUser';
 import useLayout from '~/common/hooks/useLayout';
 
-import AccountImages from '../account/components/AccountImages';
+import EditAccountImages from './components/EditAccountImages';
 
 const AccountEditPage = () => {
-  const { authUser } = useAuthUser();
   const { changeMeta } = useLayout();
-  const navigate = useNavigate();
-
-  const mutation = useEditAccount(authUser?._id);
 
   useEffect(() => {
     changeMeta({
@@ -26,13 +24,18 @@ const AccountEditPage = () => {
     });
   }, []);
 
-  const [inputValue, setInputValue] = useState('');
-  const [isDisabled, setIsDisabled] = useState(false);
+  // 추후 mainpage 브랜치 병합 후 동작
+  const { authUser } = useAuthUser();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const trimmedInputValue = inputValue.trim();
-    trimmedInputValue.length >= 2 ? setIsDisabled(true) : setIsDisabled(false);
-  }, [inputValue]);
+  const editAccount = useEditAccount(authUser._id);
+
+  const [inputValue, setInputValue] = useState('');
+  const [coverImageFile, setCoverImageFile] = useState<File>();
+  const [imageFile, setImageFile] = useState<File>();
+
+  const uploadImage = useUploadImage();
+  const uploadCoverImage = useUploadCoverImage();
 
   if (!authUser) {
     navigate('/login');
@@ -44,15 +47,29 @@ const AccountEditPage = () => {
     setInputValue(event.currentTarget.value);
   };
 
-  const handleSubmit = () => {
-    mutation.mutate({
+  const handleSubmit = (event: React.MouseEvent) => {
+    event?.preventDefault();
+    editAccount.mutate({
       fullName: inputValue,
     });
+
+    if (coverImageFile) {
+      uploadCoverImage.mutate(coverImageFile);
+    }
+
+    if (imageFile) {
+      uploadImage.mutate(imageFile);
+    }
   };
 
   return (
     <form className="flex flex-col gap-large px-small">
-      <AccountImages isEdit={true} image={image} coverImage={coverImage} />
+      <EditAccountImages
+        image={image}
+        coverImage={coverImage}
+        setCoverImageFile={setCoverImageFile}
+        setImageFile={setImageFile}
+      />
       <Group spacing={'sm'} direction={'columns'} className="mt-large" grow>
         <Text size={'small'}>새로운 닉네임</Text>
         <Input
@@ -66,9 +83,8 @@ const AccountEditPage = () => {
         </Text>
         <div className="fixed bottom-0 left-0 p">
           <Button
-            type="submit"
+            type="button"
             fullwidth
-            disabled={!isDisabled}
             className="max-w-layout"
             onClick={handleSubmit}
           >
