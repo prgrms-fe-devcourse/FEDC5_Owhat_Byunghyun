@@ -1,14 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Post } from '~/api/types/postTypes';
-import { Follow } from '~/api/types/userTypes';
 import Group from '~/common/components/Group';
 import Text from '~/common/components/Text';
 
 interface AccountExtraInfoProps {
   posts: Post[];
-  followers: Follow[];
-  following: Follow[];
+  followers: string[];
+  following: string[];
 }
 
 const AccountExtraInfo = ({

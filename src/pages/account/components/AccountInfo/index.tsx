@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { Follow, User } from '~/api/types/userTypes';
+import { User } from '~/api/types/userTypes';
 import Button from '~/common/components/Button';
 import Text from '~/common/components/Text';
 
@@ -32,8 +32,8 @@ const AccountInfo = ({ user, isMyAccount }: AccountInfoProps) => {
       </Text>
       <AccountExtraInfo
         posts={posts}
-        followers={followers as Follow[]}
-        following={following as Follow[]}
+        followers={followers as string[]}
+        following={following as string[]}
       />
 
       {isMyAccount ? (
