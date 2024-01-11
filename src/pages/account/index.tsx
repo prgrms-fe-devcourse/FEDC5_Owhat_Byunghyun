@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Group from '~/common/components/Group';
 import Icon from '~/common/components/Icon';
@@ -10,18 +10,21 @@ import AccountInfo from './components/AccountInfo';
 import AccountPostsList from './components/AccountPostsList';
 
 export default function AccountPage() {
+  const { userId = '' } = useParams();
+  const navigate = useNavigate();
+  if (!userId) {
+    navigate('/login');
+  }
+
   const [isMyAccount, setIsMyAccount] = useState(false);
   const token = localStorage.getItem('OWHAT_TOKEN');
 
-  const { pathname } = useLocation();
-  const currentUserId = pathname.split('/')[2];
-
-  if (token === currentUserId) {
+  if (token === userId) {
     setIsMyAccount(true);
   }
 
   const { changeMeta } = useLayout();
-  const { user } = useUser(currentUserId);
+  const { user } = useUser(userId);
 
   useEffect(() => {
     changeMeta({
@@ -43,10 +46,7 @@ export default function AccountPage() {
   return (
     <Group spacing={10} direction={'columns'} className="py" grow>
       <AccountInfo user={user} isMyAccount={isMyAccount} />
-      <AccountPostsList
-        currentUserId={currentUserId}
-        isMyAccount={isMyAccount}
-      />
+      <AccountPostsList currentUserId={userId} isMyAccount={isMyAccount} />
     </Group>
   );
 }

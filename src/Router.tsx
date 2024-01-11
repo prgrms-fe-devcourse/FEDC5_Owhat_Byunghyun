@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
     element: <NotificationPage />,
   },
   {
-    path: '/account/:id',
+    path: '/account/:userId',
     element: (
       <Suspense fallback={<div>loading...</div>}>
         <AccountPage />
