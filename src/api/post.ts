@@ -1,7 +1,18 @@
+import { Post } from '~/api/types/postTypes';
+
 import { instance } from '.';
 
-export const getPostListByChannel = async (channelId: string) => {
-  const { data } = await instance.get(`/posts/channel/${channelId}`);
+export const getPostListByChannel = async (
+  channelId: string,
+  offset: number,
+  limit: number,
+) => {
+  const { data } = await instance.get<Post[]>(`/posts/channel/${channelId}`, {
+    params: {
+      offset,
+      limit,
+    },
+  });
 
   return data;
 };
