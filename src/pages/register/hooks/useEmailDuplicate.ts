@@ -8,22 +8,18 @@ const useEmailDuplicate = () => {
   const [emailCheckMessage, setEmailCheckMessage] = useState('');
   const [isEmailDuplicate, setIsEmailDuplicate] = useState(false);
 
-  const data = useUserListQuery();
+  const userList = useUserListQuery();
 
   const checkDuplicateEmail = (email: string) => {
-    try {
-      const users: User[] = data;
-      const isDuplicate = users.some(user => user.email === email);
+    const users: User[] = userList;
+    const isDuplicate = users.some(user => user.email === email);
 
-      setIsEmailDuplicate(isDuplicate);
+    setIsEmailDuplicate(isDuplicate);
 
-      if (isDuplicate) {
-        setEmailCheckMessage('이메일이 이미 사용 중입니다.');
-      } else {
-        setEmailCheckMessage('가입 가능한 이메일입니다.');
-      }
-    } catch (error) {
-      console.error('에러 발생:', (error as Error).message);
+    if (isDuplicate) {
+      setEmailCheckMessage('이메일이 이미 사용 중입니다.');
+    } else {
+      setEmailCheckMessage('가입 가능한 이메일입니다.');
     }
   };
 
