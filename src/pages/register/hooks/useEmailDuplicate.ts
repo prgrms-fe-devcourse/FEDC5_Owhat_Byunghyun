@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
+import { User } from '~/api/types/userTypes';
 import { useUserListQuery } from '~/common/hooks/queries/userUserList';
-
-import { User } from '../types';
 
 const useEmailDuplicate = () => {
   const [emailCheckMessage, setEmailCheckMessage] = useState('');
