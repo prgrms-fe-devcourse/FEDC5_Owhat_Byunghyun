@@ -1,8 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
 
 import { Channel } from '~/api/types/postTypes';
-import Button from '~/common/components/Button';
+import Avatar from '~/common/components/Avatar';
 import Carousel from '~/common/components/Carousel';
+import { cn } from '~/utils/cn';
 
 interface ChannelListProps {
   list: Channel[];
@@ -13,20 +14,24 @@ const ChannelList = ({ list }: ChannelListProps) => {
 
   return (
     <Carousel
-      childSize={75}
-      className="border-b border-b-gray-300 px-0 pb-large"
+      childSize={55}
+      className="border-b border-b-gray-300 pb-large"
+      groupGap={20}
     >
       {list.map(channel => (
-        <Button
+        <Avatar
           key={channel._id}
-          styleType={
-            searchParams.get('channel') === channel._id ? 'primary' : 'outline'
-          }
+          src={channel.description}
+          shape="circle"
+          size="auto"
           onClick={() => setSearchParams({ channel: channel._id })}
-          className="flex aspect-square items-center justify-center overflow-hidden text-ellipsis rounded-full"
-        >
-          {channel.name}
-        </Button>
+          className={cn(
+            'transition-all',
+            searchParams.get('channel') === channel._id
+              ? 'ring-2 ring-primary'
+              : 'contrast-50 grayscale-[80%]',
+          )}
+        />
       ))}
     </Carousel>
   );

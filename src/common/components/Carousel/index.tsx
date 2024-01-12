@@ -52,6 +52,7 @@ const Carousel = ({
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
+    handleTouchDown,
   } = useDragScroll({
     containerRef,
     childSize: childSize + groupGap,
@@ -74,7 +75,7 @@ const Carousel = ({
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
-        onTouchStart={handleMouseDown}
+        onTouchStart={handleTouchDown}
         onTouchMove={handleMouseMove}
         onTouchEnd={handleMouseUp}
         onMouseLeave={handleMouseUp}
