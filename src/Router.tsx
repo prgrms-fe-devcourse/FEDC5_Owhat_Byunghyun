@@ -2,21 +2,14 @@ import { Suspense } from 'react';
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Outlet,
   Route,
 } from 'react-router-dom';
 
-import LayoutProvider from './common/components/Layout';
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
+import { LayoutWrapper } from './routes';
 
-const LayoutWrapper = () => (
-  <LayoutProvider>
-    <Outlet />
-  </LayoutProvider>
-);
-
-export const router = createBrowserRouter(
+const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<LayoutWrapper />}>
       <Route
@@ -30,3 +23,5 @@ export const router = createBrowserRouter(
     </Route>,
   ),
 );
+
+export default router;
