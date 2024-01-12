@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 import type { ValuesObj } from '../type.ts';
 
@@ -16,17 +16,13 @@ const useForm = ({ initialValues = {}, onSubmit, validate }: useFormParams) => {
   const [errors, setErrors] = useState<ValuesObj>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (
-    e: BaseSyntheticEvent | FormEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setValues({ ...values, [name]: value });
   };
 
-  const handleSubmit = async (
-    e: BaseSyntheticEvent | FormEvent<HTMLFormElement>,
-  ) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     setIsLoading(true);
     e.preventDefault();
 

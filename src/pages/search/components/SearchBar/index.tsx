@@ -1,24 +1,21 @@
-import { BaseSyntheticEvent, ComponentProps, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 import Group from '~/common/components/Group';
 import Icon from '~/common/components/Icon';
 import Input from '~/common/components/Input';
-import { cn } from '~/utils/cn';
 
-type OnSubmitFn = (e: BaseSyntheticEvent | FormEvent<HTMLFormElement>) => void;
-type OnChangeFn = (e: BaseSyntheticEvent | FormEvent<HTMLInputElement>) => void;
+type OnSubmitFn = (e: FormEvent<HTMLFormElement>) => void;
+type OnChangeFn = (e: ChangeEvent<HTMLInputElement>) => void;
 
-interface SearchBarProps extends ComponentProps<'div'> {
+interface SearchBarProps {
   onSubmit: OnSubmitFn;
   onChange: OnChangeFn;
 }
 
-const SearchBar = ({ onSubmit, onChange, className }: SearchBarProps) => {
+const SearchBar = ({ onSubmit, onChange }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState<string>('');
 
-  const handleInputChange = (
-    e: BaseSyntheticEvent | FormEvent<HTMLInputElement>,
-  ) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     onChange(e);
   };
@@ -32,10 +29,7 @@ const SearchBar = ({ onSubmit, onChange, className }: SearchBarProps) => {
       <Group
         spacing={5}
         align="center"
-        className={cn(
-          'rounded-3xl border-2 border-black px py-xsmall',
-          className,
-        )}
+        className="mb-xlarge rounded-3xl border-2 border-black px py-xsmall"
       >
         <Icon id="search" size={18} />
         <Input

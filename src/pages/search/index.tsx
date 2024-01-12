@@ -38,11 +38,7 @@ const SearchPage = () => {
 
   return (
     <>
-      <SearchBar
-        onSubmit={handleSubmit}
-        onChange={handleChange}
-        className="mb-xlarge"
-      />
+      <SearchBar onSubmit={handleSubmit} onChange={handleChange} />
       {keyword && (
         <Tab>
           <Tab.Item title="포스트 + 사용자" label="all">
