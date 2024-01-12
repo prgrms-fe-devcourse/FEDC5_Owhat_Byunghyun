@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 
 import LayoutProvider from '~/common/components/Layout';
-import login from '~/pages/login';
+import LoginPage from '~/pages/login';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,20 +18,20 @@ const queryClient = new QueryClient({
 
 export default {
   title: 'Pages/LoginPage',
-  component: login,
+  component: LoginPage,
   argTypes: {},
   args: {},
   decorators: Story => (
     <QueryClientProvider client={queryClient}>
-      <LayoutProvider>
-        <MemoryRouter>
+      <MemoryRouter>
+        <LayoutProvider>
           <Story />
-        </MemoryRouter>
-      </LayoutProvider>
+        </LayoutProvider>
+      </MemoryRouter>
     </QueryClientProvider>
   ),
-} satisfies Meta<typeof login>;
+} satisfies Meta<typeof LoginPage>;
 
-type Story = StoryObj<typeof login>;
+type Story = StoryObj<typeof LoginPage>;
 
 export const Default: Story = {};

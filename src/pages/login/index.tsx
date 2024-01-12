@@ -8,7 +8,7 @@ import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import Text from '~/common/components/Text';
 import useLayout from '~/common/hooks/useLayout';
-import { OWHAT_TOKEN } from '~/constants/queryKey';
+import { OWHAT_TOKEN } from '~/constants/token';
 import { BrowserStorage } from '~/utils/storage';
 
 import LoginForm from './components/LoginForm';

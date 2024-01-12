@@ -3,5 +3,3 @@ export const QUERY_KEY = {
   CHANNEL_LIST: 'channelList',
   USER: 'user',
 };
-
-export const OWHAT_TOKEN = 'OWHAT_TOKEN';
