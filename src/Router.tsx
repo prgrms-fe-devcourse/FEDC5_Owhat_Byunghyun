@@ -10,9 +10,8 @@ import AccountEditPage from './pages/accountEdit';
 import FollowPage from './pages/follow';
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
-import UpdatePasswordPage from './pages/updatePassword';
 import RegisterPage from './pages/register';
-
+import UpdatePasswordPage from './pages/updatePassword';
 import { LayoutWrapper } from './routes';
 
 const router = createBrowserRouter(
