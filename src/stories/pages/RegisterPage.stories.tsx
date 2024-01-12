@@ -23,11 +23,11 @@ export default {
   args: {},
   decorators: Story => (
     <QueryClientProvider client={queryClient}>
-      <LayoutProvider>
-        <MemoryRouter>
+      <MemoryRouter>
+        <LayoutProvider>
           <Story />
-        </MemoryRouter>
-      </LayoutProvider>
+        </LayoutProvider>
+      </MemoryRouter>
     </QueryClientProvider>
   ),
 } satisfies Meta<typeof register>;
