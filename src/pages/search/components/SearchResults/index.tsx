@@ -5,7 +5,7 @@ import { User } from '~/api/types/userTypes';
 import Group from '~/common/components/Group';
 import Loading from '~/common/components/Loading';
 import Text from '~/common/components/Text';
-import { useSearchResults } from '~/common/hooks/queries/useSearchResults';
+import useSearchResults from '~/common/hooks/queries/useSearchResults';
 import { cn } from '~/utils/cn';
 
 import PostItem from './PostItem';
