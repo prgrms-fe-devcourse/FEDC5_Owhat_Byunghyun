@@ -8,7 +8,7 @@ const useLikeFromPost = ({ remove }: { remove: boolean }) => {
   const fn = remove ? deleteLikeFromPost : postLikeFromPost;
 
   const { mutate } = useMutation({
-    mutationFn: (postId: string) => fn(postId),
+    mutationFn: (id: string) => fn(id),
     onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.POST_LIST],

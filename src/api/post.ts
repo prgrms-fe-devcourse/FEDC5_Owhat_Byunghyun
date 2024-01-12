@@ -23,6 +23,6 @@ export const postLikeFromPost = async (postId: string) => {
   return data;
 };
 
-export const deleteLikeFromPost = async (postId: string) => {
-  await instance.delete(`/likes/delete`, { data: { id: postId } });
+export const deleteLikeFromPost = async (likeId: string) => {
+  await instance.delete(`/likes/delete`, { data: { id: likeId } });
 };
