@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import Text from '~/common/components/Text';
+import { useUserListQuery } from '~/common/hooks/queries/userUserList';
 import useForm from '~/common/hooks/useForm';
 import {
   isValidEmail,
@@ -25,12 +26,15 @@ const RegisterForm = ({
   onRegisterCompleted,
   handleSubmit,
 }: RegisterFormProps) => {
+  const { data: userList } = useUserListQuery();
+
   const {
     emailCheckMessage,
+    setIsEmailDuplicate,
     setEmailCheckMessage,
     isEmailDuplicate,
     checkDuplicateEmail,
-  } = useEmailDuplicate();
+  } = useEmailDuplicate({ userList });
 
   const { values, isValid, isCompleted, handleChange } = useForm({
     initialValues: {
@@ -58,11 +62,12 @@ const RegisterForm = ({
   });
 
   useEffect(() => {
+    setIsEmailDuplicate(true);
     setEmailCheckMessage('');
-  }, [values.email, setEmailCheckMessage]);
+  }, [values.email, setEmailCheckMessage, setIsEmailDuplicate]);
 
   useEffect(() => {
-    onRegisterCompleted(isCompleted && !isEmailDuplicate);
+    onRegisterCompleted(isCompleted && isEmailDuplicate);
   }, [isCompleted, isEmailDuplicate, onRegisterCompleted]);
 
   const DuplicateButton = () => (
@@ -83,25 +88,27 @@ const RegisterForm = ({
   return (
     <form onSubmit={handleSubmit} className="pb-[100px]">
       <Group direction="columns" spacing="md" grow={true}>
-        <FormField
-          type="email"
-          name="email"
-          label="이메일"
-          placeholder="이메일을 입력해주세요."
-          onChange={handleChange}
-          value={values.email}
-          isValid={isValid.email}
-          right={<DuplicateButton />}
-        />
-        {emailCheckMessage && (
-          <Text
-            className={
-              isEmailDuplicate ? 'text-sm text-error' : 'text-sm text-success'
-            }
-          >
-            {emailCheckMessage}
-          </Text>
-        )}
+        <div>
+          <FormField
+            type="email"
+            name="email"
+            label="이메일"
+            placeholder="이메일을 입력해주세요."
+            onChange={handleChange}
+            value={values.email}
+            isValid={isValid.email}
+            right={<DuplicateButton />}
+          />
+          {emailCheckMessage && (
+            <Text
+              className={
+                isEmailDuplicate ? 'text-sm text-error' : 'text-sm text-success'
+              }
+            >
+              {emailCheckMessage}
+            </Text>
+          )}
+        </div>
 
         <FormField
           type="text"
@@ -111,6 +118,7 @@ const RegisterForm = ({
           onChange={handleChange}
           value={values.username}
           isValid={isValid.username}
+          errorMessage="이름을 3글자 이상 공백없이 입력해주세요."
         />
         <FormField
           type="password"
@@ -132,12 +140,11 @@ const RegisterForm = ({
           isValid={isValid.confirmPassword}
           errorMessage="비밀번호가 일치하지 않습니다."
         />
-        <div className="fixed bottom-0 left-0 w-full p">
+        <div className="sticky w-full p">
           <Button
             loading={mutation.isPending}
             fullwidth={true}
-            disabled={mutation.isPending || !(isCompleted && !isEmailDuplicate)}
-            className="max-w-layout"
+            disabled={mutation.isPending || isEmailDuplicate || !isCompleted}
           >
             회원가입
           </Button>

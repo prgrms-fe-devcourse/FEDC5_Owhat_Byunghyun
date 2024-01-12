@@ -11,6 +11,8 @@ import FollowPage from './pages/follow';
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import UpdatePasswordPage from './pages/updatePassword';
+import RegisterPage from './pages/register';
+
 import { LayoutWrapper } from './routes';
 
 const router = createBrowserRouter(
@@ -50,6 +52,7 @@ const router = createBrowserRouter(
       />
       <Route path="/account-edit" element={<AccountEditPage />} />
       <Route path="/update-password" element={<UpdatePasswordPage />} />
+      <Route path="/register" element={<RegisterPage />} />
     </Route>,
   ),
 );
