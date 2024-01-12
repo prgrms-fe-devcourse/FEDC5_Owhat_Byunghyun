@@ -1,19 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
-import { useEditAccount } from '~/common/hooks/mutations/useEditAccount';
-import { useUploadCoverImage } from '~/common/hooks/mutations/useUploadCoverImage';
-import { useUploadImage } from '~/common/hooks/mutations/useUploadImage';
 import { useAuthUser } from '~/common/hooks/queries/useAuthUser';
 import useLayout from '~/common/hooks/useLayout';
 
 import EditAccountImages from './components/EditAccountImages';
+import { useUpdateAccountForm } from './hooks/useUpdateAccountForm';
 
 const AccountEditPage = () => {
+  // 추후 mainpage 브랜치 병합 후 동작
+  const { authUser } = useAuthUser();
+  const navigate = useNavigate();
+
+  if (!authUser) {
+    navigate('/login');
+  }
+
   const { changeMeta } = useLayout();
 
   useEffect(() => {
@@ -24,42 +30,14 @@ const AccountEditPage = () => {
     });
   }, []);
 
-  // 추후 mainpage 브랜치 병합 후 동작
-  const { authUser } = useAuthUser();
-  const navigate = useNavigate();
+  const { _id, fullName, image, coverImage } = authUser;
 
-  const editAccount = useEditAccount(authUser._id);
-
-  const [inputValue, setInputValue] = useState('');
-  const [coverImageFile, setCoverImageFile] = useState<File>();
-  const [imageFile, setImageFile] = useState<File>();
-
-  const uploadImage = useUploadImage();
-  const uploadCoverImage = useUploadCoverImage();
-
-  if (!authUser) {
-    navigate('/login');
-  }
-
-  const { fullName, image, coverImage } = authUser;
+  const { setFormState, handleSubmit } = useUpdateAccountForm({
+    userId: _id,
+  });
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.currentTarget.value);
-  };
-
-  const handleSubmit = (event: React.MouseEvent) => {
-    event?.preventDefault();
-    editAccount.mutate({
-      fullName: inputValue,
-    });
-
-    if (coverImageFile) {
-      uploadCoverImage.mutate(coverImageFile);
-    }
-
-    if (imageFile) {
-      uploadImage.mutate(imageFile);
-    }
+    setFormState(prev => ({ ...prev, inputValue: event.target.value }));
   };
 
   return (
@@ -67,8 +45,7 @@ const AccountEditPage = () => {
       <EditAccountImages
         image={image}
         coverImage={coverImage}
-        setCoverImageFile={setCoverImageFile}
-        setImageFile={setImageFile}
+        setFormState={setFormState}
       />
       <Group spacing={'sm'} direction={'columns'} className="mt-large" grow>
         <Text size={'small'}>새로운 닉네임</Text>

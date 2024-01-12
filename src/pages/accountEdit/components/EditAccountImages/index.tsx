@@ -7,16 +7,24 @@ interface AccountImagesProps {
   coverImage?: string;
   image?: string;
   isEdit?: boolean;
-  setCoverImageFile: React.Dispatch<React.SetStateAction<File | undefined>>;
-  setImageFile: React.Dispatch<React.SetStateAction<File | undefined>>;
+  setFormState: React.Dispatch<
+    React.SetStateAction<{
+      inputValue: string;
+      coverImageFile: File;
+      imageFile: File;
+    }>
+  >;
 }
 
 const EditAccountImages = ({
   coverImage,
   image,
-  setCoverImageFile,
-  setImageFile,
+  setFormState,
 }: AccountImagesProps) => {
+  const handleChangeUploadFile = (file: File, name: string) => {
+    setFormState(prev => ({ ...prev, [name]: file }));
+  };
+
   return (
     <Group
       spacing={0}
@@ -28,7 +36,9 @@ const EditAccountImages = ({
         id="coverImage"
         name="coverImage"
         onChange={file => {
-          setCoverImageFile(file);
+          if (!file) return;
+
+          handleChangeUploadFile(file, 'coverImageFile');
         }}
       >
         {src => (
@@ -59,7 +69,11 @@ const EditAccountImages = ({
         <Upload
           id="profileImage"
           name="profileImage"
-          onChange={file => setImageFile(file)}
+          onChange={file => {
+            if (!file) return;
+
+            handleChangeUploadFile(file, 'imageFile');
+          }}
         >
           {src => <Avatar src={src || image} size="small" />}
         </Upload>
