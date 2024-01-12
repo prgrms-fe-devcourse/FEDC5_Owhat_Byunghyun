@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Tab from '~/common/components/Tab';
+import useLayout from '~/common/hooks/useLayout.ts';
 
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
@@ -9,7 +10,7 @@ import type { ValuesObj } from './type.ts';
 
 const SearchPage = () => {
   const [keyword, setKeyword] = useState<string>('');
-
+  const { changeMeta } = useLayout();
   const { handleChange, handleSubmit } = useForm({
     initialValues: {
       search: '',
@@ -26,6 +27,14 @@ const SearchPage = () => {
       return errors;
     },
   });
+
+  useEffect(() => {
+    changeMeta({
+      title: '검색',
+      left: '',
+      right: '',
+    });
+  }, []);
 
   return (
     <>
