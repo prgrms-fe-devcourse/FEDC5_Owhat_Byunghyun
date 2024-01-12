@@ -23,12 +23,12 @@ const navLinks: NavLinkInfo[] = [
 
 const NavigationBar = () => {
   return (
-    <nav>
+    <nav className="fixed bottom-0 w-full max-w-layout -translate-x">
       <Group
         position="evenly"
         align="center"
         spacing="md"
-        className="absolute bottom-0 h-14 w-full rounded border-2 border-primary-lighter bg-primary-lighter"
+        className="h-14 rounded rounded-b-none border-2 border-primary-lighter bg-primary-lighter"
       >
         {navLinks.map(({ to, id, label }) => (
           <NavLink

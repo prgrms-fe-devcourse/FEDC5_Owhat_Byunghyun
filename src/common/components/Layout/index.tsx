@@ -1,9 +1,11 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
 import Header, { type HeaderProps } from '../Header';
+import NavigationBar from '../NavigationBar';
 
 interface ILayoutContext extends HeaderProps {
   changeMeta: ({ title, left, right }: HeaderProps) => void;
+  changeBottomNavigator: (has: boolean) => void;
 }
 
 interface LayoutProviderProps {
@@ -15,11 +17,14 @@ export const LayoutContext = createContext<ILayoutContext>(
 );
 
 const LayoutProvider = ({ children }: LayoutProviderProps) => {
+  const [hasNavigator, setHasNavigator] = useState(true);
   const [template, setTemplate] = useState<HeaderProps>({
     title: '',
     left: null,
     right: null,
   });
+
+  const changeBottomNavigator = (has: boolean) => setHasNavigator(has);
 
   const changeMeta = ({ title, left, right }: HeaderProps) => {
     setTemplate({
@@ -37,10 +42,13 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
   }, [template.title]);
 
   return (
-    <LayoutContext.Provider value={{ ...template, changeMeta }}>
-      <main className="max-w-layout px">
+    <LayoutContext.Provider
+      value={{ ...template, changeMeta, changeBottomNavigator }}
+    >
+      <main className="relative mx-auto h-screen max-w-layout rotate-0 overscroll-y-none px">
         <Header {...template} />
         {children}
+        {hasNavigator && <NavigationBar />}
       </main>
     </LayoutContext.Provider>
   );
