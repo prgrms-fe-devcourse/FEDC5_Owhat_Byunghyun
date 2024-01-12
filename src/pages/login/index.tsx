@@ -58,18 +58,16 @@ const LoginPage = () => {
   return (
     <>
       <Group spacing={1} direction="columns" grow className="p-small">
-        <LoginForm onLogin={handleLogin} loading={mutation.isPending} />
-        <div className="h-[39px]">
-          {mutation.isError && (
-            <Text className="text-[13px] text-error">
-              이메일 또는 비밀번호가 올바르지 않습니다.
-              <br />
-              입력한 내용을 다시 확인해 주세요.
-            </Text>
-          )}
-        </div>
+        <LoginForm
+          onLogin={handleLogin}
+          loading={mutation.isPending}
+          isError={mutation.isError}
+        />
       </Group>
-      <div className="flex justify-center pb-[50px]">
+      <div className="flex items-center justify-end pb-[50px]">
+        <Text size="small" className="text-gray-500">
+          아직 회원이 아니신가요?
+        </Text>
         <Button styleType="ghost" onClick={() => navigate('/register')}>
           회원가입
         </Button>

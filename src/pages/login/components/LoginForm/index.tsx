@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import Icon from '~/common/components/Icon';
+import Text from '~/common/components/Text';
 
 import useEmailValidation from '../../hooks/useEmailValidation';
 import TextInput from '../TextInput';
@@ -10,8 +11,9 @@ import TextInput from '../TextInput';
 interface LoginProps {
   onLogin: (e: React.FormEvent<HTMLFormElement>) => void;
   loading: boolean;
+  isError: boolean;
 }
-const LoginForm = ({ onLogin, loading }: LoginProps) => {
+const LoginForm = ({ onLogin, loading, isError }: LoginProps) => {
   const [password, setPassword] = useState('');
   const [passwordType, setPasswordType] = useState('password');
   const { email, isEmailValid, handleEmailChange } = useEmailValidation();
@@ -36,22 +38,23 @@ const LoginForm = ({ onLogin, loading }: LoginProps) => {
         />
 
         <Group direction="columns" spacing="sm" className="relative">
-          <TextInput
-            label="비밀번호"
-            type={passwordType}
-            value={password}
-            id="password"
-            name="password"
-            placeholder="비밀번호를 입력해주세요."
-            onChange={setPassword}
-            isValid={true}
-            errorText=""
-          />
-          <div className="absolute right-[12px] top-[38px]">
+          <div className="relative w-full">
+            <TextInput
+              label="비밀번호"
+              type={passwordType}
+              value={password}
+              id="password"
+              name="password"
+              placeholder="비밀번호를 입력해주세요."
+              onChange={setPassword}
+              isValid={true}
+              errorText=""
+            />
             <Button
               styleType="ghost"
               type="button"
               onClick={handleChangePasswordType}
+              className="absolute right-0 top-0 z-10 -translate-x-[20%] translate-y-[90%] text-sm"
             >
               <Icon
                 size={17}
@@ -63,19 +66,25 @@ const LoginForm = ({ onLogin, loading }: LoginProps) => {
               />
             </Button>
           </div>
+          <div className="h-8">
+            {isError && (
+              <Text className="text-[13px] text-error">
+                이메일 또는 비밀번호가 올바르지 않습니다.
+                <br />
+                입력한 내용을 다시 확인해 주세요.
+              </Text>
+            )}
+          </div>
         </Group>
-
-        <div className="fixed bottom-0 left-0 mt-large p">
-          <Button
-            loading={loading}
-            type="submit"
-            fullwidth
-            className="max-w-[360px]"
-            disabled={loading || !isEmailValid || password.length === 0}
-          >
-            로그인
-          </Button>
-        </div>
+        <Button
+          loading={loading}
+          type="submit"
+          fullwidth
+          className="mt-large"
+          disabled={loading || !isEmailValid || password.length === 0}
+        >
+          로그인
+        </Button>
       </Group>
     </form>
   );
