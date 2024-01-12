@@ -6,11 +6,12 @@ interface UseDragScrollParams {
 }
 
 interface UseDragScrollResult {
-  handleMouseDown: (e: React.MouseEvent | React.TouchEvent) => void;
+  handleMouseDown: (e: React.MouseEvent) => void;
   handleMouseMove: (e: React.MouseEvent | React.TouchEvent) => void;
   handleMouseUp: () => void;
   buttonScrollLeft: () => void;
   buttonScrollRight: () => void;
+  handleTouchDown: (e: React.TouchEvent) => void;
   isLeftButtonActive: boolean;
   isRightButtonActive: boolean;
 }
@@ -33,7 +34,18 @@ const useDragScroll = ({
 
   const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
     if (!containerRef.current) return;
+    e.preventDefault();
+    e.stopPropagation();
 
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const { offsetLeft, scrollLeft } = containerRef.current;
+
+    setIsDragging(true);
+    setStartX(clientX - offsetLeft);
+    setScrollLeft(scrollLeft || 0);
+  };
+  const handleTouchDown = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!containerRef.current) return;
     e.stopPropagation();
 
     const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
@@ -105,6 +117,7 @@ const useDragScroll = ({
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
+    handleTouchDown,
   };
 };
 
