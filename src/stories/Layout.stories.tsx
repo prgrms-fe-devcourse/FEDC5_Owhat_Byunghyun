@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from '@storybook/react';
 import { useEffect } from 'react';
+import { MemoryRouter } from 'react-router-dom';
 
 import Icon from '~/common/components/Icon';
 import LayoutProvider from '~/common/components/Layout';
@@ -18,9 +19,11 @@ const meta = {
     },
   },
   decorators: Story => (
-    <LayoutProvider>
-      <Story />
-    </LayoutProvider>
+    <MemoryRouter>
+      <LayoutProvider>
+        <Story />
+      </LayoutProvider>
+    </MemoryRouter>
   ),
 } satisfies Meta<{ page: 'home' | 'detail' }>;
 
