@@ -36,6 +36,11 @@ const Feed = ({
   const likeLength = likes.length > 99 ? '99+' : likes.length;
   const commentsLength = comments.length > 99 ? '99+' : comments.length;
 
+  const handleLikeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    handleLike && handleLike();
+  };
+
   return (
     <Group direction="columns" spacing="md">
       <Text size="xlarge" strong={true} className={abbreviationTitle}>
@@ -53,7 +58,7 @@ const Feed = ({
       )}
       <Text className={abbreviationContent}>{content}</Text>
       <Group spacing={4} align="center">
-        <LikeButton initialState={initialState} onClick={handleLike} />
+        <LikeButton initialState={initialState} onClick={handleLikeClick} />
         <Text size="small" className="w-6 text-center">
           {likeLength}
         </Text>

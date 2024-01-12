@@ -10,8 +10,21 @@
 }
 
 @layer base {
+  :root {
+    --header-height: 73px;
+    --bottom-height: 56px;
+  }
+
   * {
     @apply m-0 p-0 font-sans outline-none;
+  }
+
+  body {
+    height: 100dvh;
+  }
+
+  main > section {
+    height: calc(100vh - var(--header-height) - var(--bottom-height));
   }
 
   h1 {
@@ -36,5 +49,15 @@
     100% {
       transform: scale(1.1);
     }
+  }
+}
+
+@layer components {
+  .scroll-none {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scroll-none::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
   }
 }

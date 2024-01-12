@@ -1,50 +1,49 @@
 import { Suspense } from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+} from 'react-router-dom';
 
 import AccountPage from './pages/account';
 import AccountEditPage from './pages/accountEdit';
 import FollowPage from './pages/follow';
-import HomePage from './pages/HomePage';
-import MessagePage from './pages/message';
-import NotificationPage from './pages/notification';
-import SearchPage from './pages/search';
+import HomePage from './pages/home';
+import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import UpdatePasswordPage from './pages/updatePassword';
+import { LayoutWrapper } from './routes';
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <HomePage />,
-  },
-  {
-    path: '/search',
-    element: <SearchPage />,
-  },
-  {
-    path: '/message',
-    element: <MessagePage />,
-  },
-  {
-    path: '/notification',
-    element: <NotificationPage />,
-  },
-  {
-    path: '/account/:userId',
-    element: (
-      <Suspense fallback={<div>loading...</div>}>
-        <AccountPage />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/account-edit',
-    element: <AccountEditPage />,
-  },
-  {
-    path: '/update-password',
-    element: <UpdatePasswordPage />,
-  },
-  {
-    path: '/follow',
-    element: <FollowPage />,
-  },
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={<LayoutWrapper />}>
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={<FeedSkeleton />}>
+            <HomePage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/account/:userId"
+        element={
+          <Suspense fallback={<div>로딩중...</div>}>
+            <AccountPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/follow"
+        element={
+          <Suspense fallback={<div>로딩중...</div>}>
+            <FollowPage />
+          </Suspense>
+        }
+      />
+      <Route path="/account-edit" element={<AccountEditPage />} />
+      <Route path="/update-password" element={<UpdatePasswordPage />} />
+    </Route>,
+  ),
+);
+
+export default router;
