@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import Icon from '~/common/components/Icon';
+import ArrowBackButton from '~/common/components/ArrowBackButton';
 import useLayout from '~/common/hooks/useLayout';
 
 import { useRegisterMutation } from '../../common/hooks/mutations/useRegister';
@@ -14,7 +14,7 @@ const RegisterPage = () => {
     changeBottomNavigator(false);
     changeMeta({
       title: '회원가입',
-      left: <Icon id="arrow-back" className="h-4 w-4" />,
+      left: <ArrowBackButton />,
       right: '',
     });
   }, []);
