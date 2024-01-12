@@ -1,19 +1,14 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { instance } from '~/api';
-import { User } from '~/api/types/userTypes';
+import { getAuthUser, getUser } from '~/api/user';
+import { QUERY_KEY } from '~/constants/queryKey';
 
 // 추후 api 폴더 내 user.ts로 이동할 예정임
-const getUser = async (userId: string) => {
-  const { data } = await instance.get<User>(`/users/${userId}`);
 
-  return data;
-};
-
-export const useUser = (id: string) => {
+export const useUser = (id: string | undefined) => {
   const { data: user } = useSuspenseQuery({
-    queryKey: ['user', id],
-    queryFn: () => getUser(id),
+    queryKey: [QUERY_KEY.USER, id],
+    queryFn: () => (id ? getUser(id) : getAuthUser()),
   });
 
   return { user };

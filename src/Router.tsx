@@ -25,6 +25,14 @@ const router = createBrowserRouter(
         }
       />
       <Route
+        path="/account"
+        element={
+          <Suspense fallback={<div>로딩중...</div>}>
+            <AccountPage />
+          </Suspense>
+        }
+      />
+      <Route
         path="/account/:userId"
         element={
           <Suspense fallback={<div>로딩중...</div>}>
