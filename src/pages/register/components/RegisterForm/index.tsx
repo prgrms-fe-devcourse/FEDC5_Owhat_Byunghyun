@@ -83,25 +83,27 @@ const RegisterForm = ({
   return (
     <form onSubmit={handleSubmit} className="pb-[100px]">
       <Group direction="columns" spacing="md" grow={true}>
-        <FormField
-          type="email"
-          name="email"
-          label="이메일"
-          placeholder="이메일을 입력해주세요."
-          onChange={handleChange}
-          value={values.email}
-          isValid={isValid.email}
-          right={<DuplicateButton />}
-        />
-        {emailCheckMessage && (
-          <Text
-            className={
-              isEmailDuplicate ? 'text-sm text-error' : 'text-sm text-success'
-            }
-          >
-            {emailCheckMessage}
-          </Text>
-        )}
+        <div>
+          <FormField
+            type="email"
+            name="email"
+            label="이메일"
+            placeholder="이메일을 입력해주세요."
+            onChange={handleChange}
+            value={values.email}
+            isValid={isValid.email}
+            right={<DuplicateButton />}
+          />
+          {emailCheckMessage && (
+            <Text
+              className={
+                isEmailDuplicate ? 'text-sm text-error' : 'text-sm text-success'
+              }
+            >
+              {emailCheckMessage}
+            </Text>
+          )}
+        </div>
 
         <FormField
           type="text"
@@ -111,6 +113,7 @@ const RegisterForm = ({
           onChange={handleChange}
           value={values.username}
           isValid={isValid.username}
+          errorMessage="이름을 3글자 이상 입력해주세요."
         />
         <FormField
           type="password"
@@ -132,12 +135,11 @@ const RegisterForm = ({
           isValid={isValid.confirmPassword}
           errorMessage="비밀번호가 일치하지 않습니다."
         />
-        <div className="fixed bottom-0 left-0 w-full p">
+        <div className="sticky w-full p">
           <Button
             loading={mutation.isPending}
             fullwidth={true}
             disabled={mutation.isPending || !(isCompleted && !isEmailDuplicate)}
-            className="max-w-layout"
           >
             회원가입
           </Button>

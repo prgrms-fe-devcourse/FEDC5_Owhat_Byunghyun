@@ -1,3 +1,9 @@
+import RegisterPage from './register';
+
 export default function HomePage() {
-  return <section>Home</section>;
+  return (
+    <section>
+      <RegisterPage />
+    </section>
+  );
 }

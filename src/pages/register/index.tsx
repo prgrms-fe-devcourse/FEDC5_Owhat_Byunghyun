@@ -8,9 +8,10 @@ import RegisterForm from './components/RegisterForm';
 
 const RegisterPage = () => {
   const [isCompleted, setIsCompleted] = useState(false);
-  const { changeMeta } = useLayout();
+  const { changeMeta, changeBottomNavigator } = useLayout();
 
   useEffect(() => {
+    changeBottomNavigator(false);
     changeMeta({
       title: '회원가입',
       left: <Icon id="arrow-back" className="h-4 w-4" />,
