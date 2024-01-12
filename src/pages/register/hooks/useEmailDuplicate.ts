@@ -5,7 +5,7 @@ import { useUserListQuery } from '~/common/hooks/queries/userUserList';
 
 const useEmailDuplicate = () => {
   const [emailCheckMessage, setEmailCheckMessage] = useState('');
-  const [isEmailDuplicate, setIsEmailDuplicate] = useState(false);
+  const [isEmailDuplicate, setIsEmailDuplicate] = useState(true);
 
   const userList = useUserListQuery();
 
@@ -14,7 +14,6 @@ const useEmailDuplicate = () => {
     const isDuplicate = users.some(user => user.email === email);
 
     setIsEmailDuplicate(isDuplicate);
-
     if (isDuplicate) {
       setEmailCheckMessage('이메일이 이미 사용 중입니다.');
     } else {
@@ -24,6 +23,7 @@ const useEmailDuplicate = () => {
 
   return {
     emailCheckMessage,
+    setIsEmailDuplicate,
     setEmailCheckMessage,
     isEmailDuplicate,
     checkDuplicateEmail,

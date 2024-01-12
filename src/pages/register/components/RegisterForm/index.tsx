@@ -27,6 +27,7 @@ const RegisterForm = ({
 }: RegisterFormProps) => {
   const {
     emailCheckMessage,
+    setIsEmailDuplicate,
     setEmailCheckMessage,
     isEmailDuplicate,
     checkDuplicateEmail,
@@ -58,11 +59,12 @@ const RegisterForm = ({
   });
 
   useEffect(() => {
+    setIsEmailDuplicate(true);
     setEmailCheckMessage('');
-  }, [values.email, setEmailCheckMessage]);
+  }, [values.email, setEmailCheckMessage, setIsEmailDuplicate]);
 
   useEffect(() => {
-    onRegisterCompleted(isCompleted && !isEmailDuplicate);
+    onRegisterCompleted(isCompleted && isEmailDuplicate);
   }, [isCompleted, isEmailDuplicate, onRegisterCompleted]);
 
   const DuplicateButton = () => (
@@ -139,7 +141,7 @@ const RegisterForm = ({
           <Button
             loading={mutation.isPending}
             fullwidth={true}
-            disabled={mutation.isPending || !(isCompleted && !isEmailDuplicate)}
+            disabled={mutation.isPending || isEmailDuplicate || !isCompleted}
           >
             회원가입
           </Button>
