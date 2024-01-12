@@ -1,39 +1,41 @@
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import ArrowBackButton from '~/common/components/ArrowBackButton';
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
-import { useAuthUser } from '~/common/hooks/queries/useAuthUser';
+import useAuthUser from '~/common/hooks/queries/useAuthUser';
 import useLayout from '~/common/hooks/useLayout';
 
 import EditAccountImages from './components/EditAccountImages';
 import { useUpdateAccountForm } from './hooks/useUpdateAccountForm';
 
 const AccountEditPage = () => {
-  // 추후 mainpage 브랜치 병합 후 동작
-  const { authUser } = useAuthUser();
-  const navigate = useNavigate();
+  // 토큰이 있다는 전제 하에만 미리보기가 가능합니다.
+  const { user: authUser, isLoading } = useAuthUser();
 
-  if (!authUser) {
-    navigate('/login');
-  }
+  const navigate = useNavigate();
 
   const { changeMeta } = useLayout();
 
   useEffect(() => {
+    if (!isLoading && !authUser) {
+      navigate('/login');
+    }
+
     changeMeta({
       title: '프로필 수정',
-      left: <></>,
+      left: <ArrowBackButton />,
       right: <></>,
     });
-  }, []);
+  }, [authUser]);
 
-  const { _id, fullName, image, coverImage } = authUser;
+  const { _id, fullName, image, coverImage } = authUser ?? {};
 
   const { setFormState, handleSubmit } = useUpdateAccountForm({
-    userId: _id,
+    userId: _id ?? '',
   });
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {

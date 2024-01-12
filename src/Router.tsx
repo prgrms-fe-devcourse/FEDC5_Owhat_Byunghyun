@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+import AccountEditPage from './pages/accountEdit';
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import { LayoutWrapper } from './routes';
@@ -17,6 +18,14 @@ const router = createBrowserRouter(
         element={
           <Suspense fallback={<FeedSkeleton />}>
             <HomePage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/account-edit"
+        element={
+          <Suspense fallback={<div>로딩중...</div>}>
+            <AccountEditPage />
           </Suspense>
         }
       />
