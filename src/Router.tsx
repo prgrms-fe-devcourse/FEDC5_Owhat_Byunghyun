@@ -7,6 +7,7 @@ import {
 
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
+import RegisterPage from './pages/register';
 import { LayoutWrapper } from './routes';
 
 const router = createBrowserRouter(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
+      <Route path="/register" element={<RegisterPage />} />
     </Route>,
   ),
 );
