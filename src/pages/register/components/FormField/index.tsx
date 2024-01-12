@@ -29,23 +29,27 @@ const FormField = ({
 }: FormFieldProps) => {
   return (
     <Group direction="columns" spacing="sm" grow={true} className="relative">
-      <Text size="small" elementType="span">
-        {label}
-      </Text>
-      <Input
-        type={type}
-        name={name}
-        onChange={onChange}
-        placeholder={placeholder}
-        value={value}
-        className="h-11"
-      />
+      <label htmlFor={name}>
+        <Text size="small" elementType="span">
+          {label}
+        </Text>
+      </label>
+      <div className="relative w-full">
+        <Input
+          type={type}
+          name={name}
+          onChange={onChange}
+          placeholder={placeholder}
+          value={value}
+          className="h-11 w-full pr-10"
+        />
+        {right}
+      </div>
       {value && !isValid && (
         <Text className="text-sm text-error">
           {errorMessage || `올바른 ${label}을(를) 입력하세요.`}
         </Text>
       )}
-      {right}
     </Group>
   );
 };

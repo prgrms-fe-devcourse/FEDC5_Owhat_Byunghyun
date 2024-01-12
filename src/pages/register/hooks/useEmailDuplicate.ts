@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useUserListQuery } from '~/common/hooks/queries/useUserList';
+import { useUserListQuery } from '~/common/hooks/queries/userUserList';
 
 import { User } from '../types';
 

@@ -57,7 +57,6 @@ const RegisterForm = ({
     },
   });
 
-  //TODO: Email 값이 지워지거나 바뀌면 이메일 중복확인 메시지사라지도록하는 기능 -> 다른방법 구상해야함
   useEffect(() => {
     setEmailCheckMessage('');
   }, [values.email, setEmailCheckMessage]);
@@ -71,7 +70,7 @@ const RegisterForm = ({
       onClick={() => checkDuplicateEmail(values.email)}
       type="button"
       styleType="ghost"
-      className="absolute left-1/3 top-1/2 z-10 -translate-y-[5%] translate-x-[5%] text-sm"
+      className="absolute right-0 top-0 z-10 translate-y-[7%] text-sm"
       disabled={
         !isValid.email ||
         (emailCheckMessage === '가입 가능한 이메일입니다.' && !isEmailDuplicate)
