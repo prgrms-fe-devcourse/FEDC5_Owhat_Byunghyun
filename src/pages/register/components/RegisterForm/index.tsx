@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import Text from '~/common/components/Text';
+import { useUserListQuery } from '~/common/hooks/queries/userUserList';
 import useForm from '~/common/hooks/useForm';
 import {
   isValidEmail,
@@ -25,13 +26,15 @@ const RegisterForm = ({
   onRegisterCompleted,
   handleSubmit,
 }: RegisterFormProps) => {
+  const { data: userList } = useUserListQuery();
+
   const {
     emailCheckMessage,
     setIsEmailDuplicate,
     setEmailCheckMessage,
     isEmailDuplicate,
     checkDuplicateEmail,
-  } = useEmailDuplicate();
+  } = useEmailDuplicate({ userList });
 
   const { values, isValid, isCompleted, handleChange } = useForm({
     initialValues: {
@@ -115,7 +118,7 @@ const RegisterForm = ({
           onChange={handleChange}
           value={values.username}
           isValid={isValid.username}
-          errorMessage="이름을 3글자 이상 입력해주세요."
+          errorMessage="이름을 3글자 이상 공백없이 입력해주세요."
         />
         <FormField
           type="password"

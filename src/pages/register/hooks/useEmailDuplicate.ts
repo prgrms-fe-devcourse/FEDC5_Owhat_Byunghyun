@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
 import { User } from '~/api/types/userTypes';
-import { useUserListQuery } from '~/common/hooks/queries/userUserList';
+interface useEmailDuplicateParams {
+  userList: User[];
+}
 
-const useEmailDuplicate = () => {
+const useEmailDuplicate = ({ userList }: useEmailDuplicateParams) => {
   const [emailCheckMessage, setEmailCheckMessage] = useState('');
   const [isEmailDuplicate, setIsEmailDuplicate] = useState(true);
-
-  const userList = useUserListQuery();
 
   const checkDuplicateEmail = (email: string) => {
     const users: User[] = userList;
