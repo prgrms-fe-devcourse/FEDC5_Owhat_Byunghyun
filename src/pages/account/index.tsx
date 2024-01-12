@@ -19,10 +19,6 @@ export default function AccountPage() {
   const [isMyAccount, setIsMyAccount] = useState(false);
   const token = localStorage.getItem('OWHAT_TOKEN');
 
-  if (token === userId) {
-    setIsMyAccount(true);
-  }
-
   const { changeMeta } = useLayout();
   const { user } = useUser(userId);
 
@@ -41,7 +37,11 @@ export default function AccountPage() {
       ),
       right: <></>,
     });
-  }, []);
+
+    if (token && userId === user._id) {
+      setIsMyAccount(true);
+    }
+  }, [token]);
 
   return (
     <Group spacing={10} direction={'columns'} className="py" grow>

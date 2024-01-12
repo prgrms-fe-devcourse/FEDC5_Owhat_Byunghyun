@@ -21,18 +21,18 @@ const AccountImages = ({ coverImage, image }: AccountImagesProps) => {
       position={'center'}
       className="relative"
     >
-      {coverImage ? (
-        <div className="flex w-full items-center justify-center">
+      <div className="flex w-full items-center justify-center">
+        {coverImage ? (
           <Image
             imgHeight={'full'}
             imgWidth={'full'}
             src={coverImage}
             className="inline-block aspect-[2/1] min-h-[150px]"
           />
-        </div>
-      ) : (
-        defaultCoverImage
-      )}
+        ) : (
+          defaultCoverImage
+        )}
+      </div>
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-1/4">
         <Avatar src={image} size="small" />
       </div>

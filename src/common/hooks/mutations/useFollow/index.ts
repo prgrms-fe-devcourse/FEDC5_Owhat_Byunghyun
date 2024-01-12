@@ -3,12 +3,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { instance } from '~/api';
 
 export const useFollow = () => {
-  const followCreate = async ({ id }: { id: string }) => {
-    try {
-      await instance.post(`/follow/create/${id}`);
-    } catch (error) {
-      if (error instanceof Error) alert(error.message);
-    }
+  const followCreate = async ({ userId }: { userId: string }) => {
+    await instance.post(`/follow/create`, {
+      userId,
+    });
   };
 
   const queryClient = useQueryClient();

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { User } from '~/api/types/userTypes';
+import { Follow, User } from '~/api/types/userTypes';
 import Button from '~/common/components/Button';
 import Text from '~/common/components/Text';
 
@@ -32,8 +32,8 @@ const AccountInfo = ({ user, isMyAccount }: AccountInfoProps) => {
       </Text>
       <AccountExtraInfo
         posts={posts}
-        followers={followers as string[]}
-        following={following as string[]}
+        followers={followers as Follow[]}
+        following={following as Follow[]}
       />
 
       {isMyAccount ? (
@@ -41,7 +41,7 @@ const AccountInfo = ({ user, isMyAccount }: AccountInfoProps) => {
           <Link to={'/account-edit'}>내 정보 변경</Link>
         </Button>
       ) : (
-        <FollowButton id={userId} />
+        <FollowButton userId={userId} following={following as Follow[]} />
       )}
     </>
   );

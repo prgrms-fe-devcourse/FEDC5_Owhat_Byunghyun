@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Post } from '~/api/types/postTypes';
+import { Follow } from '~/api/types/userTypes';
 import Group from '~/common/components/Group';
 import Text from '~/common/components/Text';
 
 interface AccountExtraInfoProps {
   posts: Post[];
-  followers: string[];
-  following: string[];
+  followers: Follow[];
+  following: Follow[];
 }
 
 const AccountExtraInfo = ({
@@ -36,7 +37,14 @@ const AccountExtraInfo = ({
         align={'center'}
         onClick={() => {
           navigate('/follow', {
-            state: { followers, following, isFollowing: false },
+            state: {
+              followers,
+              following,
+              initialState: {
+                initialFollowData: followers,
+                initialIsFollowing: false,
+              },
+            },
           });
         }}
       >
@@ -51,12 +59,19 @@ const AccountExtraInfo = ({
         align={'center'}
         onClick={() => {
           navigate('/follow', {
-            state: { followers, following, isFollowing: true },
+            state: {
+              followers,
+              following,
+              initialState: {
+                initialIsFollowing: true,
+                initialFollowData: following,
+              },
+            },
           });
         }}
       >
         <Text>{following.length}</Text>
-        <Text>팔로우</Text>
+        <Text>팔로잉</Text>
       </Group>
     </Group>
   );

@@ -4,7 +4,11 @@ import { instance } from '~/api';
 
 export const useUnfollow = () => {
   const followDelete = async ({ id }: { id: string }) => {
-    await instance.post(`/follow/delete/${id}`);
+    await instance.delete(`/follow/delete`, {
+      data: {
+        id,
+      },
+    });
   };
 
   const queryClient = useQueryClient();

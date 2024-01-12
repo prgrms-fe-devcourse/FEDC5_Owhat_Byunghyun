@@ -1,6 +1,7 @@
 import { VariantProps } from 'class-variance-authority';
 import { ComponentProps, useState } from 'react';
 
+import { Follow } from '~/api/types/userTypes';
 import Button from '~/common/components/Button';
 import Text from '~/common/components/Text';
 import { useFollow } from '~/common/hooks/mutations/useFollow';
@@ -12,13 +13,20 @@ import { followButtonVariants } from './FollowButton.variants';
 interface FollowButtonProps
   extends VariantProps<typeof followButtonVariants>,
     ComponentProps<'button'> {
-  id: string;
+  userId: string;
+  following: Follow[];
   styleType?: 'default' | 'small';
 }
 
-const FollowButton = ({ id, styleType = 'default' }: FollowButtonProps) => {
+const FollowButton = ({
+  userId,
+  following = [],
+  styleType = 'default',
+}: FollowButtonProps) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [isHover, setIsHover] = useState(false);
+
+  const followingUser = following.find(({ user }) => user === userId);
 
   const follow = useFollow();
   const unfollow = useUnfollow();
@@ -29,7 +37,7 @@ const FollowButton = ({ id, styleType = 'default' }: FollowButtonProps) => {
     setIsHover(false);
 
     if (!isFollowing) {
-      follow.mutate({ id: event.currentTarget.id });
+      follow.mutate({ userId: event.currentTarget.id });
       setIsFollowing(true);
     } else {
       unfollow.mutate({ id: event.currentTarget.id });
@@ -39,7 +47,7 @@ const FollowButton = ({ id, styleType = 'default' }: FollowButtonProps) => {
 
   return (
     <Button
-      id={id}
+      id={isFollowing ? followingUser?._id : userId}
       type="button"
       onClick={handleFollowButtonClick}
       onMouseEnter={() => {
