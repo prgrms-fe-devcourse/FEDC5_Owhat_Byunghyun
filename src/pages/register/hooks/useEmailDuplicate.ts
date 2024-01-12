@@ -1,21 +1,19 @@
 import { useState } from 'react';
 
-import { useUserListQuery } from '~/common/hooks/queries/userUserList';
+import { User } from '~/api/types/userTypes';
+interface useEmailDuplicateParams {
+  userList: User[];
+}
 
-import { User } from '../types';
-
-const useEmailDuplicate = () => {
+const useEmailDuplicate = ({ userList }: useEmailDuplicateParams) => {
   const [emailCheckMessage, setEmailCheckMessage] = useState('');
-  const [isEmailDuplicate, setIsEmailDuplicate] = useState(false);
-
-  const userList = useUserListQuery();
+  const [isEmailDuplicate, setIsEmailDuplicate] = useState(true);
 
   const checkDuplicateEmail = (email: string) => {
     const users: User[] = userList;
     const isDuplicate = users.some(user => user.email === email);
 
     setIsEmailDuplicate(isDuplicate);
-
     if (isDuplicate) {
       setEmailCheckMessage('이메일이 이미 사용 중입니다.');
     } else {
@@ -25,6 +23,7 @@ const useEmailDuplicate = () => {
 
   return {
     emailCheckMessage,
+    setIsEmailDuplicate,
     setEmailCheckMessage,
     isEmailDuplicate,
     checkDuplicateEmail,

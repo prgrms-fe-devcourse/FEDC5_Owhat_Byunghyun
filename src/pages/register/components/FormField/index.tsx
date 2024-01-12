@@ -44,12 +44,12 @@ const FormField = ({
           className="h-11 w-full pr-10"
         />
         {right}
+        {value && !isValid && (
+          <Text className="text-sm text-error">
+            {errorMessage || `올바른 ${label}을(를) 입력하세요.`}
+          </Text>
+        )}
       </div>
-      {value && !isValid && (
-        <Text className="text-sm text-error">
-          {errorMessage || `올바른 ${label}을(를) 입력하세요.`}
-        </Text>
-      )}
     </Group>
   );
 };
