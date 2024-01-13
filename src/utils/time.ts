@@ -4,11 +4,15 @@ type Time = {
   milliSeconds: number;
 };
 
-export const elapsedTime = (date: string) => {
-  const start = new Date(date);
+const getDiff = (start: Date) => {
   const end = new Date();
 
-  const diff = (end.getTime() - start.getTime()) / 1000;
+  return (end.getTime() - start.getTime()) / 1000;
+};
+
+export const elapsedTime = (date: string) => {
+  const start = new Date(date);
+  const diff = getDiff(start);
 
   const formatter = new Intl.RelativeTimeFormat('ko', {
     numeric: 'auto',
@@ -31,4 +35,11 @@ export const elapsedTime = (date: string) => {
   }
 
   return '방금 전';
+};
+
+export const isOverTwoWeeks = (date: string) => {
+  const start = new Date(date);
+  const diff = getDiff(start);
+
+  return diff > 60 * 60 * 24 * 14;
 };
