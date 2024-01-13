@@ -6,7 +6,7 @@ export interface NotificationRequestBody {
   type: 'COMMENT' | 'FOLLOW' | 'LIKE' | 'MESSAGE';
   notificationId: string;
   userId: string;
-  postId?: string | null;
+  postId: string | null;
 }
 
 export const getNotifications = async () => {

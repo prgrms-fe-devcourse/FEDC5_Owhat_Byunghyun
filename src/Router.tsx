@@ -7,6 +7,7 @@ import {
 
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
+import NotificationPage from './pages/notification';
 import RegisterPage from './pages/register';
 import { LayoutWrapper } from './routes';
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
         }
       />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/notification" element={<NotificationPage />} />
     </Route>,
   ),
 );
