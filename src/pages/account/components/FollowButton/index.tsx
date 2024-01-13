@@ -14,19 +14,20 @@ interface FollowButtonProps
   extends VariantProps<typeof followButtonVariants>,
     ComponentProps<'button'> {
   userId: string;
-  following: Follow[];
+  followers: Follow[];
   styleType?: 'default' | 'small';
 }
 
 const FollowButton = ({
   userId,
-  following = [],
+  followers = [],
   styleType = 'default',
 }: FollowButtonProps) => {
-  const [isFollowing, setIsFollowing] = useState(false);
+  const initialFollowing = followers.some(({ user }) => user === userId);
+  const [isFollowingUpdate, setIsFollowingUpdate] = useState(initialFollowing);
   const [isHover, setIsHover] = useState(false);
 
-  const followingUser = following.find(({ user }) => user === userId);
+  const followingUser = followers.find(({ user }) => user === userId);
 
   const follow = useFollow();
   const unfollow = useUnfollow();
@@ -36,34 +37,39 @@ const FollowButton = ({
   ) => {
     setIsHover(false);
 
-    if (!isFollowing) {
-      follow.mutate({ userId: event.currentTarget.id });
-      setIsFollowing(true);
-    } else {
-      unfollow.mutate({ id: event.currentTarget.id });
-      setIsFollowing(false);
-    }
+    follow.mutate({ userId: event.currentTarget.id });
+    setIsFollowingUpdate(prev => !prev);
+  };
+
+  const handleUnfollowButtonClick = () => {
+    setIsHover(true);
+    unfollow.mutate({ id: followingUser?._id ?? '' });
+    setIsFollowingUpdate(prev => !prev);
   };
 
   return (
     <Button
-      id={isFollowing ? followingUser?._id : userId}
+      id={initialFollowing ? followingUser?._id : userId}
       type="button"
-      onClick={handleFollowButtonClick}
+      onClick={
+        initialFollowing ? handleUnfollowButtonClick : handleFollowButtonClick
+      }
       onMouseEnter={() => {
-        isFollowing && setIsHover(true);
+        initialFollowing && setIsHover(true);
       }}
       onMouseLeave={() => {
         setIsHover(false);
       }}
-      styleType={isFollowing ? 'outline' : isHover ? 'outline' : 'primary'}
+      styleType={
+        isFollowingUpdate ? 'outline' : isHover ? 'outline' : 'primary'
+      }
       className={cn(
         followButtonVariants({ styleType }),
         isHover && 'hover:bg-white hover:text-primary',
       )}
     >
       <Text size={styleType === 'small' ? 'small' : 'base'}>
-        {isHover ? '언팔로우' : isFollowing ? '팔로잉' : '팔로우'}
+        {isHover ? '언팔로우' : isFollowingUpdate ? '팔로잉' : '팔로우'}
       </Text>
     </Button>
   );

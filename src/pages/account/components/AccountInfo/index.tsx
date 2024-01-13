@@ -41,7 +41,7 @@ const AccountInfo = ({ user, isMyAccount }: AccountInfoProps) => {
           <Link to={'/account-edit'}>내 정보 변경</Link>
         </Button>
       ) : (
-        <FollowButton userId={userId} following={following as Follow[]} />
+        <FollowButton userId={userId} followers={followers as Follow[]} />
       )}
     </>
   );
