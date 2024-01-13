@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Post } from '~/api/types/postTypes';
 import ArrowBackButton from '~/common/components/ArrowBackButton';
@@ -6,6 +7,8 @@ import Group from '~/common/components/Group';
 import Text from '~/common/components/Text';
 import useNotificationList from '~/common/hooks/queries/useNotificationList';
 import useLayout from '~/common/hooks/useLayout';
+import { OWHAT_TOKEN } from '~/constants/token';
+import { BrowserStorage } from '~/utils/storage';
 import { elapsedTime, isOverTwoWeeks } from '~/utils/time';
 
 import Alarm from './components/Alarm';
@@ -13,6 +16,12 @@ import SeenButton from './components/SeenButton';
 
 export default function NotificationPage() {
   const { changeMeta, changeBottomNavigator } = useLayout();
+
+  const myStorage = new BrowserStorage<string>(OWHAT_TOKEN);
+  const token = myStorage.get();
+
+  const navigate = useNavigate();
+
   const { notificationList } = useNotificationList();
 
   const recentNotificationList = notificationList?.filter(
@@ -28,13 +37,19 @@ export default function NotificationPage() {
     });
   }, []);
 
+  useEffect(() => {
+    if (!token) {
+      navigate('/login');
+    }
+  }, [token]);
+
   return (
     <section className="scroll-none overflow-y-auto">
       <Group spacing={0} position="right" className="mb-small">
         <SeenButton />
       </Group>
       <Group spacing="sm" direction="columns" align="center">
-        {recentNotificationList &&
+        {recentNotificationList && recentNotificationList.length > 0 ? (
           recentNotificationList.map(
             ({
               _id,
@@ -59,7 +74,12 @@ export default function NotificationPage() {
                 date={elapsedTime(createdAt)}
               />
             ),
-          )}
+          )
+        ) : (
+          <Group spacing={0} align="center" className="h-40">
+            <Text>최신 알림이 없습니다.</Text>
+          </Group>
+        )}
         <Text className="my mb-12 text-base-small">
           최대 2주까지의 알림을 확인할 수 있습니다.
         </Text>
