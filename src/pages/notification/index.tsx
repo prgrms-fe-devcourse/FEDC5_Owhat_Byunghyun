@@ -45,7 +45,7 @@ export default function NotificationPage() {
   }, [token]);
 
   return (
-    <section className="scroll-none overflow-y-auto">
+    <section className="px-small">
       {isLoading ? (
         <Group spacing="sm" align="center" position="center" className="h-60">
           <Loading />
@@ -55,7 +55,7 @@ export default function NotificationPage() {
           <Group spacing={0} position="right" className="mb-small">
             <SeenButton />
           </Group>
-          <Group spacing="sm" direction="columns" align="center">
+          <ul className="scroll-none align-center flex h-full flex-col gap-3 overflow-y-auto">
             {recentNotificationList && recentNotificationList.length > 0 ? (
               recentNotificationList.map(
                 ({
@@ -87,14 +87,12 @@ export default function NotificationPage() {
                 ),
               )
             ) : (
-              <Group spacing={0} align="center" className="h-40">
-                <Text>최신 알림이 없습니다.</Text>
-              </Group>
+              <Text className="my-20 text-center">최신 알림이 없습니다.</Text>
             )}
-            <Text className="my mb-12 text-base-small">
+            <Text className="mb-16 text-center text-base-small">
               최대 2주까지의 알림을 확인할 수 있습니다.
             </Text>
-          </Group>
+          </ul>
         </>
       )}
     </section>
