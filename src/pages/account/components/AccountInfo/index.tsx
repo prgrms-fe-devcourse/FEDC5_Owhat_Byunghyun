@@ -10,10 +10,11 @@ import FollowButton from '../FollowButton';
 
 interface AccountInfoProps {
   user: User;
+  authUser?: User;
   isMyAccount: boolean;
 }
 
-const AccountInfo = ({ user, isMyAccount }: AccountInfoProps) => {
+const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
   const {
     _id: userId,
     fullName,
@@ -40,8 +41,15 @@ const AccountInfo = ({ user, isMyAccount }: AccountInfoProps) => {
         <Button className="mt-small">
           <Link to={'/account-edit'}>내 정보 변경</Link>
         </Button>
-      ) : (
+      ) : authUser ? (
         <FollowButton userId={userId} followers={followers as Follow[]} />
+      ) : (
+        <Button
+          className="mt-small"
+          onClick={() => alert('로그인이 필요한 서비스입니다.')}
+        >
+          팔로우
+        </Button>
       )}
     </>
   );

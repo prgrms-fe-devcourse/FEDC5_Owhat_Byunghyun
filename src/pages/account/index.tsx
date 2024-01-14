@@ -26,6 +26,7 @@ export default function AccountPage() {
     } else {
       setIsMyAccount(false);
     }
+
     // 1-2. login page가 main branch로 merge하여 Router.tsx에 추가되면 주석 해제
     // if (!userId) {
     //   navigate('/login');
@@ -43,7 +44,7 @@ export default function AccountPage() {
 
   return (
     <Group spacing={10} direction={'columns'} className="py" grow>
-      <AccountInfo user={user} isMyAccount={isMyAccount} />
+      <AccountInfo user={user} authUser={authUser} isMyAccount={isMyAccount} />
       <AccountPostsList
         currentUserId={user._id ?? userId}
         isMyAccount={isMyAccount}
