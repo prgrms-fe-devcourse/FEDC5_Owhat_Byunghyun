@@ -1,6 +1,3 @@
-// 1. 함수 호출을 통한 방법
-// 2. 컴포넌트가 로딩 된 후 바로 실행
-
 import { useCallback, useEffect, useRef } from 'react';
 
 const useTimeout = (fn: () => void, delay: number) => {
