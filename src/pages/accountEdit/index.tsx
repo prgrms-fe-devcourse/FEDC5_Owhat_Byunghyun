@@ -6,7 +6,7 @@ import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
-import useAuthUser from '~/common/hooks/queries/useAuthUser';
+import useSuspenseAuthUser from '~/common/hooks/queries/useSuspenseAuthUser';
 import useLayout from '~/common/hooks/useLayout';
 import { cn } from '~/utils/cn';
 import { isValidUsername } from '~/utils/isValid';
@@ -19,10 +19,12 @@ const AccountEditPage = () => {
   const navigate = useNavigate();
   const { changeMeta } = useLayout();
   const [submitPossible, setSubmitPossible] = useState(false);
-  const { user: authUser, isLoading } = useAuthUser();
+  const { user: authUser, isLoading } = useSuspenseAuthUser();
   const { fullName, image, coverImage } = authUser;
 
   useEffect(() => {
+    if (!isLoading) return;
+
     if (!isLoading && !authUser) {
       navigate('/login');
     }

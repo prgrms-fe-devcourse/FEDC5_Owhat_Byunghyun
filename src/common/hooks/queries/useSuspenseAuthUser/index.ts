@@ -1,10 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { getAuthUser } from '~/api/user';
 import { QUERY_KEY } from '~/constants/queryKey';
 
-const useAuthUser = () => {
-  const { data, isLoading } = useQuery({
+const useSuspenseAuthUser = () => {
+  const { data, isLoading } = useSuspenseQuery({
     queryKey: [QUERY_KEY.USER],
     queryFn: getAuthUser,
   });
@@ -12,4 +12,4 @@ const useAuthUser = () => {
   return { user: data, isLoading };
 };
 
-export default useAuthUser;
+export default useSuspenseAuthUser;
