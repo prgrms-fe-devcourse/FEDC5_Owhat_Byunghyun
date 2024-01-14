@@ -14,15 +14,20 @@ interface AccountImagesProps {
       imageFile: File;
     }>
   >;
+  setSubmitPossible: React.Dispatch<React.SetStateAction<boolean>>;
+  isUserNameValid?: boolean;
 }
 
 const EditAccountImages = ({
   coverImage,
   image,
   setFormState,
+  setSubmitPossible,
+  isUserNameValid,
 }: AccountImagesProps) => {
   const handleChangeUploadFile = (file: File, name: string) => {
     setFormState(prev => ({ ...prev, [name]: file }));
+    isUserNameValid && setSubmitPossible(true);
   };
 
   return (

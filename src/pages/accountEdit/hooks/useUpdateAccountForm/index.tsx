@@ -1,21 +1,24 @@
 import { useState } from 'react';
 
+import { User } from '~/api/types/userTypes';
 import { useEditAccount } from '~/common/hooks/mutations/useEditAccount';
 import { useUploadCoverImage } from '~/common/hooks/mutations/useUploadCoverImage';
 import { useUploadImage } from '~/common/hooks/mutations/useUploadImage';
 
 interface UpdateAccountFormProps {
-  userId: string;
+  authUser: User;
 }
 
-export const useUpdateAccountForm = ({ userId }: UpdateAccountFormProps) => {
+export const useUpdateAccountForm = ({ authUser }: UpdateAccountFormProps) => {
+  const { _id, fullName } = authUser;
+
   const [formState, setFormState] = useState({
-    inputValue: '',
+    inputValue: fullName,
     coverImageFile: new File([], ''),
     imageFile: new File([], ''),
   });
 
-  const editAccount = useEditAccount(userId);
+  const editAccount = useEditAccount(_id);
   const uploadImage = useUploadImage();
   const uploadCoverImage = useUploadCoverImage();
 
