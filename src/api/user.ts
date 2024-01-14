@@ -7,3 +7,9 @@ export const getAuthUser = async () => {
 
   return data;
 };
+
+export const putUpdatePassword = async (password: string) => {
+  return await instance.put('/settings/update-password', {
+    password,
+  });
+};

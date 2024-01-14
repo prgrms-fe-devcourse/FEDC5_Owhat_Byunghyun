@@ -19,8 +19,8 @@ const AccountEditPage = () => {
   const navigate = useNavigate();
   const { changeMeta } = useLayout();
   const [submitPossible, setSubmitPossible] = useState(false);
-  const { user: authUser, isLoading } = useSuspenseAuthUser();
-  const { fullName, image, coverImage } = authUser;
+  const { authUser, isLoading } = useSuspenseAuthUser();
+  const { _id, fullName, image, coverImage } = authUser;
 
   useEffect(() => {
     if (!isLoading) return;
@@ -79,7 +79,9 @@ const AccountEditPage = () => {
           이름을 3글자 이상 공백없이 입력해주세요.
         </Text>
         <Text className="mt-large font-thin text-primary hover:underline">
-          <Link to={'/account/edit/password'}>내 비밀번호 변경</Link>
+          <Link to={'/update-password'} state={_id}>
+            내 비밀번호 변경
+          </Link>
         </Text>
         <div className="fixed bottom-[56px] left-0 p">
           <Button

@@ -9,7 +9,7 @@ const useSuspenseAuthUser = () => {
     queryFn: getAuthUser,
   });
 
-  return { user: data, isLoading };
+  return { authUser: data, isLoading };
 };
 
 export default useSuspenseAuthUser;
