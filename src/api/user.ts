@@ -7,3 +7,9 @@ export const getAuthUser = async () => {
 
   return data;
 };
+
+export const getOnlineUsers = async () => {
+  const { data } = await instance.get<User[]>('/users/online-users');
+
+  return data;
+};
