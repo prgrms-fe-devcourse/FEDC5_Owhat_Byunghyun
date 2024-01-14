@@ -26,7 +26,7 @@ const ToastManager = ({ bind }: ToastManagerProps) => {
   }, [bind, createToast]);
 
   return (
-    <div className="fixed right-4 top-4 z-20">
+    <div className="fixed left-1/2 top-4 z-20 -translate-x-1/2">
       {toasts.map(({ id, message, duration }) => (
         <ToastItem
           key={id}
