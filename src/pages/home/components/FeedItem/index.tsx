@@ -17,7 +17,7 @@ const FeedItem = ({ feed }: FeedItemProps) => {
     return like.user === user?._id;
   });
 
-  const { mutateLike } = useLikeFromPost({ remove: !!likeInfo });
+  const likeMutation = useLikeFromPost({ remove: !!likeInfo });
 
   return (
     <li key={feed._id} className="flex flex-col gap-4">
@@ -29,9 +29,9 @@ const FeedItem = ({ feed }: FeedItemProps) => {
           comments={feed.comments as string[]}
           likes={feed.likes as string[]}
           image={feed.image as string}
-          handleLike={() =>
-            mutateLike(likeInfo ? (likeInfo as Like)._id : feed._id)
-          }
+          handleLike={() => {
+            likeMutation.mutate(likeInfo ? (likeInfo as Like)._id : feed._id);
+          }}
         />
       </Link>
     </li>
