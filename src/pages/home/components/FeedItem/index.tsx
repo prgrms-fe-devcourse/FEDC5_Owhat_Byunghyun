@@ -22,7 +22,7 @@ const FeedItem = ({ feed }: FeedItemProps) => {
   return (
     <li key={feed._id} className="flex flex-col gap-4">
       {/* // TODO 라우팅 주소 추후 변경의 여지 있음 */}
-      <Link to={`detail/${feed._id}`}>
+      <Link to={`posts/${feed._id}`}>
         <Feed
           initialState={!!likeInfo}
           title={feed.title}
