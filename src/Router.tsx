@@ -5,10 +5,14 @@ import {
   Route,
 } from 'react-router-dom';
 
+import AccountPage from './pages/account';
+import AccountEditPage from './pages/accountEdit';
+import FollowPage from './pages/follow';
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import MessagePage from './pages/message';
 import RegisterPage from './pages/register';
+import UpdatePasswordPage from './pages/updatePassword';
 import { LayoutWrapper } from './routes';
 
 const router = createBrowserRouter(
@@ -22,6 +26,32 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
+      <Route
+        path="/account"
+        element={
+          <Suspense fallback={<div>로딩중...</div>}>
+            <AccountPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/account/:userId"
+        element={
+          <Suspense fallback={<div>로딩중...</div>}>
+            <AccountPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/follow"
+        element={
+          <Suspense fallback={<div>로딩중...</div>}>
+            <FollowPage />
+          </Suspense>
+        }
+      />
+      <Route path="/account-edit" element={<AccountEditPage />} />
+      <Route path="/update-password" element={<UpdatePasswordPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/message" element={<MessagePage />} />
     </Route>,
