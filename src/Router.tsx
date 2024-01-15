@@ -11,10 +11,12 @@ import AccountEditPage from './pages/accountEdit';
 import FollowPage from './pages/follow';
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
+import LoginPage from './pages/login';
 import MessagePage from './pages/message';
 import RegisterPage from './pages/register';
 import UpdatePasswordPage from './pages/updatePassword';
-import { LayoutWrapper } from './routes';
+import { AuthUserRouter, LayoutWrapper } from './routes';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +29,7 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
+
       <Route
         path="/account"
         element={
@@ -51,9 +54,7 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-      <Route path="/account-edit" element={<AccountEditPage />} />
       <Route path="/update-password" element={<UpdatePasswordPage />} />
-      <Route path="/register" element={<RegisterPage />} />
       <Route
         path="/account-edit"
         element={
@@ -62,8 +63,12 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-      <Route path="/update-password" element={<UpdatePasswordPage />}></Route>
       <Route path="/message" element={<MessagePage />} />
+      <Route element={<AuthUserRouter />}>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Route>
+
     </Route>,
   ),
 );

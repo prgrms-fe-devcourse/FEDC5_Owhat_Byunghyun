@@ -20,3 +20,9 @@ export const PrivateRouter = () => {
 
   return <>{user ? <Outlet /> : <Navigate to="/login" />}</>;
 };
+
+export const AuthUserRouter = () => {
+  const { user } = useAuthUser();
+
+  return <>{user ? <Navigate to="/" /> : <Outlet />}</>;
+};

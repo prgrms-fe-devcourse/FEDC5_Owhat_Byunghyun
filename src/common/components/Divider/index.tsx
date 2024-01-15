@@ -8,7 +8,7 @@ import { dividerVariants } from './Divider.varients';
 interface DividerProps
   extends VariantProps<typeof dividerVariants>,
     ComponentProps<'div'> {
-  size: number;
+  size?: number;
 }
 
 const Divider = ({ type, size = 8, className, ...props }: DividerProps) => {

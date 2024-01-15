@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const tooltipVariants = cva(
-  `pointer-events-none absolute z-10 min-w-[108px] rounded-lg border border-gray-300 bg-white px-3 py-2 text-center text-sm text-black shadow-md transition-opacity duration-300 ease-in-out`,
+  `pointer-events-none absolute z-10 rounded-lg border border-gray-300 bg-white p-[2px] text-center text-sm text-black shadow-md transition-opacity duration-300 ease-in-out`,
   {
     variants: {
       placement: {
