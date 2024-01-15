@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+// import { useNavigate } from 'react-router-dom';
 import { User } from '~/api/types/userTypes';
 import { useEditAccount } from '~/common/hooks/mutations/useEditAccount';
 import { useUploadCoverImage } from '~/common/hooks/mutations/useUploadCoverImage';
@@ -10,7 +11,8 @@ interface UpdateAccountFormProps {
 }
 
 export const useUpdateAccountForm = ({ authUser }: UpdateAccountFormProps) => {
-  const { _id, fullName } = authUser;
+  const { fullName } = authUser;
+  // const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
     inputValue: fullName,
@@ -18,7 +20,7 @@ export const useUpdateAccountForm = ({ authUser }: UpdateAccountFormProps) => {
     imageFile: new File([], ''),
   });
 
-  const editAccount = useEditAccount(_id);
+  const editAccount = useEditAccount();
   const uploadImage = useUploadImage();
   const uploadCoverImage = useUploadCoverImage();
 
@@ -45,6 +47,9 @@ export const useUpdateAccountForm = ({ authUser }: UpdateAccountFormProps) => {
     handleEditAccount();
     handleUploadCoverImage();
     handleUploadImage();
+
+    // accountpage와 병합 후 주석 해제
+    // navigate(`/account/${_id}`);
   };
 
   return {
