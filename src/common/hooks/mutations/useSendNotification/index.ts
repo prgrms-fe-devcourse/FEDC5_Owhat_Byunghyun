@@ -1,9 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import {
-  NotificationRequestBody,
-  postNotificationCreate,
-} from '~/api/notification';
+import { postNotificationCreate } from '~/api/notification';
+import { NotificationRequestBody } from '~/api/types/notificationTypes';
 import { QUERY_KEY } from '~/constants/queryKey';
 
 const useSendNotification = () => {
@@ -11,7 +9,7 @@ const useSendNotification = () => {
 
   const mutation = useMutation({
     mutationFn: (body: NotificationRequestBody) => postNotificationCreate(body),
-    onSettled: () => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.NOTIFICATION_LIST],
       });

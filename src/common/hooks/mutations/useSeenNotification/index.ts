@@ -7,8 +7,8 @@ const useSeenNotification = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: () => putNotificationsToSeen(),
-    onSettled: () => {
+    mutationFn: putNotificationsToSeen,
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.NOTIFICATION_LIST],
       });

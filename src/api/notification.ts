@@ -1,13 +1,9 @@
 import { instance } from '~/api';
 
-import { Notification } from './types/notificationTypes';
-
-export interface NotificationRequestBody {
-  type: 'COMMENT' | 'FOLLOW' | 'LIKE' | 'MESSAGE';
-  notificationId: string;
-  userId: string;
-  postId: string | null;
-}
+import {
+  Notification,
+  NotificationRequestBody,
+} from './types/notificationTypes';
 
 export const getNotifications = async () => {
   const { data } = await instance.get<Notification[]>('/notifications');
