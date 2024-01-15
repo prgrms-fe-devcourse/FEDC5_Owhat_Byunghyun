@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import ArrowBackButton from '~/common/components/ArrowBackButton';
 import Group from '~/common/components/Group';
-import useAuthUser from '~/common/hooks/queries/useAuthUser';
+import useSuspenseAuthUser from '~/common/hooks/queries/useSuspenseAuthUser';
 import { useUser } from '~/common/hooks/queries/useUser';
 import useLayout from '~/common/hooks/useLayout';
 
@@ -11,7 +11,7 @@ import AccountInfo from './components/AccountInfo';
 import AccountPostsList from './components/AccountPostsList';
 
 export default function AccountPage() {
-  const { user: authUser } = useAuthUser();
+  const { authUser } = useSuspenseAuthUser();
   const { userId } = useParams();
   // 1-1. login page가 main branch로 merge하여 Router.tsx에 추가되면 주석 해제
   // const navigate = useNavigate();
