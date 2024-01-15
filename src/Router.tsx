@@ -5,7 +5,6 @@ import {
   Route,
 } from 'react-router-dom';
 
-
 import AccountPage from './pages/account';
 import AccountEditPage from './pages/accountEdit';
 import FollowPage from './pages/follow';
