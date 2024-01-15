@@ -26,8 +26,6 @@ const AccountEditPage = () => {
 
   const { logout } = useLogout();
 
-  console.log(submitPossible);
-
   useEffect(() => {
     if (!isLoading) return;
 
