@@ -11,7 +11,8 @@ interface MessageListProps {
 
 const MessageList = ({ messageList, isLoading }: MessageListProps) => {
   if (isLoading) return <Skeleton />;
-  if (!messageList.length) return <div>친구들과 대화를 시도해보세요!</div>;
+  if (!messageList.length)
+    return <div className="text-center">친구들과 대화를 시도해보세요!</div>;
 
   return (
     <>
