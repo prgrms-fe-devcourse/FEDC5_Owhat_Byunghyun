@@ -10,6 +10,7 @@ import AccountEditPage from './pages/accountEdit';
 import FollowPage from './pages/follow';
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
+import MessagePage from './pages/message';
 import RegisterPage from './pages/register';
 import UpdatePasswordPage from './pages/updatePassword';
 import { LayoutWrapper } from './routes';
@@ -52,6 +53,7 @@ const router = createBrowserRouter(
       <Route path="/account-edit" element={<AccountEditPage />} />
       <Route path="/update-password" element={<UpdatePasswordPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/message" element={<MessagePage />} />
     </Route>,
   ),
 );
