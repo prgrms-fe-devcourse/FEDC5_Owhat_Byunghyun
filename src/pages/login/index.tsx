@@ -6,6 +6,7 @@ import { instance } from '~/api';
 import ArrowBackButton from '~/common/components/ArrowBackButton';
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
+import HomeButton from '~/common/components/HomeButton';
 import Text from '~/common/components/Text';
 import useLayout from '~/common/hooks/useLayout';
 import { OWHAT_TOKEN } from '~/constants/token';
@@ -51,7 +52,7 @@ const LoginPage = () => {
     changeMeta({
       title: '로그인',
       left: <ArrowBackButton />,
-      right: '',
+      right: <HomeButton />,
     });
   }, []);
 
