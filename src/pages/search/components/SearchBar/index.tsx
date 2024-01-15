@@ -25,7 +25,7 @@ const SearchBar = ({ onSubmit, onChange }: SearchBarProps) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="h-16">
       <Group
         spacing={5}
         align="center"

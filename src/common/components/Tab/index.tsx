@@ -71,17 +71,17 @@ const Tab = ({ children, activeLabel, className, ...props }: TabProps) => {
   const activeItemContent = activeItem ? activeItem.props.children : null;
 
   return (
-    <div>
+    <>
       <Group
         spacing={0}
         grow
-        className={cn('mb flex w-full', className)}
+        className={cn('h-12 w-full', className)}
         {...props}
       >
         {items}
       </Group>
-      <div>{activeItemContent}</div>
-    </div>
+      {activeItemContent}
+    </>
   );
 };
 

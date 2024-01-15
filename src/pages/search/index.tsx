@@ -37,11 +37,11 @@ const SearchPage = () => {
   }, []);
 
   return (
-    <>
+    <section>
       <SearchBar onSubmit={handleSubmit} onChange={handleChange} />
       {keyword && (
         <Tab>
-          <Tab.Item title="포스트 + 사용자" label="all">
+          <Tab.Item title="포스트" label="all">
             <SearchResults mode="all" keyword={keyword} />
           </Tab.Item>
           <Tab.Item title="사용자" label="user">
@@ -49,7 +49,7 @@ const SearchPage = () => {
           </Tab.Item>
         </Tab>
       )}
-    </>
+    </section>
   );
 };
 
