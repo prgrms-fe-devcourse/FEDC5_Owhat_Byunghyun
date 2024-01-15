@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import useChannelList from '~/common/hooks/queries/useChannelList';
 import usePostListByChannel from '~/common/hooks/queries/usePostListByChannel';
 import useInfiniteScroll from '~/common/hooks/useInfiniteScroll';
+import useLayout from '~/common/hooks/useLayout';
 
 import ChannelList from './components/ChannelList';
 import FeedItem from './components/FeedItem';
@@ -10,13 +12,21 @@ import FeedItem from './components/FeedItem';
 export default function HomePage() {
   const { channelList } = useChannelList();
   const [searchParams] = useSearchParams();
-
+  const { changeMeta, changeBottomNavigator } = useLayout();
   const { postList, fetchNextPage, hasNextPage, isFetched } =
     usePostListByChannel(searchParams.get('channel') || channelList[0]._id);
 
   const refetch = () => {
     if (hasNextPage && isFetched) fetchNextPage();
   };
+  useEffect(() => {
+    changeBottomNavigator(true);
+    changeMeta({
+      title: 'Owhat!',
+      left: <></>,
+      right: '',
+    });
+  }, []);
 
   const { ref } = useInfiniteScroll<HTMLDivElement>(refetch);
 
