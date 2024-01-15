@@ -10,10 +10,10 @@ import OnlineUsers from './components/OnlineUsers';
 
 export default function MessagePage() {
   const messageList = useMessageList();
-
-  const { onlineUsers } = useOnlineUsers();
-  const { changeMeta } = useLayout();
+  const onlineUsers = useOnlineUsers();
   const { user } = useAuthUser();
+
+  const { changeMeta } = useLayout();
 
   useEffect(() => {
     changeMeta({
@@ -23,11 +23,9 @@ export default function MessagePage() {
     });
   }, [user]);
 
-  if (!onlineUsers.length) return <div>없음</div>;
-
   return (
-    <section>
-      <OnlineUsers onlineUsers={onlineUsers} />
+    <section className="flex flex-col">
+      <OnlineUsers {...onlineUsers} />
 
       <MessageList {...messageList} />
     </section>

@@ -16,7 +16,7 @@ const MessageList = ({ messageList, isLoading }: MessageListProps) => {
   return (
     <>
       <h2 className="mt-4 text-xl font-bold">메시지</h2>
-      <ul className="flex flex-col">
+      <ul className="scroll-none flex flex-col overflow-y-auto">
         {messageList.map(message => (
           <li
             key={message._id}
