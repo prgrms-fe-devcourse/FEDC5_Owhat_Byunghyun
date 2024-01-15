@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { postLogout } from '~/api/register';
+import Toast from '~/common/components/Toast';
 import { OWHAT_TOKEN } from '~/constants/token';
 import { BrowserStorage } from '~/utils/storage';
 
@@ -17,8 +18,7 @@ export const useLogout = () => {
       queryClient.invalidateQueries();
 
       navigate('/');
-      // 토스트 컴포넌트 추가 시 alert 대신 사용
-      alert('로그아웃 되었습니다.');
+      Toast.show('로그아웃 되었습니다.', 2000);
     },
   });
 
