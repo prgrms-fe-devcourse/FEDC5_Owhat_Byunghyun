@@ -27,13 +27,13 @@ const UserInfo = ({
   return (
     <Group spacing={'md'} align={'center'}>
       <Link
-        to={isMyAccount ? `/account/${_id}` : ''}
+        to={isMyAccount ? '/account' : `/account/${_id}`}
         className="flex items-center"
       >
         <Avatar src={profileImage} size="auto" className="h-14 w-14"></Avatar>
       </Link>
       <Group spacing={2} direction={'columns'}>
-        <Link to={isMyAccount ? `/account/${_id}` : ''}>
+        <Link to={isMyAccount ? '/account' : `/account/${_id}`}>
           <Text strong>{author}</Text>
         </Link>
         <ExtraInfo>
