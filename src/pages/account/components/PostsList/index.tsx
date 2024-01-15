@@ -8,7 +8,7 @@ interface PostsListProps {
   isMyAccount: boolean;
 }
 
-const PostsList = ({ userPosts, isMyAccount }: PostsListProps) => {
+const PostsList = ({ userPosts = [], isMyAccount }: PostsListProps) => {
   return (
     <ul className="mt flex flex-col border-t border-t-primary-lighter pt">
       {userPosts.map(

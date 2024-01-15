@@ -12,14 +12,14 @@ interface AccountExtraInfoProps {
 }
 
 const AccountExtraInfo = ({
-  posts,
-  followers,
-  following,
+  posts = [],
+  followers = [],
+  following = [],
 }: AccountExtraInfoProps) => {
   const navigate = useNavigate();
 
   return (
-    <Group spacing={20} className="text-gray-500" grow>
+    <Group spacing={20} className=" text-gray-500" grow>
       <Group
         spacing={2}
         direction={'columns'}
@@ -47,6 +47,7 @@ const AccountExtraInfo = ({
             },
           });
         }}
+        className="cursor-pointer"
       >
         <Text>{followers.length}</Text>
         <Text>팔로워</Text>
@@ -69,6 +70,7 @@ const AccountExtraInfo = ({
             },
           });
         }}
+        className="cursor-pointer"
       >
         <Text>{following.length}</Text>
         <Text>팔로잉</Text>
