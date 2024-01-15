@@ -4,4 +4,6 @@ export const QUERY_KEY = {
   USER: 'user',
   USER_LIST: 'userList',
   SEARCH: 'search',
+  MESSAGE: 'message',
+  POST_DETAIL: 'postDetail',
 };
