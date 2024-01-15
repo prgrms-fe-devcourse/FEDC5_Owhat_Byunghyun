@@ -26,6 +26,8 @@ const AccountEditPage = () => {
 
   const { logout } = useLogout();
 
+  console.log(submitPossible);
+
   useEffect(() => {
     if (!isLoading) return;
 
@@ -52,7 +54,7 @@ const AccountEditPage = () => {
   const handleChangeInput = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setFormState(prev => ({ ...prev, inputValue: event.target.value }));
-      setSubmitPossible(isUserNameValid);
+      setSubmitPossible(isValidUsername(event.target.value));
     },
     [isUserNameValid, setFormState],
   );
@@ -69,39 +71,49 @@ const AccountEditPage = () => {
       <Group spacing={'sm'} direction={'columns'} className="mt-large" grow>
         <Text>새로운 닉네임</Text>
         <Input
+          onKeyDown={e => {
+            e.key === 'Enter' && e.preventDefault();
+          }}
           defaultValue={fullName}
-          className="text-gray-400"
+          className="placeholder:text-sm placeholder:text-gray-400"
           placeholder="새로운 닉네임을 입력해주세요."
           onChange={handleChangeInput}
         />
         <Text
           className={cn(
             isUserNameValid ? 'hidden' : '',
-            'text-right text-sm text-error',
+            'text-right text-xs text-error',
           )}
         >
-          이름을 3글자 이상 공백없이 입력해주세요.
+          공백,특수문자 제외 3글자 이상 입력해주세요.
+          <br /> (한글은 자음과 모음 조합으로 입력해주세요.)
         </Text>
-        <Text className="mt-large font-thin text-primary hover:underline">
-          <Link to={'/update-password'} state={_id}>
+        <Text className="mt-large font-thin text-primary">
+          <Link to={'/update-password'} state={_id} className="hover:underline">
             내 비밀번호 변경
           </Link>
         </Text>
-        <Text
-          className="cursor-pointer font-thin text-error hover:underline"
-          onClick={() => {
-            logout();
-          }}
-        >
-          로그아웃
-        </Text>
+
+        <button type="button" className="cursor-default text-start">
+          <Text
+            elementType="span"
+            role="button"
+            className="w-fit text-error hover:underline"
+            onClick={() => {
+              logout();
+            }}
+          >
+            로그아웃
+          </Text>
+        </button>
+
         <div className="fixed bottom-[56px] left-0 p">
           <Button
-            type="button"
+            type="submit"
             fullwidth
             className="max-w-layout"
-            onClick={handleSubmit}
             disabled={!submitPossible}
+            onClick={handleSubmit}
           >
             저장하기
           </Button>

@@ -43,7 +43,7 @@ export const useUpdateAccountForm = ({ authUser }: UpdateAccountFormProps) => {
   };
 
   const handleSubmit = (event: React.MouseEvent) => {
-    event?.preventDefault();
+    event.preventDefault();
     handleEditAccount();
     handleUploadCoverImage();
     handleUploadImage();
