@@ -83,7 +83,7 @@ const AccountEditPage = () => {
             'text-right text-xs text-error',
           )}
         >
-          공백,특수문자 제외 3글자 이상 입력해주세요.
+          공백,특수문자 제외 3~8자 내로 입력해주세요.
           <br /> (한글은 자음과 모음 조합으로 입력해주세요.)
         </Text>
         <Text className="mt-large font-thin text-primary">

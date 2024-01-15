@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { getPostListByAuthor } from '~/api/post';
 import { Channel, Like, Post } from '~/api/types/postTypes';
@@ -14,10 +14,10 @@ export interface UserPost extends OmittedPost {
 }
 
 export const useUserPosts = (id: string) => {
-  const { data: userPosts } = useSuspenseQuery({
+  const { data: userPosts, isError } = useQuery({
     queryKey: [QUERY_KEY.POST_LIST, id],
     queryFn: () => getPostListByAuthor(id),
   });
 
-  return { userPosts };
+  return { userPosts, isError };
 };
