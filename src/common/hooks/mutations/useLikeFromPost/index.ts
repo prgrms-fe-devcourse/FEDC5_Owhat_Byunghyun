@@ -1,14 +1,19 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import {
-  deleteLikeFromPost,
-  postLikeAlarm,
-  postLikeFromPost,
-} from '~/api/post';
+import { postNotificationCreate } from '~/api/notification';
+import { deleteLikeFromPost, postLikeFromPost } from '~/api/post';
 import Toast from '~/common/components/Toast';
 import { QUERY_KEY } from '~/constants/queryKey';
 
-const useLikeFromPost = ({ remove }: { remove: boolean }) => {
+const useLikeFromPost = ({
+  remove,
+  authUserId,
+  postUserId,
+}: {
+  remove: boolean;
+  authUserId: string | undefined;
+  postUserId: string;
+}) => {
   const queryClient = useQueryClient();
   const fn = remove ? deleteLikeFromPost : postLikeFromPost;
 
@@ -19,10 +24,17 @@ const useLikeFromPost = ({ remove }: { remove: boolean }) => {
     },
     onSuccess: data => {
       if (!remove) {
-        const likeId = data._id;
-        const userId = data.user;
-        const postId = data.post;
-        postLikeAlarm({ likeId, userId, postId });
+        if (authUserId !== postUserId) {
+          const notificationTypeId = data._id;
+          const userId = postUserId!;
+          const postId = data.post;
+          postNotificationCreate({
+            notificationType: 'LIKE',
+            notificationTypeId,
+            userId,
+            postId,
+          });
+        }
       }
     },
     onSettled: () => {

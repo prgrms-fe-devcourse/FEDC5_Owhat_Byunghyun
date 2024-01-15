@@ -39,25 +39,44 @@ export const postLikeFromPost = async (postId: string) => {
   return data;
 };
 
-export const postLikeAlarm = async ({
-  likeId,
-  postId,
-  userId,
-}: {
-  likeId: string;
-  postId: string;
-  userId: string;
-}) => {
-  return await instance.post('/notifications/create', {
-    notificationType: 'LIKE',
-    notificationTypeId: likeId,
-    userId: userId,
-    postId: postId,
-  });
-};
-
 export const deleteLikeFromPost = async (likeId: string) => {
   await instance.delete(`/likes/delete`, {
     data: { id: likeId },
+  });
+};
+
+export const deleteComment = async (commnetId: string) => {
+  await instance.delete(`/comments/delete`, {
+    data: {
+      id: commnetId,
+    },
+  });
+};
+
+export const createComment = async ({
+  comment,
+  postId,
+}: {
+  comment: string;
+  postId: string;
+}) => {
+  const { data } = await instance.post(`/comments/create`, {
+    comment: comment,
+    postId: postId,
+  });
+  return data;
+};
+
+export const getPostDetail = async (postId: string) => {
+  const { data } = await instance.get(`/posts/${postId}`);
+
+  return data;
+};
+
+export const deletePost = async (postId: string) => {
+  await instance.delete(`/posts/delete`, {
+    data: {
+      id: postId,
+    },
   });
 };
