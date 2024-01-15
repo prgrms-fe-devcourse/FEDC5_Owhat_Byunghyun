@@ -27,6 +27,7 @@ export default function MessagePage() {
     <section className="flex flex-col">
       <OnlineUsers {...onlineUsers} />
 
+      <h2 className="mt-4 text-xl font-bold">메시지</h2>
       <MessageList {...messageList} />
     </section>
   );

@@ -12,11 +12,12 @@ interface MessageListProps {
 const MessageList = ({ messageList, isLoading }: MessageListProps) => {
   if (isLoading) return <Skeleton />;
   if (!messageList.length)
-    return <div className="text-center">친구들과 대화를 시도해보세요!</div>;
+    return (
+      <div className="mt-8 text-center">친구들과 대화를 시도해보세요!</div>
+    );
 
   return (
     <>
-      <h2 className="mt-4 text-xl font-bold">메시지</h2>
       <ul className="scroll-none flex flex-col overflow-y-auto">
         {messageList.map(message => (
           <li
