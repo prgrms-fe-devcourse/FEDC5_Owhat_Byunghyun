@@ -11,6 +11,7 @@ import {
 
 import { cn } from '~/utils/cn';
 
+import Group from '../Group';
 import TabItem, { TabItemProps } from './TabItem';
 
 interface TabProps extends ComponentProps<'div'> {
@@ -70,12 +71,17 @@ const Tab = ({ children, activeLabel, className, ...props }: TabProps) => {
   const activeItemContent = activeItem ? activeItem.props.children : null;
 
   return (
-    <div>
-      <div className={cn('mb flex w-full', className)} {...props}>
+    <>
+      <Group
+        spacing={0}
+        grow
+        className={cn('h-12 w-full', className)}
+        {...props}
+      >
         {items}
-      </div>
-      <div>{activeItemContent}</div>
-    </div>
+      </Group>
+      {activeItemContent}
+    </>
   );
 };
 

@@ -8,7 +8,7 @@ export const isValidPassword = (value: string) =>
   /[!@#$%^&*(),.?":{}|<>]/.test(value);
 
 export const isValidUsername = (value: string) =>
-  value.length >= 3 && /^[가-힣a-zA-Z0-9]+$/.test(value);
+  value.length >= 3 && value.length <= 8 && /^[가-힣a-zA-Z0-9]+$/.test(value);
 
 export const isValidPasswordMatch = ({
   value,
