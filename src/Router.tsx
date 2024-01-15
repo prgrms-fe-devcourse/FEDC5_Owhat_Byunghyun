@@ -5,7 +5,6 @@ import {
   Route,
 } from 'react-router-dom';
 
-
 import AccountPage from './pages/account';
 import AccountEditPage from './pages/accountEdit';
 import FollowPage from './pages/follow';
@@ -16,7 +15,6 @@ import MessagePage from './pages/message';
 import RegisterPage from './pages/register';
 import UpdatePasswordPage from './pages/updatePassword';
 import { AuthUserRouter, LayoutWrapper } from './routes';
-
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -68,7 +66,6 @@ const router = createBrowserRouter(
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>
-
     </Route>,
   ),
 );
