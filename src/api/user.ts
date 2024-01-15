@@ -7,10 +7,9 @@ export const getAuthUser = async () => {
 
   return data;
 };
-
 export const getOnlineUsers = async () => {
   const { data } = await instance.get<User[]>('/users/online-users');
-  
+
   return data;
 };
 
@@ -31,4 +30,16 @@ export const putUpdatePassword = async (password: string) => {
   return await instance.put('/settings/update-password', {
     password,
   });
-};  
+};
+
+export const login = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
+  const { data } = await instance.post('/login', { email, password });
+
+  return data;
+};

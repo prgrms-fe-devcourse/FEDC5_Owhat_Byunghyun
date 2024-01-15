@@ -12,7 +12,6 @@ interface ChannelListProps {
 const ChannelList = ({ list }: ChannelListProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-
   const getChannelItem = (channel: Channel) => {
     const isCurrentChannel = searchParams.get('channel') === channel._id;
 
@@ -32,7 +31,7 @@ const ChannelList = ({ list }: ChannelListProps) => {
       className="border-b border-b-gray-300 pb-large"
       groupGap={20}
     >
-      {list.map((channel, idx) => (
+      {list.map(channel => (
         <Avatar
           key={channel._id}
           src={channel.description}

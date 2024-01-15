@@ -1,16 +1,13 @@
-import { useMutation } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { instance } from '~/api';
 import ArrowBackButton from '~/common/components/ArrowBackButton';
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import HomeButton from '~/common/components/HomeButton';
 import Text from '~/common/components/Text';
+import { useLogin } from '~/common/hooks/mutations/useLogin';
 import useLayout from '~/common/hooks/useLayout';
-import { OWHAT_TOKEN } from '~/constants/token';
-import { BrowserStorage } from '~/utils/storage';
 
 import LoginForm from './components/LoginForm';
 
@@ -22,6 +19,7 @@ interface LoginParams {
 const LoginPage = () => {
   const navigate = useNavigate();
 
+  const mutation = useLogin();
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -32,18 +30,6 @@ const LoginPage = () => {
 
     mutation.mutate(loginParams);
   };
-
-  const mutation = useMutation({
-    mutationFn: (userData: LoginParams) => {
-      const { email, password } = userData;
-      return instance.post('/login', { email, password });
-    },
-    onSuccess: data => {
-      const myStorage = new BrowserStorage<string>(OWHAT_TOKEN);
-      myStorage.set(data.data.token);
-      navigate('/');
-    },
-  });
 
   const { changeMeta, changeBottomNavigator } = useLayout();
 

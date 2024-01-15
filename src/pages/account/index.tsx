@@ -29,7 +29,7 @@ export default function AccountPage() {
       navigate('/login');
     }
 
-    if (authUser?._id === userId) {
+    if (authUser && !userId) {
       setIsMyAccount(true);
     } else {
       setIsMyAccount(false);
