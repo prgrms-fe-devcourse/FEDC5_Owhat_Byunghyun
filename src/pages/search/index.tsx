@@ -5,13 +5,13 @@ import useLayout from '~/common/hooks/useLayout.ts';
 
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
-import useForm from './hooks/useForm';
+import useSearchForm from './hooks/useSearchForm.ts';
 import type { ValuesObj } from './type.ts';
 
 const SearchPage = () => {
   const [keyword, setKeyword] = useState<string>('');
   const { changeMeta } = useLayout();
-  const { handleChange, handleSubmit } = useForm({
+  const { handleChange, handleSubmit } = useSearchForm({
     initialValues: {
       search: '',
     },
@@ -34,6 +34,7 @@ const SearchPage = () => {
       left: '',
       right: '',
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

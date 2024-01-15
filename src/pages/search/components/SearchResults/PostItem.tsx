@@ -5,7 +5,6 @@ import ExtraInfo from '~/common/components/ExtraInfo';
 import Group from '~/common/components/Group';
 import Image from '~/common/components/Image';
 import Text from '~/common/components/Text';
-import { CHANNEL_NAME } from '~/constants/channelName';
 import { elapsedTime } from '~/utils/time';
 
 interface PostItemProps {
@@ -48,7 +47,7 @@ const PostItem = ({ post }: PostItemProps) => {
             </ExtraInfo>
             <ExtraInfo>
               <span className="text-base-small">
-                {CHANNEL_NAME[(post.channel as Channel).name]}
+                {(post.channel as Channel).name}
               </span>
             </ExtraInfo>
           </div>

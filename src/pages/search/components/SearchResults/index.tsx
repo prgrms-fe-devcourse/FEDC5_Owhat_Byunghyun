@@ -52,32 +52,33 @@ const SearchResults = ({ mode, keyword }: SearchResultsProps) => {
 
       setPostResults(filteredSearchResults as Post[]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchResults]);
+
+  if (isLoading) {
+    return (
+      <Group spacing="sm" align="center" position="center" className="h-60">
+        <Loading />
+      </Group>
+    );
+  }
 
   return (
     <div className="mb-xlarge">
-      {isLoading ? (
-        <Group spacing="sm" align="center" position="center" className="h-60">
-          <Loading />
-        </Group>
-      ) : (
-        <>
-          <Text className="h-6 pl-small text-base-small">{`검색 결과 ${
-            mode === 'all' ? postResults.length : searchResults.length
-          }건`}</Text>
-          <div className="scroll-none h-[calc(100vh-250px)] overflow-y-auto">
-            {mode === 'all'
-              ? postResults &&
-                postResults.map((item: Post) => (
-                  <PostItem post={item} key={item._id} />
-                ))
-              : searchResults &&
-                (searchResults as User[]).map((item: User) => (
-                  <UserItem user={item} key={item._id} />
-                ))}
-          </div>
-        </>
-      )}
+      <Text className="h-6 pl-small text-base-small">{`검색 결과 ${
+        mode === 'all' ? postResults.length : searchResults.length
+      }건`}</Text>
+      <div className="scroll-none h-[calc(100vh-250px)] overflow-y-auto">
+        {mode === 'all'
+          ? postResults &&
+            postResults.map((item: Post) => (
+              <PostItem post={item} key={item._id} />
+            ))
+          : searchResults &&
+            (searchResults as User[]).map((item: User) => (
+              <UserItem user={item} key={item._id} />
+            ))}
+      </div>
     </div>
   );
 };

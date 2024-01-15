@@ -11,7 +11,11 @@ interface useFormParams {
   validate: ValidateFn;
 }
 
-const useForm = ({ initialValues = {}, onSubmit, validate }: useFormParams) => {
+const useSearchForm = ({
+  initialValues = {},
+  onSubmit,
+  validate,
+}: useFormParams) => {
   const [values, setValues] = useState<ValuesObj>(initialValues);
   const [errors, setErrors] = useState<ValuesObj>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -45,4 +49,4 @@ const useForm = ({ initialValues = {}, onSubmit, validate }: useFormParams) => {
   };
 };
 
-export default useForm;
+export default useSearchForm;
