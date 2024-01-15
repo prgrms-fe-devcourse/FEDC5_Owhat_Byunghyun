@@ -7,3 +7,9 @@ export const getAuthUser = async () => {
 
   return data;
 };
+
+export const getUser = async (userId: string) => {
+  const { data } = await instance.get<User>(`/users/${userId}`);
+
+  return data;
+};
