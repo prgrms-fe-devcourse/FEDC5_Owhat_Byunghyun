@@ -7,10 +7,11 @@ interface UseDragScrollParams {
 
 interface UseDragScrollResult {
   handleMouseDown: (e: React.MouseEvent) => void;
-  handleMouseMove: (e: React.MouseEvent) => void;
+  handleMouseMove: (e: React.MouseEvent | React.TouchEvent) => void;
   handleMouseUp: () => void;
   buttonScrollLeft: () => void;
   buttonScrollRight: () => void;
+  handleTouchDown: (e: React.TouchEvent) => void;
   isLeftButtonActive: boolean;
   isRightButtonActive: boolean;
 }
@@ -31,23 +32,37 @@ const useDragScroll = ({
     isRightButtonActive: true,
   });
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
     if (!containerRef.current) return;
     e.preventDefault();
     e.stopPropagation();
 
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
     const { offsetLeft, scrollLeft } = containerRef.current;
 
     setIsDragging(true);
-    setStartX(e.pageX - offsetLeft);
+    setStartX(clientX - offsetLeft);
+    setScrollLeft(scrollLeft || 0);
+  };
+  const handleTouchDown = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!containerRef.current) return;
+    e.stopPropagation();
+
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const { offsetLeft, scrollLeft } = containerRef.current;
+
+    setIsDragging(true);
+    setStartX(clientX - offsetLeft);
     setScrollLeft(scrollLeft || 0);
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
     if (!isDragging || !containerRef.current) return;
+
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
     const { offsetLeft } = containerRef.current;
 
-    const x = e.pageX - offsetLeft;
+    const x = clientX - offsetLeft;
     const walk = (x - startX) * 2;
     containerRef.current.scrollLeft = scrollLeft - walk;
   };
@@ -102,6 +117,7 @@ const useDragScroll = ({
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
+    handleTouchDown,
   };
 };
 
