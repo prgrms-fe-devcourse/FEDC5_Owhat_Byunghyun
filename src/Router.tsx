@@ -8,6 +8,7 @@ import {
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import RegisterPage from './pages/register';
+import SearchPage from './pages/search';
 import { LayoutWrapper } from './routes';
 
 const router = createBrowserRouter(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
         }
       />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/search" element={<SearchPage />} />
     </Route>,
   ),
 );
