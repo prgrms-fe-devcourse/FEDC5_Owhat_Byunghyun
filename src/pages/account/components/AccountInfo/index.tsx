@@ -16,7 +16,7 @@ interface AccountInfoProps {
 
 const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
   const {
-    _id: userId,
+    _id,
     fullName,
     coverImage,
     image: profileImage,
@@ -42,7 +42,12 @@ const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
           <Link to={'/account-edit'}>내 정보 변경</Link>
         </Button>
       ) : authUser ? (
-        <FollowButton userId={userId} followers={followers as Follow[]} />
+        <FollowButton
+          accountId={_id}
+          authUserId={authUser._id}
+          followers={followers as Follow[]}
+          following={following as Follow[]}
+        />
       ) : (
         <Button
           className="mt-small"

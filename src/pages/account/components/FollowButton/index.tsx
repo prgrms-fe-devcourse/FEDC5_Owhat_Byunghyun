@@ -13,21 +13,28 @@ import { followButtonVariants } from './FollowButton.variants';
 interface FollowButtonProps
   extends VariantProps<typeof followButtonVariants>,
     ComponentProps<'button'> {
-  userId: string;
+  accountId: string;
+  authUserId: string;
   followers: Follow[];
+  following: Follow[];
   styleType?: 'default' | 'small';
 }
 
 const FollowButton = ({
-  userId,
+  accountId,
+  authUserId,
   followers = [],
   styleType = 'default',
 }: FollowButtonProps) => {
-  const initialFollowing = followers.some(({ user }) => user === userId);
+  const initialFollowing = followers.some(
+    ({ follower }) => follower === authUserId,
+  );
   const [isFollowingUpdate, setIsFollowingUpdate] = useState(initialFollowing);
   const [isHover, setIsHover] = useState(false);
 
-  const followingUser = followers.find(({ user }) => user === userId);
+  const followingUser = followers.find(
+    ({ follower }) => follower === authUserId,
+  );
 
   const follow = useFollow();
   const unfollow = useUnfollow();
@@ -49,10 +56,10 @@ const FollowButton = ({
 
   return (
     <Button
-      id={initialFollowing ? followingUser?._id : userId}
+      id={accountId}
       type="button"
       onClick={
-        initialFollowing ? handleUnfollowButtonClick : handleFollowButtonClick
+        isFollowingUpdate ? handleUnfollowButtonClick : handleFollowButtonClick
       }
       onMouseEnter={() => {
         initialFollowing && setIsHover(true);
