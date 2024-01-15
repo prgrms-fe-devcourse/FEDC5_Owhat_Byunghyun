@@ -14,3 +14,7 @@ export const getUserList = async () => {
 export const postJoinUser = async (userData: RegisterData) => {
   return await instance.post('/signup', userData);
 };
+
+export const postLogout = async () => {
+  await instance.post('/logout');
+};

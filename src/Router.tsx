@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+
 import AccountPage from './pages/account';
 import AccountEditPage from './pages/accountEdit';
 import FollowPage from './pages/follow';
@@ -53,8 +54,15 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-      <Route path="/account-edit" element={<AccountEditPage />} />
       <Route path="/update-password" element={<UpdatePasswordPage />} />
+      <Route
+        path="/account-edit"
+        element={
+          <Suspense fallback={<div>로딩중...</div>}>
+            <AccountEditPage />
+          </Suspense>
+        }
+      />
       <Route path="/message" element={<MessagePage />} />
       <Route element={<AuthUserRouter />}>
         <Route path="/login" element={<LoginPage />} />
