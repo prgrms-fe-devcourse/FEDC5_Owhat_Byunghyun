@@ -13,6 +13,9 @@ const useLikeFromPost = ({ remove }: { remove: boolean }) => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.POST_LIST],
       });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.POST_DETAIL],
+      });
     },
   });
 
