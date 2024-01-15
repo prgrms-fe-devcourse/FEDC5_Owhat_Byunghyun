@@ -10,11 +10,7 @@ interface PostsListProps {
 
 const PostsList = ({ userPosts, isMyAccount }: PostsListProps) => {
   return (
-    <Group
-      spacing={'md'}
-      direction={'columns'}
-      className="mt border-t border-t-primary-lighter pt"
-    >
+    <ul className="mt flex flex-col border-t border-t-primary-lighter pt">
       {userPosts.map(
         ({
           _id,
@@ -57,7 +53,7 @@ const PostsList = ({ userPosts, isMyAccount }: PostsListProps) => {
           );
         },
       )}
-    </Group>
+    </ul>
   );
 };
 

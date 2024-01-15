@@ -6,8 +6,6 @@ import Group from '~/common/components/Group';
 import Tab from '~/common/components/Tab';
 import useLayout from '~/common/hooks/useLayout';
 
-import FollowList from './components/FollowList';
-
 interface FollowLocationState {
   followers: Follow[];
   following: Follow[];
@@ -26,7 +24,7 @@ const FollowPage = () => {
     initialState: { initialFollowData, initialIsFollowing },
   }: FollowLocationState = location.state;
 
-  const [followData, setFollowData] = useState<Follow[]>(initialFollowData);
+  const [, setFollowData] = useState<Follow[]>(initialFollowData);
   const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
 
   useEffect(() => {
@@ -48,10 +46,6 @@ const FollowPage = () => {
         <Tab.Item title="팔로워" label="팔로워"></Tab.Item>
         <Tab.Item title="팔로잉" label="팔로잉"></Tab.Item>
       </Tab>
-      <FollowList
-        followData={followData}
-        isFollowing={isFollowing}
-      ></FollowList>
     </Group>
   );
 };

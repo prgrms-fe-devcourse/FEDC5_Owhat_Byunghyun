@@ -43,12 +43,23 @@ export default function AccountPage() {
   }, [isMyAccount]);
 
   return (
-    <Group spacing={10} direction={'columns'} className="py" grow>
-      <AccountInfo user={user} authUser={authUser} isMyAccount={isMyAccount} />
-      <AccountPostsList
-        currentUserId={user._id ?? userId}
-        isMyAccount={isMyAccount}
-      />
-    </Group>
+    <section className="flex overflow-hidden">
+      <Group
+        spacing={10}
+        direction={'columns'}
+        className="scroll-none mt flex h-full flex-col overflow-y-auto py"
+        grow
+      >
+        <AccountInfo
+          user={user}
+          authUser={authUser}
+          isMyAccount={isMyAccount}
+        />
+        <AccountPostsList
+          currentUserId={user._id ?? userId}
+          isMyAccount={isMyAccount}
+        />
+      </Group>
+    </section>
   );
 }
