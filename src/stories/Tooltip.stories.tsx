@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import Button from '~/common/components/Button';
 import Icon from '~/common/components/Icon';
 import Tooltip from '~/common/components/Tooltip';
 
@@ -32,9 +33,9 @@ export const Default: StoryObj<typeof Tooltip> = {
   render: args => (
     <div className="ml-32 mt-32">
       <Tooltip {...args}>
-        <div>
-          <p>댓글 수정하기</p>
-          <p>댓글 삭제하기</p>
+        <div className="flex w-[50px] flex-col">
+          <Button className="z-20">댓글 수정하기</Button>
+          <Button className="z-20">댓글 삭제하기</Button>
         </div>
       </Tooltip>
     </div>
@@ -47,8 +48,8 @@ export const SmartTooltip: StoryObj<typeof Tooltip> = {
       <div>
         <Tooltip {...args}>
           <div>
-            <p>댓글 수정하기</p>
-            <p>댓글 삭제하기</p>
+            <Button>댓글 수정하기</Button>
+            <Button>댓글 삭제하기</Button>
           </div>
         </Tooltip>
       </div>
