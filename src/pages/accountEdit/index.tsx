@@ -6,6 +6,7 @@ import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
+import { useLogout } from '~/common/hooks/mutations/useLogout';
 import useSuspenseAuthUser from '~/common/hooks/queries/useSuspenseAuthUser';
 import useLayout from '~/common/hooks/useLayout';
 import { cn } from '~/utils/cn';
@@ -18,9 +19,12 @@ const AccountEditPage = () => {
   // 로컬스토리지에 토큰이 있다는 전제 하에만 미리보기가 가능합니다.
   const navigate = useNavigate();
   const { changeMeta } = useLayout();
+
   const [submitPossible, setSubmitPossible] = useState(false);
   const { authUser, isLoading } = useSuspenseAuthUser();
   const { _id, fullName, image, coverImage } = authUser;
+
+  const { logout } = useLogout();
 
   useEffect(() => {
     if (!isLoading) return;
@@ -82,6 +86,14 @@ const AccountEditPage = () => {
           <Link to={'/update-password'} state={_id}>
             내 비밀번호 변경
           </Link>
+        </Text>
+        <Text
+          className="cursor-pointer font-thin text-error hover:underline"
+          onClick={() => {
+            logout();
+          }}
+        >
+          로그아웃
         </Text>
         <div className="fixed bottom-[56px] left-0 p">
           <Button
