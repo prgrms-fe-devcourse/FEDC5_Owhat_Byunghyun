@@ -9,8 +9,7 @@ import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
-
-import { LayoutWrapper } from './routes';
+import { AuthUserRouter, LayoutWrapper } from './routes';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,9 +22,10 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
+      <Route element={<AuthUserRouter />}>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Route>
     </Route>,
   ),
 );

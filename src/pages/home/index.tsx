@@ -22,7 +22,7 @@ export default function HomePage() {
   useEffect(() => {
     changeBottomNavigator(true);
     changeMeta({
-      title: '오왓!',
+      title: 'Owhat!',
       left: <></>,
       right: '',
     });
