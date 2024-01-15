@@ -29,9 +29,9 @@ const FeedItem = ({ feed }: FeedItemProps) => {
           comments={feed.comments as string[]}
           likes={feed.likes as string[]}
           image={feed.image as string}
-          handleLike={() => {
-            likeMutation.mutate(likeInfo ? (likeInfo as Like)._id : feed._id);
-          }}
+          handleLike={() =>
+            likeMutation.mutate(likeInfo ? (likeInfo as Like)._id : feed._id)
+          }
         />
       </Link>
     </li>
