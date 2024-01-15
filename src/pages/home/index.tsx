@@ -24,7 +24,7 @@ export default function HomePage() {
     changeMeta({
       title: 'Owhat!',
       left: <></>,
-      right: '',
+      right: <></>,
     });
   }, []);
 
