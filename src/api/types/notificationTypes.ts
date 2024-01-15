@@ -35,8 +35,8 @@ export interface Message {
 }
 
 export interface NotificationRequestBody {
-  type: 'COMMENT' | 'FOLLOW' | 'LIKE' | 'MESSAGE';
-  notificationId: string;
+  notificationType: 'COMMENT' | 'FOLLOW' | 'LIKE' | 'MESSAGE';
+  notificationTypeId: string;
   userId: string;
   postId: string | null;
 }
