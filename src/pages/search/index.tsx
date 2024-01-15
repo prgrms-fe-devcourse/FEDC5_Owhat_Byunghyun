@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import ArrowBackButton from '~/common/components/ArrowBackButton/index.tsx';
 import Tab from '~/common/components/Tab';
 import useLayout from '~/common/hooks/useLayout.ts';
 
@@ -31,7 +32,7 @@ const SearchPage = () => {
   useEffect(() => {
     changeMeta({
       title: '검색',
-      left: '',
+      left: <ArrowBackButton />,
       right: '',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { User } from '~/api/types/userTypes';
 import Avatar from '~/common/components/Avatar';
 import Divider from '~/common/components/Divider';
@@ -10,9 +12,16 @@ interface UserItemProps {
 }
 
 const UserItem = ({ user }: UserItemProps) => {
+  const navigate = useNavigate();
+
   return (
     <>
-      <Group spacing="md" align="center" className="h-32 w-full p-small">
+      <Group
+        spacing="md"
+        align="center"
+        className="my h-28 w-full cursor-pointer rounded p-small hover:bg-gray-200"
+        onClick={() => navigate(`/account/${user._id}`)}
+      >
         {user.image ? <Avatar src={user.image} /> : <Avatar />}
         <Group direction="columns" spacing="sm" position="center">
           <Text strong>{user.fullName}</Text>

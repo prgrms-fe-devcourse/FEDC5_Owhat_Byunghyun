@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Channel, Post } from '~/api/types/postTypes';
 import { User } from '~/api/types/userTypes';
 import Divider from '~/common/components/Divider';
@@ -12,6 +14,7 @@ interface PostItemProps {
 }
 
 const PostItem = ({ post }: PostItemProps) => {
+  const navigate = useNavigate();
   const postObj = { title: post.title, content: '내용 없음' };
 
   if (post.title.includes('content')) {
@@ -27,7 +30,8 @@ const PostItem = ({ post }: PostItemProps) => {
         spacing="md"
         align="center"
         position="apart"
-        className="h-32 w-full p-small"
+        className="my h-32 w-full cursor-pointer rounded p-small hover:bg-gray-200"
+        onClick={() => navigate(`/posts/${post._id}`)}
       >
         <Group direction="columns" spacing="sm" className="w-8/12">
           <Text strong className="w-full truncate">
@@ -45,7 +49,7 @@ const PostItem = ({ post }: PostItemProps) => {
                 {elapsedTime(post.createdAt)}
               </span>
             </ExtraInfo>
-            <ExtraInfo>
+            <ExtraInfo className="pb">
               <span className="text-base-small">
                 {(post.channel as Channel).name}
               </span>
