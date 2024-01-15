@@ -63,6 +63,8 @@ export default {
       },
       animation: {
         beat: 'beat ease 0.3s forwards',
+        move: 'move ease 0.4s forwards',
+        progress: 'progress linear forwards 0.4s',
       },
     },
   },
