@@ -5,7 +5,6 @@ import {
   Route,
 } from 'react-router-dom';
 
-
 import AccountPage from './pages/account';
 import AccountEditPage from './pages/accountEdit';
 import FollowPage from './pages/follow';
@@ -13,10 +12,10 @@ import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import LoginPage from './pages/login';
 import MessagePage from './pages/message';
+import MessageSendPage from './pages/messageSend';
 import RegisterPage from './pages/register';
 import UpdatePasswordPage from './pages/updatePassword';
-import { AuthUserRouter, LayoutWrapper } from './routes';
-
+import { LayoutWrapper, PublicRouter } from './routes';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -64,11 +63,12 @@ const router = createBrowserRouter(
         }
       />
       <Route path="/message" element={<MessagePage />} />
-      <Route element={<AuthUserRouter />}>
+      <Route element={<PublicRouter />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>
 
+      <Route path="/message/:userId" element={<MessageSendPage />} />
     </Route>,
   ),
 );
