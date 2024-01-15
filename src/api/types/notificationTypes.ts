@@ -33,3 +33,10 @@ export interface Message {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface NotificationRequestBody {
+  type: 'COMMENT' | 'FOLLOW' | 'LIKE' | 'MESSAGE';
+  notificationId: string;
+  userId: string;
+  postId: string | null;
+}

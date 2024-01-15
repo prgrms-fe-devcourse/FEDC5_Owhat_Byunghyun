@@ -13,6 +13,7 @@ import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import LoginPage from './pages/login';
 import MessagePage from './pages/message';
+import NotificationPage from './pages/notification';
 import RegisterPage from './pages/register';
 import SearchPage from './pages/search';
 import UpdatePasswordPage from './pages/updatePassword';
@@ -64,6 +65,7 @@ const router = createBrowserRouter(
       />
       <Route path="/message" element={<MessagePage />} />
       <Route path="/search" element={<SearchPage />} />
+      <Route path="/notification" element={<NotificationPage />} />
       <Route element={<AuthUserRouter />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
