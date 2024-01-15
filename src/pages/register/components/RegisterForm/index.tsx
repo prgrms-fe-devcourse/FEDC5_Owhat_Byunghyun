@@ -67,7 +67,7 @@ const RegisterForm = ({
   }, [values.email, setEmailCheckMessage, setIsEmailDuplicate]);
 
   useEffect(() => {
-    onRegisterCompleted(isCompleted && isEmailDuplicate);
+    onRegisterCompleted(isCompleted && !isEmailDuplicate);
   }, [isCompleted, isEmailDuplicate, onRegisterCompleted]);
 
   const DuplicateButton = () => (
@@ -118,7 +118,7 @@ const RegisterForm = ({
           onChange={handleChange}
           value={values.username}
           isValid={isValid.username}
-          errorMessage="이름을 3글자 이상 공백없이 입력해주세요."
+          errorMessage="이름을 3~8 글자로 공백없이 입력해주세요."
         />
         <FormField
           type="password"
