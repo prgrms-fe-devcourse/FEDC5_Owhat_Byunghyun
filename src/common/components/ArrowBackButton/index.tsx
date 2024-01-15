@@ -1,15 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 
+import { cn } from '~/utils/cn';
+
 import Button from '../Button';
 import Icon from '../Icon';
 
-const ArrowBackButton = () => {
+interface ArrowButtonProps {
+  className?: string;
+}
+
+const ArrowBackButton = ({ className }: ArrowButtonProps) => {
   const navigate = useNavigate();
   return (
-    <Button styleType="ghost">
+    <Button styleType="ghost" className={cn('p-0', className)}>
       <Icon
         id="arrow-back"
-        className=" fill-gray-400 hover:fill-primary"
+        className="fill-gray-400 hover:fill-primary"
         size={18}
         onClick={() => navigate(-1)}
       />
