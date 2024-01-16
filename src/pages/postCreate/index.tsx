@@ -12,7 +12,7 @@ import useLayout from '~/common/hooks/useLayout';
 
 type ChannelNameType = string | undefined;
 
-export default function CreatePostPage() {
+export default function PostCreatePage() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const channelId = searchParams.get('channelId');

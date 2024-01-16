@@ -10,7 +10,7 @@ export default function CreateButton({ channelId }: CreateButtonProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/createPost?channelId=${channelId}`);
+    navigate(`/postCreate?channelId=${channelId}`);
   };
   return (
     <button

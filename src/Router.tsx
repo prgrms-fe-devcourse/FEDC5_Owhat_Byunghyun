@@ -7,7 +7,7 @@ import {
 
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
-import CreatePostPage from './pages/post';
+import PostCreatePage from './pages/postCreate';
 import RegisterPage from './pages/register';
 import { LayoutWrapper } from './routes';
 
@@ -23,7 +23,7 @@ const router = createBrowserRouter(
         }
       />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/createPost" element={<CreatePostPage />} />
+      <Route path="/postCreate" element={<PostCreatePage />} />
     </Route>,
   ),
 );
