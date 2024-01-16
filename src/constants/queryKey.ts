@@ -6,5 +6,4 @@ export const QUERY_KEY = {
   NOTIFICATION_LIST: 'notificationList',
   SEARCH: 'search',
   MESSAGE: 'message',
-  POST_DETAIL: 'postDetail',
 };
