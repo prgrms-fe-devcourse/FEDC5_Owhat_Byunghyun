@@ -4,6 +4,7 @@ import { ComponentProps, useState } from 'react';
 import { Follow } from '~/api/types/userTypes';
 import Button from '~/common/components/Button';
 import Text from '~/common/components/Text';
+import Toast from '~/common/components/Toast';
 import { useFollow } from '~/common/hooks/mutations/useFollow';
 import { useUnfollow } from '~/common/hooks/mutations/useUnfollow';
 import { cn } from '~/utils/cn';
@@ -42,6 +43,8 @@ const FollowButton = ({
   const handleFollowButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>,
   ) => {
+    if (!authUserId) return Toast.show('로그인이 필요한 서비스입니다.');
+
     setIsHover(false);
 
     follow.mutate({ userId: event.currentTarget.id });

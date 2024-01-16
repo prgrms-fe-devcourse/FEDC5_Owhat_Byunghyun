@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Follow, User } from '~/api/types/userTypes';
 import Button from '~/common/components/Button';
 import Text from '~/common/components/Text';
+import Toast from '~/common/components/Toast';
 
 import AccountExtraInfo from '../AccountExtraInfo';
 import AccountImages from '../AccountImages';
@@ -53,7 +54,7 @@ const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
       ) : (
         <Button
           className="mt-small"
-          onClick={() => alert('로그인이 필요한 서비스입니다.')}
+          onClick={() => Toast.show('로그인이 필요한 서비스입니다.')}
         >
           팔로우
         </Button>
