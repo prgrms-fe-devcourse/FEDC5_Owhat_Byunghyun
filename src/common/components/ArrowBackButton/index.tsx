@@ -12,12 +12,15 @@ interface ArrowButtonProps {
 const ArrowBackButton = ({ className }: ArrowButtonProps) => {
   const navigate = useNavigate();
   return (
-    <Button styleType="ghost" className={cn('p-0', className)}>
+    <Button
+      styleType="ghost"
+      className={cn('p-0', className)}
+      onClick={() => navigate(-1)}
+    >
       <Icon
         id="arrow-back"
         className="fill-gray-400 hover:fill-primary"
         size={18}
-        onClick={() => navigate(-1)}
       />
     </Button>
   );
