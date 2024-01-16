@@ -1,24 +1,23 @@
+import { PostResponse } from '~/api/types/postTypes';
 import Group from '~/common/components/Group';
-import { UserPost } from '~/common/hooks/queries/useUserPosts';
 import FeedItem from '~/pages/home/components/FeedItem';
 
 interface PostsListProps {
-  userPosts: UserPost[];
-  isMyAccount: boolean;
+  userPosts: PostResponse[];
 }
 
 const PostsList = ({ userPosts = [] }: PostsListProps) => {
   return (
     <ul className="mt flex flex-col border-t border-t-primary-lighter pt">
-      {userPosts.map(feed => {
+      {userPosts.map(post => {
         return (
           <Group
-            key={feed._id}
+            key={post._id}
             spacing={'md'}
             direction={'columns'}
             className="w-full p"
           >
-            <FeedItem feed={feed} />
+            <FeedItem feed={post} />
           </Group>
         );
       })}

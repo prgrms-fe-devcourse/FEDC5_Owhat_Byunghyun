@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ArrowBackButton from '~/common/components/ArrowBackButton';
 import Button from '~/common/components/Button';
@@ -9,6 +9,7 @@ import Text from '~/common/components/Text';
 import { useLogout } from '~/common/hooks/mutations/useLogout';
 import useSuspenseAuthUser from '~/common/hooks/queries/useSuspenseAuthUser';
 import useLayout from '~/common/hooks/useLayout';
+import { ERROR } from '~/constants/message';
 import { cn } from '~/utils/cn';
 import { isValidUsername } from '~/utils/isValid';
 
@@ -16,23 +17,15 @@ import EditAccountImages from './components/EditAccountImages';
 import { useUpdateAccountForm } from './hooks/useUpdateAccountForm';
 
 const AccountEditPage = () => {
-  // 로컬스토리지에 토큰이 있다는 전제 하에만 미리보기가 가능합니다.
-  const navigate = useNavigate();
   const { changeMeta } = useLayout();
 
   const [submitPossible, setSubmitPossible] = useState(false);
-  const { authUser, isLoading } = useSuspenseAuthUser();
+  const { authUser } = useSuspenseAuthUser();
   const { _id, fullName, image, coverImage } = authUser;
 
   const { logout } = useLogout();
 
   useEffect(() => {
-    if (!isLoading) return;
-
-    if (!isLoading && !authUser) {
-      navigate('/login');
-    }
-
     changeMeta({
       title: '프로필 수정',
       left: <ArrowBackButton />,
@@ -58,7 +51,7 @@ const AccountEditPage = () => {
   );
 
   return (
-    <form className="flex flex-col gap-large px-small">
+    <form className="flex flex-col gap-large ">
       <EditAccountImages
         image={image}
         coverImage={coverImage}
@@ -73,18 +66,17 @@ const AccountEditPage = () => {
             e.key === 'Enter' && e.preventDefault();
           }}
           defaultValue={fullName}
-          className="placeholder:text-sm placeholder:text-gray-400"
+          className="py-xsmall placeholder:text-sm placeholder:text-gray-400"
           placeholder="새로운 닉네임을 입력해주세요."
           onChange={handleChangeInput}
         />
         <Text
           className={cn(
             isUserNameValid ? 'hidden' : '',
-            'text-right text-xs text-error',
+            'text-balance text-right text-xs text-error',
           )}
         >
-          공백,특수문자 제외 3~8자 내로 입력해주세요.
-          <br /> (한글은 자음과 모음 조합으로 입력해주세요.)
+          {ERROR.NAME_INVALID}
         </Text>
         <Text className="mt-large font-thin text-primary">
           <Link to={'/update-password'} state={_id} className="hover:underline">

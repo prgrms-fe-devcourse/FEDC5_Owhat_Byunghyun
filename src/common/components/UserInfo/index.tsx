@@ -1,5 +1,9 @@
+import { ComponentProps } from 'react';
 import { Link } from 'react-router-dom';
 
+import { PostResponse } from '~/api/types/postTypes';
+import { User } from '~/api/types/userTypes';
+import { cn } from '~/utils/cn';
 import { elapsedTime } from '~/utils/time';
 
 import Avatar from '../Avatar';
@@ -7,38 +11,57 @@ import ExtraInfo from '../ExtraInfo';
 import Group from '../Group';
 import Text from '../Text';
 
-interface UserInfoProps {
-  _id: string;
-  profileImage?: string;
-  author: string;
-  channel?: string;
-  createdAt: string;
-  isMyAccount?: boolean;
+type textSize = 'xsmall' | 'small' | 'base' | 'large' | 'xlarge' | '2xlarge';
+
+interface UserInfoProps extends ComponentProps<'div'> {
+  post: PostResponse;
+  authUser: User;
+  authorTextSize?: textSize;
+  extraInfoTextSize?: textSize;
+  betweenGap?: number;
+  avarTarClassName?: ComponentProps<typeof Avatar>['className'];
 }
 
 const UserInfo = ({
-  _id,
-  profileImage,
-  author,
-  channel,
-  createdAt,
-  isMyAccount = false,
+  post,
+  authUser,
+  avarTarClassName,
+  authorTextSize = 'small',
+  extraInfoTextSize = 'xsmall',
+  betweenGap = 14,
 }: UserInfoProps) => {
+  const { author, channel, createdAt } = post;
+  const { _id: authUserId } = authUser;
+
   return (
-    <Group spacing={'md'} align={'center'}>
+    <Group spacing={betweenGap} align={'center'}>
       <Link
-        to={isMyAccount ? '/account' : `/account/${_id}`}
+        to={authUserId === author._id ? '/account' : `/account/${author._id}`}
         className="flex items-center"
       >
-        <Avatar src={profileImage} size="auto" className="h-14 w-14"></Avatar>
+        <Avatar
+          src={author.image}
+          size="full"
+          className={cn('h-9 w-9', avarTarClassName)}
+        />
       </Link>
-      <Group spacing={2} direction={'columns'}>
-        <Link to={isMyAccount ? '/account' : `/account/${_id}`}>
-          <Text strong>{author}</Text>
+      <Group spacing={0} direction={'columns'}>
+        <Link
+          to={authUserId === author._id ? '/account' : `/account/${author._id}`}
+        >
+          <Text size={authorTextSize} strong>
+            {author.fullName}
+          </Text>
         </Link>
         <ExtraInfo>
-          {channel && <Text elementType="span">{channel}</Text>}
-          <Text elementType="span">{elapsedTime(createdAt)}</Text>
+          {channel && (
+            <Text size={extraInfoTextSize} elementType="span">
+              {channel.name}
+            </Text>
+          )}
+          <Text size={extraInfoTextSize} elementType="span">
+            {elapsedTime(createdAt)}
+          </Text>
         </ExtraInfo>
       </Group>
     </Group>

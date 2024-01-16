@@ -41,20 +41,27 @@ const FollowPage = () => {
   }, [isFollowing]);
 
   return (
-    <Group spacing={0} direction={'columns'} grow>
-      <Tab
-        activeLabel={isFollowing ? '팔로잉' : '팔로워'}
-        onClick={() => setIsFollowing(prev => !prev)}
+    <section className="flex flex-col overflow-hidden">
+      <Group
+        spacing={0}
+        direction={'columns'}
+        grow
+        className="scroll-none flex h-full w-full flex-col overflow-y-auto pb"
       >
-        <Tab.Item title="팔로워" label="팔로워"></Tab.Item>
-        <Tab.Item title="팔로잉" label="팔로잉"></Tab.Item>
-      </Tab>
-      {isFollowing ? (
-        <FollowingList following={followData} />
-      ) : (
-        <FollowersList followers={followData} />
-      )}
-    </Group>
+        <Tab
+          activeLabel={isFollowing ? '팔로잉' : '팔로워'}
+          onClick={() => setIsFollowing(prev => !prev)}
+        >
+          <Tab.Item title="팔로워" label="팔로워"></Tab.Item>
+          <Tab.Item title="팔로잉" label="팔로잉"></Tab.Item>
+        </Tab>
+        {isFollowing ? (
+          <FollowingList following={followData} />
+        ) : (
+          <FollowersList followers={followData} />
+        )}
+      </Group>
+    </section>
   );
 };
 

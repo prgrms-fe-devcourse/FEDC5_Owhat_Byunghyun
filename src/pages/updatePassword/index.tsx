@@ -1,5 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FormEvent, useEffect } from 'react';
 
 import ArrowBackButton from '~/common/components/ArrowBackButton';
 import Button from '~/common/components/Button';
@@ -8,24 +7,19 @@ import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
 import { useUpdatePassword } from '~/common/hooks/mutations/useUpdatePassword';
 import useSuspenseAuthUser from '~/common/hooks/queries/useSuspenseAuthUser';
+import useForm from '~/common/hooks/useForm';
 import useLayout from '~/common/hooks/useLayout';
-
-import { usePasswordValidation } from './usePasswordValidation';
+import { ERROR } from '~/constants/message';
+import { isValidPassword, isValidPasswordMatch } from '~/utils/isValid';
 
 const UpdatePasswordPage = () => {
   const { authUser } = useSuspenseAuthUser();
 
-  const navigate = useNavigate();
-  const { updatePassword } = useUpdatePassword();
+  const { updatePassword, isPending } = useUpdatePassword();
 
   const { changeMeta } = useLayout();
 
   useEffect(() => {
-    if (!authUser) {
-      navigate('/login');
-      alert('로그인이 필요합니다.');
-    }
-
     changeMeta({
       title: '비밀번호 변경',
       left: <ArrowBackButton />,
@@ -33,27 +27,30 @@ const UpdatePasswordPage = () => {
     });
   }, [authUser]);
 
-  const [isComplete, setIsComplete] = useState(false);
-
-  const onPasswordCompleted = (value: boolean) => {
-    setIsComplete(value);
-  };
-
-  const {
-    password,
-    confirmPassword,
-    isPasswordMatch,
-    isPasswordValid,
-    handlePasswordChange,
-    handleConfirmPasswordChange,
-  } = usePasswordValidation({
-    onPasswordCompleted,
+  const { values, isValid, isCompleted, handleChange } = useForm({
+    initialValues: {
+      password: '',
+      confirmPassword: '',
+    },
+    isValidinitialValues: {
+      password: false,
+      confirmPassword: false,
+    },
+    validate: {
+      password: value => isValidPassword(value),
+      confirmPassword: value =>
+        isValidPasswordMatch({
+          value: values.password,
+          newPassword: value,
+        }),
+    },
   });
 
-  const handleUpdatePassword = () => {
+  const { password, confirmPassword } = values;
+
+  const handleUpdatePassword = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     updatePassword(password);
-    // TODO: accountpage가 main 브랜치로 merge되면 주석해제
-    // navigate('/account');
   };
 
   return (
@@ -64,37 +61,29 @@ const UpdatePasswordPage = () => {
       <Group spacing={'sm'} direction={'columns'} className="mt-large" grow>
         <Text size={'small'}>새로운 비밀번호</Text>
         <Input
-          value={password}
-          onChange={e => handlePasswordChange(e.target.value)}
           type="password"
+          name="password"
+          value={password ?? ''}
+          onChange={handleChange}
           placeholder="새로운 비밀번호를 입력해주세요."
         />
-        {!isPasswordValid && (
+        {password && !isValid.password && (
           <Text className="text-wrap text-xs text-error">
-            비밀번호는 8자 이상이어야 하며, 영문 대/소문자, 숫자, 특수문자를
-            포함해야 합니다.
+            {ERROR.PASSWORD_INVAILD}
           </Text>
         )}
         <Input
-          value={confirmPassword}
-          onChange={e => handleConfirmPasswordChange(e.target.value)}
           type="password"
-          placeholder="비밀번호를 다시 확인해주세요."
+          name="confirmPassword"
+          value={confirmPassword ?? ''}
+          onChange={handleChange}
+          placeholder="비밀번호를 다시 한번 입력해주세요."
         />
-        {!isPasswordMatch && (
-          <Text className="text-xs text-error">
-            비밀번호가 일치하지 않습니다.
-          </Text>
+        {confirmPassword && !isValid.confirmPassword && (
+          <Text className="text-xs text-error">{ERROR.PASSWORD_NOT_MATCH}</Text>
         )}
         <div className="fixed bottom-[56px] left-0 p">
-          <Button
-            type="submit"
-            fullwidth
-            disabled={!isComplete}
-            onSubmit={(event: FormEvent<HTMLButtonElement>) => {
-              event.preventDefault();
-            }}
-          >
+          <Button loading={isPending} fullwidth disabled={!isCompleted}>
             변경하기
           </Button>
         </div>

@@ -6,8 +6,11 @@ import {
 } from 'react-router-dom';
 
 import AccountPage from './pages/account';
+import AccountSkeleton from './pages/account/components/AccountSkeleton';
 import AccountEditPage from './pages/accountEdit';
+import AccountEditSkeleton from './pages/accountEdit/components/AccountEditSkeleton';
 import FollowPage from './pages/follow';
+import FollowSkeleton from './pages/follow/components/FollowSkeleton';
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import LoginPage from './pages/login';
@@ -16,7 +19,7 @@ import NotificationPage from './pages/notification';
 import RegisterPage from './pages/register';
 import SearchPage from './pages/search';
 import UpdatePasswordPage from './pages/updatePassword';
-import { AuthUserRouter, LayoutWrapper } from './routes';
+import { AuthUserRouter, LayoutWrapper, PrivateRouter } from './routes';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,18 +32,29 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-      <Route
-        path="/account"
-        element={
-          <Suspense fallback={<div>로딩중...</div>}>
-            <AccountPage />
-          </Suspense>
-        }
-      />
+      <Route element={<PrivateRouter />}>
+        <Route
+          path="/account"
+          element={
+            <Suspense fallback={<AccountSkeleton />}>
+              <AccountPage />
+            </Suspense>
+          }
+        />
+        <Route path="/update-password" element={<UpdatePasswordPage />} />
+        <Route
+          path="/account-edit"
+          element={
+            <Suspense fallback={<AccountEditSkeleton />}>
+              <AccountEditPage />
+            </Suspense>
+          }
+        />
+      </Route>
       <Route
         path="/account/:userId"
         element={
-          <Suspense fallback={<div>로딩중...</div>}>
+          <Suspense fallback={<AccountSkeleton />}>
             <AccountPage />
           </Suspense>
         }
@@ -48,20 +62,12 @@ const router = createBrowserRouter(
       <Route
         path="/follow"
         element={
-          <Suspense fallback={<div>로딩중...</div>}>
+          <Suspense fallback={<FollowSkeleton />}>
             <FollowPage />
           </Suspense>
         }
       />
-      <Route path="/update-password" element={<UpdatePasswordPage />} />
-      <Route
-        path="/account-edit"
-        element={
-          <Suspense fallback={<div>로딩중...</div>}>
-            <AccountEditPage />
-          </Suspense>
-        }
-      />
+
       <Route path="/message" element={<MessagePage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/notification" element={<NotificationPage />} />

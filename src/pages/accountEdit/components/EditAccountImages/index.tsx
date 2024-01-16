@@ -1,5 +1,6 @@
 import Avatar from '~/common/components/Avatar';
 import Group from '~/common/components/Group';
+import Icon from '~/common/components/Icon';
 import Image from '~/common/components/Image';
 import Upload from '~/common/components/Upload';
 
@@ -49,19 +50,35 @@ const EditAccountImages = ({
         {src => (
           <div className="flex w-full items-center justify-center">
             {src ? (
-              <Image
-                imgHeight={'full'}
-                imgWidth={'full'}
-                src={src}
-                className="inline-block aspect-[2/1] min-h-[150px]"
-              />
+              <>
+                <div className="group absolute h-full w-full cursor-pointer bg-black opacity-20 transition hover:opacity-50 hover:duration-500 hover:ease-in-out">
+                  <Icon
+                    id={'add-circle'}
+                    className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 fill-white drop-shadow-md"
+                  />
+                </div>
+                <Image
+                  imgHeight={'full'}
+                  imgWidth={'full'}
+                  src={src}
+                  className="inline-block aspect-[2/1] min-h-[150px]"
+                />
+              </>
             ) : coverImage ? (
-              <Image
-                imgHeight={'full'}
-                imgWidth={'full'}
-                src={coverImage}
-                className="inline-block aspect-[2/1] min-h-[150px]"
-              />
+              <>
+                <div className="group absolute h-full w-full cursor-pointer bg-black opacity-20 transition hover:opacity-50 hover:duration-500 hover:ease-in-out">
+                  <Icon
+                    id={'add-circle'}
+                    className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 fill-white drop-shadow-md"
+                  />
+                </div>
+                <Image
+                  imgHeight={'full'}
+                  imgWidth={'full'}
+                  src={coverImage}
+                  className="inline-block aspect-[2/1] min-h-[150px] "
+                />
+              </>
             ) : (
               <div className="inline-block min-h-[150px] min-w-layout bg-transparent">
                 <button className="h-full w-full"></button>
@@ -80,7 +97,17 @@ const EditAccountImages = ({
             handleChangeUploadFile(file, 'imageFile');
           }}
         >
-          {src => <Avatar src={src || image} size="small" />}
+          {src => (
+            <div className="relative">
+              <Avatar src={src || image} size="small" />
+              <div className="group absolute top-0 box-border h-full w-full -translate-y-[0.2rem] cursor-pointer rounded-full bg-black opacity-20 ring-1 ring-black ring-offset-2 transition hover:opacity-50 hover:duration-500 hover:ease-in-out">
+                <Icon
+                  id={'add-circle'}
+                  className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 fill-white drop-shadow-md"
+                />
+              </div>
+            </div>
+          )}
         </Upload>
       </div>
     </Group>

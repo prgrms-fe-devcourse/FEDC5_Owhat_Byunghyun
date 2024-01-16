@@ -38,9 +38,11 @@ const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
       />
 
       {isMyAccount ? (
-        <Button className="mt-small">
-          <Link to={'/account-edit'}>내 정보 변경</Link>
-        </Button>
+        <Link to={'/account-edit'} className="w-full">
+          <Button fullwidth className="mt-small">
+            내 정보 변경
+          </Button>
+        </Link>
       ) : authUser ? (
         <FollowButton
           accountId={_id}

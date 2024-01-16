@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { postUploadCoverImage } from '~/api/image';
+import { QUERY_KEY } from '~/constants/queryKey';
 
 export const useUploadCoverImage = () => {
   const queryClient = useQueryClient();
@@ -8,7 +9,7 @@ export const useUploadCoverImage = () => {
   const mutation = useMutation({
     mutationFn: postUploadCoverImage,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['user'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.USER] });
     },
     onError: error => {
       if (error instanceof Error) console.warn(error.message);

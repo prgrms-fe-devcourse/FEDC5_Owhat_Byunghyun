@@ -1,5 +1,4 @@
-import { Post } from '~/api/types/postTypes';
-import { UserPost } from '~/common/hooks/queries/useUserPosts';
+import { PostResponse } from '~/api/types/postTypes';
 
 import { instance } from '.';
 
@@ -8,12 +7,15 @@ export const getPostListByChannel = async (
   offset: number,
   limit: number,
 ) => {
-  const { data } = await instance.get<Post[]>(`/posts/channel/${channelId}`, {
-    params: {
-      offset,
-      limit,
+  const { data } = await instance.get<PostResponse[]>(
+    `/posts/channel/${channelId}`,
+    {
+      params: {
+        offset,
+        limit,
+      },
     },
-  });
+  );
 
   return data;
 };
@@ -23,12 +25,15 @@ export const getPostListByAuthor = async (
   offset?: number,
   limit?: number,
 ) => {
-  const { data } = await instance.get<UserPost[]>(`/posts/author/${userId}`, {
-    params: {
-      offset,
-      limit,
+  const { data } = await instance.get<PostResponse[]>(
+    `/posts/author/${userId}`,
+    {
+      params: {
+        offset,
+        limit,
+      },
     },
-  });
+  );
 
   return data;
 };
