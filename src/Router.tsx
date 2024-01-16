@@ -13,7 +13,9 @@ import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import LoginPage from './pages/login';
 import MessagePage from './pages/message';
 import MessageSendPage from './pages/messageSend';
+import NotificationPage from './pages/notification';
 import RegisterPage from './pages/register';
+import SearchPage from './pages/search';
 import UpdatePasswordPage from './pages/updatePassword';
 import { LayoutWrapper, PublicRouter } from './routes';
 
@@ -28,7 +30,6 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-
       <Route
         path="/account"
         element={
@@ -69,6 +70,8 @@ const router = createBrowserRouter(
       </Route>
 
       <Route path="/message/:userId" element={<MessageSendPage />} />
+      <Route path="/search" element={<SearchPage />} />
+      <Route path="/notification" element={<NotificationPage />} />
     </Route>,
   ),
 );

@@ -5,6 +5,7 @@ import {
   postLikeAlarm,
   postLikeFromPost,
 } from '~/api/post';
+import Toast from '~/common/components/Toast';
 import { QUERY_KEY } from '~/constants/queryKey';
 
 const useLikeFromPost = ({ remove }: { remove: boolean }) => {
@@ -13,6 +14,9 @@ const useLikeFromPost = ({ remove }: { remove: boolean }) => {
 
   const likeMutation = useMutation({
     mutationFn: (id: string) => fn(id),
+    onError: () => {
+      Toast.show('로그인 후 이용해주세요.', 2000);
+    },
     onSuccess: data => {
       if (!remove) {
         const likeId = data._id;

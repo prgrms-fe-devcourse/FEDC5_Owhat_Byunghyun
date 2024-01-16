@@ -14,7 +14,7 @@ const TabItem = ({ title, active, className, ...props }: TabItemProps) => {
     <div
       {...props}
       className={cn(
-        'inline-flex h-xlarge grow cursor-pointer items-center justify-center border-b-2 border-solid',
+        'inline-flex h-xlarge cursor-pointer items-center justify-center border-b-2 border-solid',
         active ? 'border-black' : 'border-gray-400',
         className,
       )}
