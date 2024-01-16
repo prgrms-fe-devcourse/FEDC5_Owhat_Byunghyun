@@ -20,28 +20,27 @@ const FeedItem = ({ feed }: FeedItemProps) => {
 
   const likeMutation = useLikeFromPost({
     remove: !!likeInfo,
-    authUserId: user?._id,
+    authUserId: authUser?._id,
     postUserId: typeof feed.author !== 'string' ? feed.author._id : '',
   });
-
 
   return (
     <li key={feed._id} className="flex flex-col gap-4 px-1">
       {/* // TODO 라우팅 주소 추후 변경의 여지 있음 */}
       <UserInfo post={feed} authUser={authUser} />
 
-        <Link to={`/posts/${feed._id}`}>
-          <Feed
-            initialState={!!likeInfo}
-            title={feed.title}
-            comments={feed.comments as string[]}
-            likes={feed.likes}
-            image={feed.image as string}
-            handleLike={() =>
-              likeMutation.mutate(likeInfo ? (likeInfo as Like)._id : feed._id)
-            }
-          />
-        </Link>
+      <Link to={`/posts/${feed._id}`}>
+        <Feed
+          initialState={!!likeInfo}
+          title={feed.title}
+          comments={feed.comments as string[]}
+          likes={feed.likes}
+          image={feed.image as string}
+          handleLike={() =>
+            likeMutation.mutate(likeInfo ? (likeInfo as Like)._id : feed._id)
+          }
+        />
+      </Link>
     </li>
   );
 };
