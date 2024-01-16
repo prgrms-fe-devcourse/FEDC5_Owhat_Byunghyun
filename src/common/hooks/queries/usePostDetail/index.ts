@@ -5,7 +5,7 @@ import { QUERY_KEY } from '~/constants/queryKey';
 
 const usePostDetail = (postId: string) => {
   const post = useQuery({
-    queryKey: [QUERY_KEY.POST_DETAIL, postId],
+    queryKey: [QUERY_KEY.POST_LIST, postId],
     queryFn: () => getPostDetail(postId),
   });
 

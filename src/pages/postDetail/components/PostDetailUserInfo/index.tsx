@@ -22,28 +22,26 @@ const PostDetailUserInfo = ({
   createdAt,
 }: PostDetailUserInfoProps) => {
   return (
-    <>
-      <Group direction="rows" spacing="md">
-        <Link to={`/account/${_id}`} className="flex items-center">
-          <Avatar src={profileImage} size="auto" className="h-9 w-9" />
+    <Group direction="rows" spacing="md">
+      <Link to={`/account/${_id}`} className="flex items-center">
+        <Avatar src={profileImage} size="auto" className="h-9 w-9" />
+      </Link>
+      <Group spacing={1} direction={'columns'}>
+        <Link to={`/account/${_id}`}>
+          <Text size="small" strong>
+            {fullName}
+          </Text>
         </Link>
-        <Group spacing={1} direction={'columns'}>
-          <Link to={`/account/${_id}`}>
-            <Text size="small" strong>
-              {fullName}
-            </Text>
-          </Link>
-          <ExtraInfo>
-            <Text size="xsmall" elementType="span">
-              {channelName}
-            </Text>
-            <Text size="xsmall" elementType="span">
-              {elapsedTime(createdAt)}
-            </Text>
-          </ExtraInfo>
-        </Group>
+        <ExtraInfo>
+          <Text size="xsmall" elementType="span">
+            {channelName}
+          </Text>
+          <Text size="xsmall" elementType="span">
+            {elapsedTime(createdAt)}
+          </Text>
+        </ExtraInfo>
       </Group>
-    </>
+    </Group>
   );
 };
 

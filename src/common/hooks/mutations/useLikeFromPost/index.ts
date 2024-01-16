@@ -19,30 +19,28 @@ const useLikeFromPost = ({
 
   const likeMutation = useMutation({
     mutationFn: (id: string) => fn(id),
+    onSuccess: data => {
+      if (remove || authUserId === postUserId) return;
+
+      const notificationTypeId = data._id;
+      const userId = postUserId!;
+      const postId = data.post;
+      postNotificationCreate({
+        notificationType: 'LIKE',
+        notificationTypeId,
+        userId,
+        postId,
+      });
+    },
     onError: () => {
       Toast.show('로그인 후 이용해주세요.', 2000);
     },
-    onSuccess: data => {
-      if (!remove) {
-        if (authUserId !== postUserId) {
-          const notificationTypeId = data._id;
-          const userId = postUserId!;
-          const postId = data.post;
-          postNotificationCreate({
-            notificationType: 'LIKE',
-            notificationTypeId,
-            userId,
-            postId,
-          });
-        }
-      }
-    },
-    onSettled: () => {
+    onSettled: data => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.POST_LIST],
       });
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY.POST_DETAIL],
+        queryKey: [QUERY_KEY.POST_LIST, data.post],
       });
     },
   });

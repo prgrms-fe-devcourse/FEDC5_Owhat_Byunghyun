@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { postNotificationCreate } from '~/api/notification';
 import { createComment } from '~/api/post';
-import Toast from '~/common/components/Toast';
 import { QUERY_KEY } from '~/constants/queryKey';
 
 const useCreateComment = ({
@@ -29,11 +28,10 @@ const useCreateComment = ({
           postId,
         });
       }
-      Toast.show('댓글이 등록되었습니다.', 2000);
     },
-    onSettled: () => {
+    onSettled: data => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY.POST_DETAIL],
+        queryKey: [QUERY_KEY.POST_LIST, data.post],
       });
     },
   });

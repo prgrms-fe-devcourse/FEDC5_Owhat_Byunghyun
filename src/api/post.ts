@@ -40,17 +40,19 @@ export const postLikeFromPost = async (postId: string) => {
 };
 
 export const deleteLikeFromPost = async (likeId: string) => {
-  await instance.delete(`/likes/delete`, {
+  const { data } = await instance.delete(`/likes/delete`, {
     data: { id: likeId },
   });
+  return data;
 };
 
 export const deleteComment = async (commnetId: string) => {
-  await instance.delete(`/comments/delete`, {
+  const { data } = await instance.delete(`/comments/delete`, {
     data: {
       id: commnetId,
     },
   });
+  return data;
 };
 
 export const createComment = async ({
@@ -61,8 +63,8 @@ export const createComment = async ({
   postId: string;
 }) => {
   const { data } = await instance.post(`/comments/create`, {
-    comment: comment,
-    postId: postId,
+    comment,
+    postId,
   });
   return data;
 };
@@ -74,9 +76,10 @@ export const getPostDetail = async (postId: string) => {
 };
 
 export const deletePost = async (postId: string) => {
-  await instance.delete(`/posts/delete`, {
+  const { data } = await instance.delete(`/posts/delete`, {
     data: {
       id: postId,
     },
   });
+  return data;
 };

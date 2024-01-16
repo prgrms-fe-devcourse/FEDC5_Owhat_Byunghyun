@@ -26,7 +26,7 @@ const FeedItem = ({ feed }: FeedItemProps) => {
   });
 
   if (typeof feed.author === 'string' || typeof feed.channel === 'string')
-    return <div>오류</div>;
+    return <div className="text-error">정상적인 게시글이 아닙니다!</div>;
 
   return (
     <li key={feed._id} className="flex flex-col gap-4">
