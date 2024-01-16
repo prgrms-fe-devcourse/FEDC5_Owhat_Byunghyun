@@ -33,7 +33,7 @@ export default function AccountPage() {
       <Group
         spacing={10}
         direction={'columns'}
-        className="scroll-none flex h-full w-full flex-col overflow-y-auto pb"
+        className="scroll-none flex h-full w-full flex-col overflow-y-auto pb-large"
         grow
       >
         <AccountInfo user={user} authUser={authUser} isMyAccount={!userId} />

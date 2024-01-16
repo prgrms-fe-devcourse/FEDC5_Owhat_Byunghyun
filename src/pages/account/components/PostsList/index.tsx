@@ -8,14 +8,14 @@ interface PostsListProps {
 
 const PostsList = ({ userPosts = [] }: PostsListProps) => {
   return (
-    <ul className="mt flex flex-col border-t border-t-primary-lighter pt">
+    <ul className="mt flex flex-col gap-8 border-t border-t-gray-300 pt-xlarge">
       {userPosts.map(post => {
         return (
           <Group
             key={post._id}
             spacing={'md'}
             direction={'columns'}
-            className="w-full p"
+            className="w-full"
           >
             <FeedItem feed={post} />
           </Group>

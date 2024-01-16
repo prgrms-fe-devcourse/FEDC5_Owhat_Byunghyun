@@ -39,9 +39,9 @@ const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
       />
 
       {isMyAccount ? (
-        <Link to={'/account-edit'} className="w-full">
-          <Button fullwidth className="mt-small">
-            내 정보 변경
+        <Link to={'/account-edit'} className="mt-small w-full">
+          <Button type="button" fullwidth>
+            <Text size={'base'}>내 정보 변경</Text>
           </Button>
         </Link>
       ) : authUser ? (
