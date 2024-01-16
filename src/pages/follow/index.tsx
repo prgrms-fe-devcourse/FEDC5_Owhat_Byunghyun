@@ -38,7 +38,7 @@ const FollowPage = () => {
     });
 
     isFollowing ? setFollowData(following) : setFollowData(followers);
-  }, [isFollowing]);
+  }, [isFollowing, followers, following]);
 
   return (
     <section className="flex flex-col overflow-hidden">

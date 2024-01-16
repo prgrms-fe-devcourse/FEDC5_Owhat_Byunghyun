@@ -5,10 +5,10 @@ export const LoadingVariants = cva(
   {
     variants: {
       size: {
-        default: 'w-5 h-5 border-4',
-        sm: 'w-5 h-5 border-4',
-        md: 'w-10 h-10 border-8',
-        lg: 'w-20 h-20 border-8',
+        default: 'h-5 w-5 border-4',
+        sm: 'h-5 w-5 border-4',
+        md: 'h-10 w-10 border-8',
+        lg: 'h-20 w-20 border-8',
       },
     },
     defaultVariants: {
