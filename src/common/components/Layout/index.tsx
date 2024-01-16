@@ -49,7 +49,7 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
       <main className="relative mx-auto h-screen max-w-layout rotate-0 overscroll-y-none px">
         <Header {...template} />
         {children}
-        <div className="fixed bottom-[10%] right-0 z-10 -translate-x-1/2 transform">
+        <div className="fixed bottom-[8%] right-0 z-10 -translate-x-1/2 transform">
           <ThemeButton />
         </div>
         {hasNavigator && <NavigationBar />}
