@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+import ArrowBackButton from '~/common/components/ArrowBackButton';
 import Button from '~/common/components/Button';
 import Input from '~/common/components/Input';
 import useSendMessage from '~/common/hooks/mutations/useSendMessage';
@@ -31,7 +32,7 @@ const MessageSendPage = () => {
   useEffect(() => {
     changeMeta({
       title: user?.fullName || '',
-      left: null,
+      left: <ArrowBackButton />,
       right: null,
     });
 
@@ -47,7 +48,7 @@ const MessageSendPage = () => {
         className="fixed bottom-0 left-0 flex w-full border-t border-t-gray-300 px-1 py-2"
       >
         <Input name="message" className="w-full rounded-none border-none" />
-        <Button className="shrink-0">전송</Button>
+        <Button className="shrink-0 px-2 py-1">전송</Button>
       </form>
     </section>
   );
