@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { instance } from '~/api';
+import { QUERY_KEY } from '~/constants/queryKey';
 
 export const useUnfollow = () => {
   const followDelete = async ({ id }: { id: string }) => {
@@ -16,7 +17,7 @@ export const useUnfollow = () => {
   const mutation = useMutation({
     mutationFn: followDelete,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['user'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.USER] });
     },
   });
 
