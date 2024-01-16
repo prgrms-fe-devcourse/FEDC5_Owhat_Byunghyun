@@ -64,14 +64,13 @@ const router = createBrowserRouter(
         }
       />
       <Route path="/message" element={<MessagePage />} />
+      <Route path="/message/:userId" element={<MessageSendPage />} />
+      <Route path="/search" element={<SearchPage />} />
+      <Route path="/notification" element={<NotificationPage />} />
       <Route element={<PublicRouter />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>
-
-      <Route path="/message/:userId" element={<MessageSendPage />} />
-      <Route path="/search" element={<SearchPage />} />
-      <Route path="/notification" element={<NotificationPage />} />
     </Route>,
   ),
 );
