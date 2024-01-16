@@ -1,21 +1,25 @@
 import { useEffect, useState } from 'react';
 
+import { BrowserStorage } from '~/utils/storage';
+
 import Button from '../Button';
 import Icon from '../Icon';
 
 const ThemeButton = () => {
+  const myStorage = new BrowserStorage<string>('DARK_MODE');
+
   const localStorageCheker = (): boolean => {
-    if (!localStorage.theme) return false;
-    return localStorage.theme === 'dark' ? true : false;
+    if (myStorage.get()) return false;
+    return myStorage.get() === 'dark' ? true : false;
   };
   const [dark, setDark] = useState(localStorageCheker());
   const darkSetButton = () => {
     setDark(state => {
       const update = !state;
       if (update) {
-        localStorage.theme = 'dark';
+        myStorage.set('dark');
       } else {
-        localStorage.theme = 'light';
+        myStorage.set('light');
       }
       return update;
     });
@@ -23,8 +27,8 @@ const ThemeButton = () => {
 
   useEffect(() => {
     if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) &&
+      myStorage.get() === 'dark' ||
+      (myStorage.get() === undefined &&
         window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
       document.documentElement.classList.add('dark');
