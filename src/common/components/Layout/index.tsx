@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 
 import Header, { type HeaderProps } from '../Header';
 import NavigationBar from '../NavigationBar';
+import ThemeButton from '../ThemeButton';
 
 interface ILayoutContext extends HeaderProps {
   changeMeta: ({ title, left, right }: HeaderProps) => void;
@@ -48,6 +49,9 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
       <main className="relative mx-auto h-screen max-w-layout rotate-0 overscroll-y-none px">
         <Header {...template} />
         {children}
+        <div className="fixed bottom-[10%] right-0 z-10 -translate-x-1/2 transform">
+          <ThemeButton />
+        </div>
         {hasNavigator && <NavigationBar />}
       </main>
     </LayoutContext.Provider>

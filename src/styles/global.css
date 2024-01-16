@@ -21,6 +21,9 @@
 
   body {
     height: 100dvh;
+    transition: color 0.3s;
+    transition: background-color 0.3s;
+    @apply text-black dark:bg-[#141414] dark:text-white dark:[&_input]:text-black dark:[&_svg]:fill-white;
   }
 
   main > section {
@@ -69,7 +72,6 @@
     }
   }
 }
-
 @layer components {
   .scroll-none {
     -ms-overflow-style: none; /* IE and Edge */
