@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Icon from '~/common/components/Icon';
 import Image from '~/common/components/Image';
@@ -6,14 +7,38 @@ import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
 import Textarea from '~/common/components/Textarea';
 import Upload from '~/common/components/Upload';
+import useChannelList from '~/common/hooks/queries/useChannelList';
 import useLayout from '~/common/hooks/useLayout';
 
-export default function PostCreatePage() {
+type ChannelNameType = string | undefined;
+
+export default function CreatePostPage() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const channelId = searchParams.get('channelId');
+
+  const { channelList } = useChannelList();
+
+  const channelListAbout = channelList.find(({ _id }) => {
+    if (_id === channelId) {
+      return true;
+    }
+    return false;
+  });
+
+  let channelName: ChannelNameType;
+
+  if (channelListAbout) {
+    channelName = channelListAbout.name;
+  } else {
+    // TODO: 404 페이지
+  }
+
   const { changeMeta } = useLayout();
 
   useEffect(() => {
     changeMeta({
-      title: '넷플릭스',
+      title: `${channelName}`,
       left: <></>,
       right: '완료',
     });
@@ -24,12 +49,12 @@ export default function PostCreatePage() {
       <Input
         hasBorder={false}
         placeholder="제목을 입력해주세요!"
-        className="w-full px-0 text-xl placeholder:text-xl"
+        className="w-full text-xl placeholder:text-xl"
       />
       <Upload>
         {(src, file) => (
           <div>
-            <div className="flex py-3">
+            <div className="flex px-small py-3">
               <Icon id="add-photo" size={32} />
               <Text
                 elementType="span"
@@ -54,7 +79,7 @@ export default function PostCreatePage() {
       <Textarea
         size="lg"
         placeholder="나누고 싶은 이야기를 공유해보세요!"
-        className="overscroll-auto px-0 pt-5"
+        className="overscroll-auto px-small pt-5"
       />
     </section>
   );

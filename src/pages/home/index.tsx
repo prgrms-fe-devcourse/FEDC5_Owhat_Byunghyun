@@ -5,14 +5,17 @@ import usePostListByChannel from '~/common/hooks/queries/usePostListByChannel';
 import useInfiniteScroll from '~/common/hooks/useInfiniteScroll';
 
 import ChannelList from './components/ChannelList';
+import CreateButton from './components/CreateButton';
 import FeedItem from './components/FeedItem';
 
 export default function HomePage() {
   const { channelList } = useChannelList();
   const [searchParams] = useSearchParams();
 
+  const channelId = searchParams.get('channel') || channelList[0]._id;
+
   const { postList, fetchNextPage, hasNextPage, isFetched } =
-    usePostListByChannel(searchParams.get('channel') || channelList[0]._id);
+    usePostListByChannel(channelId);
 
   const refetch = () => {
     if (hasNextPage && isFetched) fetchNextPage();
@@ -30,6 +33,7 @@ export default function HomePage() {
         ))}
         <div ref={ref} />
       </ul>
+      <CreateButton channelId={channelId} />
     </section>
   );
 }
