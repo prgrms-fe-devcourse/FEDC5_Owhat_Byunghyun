@@ -19,13 +19,13 @@ interface UserInfoProps extends ComponentProps<'div'> {
   authorTextSize?: textSize;
   extraInfoTextSize?: textSize;
   betweenGap?: number;
-  avarTarClassName?: ComponentProps<typeof Avatar>['className'];
+  avartarClassName?: ComponentProps<typeof Avatar>['className'];
 }
 
 const UserInfo = ({
   post,
   authUser,
-  avarTarClassName,
+  avartarClassName,
   authorTextSize = 'small',
   extraInfoTextSize = 'xsmall',
   betweenGap = 14,
@@ -42,7 +42,7 @@ const UserInfo = ({
         <Avatar
           src={author.image}
           size="full"
-          className={cn('h-9 w-9', avarTarClassName)}
+          className={cn('h-9 w-9', avartarClassName)}
         />
       </Link>
       <Group spacing={0} direction={'columns'}>
