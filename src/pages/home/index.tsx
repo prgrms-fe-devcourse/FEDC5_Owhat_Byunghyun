@@ -8,13 +8,18 @@ import useLayout from '~/common/hooks/useLayout';
 
 import ChannelList from './components/ChannelList';
 import FeedItem from './components/FeedItem';
+import PostCreateButton from './components/PostCreateButton';
 
 export default function HomePage() {
   const { channelList } = useChannelList();
   const [searchParams] = useSearchParams();
+
+  const channelId = searchParams.get('channel') || channelList[0]._id;
+
   const { changeMeta, changeBottomNavigator } = useLayout();
+
   const { postList, fetchNextPage, hasNextPage, isFetched } =
-    usePostListByChannel(searchParams.get('channel') || channelList[0]._id);
+    usePostListByChannel(channelId);
 
   const refetch = () => {
     if (hasNextPage && isFetched) fetchNextPage();
@@ -40,6 +45,7 @@ export default function HomePage() {
         ))}
         <div ref={ref} />
       </ul>
+      <PostCreateButton channelId={channelId} />
     </section>
   );
 }

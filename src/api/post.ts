@@ -40,7 +40,6 @@ export const getPostListByAuthor = async (
 
 export const postLikeFromPost = async (postId: string) => {
   const { data } = await instance.post(`/likes/create`, { postId });
-
   return data;
 };
 
@@ -86,5 +85,25 @@ export const deletePost = async (postId: string) => {
       id: postId,
     },
   });
+  return data;
+};
+
+export const postPostCreate = async (
+  title: string,
+  file: File,
+  channelId: string,
+) => {
+  const formData = new FormData();
+
+  formData.append('title', title);
+  formData.append('image', file);
+  formData.append('channelId', channelId);
+
+  const { data } = await instance.post(`/posts/create`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+
   return data;
 };

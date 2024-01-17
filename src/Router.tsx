@@ -13,6 +13,7 @@ import FollowPage from './pages/follow';
 import FollowSkeleton from './pages/follow/components/FollowSkeleton';
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
+import PostCreatePage from './pages/postCreate';
 import LoginPage from './pages/login';
 import MessagePage from './pages/message';
 import MessageSendPage from './pages/messageSend';
@@ -57,6 +58,7 @@ const router = createBrowserRouter(
       <Route path="/more-users" element={<MoreUsersPage />} />
       
       <Route element={<PrivateRouter />}>
+        <Route path="/postCreate" element={<PostCreatePage />} />
        <Route
           path="/account"
           element={
@@ -78,7 +80,7 @@ const router = createBrowserRouter(
         <Route path="/notification" element={<NotificationPage />} />
       </Route>
 
-      <Route element={<PublicRouter />}>
+      <Route element={<PublicRouter />}>    
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>
