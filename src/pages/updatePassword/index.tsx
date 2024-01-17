@@ -9,9 +9,10 @@ import UpdatePasswordForm from './components/UpdatePasswordForm';
 const UpdatePasswordPage = () => {
   const { authUser } = useSuspenseAuthUser();
 
-  const { changeMeta } = useLayout();
+  const { changeMeta, changeBottomNavigator } = useLayout();
 
   useEffect(() => {
+    changeBottomNavigator(true);
     changeMeta({
       title: '비밀번호 변경',
       left: <ArrowBackButton />,

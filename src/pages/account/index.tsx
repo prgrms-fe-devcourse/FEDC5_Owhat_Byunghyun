@@ -13,7 +13,7 @@ import AccountInfo from './components/AccountInfo';
 import PostsList from './components/PostsList';
 
 export default function AccountPage() {
-  const { changeMeta } = useLayout();
+  const { changeMeta, changeBottomNavigator } = useLayout();
 
   const { userId } = useParams();
   const { authUser } = useSuspenseAuthUser();
@@ -21,6 +21,7 @@ export default function AccountPage() {
   const { userPosts } = useUserPosts(userId ?? authUser._id);
 
   useEffect(() => {
+    changeBottomNavigator(true);
     changeMeta({
       title: !userId ? '내 프로필' : `${user?.fullName}님의 프로필`,
       left: <ArrowBackButton />,

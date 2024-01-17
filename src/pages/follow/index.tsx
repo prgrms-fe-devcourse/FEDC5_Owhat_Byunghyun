@@ -28,7 +28,7 @@ const FollowPage = () => {
   }: FollowLocationState = location.state;
 
   useEffect(() => {
-    changeBottomNavigator(true);
+    changeBottomNavigator(false);
     changeMeta({
       title: `${username}`,
       left: <ArrowBackButton />,
