@@ -59,7 +59,14 @@ const router = createBrowserRouter(
       />
       <Route path="/message" element={<MessagePage />} />
       <Route path="/more-users" element={<MoreUsersPage />} />
-      <Route path="/post-update/:postId" element={<PostUpdatePage />} />
+      <Route
+        path="/post-update/:postId"
+        element={
+          <Suspense fallback={<Loading />}>
+            <PostUpdatePage />
+          </Suspense>
+        }
+      />
 
       <Route element={<PrivateRouter />}>
         <Route

@@ -1,48 +1,50 @@
 import { useEffect } from 'react';
 
 import ArrowBackButton from '~/common/components/ArrowBackButton';
+import Button from '~/common/components/Button';
 import Icon from '~/common/components/Icon';
 import Image from '~/common/components/Image';
 import Input from '~/common/components/Input';
 import Text from '~/common/components/Text';
 import Textarea from '~/common/components/Textarea';
 import Upload from '~/common/components/Upload';
+import useChannelList from '~/common/hooks/queries/useChannelList';
 import useLayout from '~/common/hooks/useLayout';
 
-import UploadButton from './components/UploadButton';
 import useChannelInfo from './hooks/useChannelInfo';
 import useCreatePostForm from './hooks/useCreatePostForm';
 
 export default function PostCreatePage() {
-  const { channelId, channelName } = useChannelInfo();
+  const { channelId } = useChannelInfo();
 
-  const {
-    formState,
-    handleSubmit,
-    handleCreatePostContent,
-    handleCreatePostImage,
-    handleCreatePostTitle,
-  } = useCreatePostForm(channelId);
+  const { channelList } = useChannelList();
+  const currentChannel = channelList.find(channel => channel._id === channelId);
+
+  const { formState, handleSubmit, handleCreatePostImage } =
+    useCreatePostForm(channelId);
 
   const { changeMeta } = useLayout();
 
   useEffect(() => {
     changeMeta({
-      title: `${channelName}`,
+      title: currentChannel?.name,
       left: <ArrowBackButton />,
-      right: <UploadButton isEdit={false} onSubmit={handleSubmit} />,
+      right: <Button form="createPost">완료</Button>,
     });
   }, [formState]);
 
   return (
     <section className="">
-      <form className="scroll-none h-full overflow-y-auto">
+      <form
+        id="createPost"
+        onSubmit={handleSubmit}
+        className="scroll-none h-full overflow-y-auto"
+      >
         <Input
+          name="postTitle"
           hasBorder={false}
           placeholder="제목을 입력해주세요!"
           className="w-full text-xl placeholder:text-xl"
-          onChange={handleCreatePostTitle}
-          value={formState.title}
         />
         <Upload
           onChange={file => {
@@ -75,11 +77,10 @@ export default function PostCreatePage() {
           )}
         </Upload>
         <Textarea
+          name="content"
           size="lg"
           placeholder="나누고 싶은 이야기를 공유해보세요!"
           className="scroll-none overflow-y-auto overscroll-auto px-small pt-5"
-          onChange={handleCreatePostContent}
-          value={formState.content}
         />
       </form>
     </section>

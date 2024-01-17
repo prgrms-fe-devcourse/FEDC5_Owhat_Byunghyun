@@ -2,17 +2,16 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '~/common/components/Button';
 import Icon from '~/common/components/Icon';
+import useChannelInfo from '~/pages/postCreate/hooks/useChannelInfo';
 
-interface PostCreateButtonProps {
-  channelId?: string;
-}
-
-const PostCreateButton = ({ channelId }: PostCreateButtonProps) => {
+const PostCreateButton = () => {
   const navigate = useNavigate();
+  const { channelId } = useChannelInfo();
 
   const handleClick = () => {
-    navigate(`/postCreate?channelId=${channelId}`);
+    navigate(`/postCreate?channel=${channelId}`);
   };
+
   return (
     <Button
       onClick={handleClick}

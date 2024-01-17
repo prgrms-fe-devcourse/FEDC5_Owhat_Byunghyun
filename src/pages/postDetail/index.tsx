@@ -32,7 +32,7 @@ const PostDetailPage = () => {
   };
 
   const handleEditPost = (postId: string) => {
-    navigate(`/post-update/${postId}`);
+    navigate(`/post-update/${postId}?channel=${postDetailData.channel._id}`);
   };
 
   const handleSubmitComment = async (e: React.FormEvent<HTMLFormElement>) => {
