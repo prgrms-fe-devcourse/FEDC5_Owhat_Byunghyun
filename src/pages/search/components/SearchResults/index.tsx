@@ -6,6 +6,7 @@ import Group from '~/common/components/Group';
 import Loading from '~/common/components/Loading';
 import Text from '~/common/components/Text';
 import useSearchResults from '~/common/hooks/queries/useSearchResults';
+import { jsonToData } from '~/utils/jsonToData';
 
 import PostItem from './PostItem';
 import UserItem from './UserItem';
@@ -21,25 +22,6 @@ const SearchResults = ({ mode, keyword }: SearchResultsProps) => {
     mode,
     keyword,
   );
-
-  const isJson = (str: string) => {
-    try {
-      const json = JSON.parse(str);
-      return json && typeof json === 'object';
-    } catch (e) {
-      return false;
-    }
-  };
-
-  const jsonToData = (title: string) => {
-    if (isJson(title)) {
-      const { title: postTitle, content: postContent } = JSON.parse(title);
-
-      return { postTitle, postContent };
-    } else {
-      return { postTitle: title, postContent: '' };
-    }
-  };
 
   useEffect(() => {
     if (mode === 'all') {
