@@ -11,17 +11,19 @@ interface FollowListProps {
 }
 
 const FollowersList = ({ followers }: FollowListProps) => {
-  const { allUsers = [] } = useAllUsers();
+  const { allUsers = [], isLoading } = useAllUsers();
   const [followList, setFollowList] = useState<User[]>([]);
 
   useEffect(() => {
-    const followUsers = allUsers.filter(user => {
-      return followers.some(follow => {
-        return user._id === follow.follower;
+    if (!isLoading) {
+      const followUsers = allUsers.filter(user => {
+        return followers.some(follow => {
+          return user._id === follow.follower;
+        });
       });
-    });
 
-    setFollowList(followUsers);
+      setFollowList(followUsers);
+    }
   }, [allUsers, followers]);
 
   return (
