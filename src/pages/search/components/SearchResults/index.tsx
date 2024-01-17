@@ -1,42 +1,22 @@
-import { useEffect, useState } from 'react';
-
 import { Post } from '~/api/types/postTypes';
 import { User } from '~/api/types/userTypes';
 import Group from '~/common/components/Group';
 import Loading from '~/common/components/Loading';
-import Text from '~/common/components/Text';
-import useSearchResults from '~/common/hooks/queries/useSearchResults';
-import { jsonToData } from '~/utils/jsonToData';
 
 import PostItem from './PostItem';
 import UserItem from './UserItem';
 
 interface SearchResultsProps {
   mode: 'all' | 'users';
-  keyword: string;
+  searchResults: Post[] | User[];
+  isLoading: boolean;
 }
 
-const SearchResults = ({ mode, keyword }: SearchResultsProps) => {
-  const [postResults, setPostResults] = useState<Post[]>([]);
-  const { data: searchResults = [], isLoading } = useSearchResults(
-    mode,
-    keyword,
-  );
-
-  useEffect(() => {
-    if (mode === 'all') {
-      const filteredSearchResults = searchResults
-        .filter(result => 'title' in result)
-        .filter(result => {
-          const { postTitle, postContent } = jsonToData((result as Post).title);
-          return postTitle.includes(keyword) || postContent.includes(keyword);
-        });
-
-      setPostResults(filteredSearchResults as Post[]);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchResults]);
-
+const SearchResults = ({
+  mode,
+  searchResults,
+  isLoading,
+}: SearchResultsProps) => {
   if (isLoading) {
     return (
       <Group spacing="sm" align="center" position="center" className="h-60">
@@ -47,13 +27,10 @@ const SearchResults = ({ mode, keyword }: SearchResultsProps) => {
 
   return (
     <div className="mb-xlarge">
-      <Text className="h-6 pl-small text-base-small">{`검색 결과 ${
-        mode === 'all' ? postResults.length : searchResults.length
-      }건`}</Text>
-      <div className="scroll-none h-[calc(100vh-250px)] overflow-y-auto">
+      <div className="scroll-none h-[calc(100vh-220px)] overflow-y-auto">
         {mode === 'all'
-          ? postResults &&
-            postResults.map((item: Post) => (
+          ? searchResults &&
+            (searchResults as Post[]).map((item: Post) => (
               <PostItem post={item} key={item._id} />
             ))
           : searchResults &&
