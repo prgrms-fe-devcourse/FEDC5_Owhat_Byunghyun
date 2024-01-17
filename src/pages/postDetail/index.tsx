@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import ArrowBackButton from '~/common/components/ArrowBackButton';
 import useCreateComment from '~/common/hooks/mutations/useCreateComment';
@@ -13,7 +13,6 @@ import PostDetailSkeleton from './components/PostDetailSkeleton';
 
 const PostDetailPage = () => {
   const { postId = '' } = useParams();
-  const navigate = useNavigate();
 
   const { postDetailData, postDetailLoading } = usePostDetail(postId);
   const { user } = useAuthUser();
@@ -27,13 +26,10 @@ const PostDetailPage = () => {
   const handleDeletePost = async (postId: string) => {
     if (confirm('정말로 삭제하시겠습니까?')) {
       mutationDeletePost.mutate(postId);
-      navigate('/');
     }
   };
 
-  const handleEditPost = () => {
-    //TODO: 포스트 수정페이지로 가는 함수
-  };
+  const handleEditPost = () => {};
   const handleSubmitComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

@@ -35,12 +35,9 @@ const useLikeFromPost = ({
     onError: () => {
       Toast.show('로그인 후 이용해주세요.', 2000);
     },
-    onSettled: data => {
+    onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.POST_LIST],
-      });
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY.POST_LIST, data.post],
       });
     },
   });

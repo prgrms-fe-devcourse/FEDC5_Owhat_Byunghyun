@@ -4,7 +4,7 @@ import { getNotifications } from '~/api/notification';
 import { QUERY_KEY } from '~/constants/queryKey';
 
 const useNotificationList = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: [QUERY_KEY.NOTIFICATION_LIST],
     queryFn: getNotifications,
   });
@@ -12,6 +12,7 @@ const useNotificationList = () => {
   return {
     notificationList: data,
     isLoading,
+    isError,
   };
 };
 
