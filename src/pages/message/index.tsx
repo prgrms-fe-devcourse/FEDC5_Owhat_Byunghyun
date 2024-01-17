@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import ArrowBackButton from '~/common/components/ArrowBackButton';
 import useAuthUser from '~/common/hooks/queries/useAuthUser';
 import useMessageList from '~/common/hooks/queries/useMessageList';
 import useOnlineUsers from '~/common/hooks/queries/useOnlineUsers';
@@ -14,12 +15,13 @@ export default function MessagePage() {
   const onlineUsers = useOnlineUsers();
   const { user } = useAuthUser();
 
-  const { changeMeta } = useLayout();
+  const { changeMeta, changeBottomNavigator } = useLayout();
 
   useEffect(() => {
+    changeBottomNavigator(true);
     changeMeta({
-      title: user?.fullName || '',
-      left: null,
+      title: user?.fullName || 'Owhat!',
+      left: <ArrowBackButton />,
       right: null,
     });
   }, [user]);

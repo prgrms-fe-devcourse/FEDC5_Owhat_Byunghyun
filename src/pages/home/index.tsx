@@ -39,7 +39,7 @@ export default function HomePage() {
     <section className="flex flex-col gap-5">
       <ChannelList list={channelList} />
 
-      <ul className="scroll-none flex h-full flex-col gap-8 overflow-y-auto">
+      <ul className="scroll-none flex h-full flex-col gap-12 overflow-y-auto">
         {postList.map(post => (
           <FeedItem key={post._id} feed={post} />
         ))}

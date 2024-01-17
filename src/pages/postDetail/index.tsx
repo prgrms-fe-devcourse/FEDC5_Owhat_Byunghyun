@@ -55,7 +55,7 @@ const PostDetailPage = () => {
       changeMeta({
         title: postDetailData.channel.name,
         left: <ArrowBackButton />,
-        right: '',
+        right: <></>,
       });
     }
   }, [postDetailLoading, postDetailData]);

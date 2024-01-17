@@ -50,10 +50,10 @@ export const deleteLikeFromPost = async (likeId: string) => {
   return data;
 };
 
-export const deleteComment = async (commnetId: string) => {
+export const deleteComment = async (commentId: string) => {
   const { data } = await instance.delete(`/comments/delete`, {
     data: {
-      id: commnetId,
+      id: commentId,
     },
   });
   return data;

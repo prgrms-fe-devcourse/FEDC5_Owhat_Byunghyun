@@ -1,15 +1,14 @@
+import Button from '~/common/components/Button';
+
 interface SubmitButtonProps {
   onSubmit: (event: React.MouseEvent) => void;
 }
 
 const UploadButton = ({ onSubmit }: SubmitButtonProps) => {
   return (
-    <button
-      onClick={event => onSubmit(event)}
-      className="font-bold text-primary"
-    >
+    <Button onClick={event => onSubmit(event)} styleType="ghost">
       완료
-    </button>
+    </Button>
   );
 };
 
