@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { Message } from '~/api/types/notificationTypes';
 import { User } from '~/api/types/userTypes';
 import Avatar from '~/common/components/Avatar';
+import Button from '~/common/components/Button';
 import { elapsedTime } from '~/utils/time';
 
 import Skeleton from './Skeleton';
@@ -14,6 +15,21 @@ interface MessageListProps {
 }
 
 const MessageList = ({ messageList, user, isLoading }: MessageListProps) => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  if (!user)
+    return (
+      <div className="mt-5 flex flex-col justify-center text-center">
+        로그인 후 이용해주세요!
+        <Button
+          styleType="ghost"
+          onClick={() => navigate('/login', { state: pathname })}
+        >
+          로그인 하러 가기
+        </Button>
+      </div>
+    );
   if (isLoading) return <Skeleton />;
   if (!messageList.length)
     return (
