@@ -1,6 +1,6 @@
 import './style.css';
 
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 import PostCreateButton from '~/pages/home/components/PostCreateButton';
 
@@ -37,7 +37,9 @@ const AcordionButton = () => {
         </li>
         <li>
           <div className="rounded-full dark:bg-transparent">
-            <PostCreateButton />
+            <Suspense>
+              <PostCreateButton />
+            </Suspense>
           </div>
         </li>
         <li>
