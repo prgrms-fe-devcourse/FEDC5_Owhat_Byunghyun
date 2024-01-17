@@ -36,7 +36,6 @@ const AccountExtraInfo = ({
               followers,
               following,
               initialState: {
-                initialFollowData: followers,
                 initialIsFollowing: false,
               },
             },
@@ -60,7 +59,6 @@ const AccountExtraInfo = ({
               following,
               initialState: {
                 initialIsFollowing: true,
-                initialFollowData: following,
               },
             },
           });

@@ -25,7 +25,7 @@ const FollowersList = ({ followers }: FollowListProps) => {
   }, [allUsers, followers]);
 
   return (
-    <ul className="flex flex-col gap px-small">
+    <ul className="flex flex-col gap-large px-small">
       {followList.length === 0 && (
         <Text className="mt-large text-center text-gray-400">
           팔로워 유저가 없습니다.
