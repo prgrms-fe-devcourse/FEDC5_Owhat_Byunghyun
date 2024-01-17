@@ -1,6 +1,10 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
+import useAuthUser from '~/common/hooks/queries/useAuthUser';
+import useNotificationList from '~/common/hooks/queries/useNotificationList';
+
 import Header, { type HeaderProps } from '../Header';
+import Loading from '../Loading';
 import NavigationBar from '../NavigationBar';
 import ThemeButton from '../ThemeButton';
 
@@ -19,6 +23,9 @@ export const LayoutContext = createContext<ILayoutContext>(
 
 const LayoutProvider = ({ children }: LayoutProviderProps) => {
   const [hasNavigator, setHasNavigator] = useState(true);
+  //TODO: 추후 useQUERY를 줄이는 방법으로 리팩토링
+  const { user, isLoading: userLoading } = useAuthUser();
+  const { notificationList, isLoading: notiLoading } = useNotificationList();
   const [template, setTemplate] = useState<HeaderProps>({
     title: '',
     left: null,
@@ -42,6 +49,8 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
     } | OTT에 대한 정보를 한 번에!`;
   }, [template.title]);
 
+  if (userLoading || notiLoading) return <Loading />;
+
   return (
     <LayoutContext.Provider
       value={{ ...template, changeMeta, changeBottomNavigator }}
@@ -49,10 +58,20 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
       <main className="relative mx-auto h-screen max-w-layout rotate-0 overscroll-y-none px">
         <Header {...template} />
         {children}
+
         <div className="fixed bottom-[65px] right-0 z-10 -translate-x-1/2 transform">
           <ThemeButton />
         </div>
-        {hasNavigator && <NavigationBar />}
+        {hasNavigator && (
+          <NavigationBar
+            isLogin={!!user}
+            myProfile={user?.image}
+            isAlarm={
+              notificationList?.some(notification => !notification.seen) ||
+              false
+            }
+          />
+        )}
       </main>
     </LayoutContext.Provider>
   );
