@@ -20,7 +20,7 @@ const MoreButton = ({
       targetElement={
         <Icon
           id="more-vert"
-          className="rounded-full ring-gray-300 transition-colors hover:fill-gray-500 hover:ring-[1px]"
+          className="rounded-full  ring-gray-300 transition-colors hover:fill-gray-500 hover:ring-[1px]"
         />
       }
       placement="bottom-right"
@@ -30,7 +30,7 @@ const MoreButton = ({
         <Button
           onClick={() => handleEdit && handleEdit(id)}
           styleType="secondary"
-          className="z-10 p-[3px] text-xs"
+          className="z-10 w-9 p-[3px] text-xs"
         >
           수정
         </Button>
@@ -39,7 +39,7 @@ const MoreButton = ({
       <Button
         onClick={() => handleDelete(id)}
         styleType="secondary"
-        className="z-10 p-[3px] text-xs text-error hover:bg-error"
+        className="z-10 w-9 p-[3px] text-xs text-error hover:bg-error"
       >
         삭제
       </Button>

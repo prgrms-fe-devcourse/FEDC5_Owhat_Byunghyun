@@ -17,13 +17,13 @@ const CommentInput = ({
   isLogin,
 }: CommentInputProps) => {
   return (
-    <div className="fixed bottom-0 left-0 w-full">
+    <section className="fixed bottom-0 left-0 min-w-layout">
       <form
         onSubmit={handleSubmitComment}
-        className="mx-auto flex max-w-layout items-center rounded rounded-b-none border border-primary bg-primary-lighter p-2 "
+        className="flex w-full items-center rounded rounded-b-none border border-primary bg-primary-lighter p-2 "
       >
-        <div className="flex w-8">
-          <Avatar size="auto" src={user?.image} />
+        <div className="flex">
+          <Avatar size="auto" src={user?.image} className="h-8 w-8" />
         </div>
 
         <Input
@@ -41,7 +41,7 @@ const CommentInput = ({
           등록
         </Button>
       </form>
-    </div>
+    </section>
   );
 };
 export default CommentInput;
