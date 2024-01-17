@@ -1,19 +1,17 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '~/common/components/Button';
 import Icon from '~/common/components/Icon';
-import useChannelList from '~/common/hooks/queries/useChannelList';
+import useChannelInfo from '~/pages/postCreate/hooks/useChannelInfo';
 
 const PostCreateButton = () => {
-  const { channelList } = useChannelList();
-  const [searchParams] = useSearchParams();
-
-  const channelId = searchParams.get('channel') || channelList[0]._id;
   const navigate = useNavigate();
+  const { channelId } = useChannelInfo();
 
   const handleClick = () => {
-    navigate(`/post-create?channelId=${channelId}`);
+    navigate(`/postCreate?channel=${channelId}`);
   };
+
   return (
     <Button
       onClick={handleClick}

@@ -1,40 +1,45 @@
 import { FormEvent, useState } from 'react';
 
-import useCreatePost from '~/common/hooks/mutations/useCreatePost';
+import useUpdatePost from '~/common/hooks/mutations/useUpdatePost';
+interface useUpdatePostFormProps {
+  channelId: string;
+  postId: string;
+}
 
-const useCreatePostForm = (channelId: string) => {
+export const useUpdatePostForm = ({
+  channelId,
+  postId,
+}: useUpdatePostFormProps) => {
   const [formState, setFormState] = useState({
     postImage: new File([], ''),
   });
 
-  const handleCreatePostImage = (file: File, name: string) => {
+  const handleChangePostImage = (file: File, name: string) => {
     setFormState(prev => ({ ...prev, [name]: file }));
   };
 
-  const createPost = useCreatePost();
+  const updatePost = useUpdatePost();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const { postTitle, content } = e.currentTarget;
-
     const parsedTitle = JSON.stringify({
       title: postTitle.value,
       content: content.value,
     });
 
-    createPost.mutate({
+    updatePost.mutate({
       title: parsedTitle,
-      file: formState.postImage,
-      channelId,
+      image: formState.postImage,
+      channelId: channelId,
+      postId: postId,
+      imageToDeletePublicId: '',
     });
   };
 
   return {
     formState,
-    handleCreatePostImage,
+    handleChangePostImage,
     handleSubmit,
   };
 };
-
-export default useCreatePostForm;

@@ -22,6 +22,7 @@ import MoreUsersPage from './pages/moreUsers';
 import NotificationPage from './pages/notification';
 import PostCreatePage from './pages/postCreate';
 import PostDetailPage from './pages/postDetail';
+import PostUpdatePage from './pages/postUpdate';
 import RegisterPage from './pages/register';
 import SearchPage from './pages/search';
 import UpdatePasswordPage from './pages/updatePassword';
@@ -58,6 +59,14 @@ const router = createBrowserRouter(
       />
       <Route path="/message" element={<MessagePage />} />
       <Route path="/more-users" element={<MoreUsersPage />} />
+      <Route
+        path="/post-update/:postId"
+        element={
+          <Suspense fallback={<Loading />}>
+            <PostUpdatePage />
+          </Suspense>
+        }
+      />
 
       <Route element={<PrivateRouter />}>
         <Route
