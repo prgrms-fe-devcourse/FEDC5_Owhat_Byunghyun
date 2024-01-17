@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const buttonVarients = cva(
-  'p-md relative flex justify-center border text-base font-semibold leading-5 transition-colors',
+  'relative flex justify-center border p-[0.5rem] text-base font-semibold leading-5 transition-colors',
   {
     variants: {
       styleType: {

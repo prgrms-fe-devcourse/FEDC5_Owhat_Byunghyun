@@ -1,8 +1,8 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
+import AcordionButton from '../AcordionButton';
 import Header, { type HeaderProps } from '../Header';
 import NavigationBar from '../NavigationBar';
-import ThemeButton from '../ThemeButton';
 
 interface ILayoutContext extends HeaderProps {
   changeMeta: ({ title, left, right }: HeaderProps) => void;
@@ -49,10 +49,15 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
       <main className="relative mx-auto h-screen max-w-layout rotate-0 overscroll-y-none px">
         <Header {...template} />
         {children}
-        <div className="fixed bottom-[65px] right-0 z-10 -translate-x-1/2 transform">
-          <ThemeButton />
-        </div>
-        {hasNavigator && <NavigationBar />}
+
+        {hasNavigator && (
+          <>
+            <div className="fixed bottom-[100px] right-[40px] z-10 -translate-x-1/2">
+              <AcordionButton />
+            </div>
+            <NavigationBar />
+          </>
+        )}
       </main>
     </LayoutContext.Provider>
   );

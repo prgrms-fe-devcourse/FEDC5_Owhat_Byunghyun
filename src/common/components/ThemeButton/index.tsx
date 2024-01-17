@@ -1,15 +1,18 @@
-import { useEffect, useState } from 'react';
+import { ComponentProps, useEffect, useState } from 'react';
 
+import { cn } from '~/utils/cn';
 import { BrowserStorage } from '~/utils/storage';
 
 import Button from '../Button';
 import Icon from '../Icon';
 
-const ThemeButton = () => {
+interface ThemeButton extends ComponentProps<'button'> {}
+
+const ThemeButton = ({ className }: ThemeButton) => {
   const myStorage = new BrowserStorage<string>('DARK_MODE');
 
   const localStorageCheker = (): boolean => {
-    if (myStorage.get()) return false;
+    if (myStorage.get() === undefined) return false;
     return myStorage.get() === 'dark' ? true : false;
   };
   const [dark, setDark] = useState(localStorageCheker());
@@ -38,24 +41,16 @@ const ThemeButton = () => {
   }, [dark]);
 
   return (
-    <>
-      <Button
-        className="p-sm z-10 rounded-full p-1"
-        styleType="ghost"
-        onClick={darkSetButton}
-      >
-        {dark ? (
-          <Icon id="dark-mode" className="fill-yellow-200 stroke-2" />
-        ) : (
-          <Icon id="light-mode" className="stroke-4 fill-red-400" />
-        )}
-      </Button>
-      <div
-        className={`absolute top-0 h-8 w-8 ${
-          dark ? 'bg-yellow-200' : 'bg-orange-200'
-        }  p-2 blur-md`}
-      ></div>
-    </>
+    <Button
+      className={cn(
+        'z-10 rounded-full bg-transparent dark:bg-transparent',
+        className,
+      )}
+      styleType="secondary"
+      onClick={darkSetButton}
+    >
+      {dark ? <Icon id="dark-mode" /> : <Icon id="light-mode" />}
+    </Button>
   );
 };
 

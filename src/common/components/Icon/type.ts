@@ -21,4 +21,5 @@ export type IconName =
   | 'visibility'
   | 'visibility-off'
   | 'light-mode'
-  | 'dark-mode';
+  | 'dark-mode'
+  | 'add';
