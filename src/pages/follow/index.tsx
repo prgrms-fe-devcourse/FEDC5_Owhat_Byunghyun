@@ -13,10 +13,8 @@ import FollowingList from './components/FollowingList';
 interface FollowLocationState {
   followers: Follow[];
   following: Follow[];
-  initialState: {
-    initialFollowData: Follow[];
-    initialIsFollowing: boolean;
-  };
+  username: string;
+  initialIsFollowing: boolean;
 }
 
 const FollowPage = () => {
@@ -25,12 +23,13 @@ const FollowPage = () => {
   const {
     followers,
     following,
-    initialState: { initialIsFollowing },
+    username,
+    initialIsFollowing,
   }: FollowLocationState = location.state;
 
   useEffect(() => {
     changeMeta({
-      title: '',
+      title: `${username}`,
       left: <ArrowBackButton />,
       right: <></>,
     });
@@ -44,12 +43,7 @@ const FollowPage = () => {
         grow
         className="scroll-none mt-small flex h-full w-full flex-col overflow-y-auto pb"
       >
-        <Tab
-          activeLabel={initialIsFollowing ? '팔로잉' : '팔로워'}
-          onClick={() => {
-            !initialIsFollowing;
-          }}
-        >
+        <Tab activeLabel={initialIsFollowing ? '팔로잉' : '팔로워'}>
           <Tab.Item title="팔로워" label="팔로워">
             <FollowersList followers={followers} />
           </Tab.Item>

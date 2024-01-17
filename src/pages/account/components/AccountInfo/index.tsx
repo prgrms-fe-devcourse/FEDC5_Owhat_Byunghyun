@@ -11,7 +11,7 @@ import FollowButton from '../FollowButton';
 
 interface AccountInfoProps {
   user: User;
-  authUser?: User;
+  authUser: User;
   isMyAccount: boolean;
 }
 
@@ -33,6 +33,7 @@ const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
         {fullName}
       </Text>
       <AccountExtraInfo
+        username={fullName}
         posts={posts}
         followers={followers as Follow[]}
         following={following as Follow[]}
