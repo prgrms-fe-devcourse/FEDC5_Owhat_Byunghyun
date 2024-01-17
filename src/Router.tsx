@@ -41,10 +41,19 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
+      <Route
+        path="/account/:userId"
+        element={
+          <Suspense fallback={<div>로딩중...</div>}>
+            <AccountPage />
+          </Suspense>
+        }
+      />
+      <Route path="/message" element={<MessagePage />} />
 
       <Route element={<PrivateRouter />}>
         <Route
-          path="/account/:userId"
+          path="/account"
           element={
             <Suspense fallback={<div>로딩중...</div>}>
               <AccountPage />
@@ -60,7 +69,6 @@ const router = createBrowserRouter(
             </Suspense>
           }
         />
-        <Route path="/message" element={<MessagePage />} />
         <Route path="/message/:userId" element={<MessageSendPage />} />
         <Route path="/notification" element={<NotificationPage />} />
       </Route>
