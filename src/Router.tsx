@@ -18,7 +18,7 @@ import PostDetailPage from './pages/postDetail';
 import RegisterPage from './pages/register';
 import SearchPage from './pages/search';
 import UpdatePasswordPage from './pages/updatePassword';
-import { LayoutWrapper, PublicRouter } from './routes';
+import { LayoutWrapper, PrivateRouter, PublicRouter } from './routes';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,11 +31,13 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
+      <Route path="/posts/:postId" element={<PostDetailPage />} />
+      <Route path="/search" element={<SearchPage />} />
       <Route
-        path="/account"
+        path="/follow"
         element={
           <Suspense fallback={<div>로딩중...</div>}>
-            <AccountPage />
+            <FollowPage />
           </Suspense>
         }
       />
@@ -47,28 +49,30 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-      <Route
-        path="/follow"
-        element={
-          <Suspense fallback={<div>로딩중...</div>}>
-            <FollowPage />
-          </Suspense>
-        }
-      />
-      <Route path="/update-password" element={<UpdatePasswordPage />} />
-      <Route
-        path="/account-edit"
-        element={
-          <Suspense fallback={<div>로딩중...</div>}>
-            <AccountEditPage />
-          </Suspense>
-        }
-      />
       <Route path="/message" element={<MessagePage />} />
-      <Route path="/message/:userId" element={<MessageSendPage />} />
-      <Route path="/search" element={<SearchPage />} />
-      <Route path="/notification" element={<NotificationPage />} />
-      <Route path="/posts/:postId" element={<PostDetailPage />} />
+
+      <Route element={<PrivateRouter />}>
+        <Route
+          path="/account"
+          element={
+            <Suspense fallback={<div>로딩중...</div>}>
+              <AccountPage />
+            </Suspense>
+          }
+        />
+        <Route path="/update-password" element={<UpdatePasswordPage />} />
+        <Route
+          path="/account-edit"
+          element={
+            <Suspense fallback={<div>로딩중...</div>}>
+              <AccountEditPage />
+            </Suspense>
+          }
+        />
+        <Route path="/message/:userId" element={<MessageSendPage />} />
+        <Route path="/notification" element={<NotificationPage />} />
+      </Route>
+
       <Route element={<PublicRouter />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
