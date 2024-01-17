@@ -23,9 +23,3 @@ export const PrivateRouter = () => {
 
   if (!isLoading) return <>{user ? <Outlet /> : <Navigate to="/login" />}</>;
 };
-
-export const AuthUserRouter = () => {
-  const { user } = useAuthUser();
-
-  return <>{user ? <Navigate to="/" /> : <Outlet />}</>;
-};
