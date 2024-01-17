@@ -12,7 +12,7 @@ const PostCreateButton = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/postCreate?channelId=${channelId}`);
+    navigate(`/post-create?channelId=${channelId}`);
   };
   return (
     <Button
