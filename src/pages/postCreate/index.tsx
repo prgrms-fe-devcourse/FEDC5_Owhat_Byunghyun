@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+import ArrowBackButton from '~/common/components/ArrowBackButton';
 import Icon from '~/common/components/Icon';
 import Image from '~/common/components/Image';
 import Input from '~/common/components/Input';
@@ -28,7 +29,7 @@ export default function PostCreatePage() {
   useEffect(() => {
     changeMeta({
       title: `${channelName}`,
-      left: <></>,
+      left: <ArrowBackButton />,
       right: <UploadButton onSubmit={handleSubmit} />,
     });
   }, [formState]);
