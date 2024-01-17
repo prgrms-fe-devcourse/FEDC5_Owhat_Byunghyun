@@ -69,7 +69,6 @@ const router = createBrowserRouter(
       <Route path="/search" element={<SearchPage />} />
       <Route path="/notification" element={<NotificationPage />} />
       <Route path="/posts/:postId" element={<PostDetailPage />} />
-      <Route element={<AuthUserRouter />}>
       <Route element={<PublicRouter />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
