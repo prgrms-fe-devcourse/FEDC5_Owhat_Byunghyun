@@ -20,6 +20,7 @@ const useCreatePost = () => {
     }) => postPostCreate(title, file, channelId),
     onSuccess: data => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.POST_LIST] });
+
       navigate(`/?channel=${data.channel._id}`);
     },
     onError: error => {

@@ -29,21 +29,21 @@ const SearchBar = ({ onSubmit, onChange }: SearchBarProps) => {
       <Group
         spacing={5}
         align="center"
-        className="mb-xlarge rounded-3xl border-2 border-black px py-xsmall"
+        className="mb-xlarge flex-nowrap rounded-3xl border-2 border-black px py-xsmall"
       >
-        <Icon id="search" size={18} />
+        <Icon id="search" size={18} className="flex-shrink-0" />
         <Input
           hasBorder={false}
           placeholder="검색어를 입력하세요."
           name="search"
           onChange={handleInputChange}
           value={inputValue}
-          className="grow dark:bg-transparent"
+          className="min-w-[150px] grow dark:bg-transparent"
         />
         <Icon
           id="cancel"
           size={18}
-          className="cursor-pointer"
+          className="flex-shrink-0 cursor-pointer justify-self-end"
           onClick={handleClickRemoveIcon}
         />
       </Group>
