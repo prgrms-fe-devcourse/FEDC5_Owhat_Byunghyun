@@ -93,9 +93,11 @@ const EditAccountImages = ({
           }}
         >
           {src => (
-            <div className="relative">
-              <Avatar src={src || image} size="small" />
-              <div className="group absolute top-0 box-border h-full w-full -translate-y-[0.2rem] cursor-pointer rounded-full bg-black opacity-20 ring-1 ring-black ring-offset-2 transition hover:opacity-50 hover:duration-500 hover:ease-in-out">
+            <div className="relative h-[80px] w-[80px]">
+              <div className="absolute left-0 top-0">
+                <Avatar src={src || image} size="small" />
+              </div>
+              <div className="group absolute left-0 top-0 box-border h-full w-full  cursor-pointer rounded-full bg-black opacity-20 ring-1 ring-black ring-offset-2 transition hover:opacity-50 hover:duration-500 hover:ease-in-out">
                 <Icon
                   id="add-circle"
                   className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 fill-white drop-shadow-md"
