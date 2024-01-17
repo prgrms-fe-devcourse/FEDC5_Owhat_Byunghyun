@@ -15,7 +15,7 @@ const RegisterPage = () => {
     changeMeta({
       title: '회원가입',
       left: <ArrowBackButton />,
-      right: '',
+      right: <></>,
     });
   }, []);
 

@@ -40,3 +40,11 @@ export interface Comment {
   createdAt: string;
   updatedAt: string;
 }
+
+type OmittedPost = Omit<Post, 'likes' | 'author' | 'channel'>;
+
+export interface PostResponse extends OmittedPost {
+  likes: Like[];
+  author: User;
+  channel: Channel;
+}

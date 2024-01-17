@@ -1,16 +1,23 @@
 import { ComponentProps } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import Avatar from '../Avatar';
+import Badge from '../Badge';
 import Group from '../Group';
 import Icon from '../Icon';
 import { IconName } from '../Icon/type';
 
-export interface NavigationBarProps extends ComponentProps<'nav'> {}
+export interface NavigationBarProps extends ComponentProps<'nav'> {
+  myProfile: string | undefined;
+  isAlarm: boolean;
+  isLogin: boolean;
+}
 
 interface NavLinkInfo {
   to: string;
   id: IconName;
   label: string;
+  img?: string;
 }
 
 const navLinks: NavLinkInfo[] = [
@@ -18,10 +25,15 @@ const navLinks: NavLinkInfo[] = [
   { to: '/search', id: 'search', label: '검색' },
   { to: '/message', id: 'message', label: '메세지' },
   { to: '/notification', id: 'notifications', label: '알림' },
-  { to: '/account', id: 'account-circle', label: '유저 정보' },
+  { to: '/account', id: 'account-circle', label: '유저 정보', img: '' },
 ];
 
-const NavigationBar = () => {
+const NavigationBar = ({ myProfile, isAlarm, isLogin }: NavigationBarProps) => {
+  const userNavLink = navLinks.find(link => link.id === 'account-circle');
+  if (userNavLink) {
+    userNavLink.img = myProfile;
+  }
+
   return (
     <nav className="fixed bottom-0 w-full max-w-layout -translate-x">
       <Group
@@ -30,7 +42,7 @@ const NavigationBar = () => {
         spacing="md"
         className="h-14 rounded rounded-b-none border-2 border-primary-lighter bg-primary-lighter"
       >
-        {navLinks.map(({ to, id, label }) => (
+        {navLinks.map(({ to, id, label, img }) => (
           <NavLink
             key={id}
             to={to}
@@ -40,7 +52,24 @@ const NavigationBar = () => {
                 : 'rounded-full fill-white p-1 hover:bg-primary'
             }
           >
-            <Icon id={id} aria-label={label} />
+            {isLogin && label === '유저 정보' ? (
+              <div className="h-6 w-6">
+                <Avatar src={img} size="auto" />
+              </div>
+            ) : isAlarm && label === '알림' ? (
+              <div className="h-6 w-6">
+                <Badge
+                  isActive={isAlarm}
+                  badgeType="alarm"
+                  corner="top-right"
+                  size="xsmall"
+                >
+                  <Icon id={id} aria-label={label} />
+                </Badge>
+              </div>
+            ) : (
+              <Icon id={id} aria-label={label} />
+            )}
           </NavLink>
         ))}
       </Group>

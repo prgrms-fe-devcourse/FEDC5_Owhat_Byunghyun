@@ -3,8 +3,9 @@ import { useEffect } from 'react';
 import Button from '~/common/components/Button';
 import Group from '~/common/components/Group';
 import Text from '~/common/components/Text';
-import { useUserListQuery } from '~/common/hooks/queries/userUserList';
+import { useUserListQuery } from '~/common/hooks/queries/useUserList';
 import useForm from '~/common/hooks/useForm';
+import { ERROR, MESSAGE } from '~/constants/message';
 import {
   isValidEmail,
   isValidPassword,
@@ -67,7 +68,7 @@ const RegisterForm = ({
   }, [values.email, setEmailCheckMessage, setIsEmailDuplicate]);
 
   useEffect(() => {
-    onRegisterCompleted(isCompleted && isEmailDuplicate);
+    onRegisterCompleted(isCompleted && !isEmailDuplicate);
   }, [isCompleted, isEmailDuplicate, onRegisterCompleted]);
 
   const DuplicateButton = () => (
@@ -78,7 +79,7 @@ const RegisterForm = ({
       className="absolute right-0 top-0 z-10 translate-y-[7%] text-sm"
       disabled={
         !isValid.email ||
-        (emailCheckMessage === '가입 가능한 이메일입니다.' && !isEmailDuplicate)
+        (emailCheckMessage === MESSAGE.POSSIBLE_EMAIL && !isEmailDuplicate)
       }
     >
       중복 확인
@@ -118,7 +119,7 @@ const RegisterForm = ({
           onChange={handleChange}
           value={values.username}
           isValid={isValid.username}
-          errorMessage="이름을 3글자 이상 공백없이 입력해주세요."
+          errorMessage={ERROR.NAME_INVALID}
         />
         <FormField
           type="password"
@@ -128,7 +129,7 @@ const RegisterForm = ({
           onChange={handleChange}
           value={values.password}
           isValid={isValid.password}
-          errorMessage="비밀번호는 8자 이상이어야 하며, 영문 대/소문자, 숫자, 특수문자를 포함해야 합니다."
+          errorMessage={ERROR.PASSWORD_INVAILD}
         />
         <FormField
           type="password"
@@ -138,7 +139,7 @@ const RegisterForm = ({
           onChange={handleChange}
           value={values.confirmPassword}
           isValid={isValid.confirmPassword}
-          errorMessage="비밀번호가 일치하지 않습니다."
+          errorMessage={ERROR.PASSWORD_NOT_MATCH}
         />
         <div className="sticky w-full p">
           <Button

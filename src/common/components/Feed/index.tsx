@@ -1,4 +1,5 @@
 import { Comment, Like } from '~/api/types/postTypes';
+import { jsonToData } from '~/utils/jsonToData';
 
 import Group from '../Group';
 import Icon from '../Icon';
@@ -22,7 +23,6 @@ const Feed = ({
   initialState = false,
   title,
   image,
-  content,
   likes,
   comments,
   imgAspect = true,
@@ -43,8 +43,8 @@ const Feed = ({
 
   return (
     <Group direction="columns" spacing="md">
-      <Text size="xlarge" strong={true} className={abbreviationTitle}>
-        {title}
+      <Text size="large" strong={true} className={abbreviationTitle}>
+        {jsonToData(title).postTitle}
       </Text>
       {image && (
         <Image
@@ -56,7 +56,9 @@ const Feed = ({
           className={fullImage}
         />
       )}
-      <Text className={abbreviationContent}>{content}</Text>
+      <Text className={abbreviationContent}>
+        {jsonToData(title).postContent}
+      </Text>
       <Group spacing={4} align="center">
         <LikeButton initialState={initialState} onClick={handleLikeClick} />
         <Text size="small" className="w-6 text-center">

@@ -19,7 +19,10 @@ const ExtraInfo = ({ className, gap = 1, children, ...props }: TextProps) => {
       {childComponents.map((child, index) => (
         <li
           key={index}
-          className={cn(extraInfoVariants({ gap }), 'text-base-small')}
+          className={cn(
+            extraInfoVariants({ gap }),
+            'items-center align-middle text-base-small ',
+          )}
         >
           {child}
           {index < childComponents.length - 1 && <span>·</span>}

@@ -17,4 +17,6 @@ export type IconName =
   | 'send'
   | 'more-vert'
   | 'chevron-right'
-  | 'chevron-left';
+  | 'chevron-left'
+  | 'visibility'
+  | 'visibility-off';

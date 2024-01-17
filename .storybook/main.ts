@@ -15,11 +15,6 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  env: config => ({
-    ...config,
-    VITE_BASE_URL: 'https://kdt.frontend.5th.programmers.co.kr',
-    VITE_PORT: '5007',
-  }),
 };
 
 export default config;

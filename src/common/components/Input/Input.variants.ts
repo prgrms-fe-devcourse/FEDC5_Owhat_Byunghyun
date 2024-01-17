@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const inputVariants = cva(
-  `placeholder:text-base-small rounded border border-gray-300 px-small py-xsmall focus:border-primary focus:outline-none`,
+  `rounded border border-gray-300 px-small py-xsmall placeholder:text-base-small focus:border-primary focus:outline-none`,
   {
     variants: {
       hasBorder: {

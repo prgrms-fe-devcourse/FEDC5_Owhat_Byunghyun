@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { User } from '~/api/types/userTypes';
+import { ERROR, MESSAGE } from '~/constants/message';
 interface useEmailDuplicateParams {
   userList: User[];
 }
@@ -15,9 +16,9 @@ const useEmailDuplicate = ({ userList }: useEmailDuplicateParams) => {
 
     setIsEmailDuplicate(isDuplicate);
     if (isDuplicate) {
-      setEmailCheckMessage('이메일이 이미 사용 중입니다.');
+      setEmailCheckMessage(ERROR.DUPLICATE_EMAIL);
     } else {
-      setEmailCheckMessage('가입 가능한 이메일입니다.');
+      setEmailCheckMessage(MESSAGE.POSSIBLE_EMAIL);
     }
   };
 
