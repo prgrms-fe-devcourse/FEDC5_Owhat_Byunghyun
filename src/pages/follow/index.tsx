@@ -18,7 +18,7 @@ interface FollowLocationState {
 }
 
 const FollowPage = () => {
-  const { changeMeta } = useLayout();
+  const { changeMeta, changeBottomNavigator } = useLayout();
   const location = useLocation();
   const {
     followers,
@@ -28,6 +28,7 @@ const FollowPage = () => {
   }: FollowLocationState = location.state;
 
   useEffect(() => {
+    changeBottomNavigator(true);
     changeMeta({
       title: `${username}`,
       left: <ArrowBackButton />,
@@ -44,10 +45,10 @@ const FollowPage = () => {
         className="scroll-none mt-small flex h-full w-full flex-col overflow-y-auto pb"
       >
         <Tab activeLabel={initialIsFollowing ? '팔로잉' : '팔로워'}>
-          <Tab.Item title="팔로워" label="팔로워">
+          <Tab.Item title="팔로워" subText={followers.length} label="팔로워">
             <FollowersList followers={followers} />
           </Tab.Item>
-          <Tab.Item title="팔로잉" label="팔로잉">
+          <Tab.Item title="팔로잉" subText={following.length} label="팔로잉">
             <FollowingList following={following} />
           </Tab.Item>
         </Tab>

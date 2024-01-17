@@ -5,11 +5,18 @@ import { cn } from '~/utils/cn';
 
 export interface TabItemProps extends ComponentProps<'div'> {
   title: string;
+  subText?: string | number;
   label: string;
   active?: boolean;
 }
 
-const TabItem = ({ title, active, className, ...props }: TabItemProps) => {
+const TabItem = ({
+  title,
+  subText = '',
+  active,
+  className,
+  ...props
+}: TabItemProps) => {
   return (
     <div
       {...props}
@@ -21,6 +28,9 @@ const TabItem = ({ title, active, className, ...props }: TabItemProps) => {
     >
       <Text strong={active} className={!active ? 'text-gray-400' : ''}>
         {title}
+      </Text>
+      <Text className={`ml-small text-sm ${!active && 'text-gray-400'}`}>
+        {subText}
       </Text>
     </div>
   );
