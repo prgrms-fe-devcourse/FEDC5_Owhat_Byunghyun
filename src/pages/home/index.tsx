@@ -5,8 +5,8 @@ import usePostListByChannel from '~/common/hooks/queries/usePostListByChannel';
 import useInfiniteScroll from '~/common/hooks/useInfiniteScroll';
 
 import ChannelList from './components/ChannelList';
-import CreateButton from './components/CreateButton';
 import FeedItem from './components/FeedItem';
+import PostCreateButton from './components/PostCreateButton';
 
 export default function HomePage() {
   const { channelList } = useChannelList();
@@ -33,7 +33,7 @@ export default function HomePage() {
         ))}
         <div ref={ref} />
       </ul>
-      <CreateButton channelId={channelId} />
+      <PostCreateButton channelId={channelId} />
     </section>
   );
 }

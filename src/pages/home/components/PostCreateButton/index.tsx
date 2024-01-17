@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 
 import Icon from '~/common/components/Icon';
 
-interface CreateButtonProps {
+interface PostCreateButtonProps {
   channelId?: string;
 }
 
-export default function CreateButton({ channelId }: CreateButtonProps) {
+const PostCreateButton = ({ channelId }: PostCreateButtonProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -20,4 +20,6 @@ export default function CreateButton({ channelId }: CreateButtonProps) {
       <Icon id="edit" className="h-8 w-8 fill-primary" />
     </button>
   );
-}
+};
+
+export default PostCreateButton;
