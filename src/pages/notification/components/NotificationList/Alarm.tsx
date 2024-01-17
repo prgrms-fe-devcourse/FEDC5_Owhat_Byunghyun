@@ -5,6 +5,7 @@ import { Post } from '~/api/types/postTypes';
 import Group from '~/common/components/Group';
 import Text from '~/common/components/Text';
 import { cn } from '~/utils/cn';
+import { jsonToData } from '~/utils/jsonToData';
 import { elapsedTime } from '~/utils/time';
 
 interface AlarmMessages {
@@ -19,25 +20,6 @@ const Alarm = ({ alarm }: { alarm: Notification }) => {
     comment: '게시글에 댓글을 달았습니다.',
     message: '메시지를 보냈습니다.',
     like: '게시글을 좋아합니다.',
-  };
-
-  const isJson = (str: string) => {
-    try {
-      const json = JSON.parse(str);
-      return json && typeof json === 'object';
-    } catch (e) {
-      return false;
-    }
-  };
-
-  const jsonToData = (title: string) => {
-    if (isJson(title)) {
-      const { title: postTitle, content: postContent } = JSON.parse(title);
-
-      return { postTitle, postContent };
-    } else {
-      return { postTitle: title, postContent: '' };
-    }
   };
 
   useEffect(() => {
