@@ -32,7 +32,7 @@ const FollowPage = () => {
 
   useEffect(() => {
     changeMeta({
-      title: '',
+      title: isFollowing ? '팔로잉' : '팔로워',
       left: <></>,
       right: <></>,
     });
@@ -53,14 +53,13 @@ const FollowPage = () => {
           onClick={() => setIsFollowing(prev => !prev)}
           className="mb"
         >
-          <Tab.Item title="팔로워" label="팔로워"></Tab.Item>
-          <Tab.Item title="팔로잉" label="팔로잉"></Tab.Item>
+          <Tab.Item title="팔로워" label="팔로워">
+            <FollowersList followers={followData} />
+          </Tab.Item>
+          <Tab.Item title="팔로잉" label="팔로잉">
+            <FollowingList following={followData} />
+          </Tab.Item>
         </Tab>
-        {isFollowing ? (
-          <FollowingList following={followData} />
-        ) : (
-          <FollowersList followers={followData} />
-        )}
       </Group>
     </section>
   );
