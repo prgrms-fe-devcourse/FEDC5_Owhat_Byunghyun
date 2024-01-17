@@ -41,7 +41,7 @@ const CommentListItem = ({
           </Link>
         )}
       </div>
-      <Group direction="columns" spacing={0} className="grow">
+      <Group direction="columns" spacing={0} className="flex-1">
         <Group direction="rows" spacing="sm" align="center">
           <Text size="xsmall" strong elementType="span">
             {typeof author !== 'string' && author.fullName}
