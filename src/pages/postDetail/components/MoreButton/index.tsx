@@ -24,25 +24,29 @@ const MoreButton = ({
         />
       }
       placement="bottom-right"
-      className="pointer-events-auto min-w-[45px]"
+      className="pointer-events-auto"
     >
       {type === 'post' && (
+        <div className="flex w-[35px] flex-col">
+          <Button
+            onClick={() => handleEdit && handleEdit()}
+            styleType="secondary"
+            className="z-10 p-1 text-xs"
+          >
+            수정
+          </Button>
+        </div>
+      )}
+
+      <div className="flex w-[35px] flex-col">
         <Button
           onClick={() => handleEdit && handleEdit(id)}
           styleType="secondary"
-          className="z-10 p-[3px] text-xs"
+          className="z-10 p-1  text-xs text-error hover:bg-error"
         >
-          수정
+          삭제
         </Button>
-      )}
-
-      <Button
-        onClick={() => handleDelete(id)}
-        styleType="secondary"
-        className="z-10 p-[3px] text-xs text-error hover:bg-error"
-      >
-        삭제
-      </Button>
+      </div>
     </Tooltip>
   );
 };

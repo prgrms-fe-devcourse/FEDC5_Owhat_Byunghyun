@@ -70,7 +70,7 @@ const router = createBrowserRouter(
 
       <Route element={<PrivateRouter />}>
         <Route
-          path="/postCreate"
+          path="/post-create"
           element={
             <Suspense fallback={<Loading />}>
               <PostCreatePage />
