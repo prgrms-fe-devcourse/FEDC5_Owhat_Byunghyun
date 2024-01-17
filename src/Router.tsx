@@ -13,6 +13,7 @@ import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import LoginPage from './pages/login';
 import MessagePage from './pages/message';
 import MessageSendPage from './pages/messageSend';
+import MoreUsersPage from './pages/moreUsers';
 import NotificationPage from './pages/notification';
 import PostDetailPage from './pages/postDetail';
 import RegisterPage from './pages/register';
@@ -50,7 +51,8 @@ const router = createBrowserRouter(
         }
       />
       <Route path="/message" element={<MessagePage />} />
-
+      <Route path="/more-users" element={<MoreUsersPage />} />
+      
       <Route element={<PrivateRouter />}>
         <Route
           path="/account"
