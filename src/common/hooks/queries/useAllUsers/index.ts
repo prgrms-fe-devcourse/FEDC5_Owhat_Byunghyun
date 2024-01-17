@@ -1,7 +1,8 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 import { User } from '~/api/types/userTypes';
+import { QUERY_KEY } from '~/constants/queryKey';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
@@ -15,8 +16,8 @@ const getUsers = async () => {
 };
 
 export const useAllUsers = () => {
-  const { data: allUsers } = useSuspenseQuery({
-    queryKey: ['users'],
+  const { data: allUsers } = useQuery({
+    queryKey: [QUERY_KEY.USER_LIST],
     queryFn: getUsers,
   });
 

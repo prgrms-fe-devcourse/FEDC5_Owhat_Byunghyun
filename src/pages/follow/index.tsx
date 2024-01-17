@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Follow } from '~/api/types/userTypes';
+import ArrowBackButton from '~/common/components/ArrowBackButton';
 import Group from '~/common/components/Group';
 import Tab from '~/common/components/Tab';
 import useLayout from '~/common/hooks/useLayout';
@@ -33,7 +34,7 @@ const FollowPage = () => {
   useEffect(() => {
     changeMeta({
       title: isFollowing ? '팔로잉' : '팔로워',
-      left: <></>,
+      left: <ArrowBackButton />,
       right: <></>,
     });
 
