@@ -19,14 +19,17 @@ const FeedItem = ({ feed }: FeedItemProps) => {
     return like.user === user?._id;
   });
 
-  const likeMutation = useLikeFromPost({ remove: !!likeInfo });
+  const likeMutation = useLikeFromPost({
+    remove: !!likeInfo,
+    authUserId: user?._id,
+    postUserId: typeof feed.author !== 'string' ? feed.author._id : '',
+  });
 
   if (typeof feed.author === 'string' || typeof feed.channel === 'string')
-    return <div>오류</div>;
+    return <div className="text-error">정상적인 게시글이 아닙니다!</div>;
 
   return (
     <li key={feed._id} className="flex flex-col gap-4">
-      {/* // TODO 라우팅 주소 추후 변경의 여지 있음 */}
       <div>
         <FeedUserInfo
           _id={feed.author._id}
@@ -34,7 +37,7 @@ const FeedItem = ({ feed }: FeedItemProps) => {
           channel={feed.channel.name}
           createdAt={feed.createdAt}
         />
-        <Link to={`posts/${feed._id}`}>
+        <Link to={`/posts/${feed._id}`}>
           <Feed
             initialState={!!likeInfo}
             title={feed.title}

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { login } from '~/api/user';
 import Toast from '~/common/components/Toast';
@@ -13,6 +13,7 @@ interface LoginParams {
 
 export const useLogin = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -22,7 +23,10 @@ export const useLogin = () => {
       const myStorage = new BrowserStorage<string>(OWHAT_TOKEN);
       myStorage.set(data.token);
       queryClient.invalidateQueries();
-      navigate('/');
+
+      const path = state || '/';
+      navigate(path, { replace: true });
+
       Toast.show('로그인 되었습니다. 환영합니다!', 2000);
     },
   });
