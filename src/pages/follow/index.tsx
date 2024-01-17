@@ -20,7 +20,7 @@ interface FollowLocationState {
 }
 
 const FollowPage = () => {
-  const { changeMeta } = useLayout();
+  const { changeMeta, changeBottomNavigator } = useLayout();
   const location = useLocation();
   const {
     followers,
@@ -29,17 +29,17 @@ const FollowPage = () => {
   }: FollowLocationState = location.state;
 
   const [followData, setFollowData] = useState<Follow[]>(initialFollowData);
-  const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
 
   useEffect(() => {
+    changeBottomNavigator(true);
     changeMeta({
-      title: isFollowing ? '팔로잉' : '팔로워',
+      title: initialIsFollowing ? '팔로잉' : '팔로워',
       left: <ArrowBackButton />,
       right: <></>,
     });
 
-    isFollowing ? setFollowData(following) : setFollowData(followers);
-  }, [isFollowing, followers, following]);
+    initialIsFollowing ? setFollowData(following) : setFollowData(followers);
+  }, [followers, following]);
 
   return (
     <section className="flex flex-col overflow-hidden">
@@ -50,14 +50,13 @@ const FollowPage = () => {
         className="scroll-none mt-small flex h-full w-full flex-col overflow-y-auto pb"
       >
         <Tab
-          activeLabel={isFollowing ? '팔로잉' : '팔로워'}
-          onClick={() => setIsFollowing(prev => !prev)}
+          activeLabel={initialIsFollowing ? '팔로잉' : '팔로워'}
           className="mb"
         >
-          <Tab.Item title="팔로워" label="팔로워">
+          <Tab.Item title="팔로워" subText={followers.length} label="팔로워">
             <FollowersList followers={followData} />
           </Tab.Item>
-          <Tab.Item title="팔로잉" label="팔로잉">
+          <Tab.Item title="팔로잉" subText={following.length} label="팔로잉">
             <FollowingList following={followData} />
           </Tab.Item>
         </Tab>

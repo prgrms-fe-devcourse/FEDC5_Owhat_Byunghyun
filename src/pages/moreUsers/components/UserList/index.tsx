@@ -1,16 +1,13 @@
 import { Follow, User } from '~/api/types/userTypes';
-import useUsersList from '~/common/hooks/queries/useUsersList';
 
 import UserItem from './UserItem';
 
 interface UserList {
-  isOnline?: boolean;
+  users?: User[];
   currentUser: User | undefined;
 }
 
-const UserList = ({ isOnline = false, currentUser }: UserList) => {
-  const { users } = useUsersList(isOnline);
-
+const UserList = ({ users, currentUser }: UserList) => {
   const getFollowInfo = (id: string) => {
     const idx = (currentUser?.following as Follow[]).findIndex(
       ({ user }) => user === id,
