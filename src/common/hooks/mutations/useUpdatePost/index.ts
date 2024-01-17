@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 import { putPost } from '~/api/post';
-// import { Post } from '~/api/types/postTypes';
+import Toast from '~/common/components/Toast';
 import { QUERY_KEY } from '~/constants/queryKey';
 
 export interface putPostProps {
@@ -14,6 +15,7 @@ export interface putPostProps {
 
 const useUpdatePost = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const mutationUpdatePost = useMutation({
     mutationFn: (data: putPostProps) => putPost(data),
@@ -22,7 +24,8 @@ const useUpdatePost = () => {
         queryKey: [QUERY_KEY.POST_LIST],
       });
 
-      alert('수정이 완료되었습니다.');
+      navigate('..', { replace: true });
+      Toast.show('수정이 완료되었습니다.');
     },
     onError: error => {
       if (error instanceof Error) console.warn(error.message);
