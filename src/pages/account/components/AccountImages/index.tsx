@@ -15,17 +15,12 @@ const AccountImages = ({ coverImage, image }: AccountImagesProps) => {
   });
 
   return (
-    <Group
-      spacing={0}
-      align={'center'}
-      position={'center'}
-      className="relative"
-    >
+    <Group spacing={0} align="center" position="center" className="relative">
       <div className="flex w-full items-center justify-center">
         {coverImage ? (
           <Image
-            imgHeight={'full'}
-            imgWidth={'full'}
+            imgHeight="full"
+            imgWidth="full"
             src={coverImage}
             className="inline-block aspect-[2/1] min-h-[150px]"
           />

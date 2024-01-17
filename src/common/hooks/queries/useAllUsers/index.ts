@@ -1,23 +1,12 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
-import { User } from '~/api/types/userTypes';
-
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const PORT = import.meta.env.VITE_PORT;
-// 추후 api 폴더 내 user.ts로 이동할 예정임
-const getUsers = async () => {
-  const { data } = await axios.get<User[]>(
-    `${BASE_URL}:${PORT}/users/get-users`,
-  );
-
-  return data;
-};
+import { getAllUsers } from '~/api/user';
+import { QUERY_KEY } from '~/constants/queryKey';
 
 export const useAllUsers = () => {
-  const { data: allUsers } = useSuspenseQuery({
-    queryKey: ['users'],
-    queryFn: getUsers,
+  const { data: allUsers } = useQuery({
+    queryKey: [QUERY_KEY.USER_LIST],
+    queryFn: getAllUsers,
   });
 
   return { allUsers };

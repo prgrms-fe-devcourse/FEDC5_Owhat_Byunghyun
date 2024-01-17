@@ -31,7 +31,7 @@ const FeedUserInfo = ({
       >
         <Avatar src={profileImage} size="auto" className="h-8 w-8"></Avatar>
       </Link>
-      <Group spacing={0} direction={'columns'}>
+      <Group spacing={0} direction="columns">
         <Link to={isMyAccount ? '/account' : `/account/${_id}`}>
           <Text size="small" strong>
             {author}

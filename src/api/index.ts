@@ -6,7 +6,7 @@ import { BrowserStorage } from '~/utils/storage';
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const PORT = import.meta.env.VITE_PORT;
 
-const myStorage = new BrowserStorage<string>(OWHAT_TOKEN);
+export const myStorage = new BrowserStorage<string>(OWHAT_TOKEN);
 
 export const instance = axios.create({
   baseURL: `${BASE_URL}:${PORT}`,
@@ -18,9 +18,9 @@ export const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     const token = myStorage.get();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+    if (config.headers.ignoreGlobalCatch) config.headers.Authorization = '';
+    else if (token) config.headers.Authorization = `Bearer ${token}`;
+
     return config;
   },
   error => {

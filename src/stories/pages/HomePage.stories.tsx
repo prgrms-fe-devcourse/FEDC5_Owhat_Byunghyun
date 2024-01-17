@@ -40,10 +40,14 @@ export const Scroll: Story = {
                 comments: [],
                 likes: [],
                 image: `https://picsum.photos/id/1${v}/200/300`,
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
                 channel: '',
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
                 author: '',
-                createdAt: '',
-                updatedAt: '',
+                createdAt: '2024-01-15T05:33:33.552Z',
+                updatedAt: '2024-01-15T05:33:33.552Z',
               }}
             />
           ))}

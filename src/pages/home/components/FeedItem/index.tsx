@@ -1,55 +1,46 @@
 import { Link } from 'react-router-dom';
 
-import { Like, Post } from '~/api/types/postTypes';
+import { Like, PostResponse } from '~/api/types/postTypes';
 import Feed from '~/common/components/Feed';
+import UserInfo from '~/common/components/UserInfo';
 import useLikeFromPost from '~/common/hooks/mutations/useLikeFromPost';
-import useAuthUser from '~/common/hooks/queries/useAuthUser';
-
-import FeedUserInfo from '../FeedUserInfo';
+import useSuspenseAuthUser from '~/common/hooks/queries/useSuspenseAuthUser';
 
 interface FeedItemProps {
-  feed: Post;
+  feed: PostResponse;
 }
 
 const FeedItem = ({ feed }: FeedItemProps) => {
-  const { user } = useAuthUser();
+  const { authUser } = useSuspenseAuthUser();
   const likeInfo = feed.likes.find(like => {
     if (typeof like === 'string') return false;
 
-    return like.user === user?._id;
+    return like.user === authUser?._id;
   });
 
   const likeMutation = useLikeFromPost({
     remove: !!likeInfo,
-    authUserId: user?._id,
+    authUserId: authUser?._id,
     postUserId: typeof feed.author !== 'string' ? feed.author._id : '',
   });
 
-  if (typeof feed.author === 'string' || typeof feed.channel === 'string')
-    return <div className="text-error">정상적인 게시글이 아닙니다!</div>;
-
   return (
-    <li key={feed._id} className="flex flex-col gap-4">
-      <div>
-        <FeedUserInfo
-          _id={feed.author._id}
-          author={feed.author.fullName}
-          channel={feed.channel.name}
-          createdAt={feed.createdAt}
+    <li key={feed._id} className="flex flex-col gap-4 px-1">
+      {/* // TODO 라우팅 주소 추후 변경의 여지 있음 */}
+      <UserInfo post={feed} authUser={authUser} />
+
+      <Link to={`/posts/${feed._id}`}>
+        <Feed
+          initialState={!!likeInfo}
+          title={feed.title}
+          comments={feed.comments as string[]}
+          likes={feed.likes}
+          image={feed.image as string}
+          handleLike={() =>
+            likeMutation.mutate(likeInfo ? (likeInfo as Like)._id : feed._id)
+          }
         />
-        <Link to={`/posts/${feed._id}`}>
-          <Feed
-            initialState={!!likeInfo}
-            title={feed.title}
-            comments={feed.comments as string[]}
-            likes={feed.likes as string[]}
-            image={feed.image as string}
-            handleLike={() =>
-              likeMutation.mutate(likeInfo ? (likeInfo as Like)._id : feed._id)
-            }
-          />
-        </Link>
-      </div>
+      </Link>
     </li>
   );
 };

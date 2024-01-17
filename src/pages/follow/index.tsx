@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Follow } from '~/api/types/userTypes';
+import ArrowBackButton from '~/common/components/ArrowBackButton';
 import Group from '~/common/components/Group';
 import Tab from '~/common/components/Tab';
 import useLayout from '~/common/hooks/useLayout';
@@ -32,29 +33,36 @@ const FollowPage = () => {
 
   useEffect(() => {
     changeMeta({
-      title: !isFollowing ? '팔로워' : '팔로잉',
-      left: <></>,
+      title: isFollowing ? '팔로잉' : '팔로워',
+      left: <ArrowBackButton />,
       right: <></>,
     });
 
     isFollowing ? setFollowData(following) : setFollowData(followers);
-  }, [isFollowing]);
+  }, [isFollowing, followers, following]);
 
   return (
-    <Group spacing={0} direction={'columns'} grow>
-      <Tab
-        activeLabel={isFollowing ? '팔로잉' : '팔로워'}
-        onClick={() => setIsFollowing(prev => !prev)}
+    <section className="flex flex-col overflow-hidden">
+      <Group
+        spacing={0}
+        direction="columns"
+        grow
+        className="scroll-none mt-small flex h-full w-full flex-col overflow-y-auto pb"
       >
-        <Tab.Item title="팔로워" label="팔로워"></Tab.Item>
-        <Tab.Item title="팔로잉" label="팔로잉"></Tab.Item>
-      </Tab>
-      {isFollowing ? (
-        <FollowingList following={followData} />
-      ) : (
-        <FollowersList followers={followData} />
-      )}
-    </Group>
+        <Tab
+          activeLabel={isFollowing ? '팔로잉' : '팔로워'}
+          onClick={() => setIsFollowing(prev => !prev)}
+          className="mb"
+        >
+          <Tab.Item title="팔로워" label="팔로워">
+            <FollowersList followers={followData} />
+          </Tab.Item>
+          <Tab.Item title="팔로잉" label="팔로잉">
+            <FollowingList following={followData} />
+          </Tab.Item>
+        </Tab>
+      </Group>
+    </section>
   );
 };
 

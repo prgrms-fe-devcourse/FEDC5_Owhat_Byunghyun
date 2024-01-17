@@ -11,8 +11,8 @@ interface FollowListProps {
 }
 
 const FollowersList = ({ followers }: FollowListProps) => {
+  const { allUsers = [] } = useAllUsers();
   const [followList, setFollowList] = useState<User[]>([]);
-  const { allUsers } = useAllUsers();
 
   useEffect(() => {
     const followUsers = allUsers.filter(user => {

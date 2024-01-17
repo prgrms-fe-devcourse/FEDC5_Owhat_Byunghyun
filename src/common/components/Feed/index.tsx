@@ -43,7 +43,7 @@ const Feed = ({
 
   return (
     <Group direction="columns" spacing="md">
-      <Text size="xlarge" strong={true} className={abbreviationTitle}>
+      <Text size="large" strong={true} className={abbreviationTitle}>
         {jsonToData(title).postTitle}
       </Text>
       {image && (

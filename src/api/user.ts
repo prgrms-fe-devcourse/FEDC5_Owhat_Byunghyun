@@ -7,8 +7,21 @@ export const getAuthUser = async () => {
 
   return data;
 };
+
 export const getOnlineUsers = async () => {
   const { data } = await instance.get<User[]>('/users/online-users');
+
+  return data;
+};
+
+export const getAllUsers = async () => {
+  const { data } = await instance.get<User[]>('/users/get-users', {
+    validateStatus: null,
+    headers: {
+      Authorization: '',
+      ignoreGlobalCatch: true,
+    },
+  });
 
   return data;
 };

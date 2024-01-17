@@ -1,17 +1,22 @@
 import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 import { putUpdatePassword } from '~/api/user';
+import Toast from '~/common/components/Toast';
 
 export const useUpdatePassword = () => {
-  const { mutate: updatePassword } = useMutation({
+  const navigate = useNavigate();
+  const { mutate: updatePassword, isPending } = useMutation({
     mutationFn: putUpdatePassword,
     onSuccess: () => {
-      alert('비밀번호가 변경되었습니다.');
+      Toast.show('비밀번호가 변경되었습니다.');
+
+      navigate('/account');
     },
     onError: error => {
       if (error instanceof Error) console.warn(error.message);
     },
   });
 
-  return { updatePassword };
+  return { updatePassword, isPending };
 };

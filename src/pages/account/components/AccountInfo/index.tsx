@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Follow, User } from '~/api/types/userTypes';
 import Button from '~/common/components/Button';
 import Text from '~/common/components/Text';
+import Toast from '~/common/components/Toast';
 
 import AccountExtraInfo from '../AccountExtraInfo';
 import AccountImages from '../AccountImages';
@@ -28,7 +29,7 @@ const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
   return (
     <>
       <AccountImages coverImage={coverImage} image={profileImage} />
-      <Text size={'large'} className={'mt-xlarge text-center'} strong>
+      <Text size="large" className="mt-xlarge text-center" strong>
         {fullName}
       </Text>
       <AccountExtraInfo
@@ -38,9 +39,11 @@ const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
       />
 
       {isMyAccount ? (
-        <Button className="mt-small">
-          <Link to={'/account-edit'}>내 정보 변경</Link>
-        </Button>
+        <Link to="/account-edit" className="mt-small w-full">
+          <Button type="button" fullwidth>
+            <Text size="base">내 정보 변경</Text>
+          </Button>
+        </Link>
       ) : authUser ? (
         <FollowButton
           accountId={_id}
@@ -51,7 +54,7 @@ const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
       ) : (
         <Button
           className="mt-small"
-          onClick={() => alert('로그인이 필요한 서비스입니다.')}
+          onClick={() => Toast.show('로그인이 필요한 서비스입니다.')}
         >
           팔로우
         </Button>

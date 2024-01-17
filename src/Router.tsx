@@ -6,8 +6,11 @@ import {
 } from 'react-router-dom';
 
 import AccountPage from './pages/account';
+import AccountSkeleton from './pages/account/components/AccountSkeleton';
 import AccountEditPage from './pages/accountEdit';
+import AccountEditSkeleton from './pages/accountEdit/components/AccountEditSkeleton';
 import FollowPage from './pages/follow';
+import FollowSkeleton from './pages/follow/components/FollowSkeleton';
 import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import LoginPage from './pages/login';
@@ -37,15 +40,15 @@ const router = createBrowserRouter(
       <Route
         path="/follow"
         element={
-          <Suspense fallback={<div>로딩중...</div>}>
+          <Suspense fallback={<FollowSkeleton />}>
             <FollowPage />
           </Suspense>
         }
       />
-      <Route
+       <Route
         path="/account/:userId"
         element={
-          <Suspense fallback={<div>로딩중...</div>}>
+          <Suspense fallback={<AccountSkeleton />}>
             <AccountPage />
           </Suspense>
         }
@@ -54,10 +57,10 @@ const router = createBrowserRouter(
       <Route path="/more-users" element={<MoreUsersPage />} />
       
       <Route element={<PrivateRouter />}>
-        <Route
+       <Route
           path="/account"
           element={
-            <Suspense fallback={<div>로딩중...</div>}>
+            <Suspense fallback={<AccountSkeleton />}>
               <AccountPage />
             </Suspense>
           }
@@ -66,7 +69,7 @@ const router = createBrowserRouter(
         <Route
           path="/account-edit"
           element={
-            <Suspense fallback={<div>로딩중...</div>}>
+            <Suspense fallback={<AccountEditSkeleton />}>
               <AccountEditPage />
             </Suspense>
           }
