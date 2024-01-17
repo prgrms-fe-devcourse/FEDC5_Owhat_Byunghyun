@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { postPostCreate } from '~/api/post';
 import { QUERY_KEY } from '~/constants/queryKey';
 
-const useUploadPost = () => {
+const useCreatePost = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const useUploadPost = () => {
     }) => postPostCreate(title, file, channelId),
     onSuccess: data => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.POST_LIST] });
-      navigate(`/posts/${data._id}`);
+      navigate(`/?channel=${data.channel._id}`);
     },
     onError: error => {
       if (error instanceof Error) console.warn(error.message);
@@ -30,4 +30,4 @@ const useUploadPost = () => {
   return mutation;
 };
 
-export default useUploadPost;
+export default useCreatePost;

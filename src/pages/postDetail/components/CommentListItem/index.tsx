@@ -33,7 +33,7 @@ const CommentListItem = ({
   };
 
   return (
-    <Group direction="rows" spacing="sm" align="center" className="w-full">
+    <Group direction="rows" spacing={14} align="center" className="w-full">
       <div className="w-8">
         {typeof author !== 'string' && (
           <Link to={`/account/${id}`} className="flex items-center">

@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+import Loading from './common/components/Loading';
 import NotFoundPage from './pages/404';
 import AccountPage from './pages/account';
 import AccountSkeleton from './pages/account/components/AccountSkeleton';
@@ -59,7 +60,14 @@ const router = createBrowserRouter(
       <Route path="/more-users" element={<MoreUsersPage />} />
 
       <Route element={<PrivateRouter />}>
-        <Route path="/postCreate" element={<PostCreatePage />} />
+        <Route
+          path="/postCreate"
+          element={
+            <Suspense fallback={<Loading />}>
+              <PostCreatePage />
+            </Suspense>
+          }
+        />
         <Route
           path="/account"
           element={

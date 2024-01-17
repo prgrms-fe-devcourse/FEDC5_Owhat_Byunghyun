@@ -31,7 +31,7 @@ const MessageSendPage = () => {
 
   useEffect(() => {
     changeMeta({
-      title: user?.fullName || '',
+      title: user?.fullName || <></>,
       left: <ArrowBackButton />,
       right: null,
     });

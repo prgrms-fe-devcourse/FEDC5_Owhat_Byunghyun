@@ -49,12 +49,12 @@ const NavigationBar = ({ myProfile, isAlarm, isLogin }: NavigationBarProps) => {
             className={({ isActive }) =>
               isActive
                 ? 'rounded-full bg-primary fill-white p-1'
-                : 'rounded-full fill-white p-1 hover:bg-primary'
+                : 'group rounded-full fill-white p-1 hover:bg-primary'
             }
           >
             {isLogin && label === '유저 정보' ? (
-              <div className="h-6 w-6">
-                <Avatar src={img} size="auto" />
+              <div className="h-6 w-6 group-hover:opacity-70">
+                <Avatar src={img} size="full" className="h-6 w-6" />
               </div>
             ) : isAlarm && label === '알림' ? (
               <div className="h-6 w-6">

@@ -5,11 +5,11 @@ import { cn } from '~/utils/cn';
 import Button from '../Button';
 import Icon from '../Icon';
 
-interface ArrowButtonProps {
+interface HomeButtonProps {
   className?: string;
 }
 
-const HomeButton = ({ className }: ArrowButtonProps) => {
+const HomeButton = ({ className }: HomeButtonProps) => {
   const navigate = useNavigate();
   return (
     <Button styleType="ghost" className={cn('p-0', className)}>

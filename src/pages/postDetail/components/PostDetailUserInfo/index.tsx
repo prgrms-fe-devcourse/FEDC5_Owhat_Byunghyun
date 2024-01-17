@@ -22,7 +22,7 @@ const PostDetailUserInfo = ({
   createdAt,
 }: PostDetailUserInfoProps) => {
   return (
-    <Group direction="rows" spacing="md">
+    <Group direction="rows" spacing={14}>
       <Link to={`/account/${_id}`} className="flex items-center">
         <Avatar src={profileImage} size="auto" className="h-9 w-9" />
       </Link>
