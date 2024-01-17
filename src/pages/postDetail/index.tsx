@@ -29,9 +29,7 @@ const PostDetailPage = () => {
     }
   };
 
-  const handleEditPost = () => {
-    //TODO: 포스트 수정페이지로 가는 함수
-  };
+  const handleEditPost = () => {};
   const handleSubmitComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

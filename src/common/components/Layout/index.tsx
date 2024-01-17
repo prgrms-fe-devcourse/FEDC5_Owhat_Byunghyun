@@ -31,7 +31,6 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
   const isRootPath = location.pathname === '/';
 
   const queryClient = useQueryClient();
-  //TODO: 추후 useQUERY를 줄이는 방법으로 리팩토링
   const { user, isLoading: userLoading } = useAuthUser();
   const {
     notificationList,

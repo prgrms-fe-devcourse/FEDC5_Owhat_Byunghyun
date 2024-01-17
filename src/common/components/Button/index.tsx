@@ -6,7 +6,6 @@ import { cn } from '~/utils/cn';
 
 import { buttonVarients } from './Button.variants';
 
-//TODO: invisible 사용고려 - loading을 감싸는 rounded가 통일 되지않아 튀어나오는 버그 -> main 머지 후 해결 가능
 export interface ButtonProps
   extends ComponentProps<'button'>,
     VariantProps<typeof buttonVarients> {
