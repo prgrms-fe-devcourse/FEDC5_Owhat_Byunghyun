@@ -36,7 +36,7 @@ const AcordionButton = () => {
           <ThemeButton className="p-1" />
         </li>
         <li>
-          <div className="rounded-full dark:bg-transparent">
+          <div className="rounded-full shadow-md dark:bg-black dark:fill-primary dark:shadow-gray-800">
             <Suspense>
               <PostCreateButton />
             </Suspense>

@@ -22,7 +22,7 @@ const ToastItem = ({ message, duration, onDone }: ToastItemProps) => {
     <div
       className={cn(
         'duration-400 relative mx mb-2 flex h-16 w-layout max-w-[296px] items-center ',
-        'animate-move rounded border border-solid border-gray-300 bg-white p-4 opacity-100 shadow-md transition-opacity ease-out',
+        'animate-move overflow-hidden rounded bg-white p-4 opacity-100 shadow-md transition-opacity ease-out',
         !show && 'opacity-0',
       )}
     >
@@ -33,7 +33,7 @@ const ToastItem = ({ message, duration, onDone }: ToastItemProps) => {
         )}
         style={{ animationDuration: `${duration}ms` }}
       />
-      <Text>{message}</Text>
+      <Text className="dark:text-black">{message}</Text>
     </div>
   );
 };
