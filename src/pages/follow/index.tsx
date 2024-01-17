@@ -32,7 +32,7 @@ const FollowPage = () => {
 
   useEffect(() => {
     changeMeta({
-      title: !isFollowing ? '팔로워' : '팔로잉',
+      title: '',
       left: <></>,
       right: <></>,
     });
@@ -46,11 +46,12 @@ const FollowPage = () => {
         spacing={0}
         direction={'columns'}
         grow
-        className="scroll-none flex h-full w-full flex-col overflow-y-auto pb"
+        className="scroll-none mt-small flex h-full w-full flex-col overflow-y-auto pb"
       >
         <Tab
           activeLabel={isFollowing ? '팔로잉' : '팔로워'}
           onClick={() => setIsFollowing(prev => !prev)}
+          className="mb"
         >
           <Tab.Item title="팔로워" label="팔로워"></Tab.Item>
           <Tab.Item title="팔로잉" label="팔로잉"></Tab.Item>
