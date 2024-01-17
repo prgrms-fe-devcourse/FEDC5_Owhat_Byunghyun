@@ -17,7 +17,7 @@ interface PostDetailComponent {
   user: User;
   commentSubmitPending?: boolean;
   handleDeletePost?: (id: string) => void;
-  handleEditPost?: () => void;
+  handleEditPost?: (postId: string) => void;
   handleSubmitComment?: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 

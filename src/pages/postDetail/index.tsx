@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import ArrowBackButton from '~/common/components/ArrowBackButton';
 import useCreateComment from '~/common/hooks/mutations/useCreateComment';
@@ -12,6 +12,8 @@ import PostDetailComponent from './components/PostDetailComponent';
 import PostDetailSkeleton from './components/PostDetailSkeleton';
 
 const PostDetailPage = () => {
+  const navigate = useNavigate();
+
   const { postId = '' } = useParams();
 
   const { postDetailData, postDetailLoading } = usePostDetail(postId);
@@ -29,7 +31,10 @@ const PostDetailPage = () => {
     }
   };
 
-  const handleEditPost = () => {};
+  const handleEditPost = (postId: string) => {
+    navigate(`/post-update/${postId}`);
+  };
+
   const handleSubmitComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

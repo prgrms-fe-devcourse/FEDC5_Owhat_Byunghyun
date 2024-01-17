@@ -18,10 +18,10 @@ export default function PostCreatePage() {
 
   const {
     formState,
-    handleCreatePostTitle,
-    handleCreatePostImage,
-    handleCreatePostContent,
     handleSubmit,
+    handleCreatePostContent,
+    handleCreatePostImage,
+    handleCreatePostTitle,
   } = useCreatePostForm(channelId);
 
   const { changeMeta } = useLayout();
@@ -30,7 +30,7 @@ export default function PostCreatePage() {
     changeMeta({
       title: `${channelName}`,
       left: <ArrowBackButton />,
-      right: <UploadButton onSubmit={handleSubmit} />,
+      right: <UploadButton isEdit={false} onSubmit={handleSubmit} />,
     });
   }, [formState]);
 

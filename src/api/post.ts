@@ -1,4 +1,5 @@
 import { PostResponse } from '~/api/types/postTypes';
+import { putPostProps } from '~/common/hooks/mutations/useUpdatePost';
 
 import { instance } from '.';
 
@@ -106,4 +107,22 @@ export const postPostCreate = async (
   });
 
   return data;
+};
+
+export const putPost = async (data: putPostProps) => {
+  const { title, image, postId, channelId, imageToDeletePublicId } = data;
+
+  const formData = new FormData();
+
+  formData.append('title', title);
+  formData.append('image', image);
+  formData.append('postId', postId);
+  formData.append('channelId', channelId);
+  formData.append('imageToDeletePublicId', imageToDeletePublicId ?? '');
+
+  await instance.put('/posts/update', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 };

@@ -6,7 +6,7 @@ interface MoreButtonProps {
   type: 'comment' | 'post';
   id: string;
   handleDelete: (id: string) => void;
-  handleEdit?: () => void;
+  handleEdit?: (postId: string) => void;
 }
 
 const MoreButton = ({
@@ -28,7 +28,7 @@ const MoreButton = ({
     >
       {type === 'post' && (
         <Button
-          onClick={() => handleEdit && handleEdit()}
+          onClick={() => handleEdit && handleEdit(id)}
           styleType="secondary"
           className="z-10 p-[3px] text-xs"
         >
