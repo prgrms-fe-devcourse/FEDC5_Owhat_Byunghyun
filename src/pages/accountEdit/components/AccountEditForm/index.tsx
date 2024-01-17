@@ -49,7 +49,7 @@ const AccountEditForm = ({ authUser }: AccountEditFormProps) => {
         setSubmitPossible={setSubmitPossible}
         isUserNameValid={isUserNameValid}
       />
-      <Group spacing={'sm'} direction={'columns'} className="mt-large" grow>
+      <Group spacing="sm" direction="columns" className="mt-large" grow>
         <Text>새로운 닉네임</Text>
         <Input
           onKeyDown={e => {
@@ -69,7 +69,7 @@ const AccountEditForm = ({ authUser }: AccountEditFormProps) => {
           {ERROR.NAME_INVALID}
         </Text>
         <Text className="mt-large font-thin text-primary">
-          <Link to={'/update-password'} state={_id} className="hover:underline">
+          <Link to="/update-password" state={_id} className="hover:underline">
             내 비밀번호 변경
           </Link>
         </Text>

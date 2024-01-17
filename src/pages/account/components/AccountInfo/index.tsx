@@ -29,7 +29,7 @@ const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
   return (
     <>
       <AccountImages coverImage={coverImage} image={profileImage} />
-      <Text size={'large'} className={'mt-xlarge text-center'} strong>
+      <Text size="large" className="mt-xlarge text-center" strong>
         {fullName}
       </Text>
       <AccountExtraInfo
@@ -39,9 +39,9 @@ const AccountInfo = ({ user, authUser, isMyAccount }: AccountInfoProps) => {
       />
 
       {isMyAccount ? (
-        <Link to={'/account-edit'} className="mt-small w-full">
+        <Link to="/account-edit" className="mt-small w-full">
           <Button type="button" fullwidth>
-            <Text size={'base'}>내 정보 변경</Text>
+            <Text size="base">내 정보 변경</Text>
           </Button>
         </Link>
       ) : authUser ? (

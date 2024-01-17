@@ -26,7 +26,7 @@ const PostDetailUserInfo = ({
       <Link to={`/account/${_id}`} className="flex items-center">
         <Avatar src={profileImage} size="auto" className="h-9 w-9" />
       </Link>
-      <Group spacing={1} direction={'columns'}>
+      <Group spacing={1} direction="columns">
         <Link to={`/account/${_id}`}>
           <Text size="small" strong>
             {fullName}

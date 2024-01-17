@@ -20,21 +20,16 @@ const AccountExtraInfo = ({
 
   return (
     <Group spacing={20} className=" text-gray-500" grow>
-      <Group
-        spacing={2}
-        direction={'columns'}
-        position={'center'}
-        align={'center'}
-      >
+      <Group spacing={2} direction="columns" position="center" align="center">
         <Text>{posts.length}</Text>
         <Text>게시물</Text>
       </Group>
 
       <Group
         spacing={2}
-        direction={'columns'}
-        position={'center'}
-        align={'center'}
+        direction="columns"
+        position="center"
+        align="center"
         onClick={() => {
           navigate('/follow', {
             state: {
@@ -55,9 +50,9 @@ const AccountExtraInfo = ({
 
       <Group
         spacing={2}
-        direction={'columns'}
-        position={'center'}
-        align={'center'}
+        direction="columns"
+        position="center"
+        align="center"
         onClick={() => {
           navigate('/follow', {
             state: {

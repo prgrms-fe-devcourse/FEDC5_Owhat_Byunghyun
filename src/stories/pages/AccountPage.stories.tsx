@@ -864,7 +864,7 @@ const meta: Meta<typeof AccountPage> = {
           <section className="flex overflow-hidden">
             <Group
               spacing={10}
-              direction={'columns'}
+              direction="columns"
               className="scroll-none flex h-full w-full flex-col overflow-y-auto pb"
               grow
             >
@@ -877,8 +877,8 @@ const meta: Meta<typeof AccountPage> = {
 
               {DUMMY_USER_POSTS.length === 0 ? (
                 <Text
-                  size={'large'}
-                  className={'mt-xlarge py-xlarge text-center text-gray-400'}
+                  size="large"
+                  className="mt-xlarge py-xlarge text-center text-gray-400"
                 >
                   작성한 게시물이 없습니다.
                 </Text>

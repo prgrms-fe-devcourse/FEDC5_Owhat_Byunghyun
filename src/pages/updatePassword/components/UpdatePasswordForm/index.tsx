@@ -42,8 +42,8 @@ const UpdatePasswordForm = () => {
       className="flex flex-col gap-large p-small"
       onSubmit={handleUpdatePassword}
     >
-      <Group spacing={'sm'} direction={'columns'} className="mt-large" grow>
-        <Text size={'small'}>새로운 비밀번호</Text>
+      <Group spacing="sm" direction="columns" className="mt-large" grow>
+        <Text size="small">새로운 비밀번호</Text>
         <Input
           type="password"
           name="password"

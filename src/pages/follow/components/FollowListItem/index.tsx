@@ -19,7 +19,7 @@ const FollowListItem = ({ userData }: FollowListProps) => {
       to={authUser?._id === _id ? '/account' : `/account/${_id}`}
       className="flex flex-row"
     >
-      <Group spacing={'md'} align={'center'}>
+      <Group spacing="md" align="center">
         <Avatar size="full" className="h-10 w-10" src={image}></Avatar>
         <Text>{fullName}</Text>
       </Group>

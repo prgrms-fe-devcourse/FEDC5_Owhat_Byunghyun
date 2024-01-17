@@ -32,12 +32,7 @@ const EditAccountImages = ({
   };
 
   return (
-    <Group
-      spacing={0}
-      align={'center'}
-      position={'center'}
-      className="relative"
-    >
+    <Group spacing={0} align="center" position="center" className="relative">
       <Upload
         id="coverImage"
         name="coverImage"
@@ -53,13 +48,13 @@ const EditAccountImages = ({
               <>
                 <div className="group absolute h-full w-full cursor-pointer bg-black opacity-20 transition hover:opacity-50 hover:duration-500 hover:ease-in-out">
                   <Icon
-                    id={'add-circle'}
+                    id="add-circle"
                     className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 fill-white drop-shadow-md"
                   />
                 </div>
                 <Image
-                  imgHeight={'full'}
-                  imgWidth={'full'}
+                  imgHeight="full"
+                  imgWidth="full"
                   src={src}
                   className="inline-block aspect-[2/1] min-h-[150px]"
                 />
@@ -68,13 +63,13 @@ const EditAccountImages = ({
               <>
                 <div className="group absolute h-full w-full cursor-pointer bg-black opacity-20 transition hover:opacity-50 hover:duration-500 hover:ease-in-out">
                   <Icon
-                    id={'add-circle'}
+                    id="add-circle"
                     className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 fill-white drop-shadow-md"
                   />
                 </div>
                 <Image
-                  imgHeight={'full'}
-                  imgWidth={'full'}
+                  imgHeight="full"
+                  imgWidth="full"
                   src={coverImage}
                   className="inline-block aspect-[2/1] min-h-[150px] "
                 />
@@ -102,7 +97,7 @@ const EditAccountImages = ({
               <Avatar src={src || image} size="small" />
               <div className="group absolute top-0 box-border h-full w-full -translate-y-[0.2rem] cursor-pointer rounded-full bg-black opacity-20 ring-1 ring-black ring-offset-2 transition hover:opacity-50 hover:duration-500 hover:ease-in-out">
                 <Icon
-                  id={'add-circle'}
+                  id="add-circle"
                   className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 fill-white drop-shadow-md"
                 />
               </div>

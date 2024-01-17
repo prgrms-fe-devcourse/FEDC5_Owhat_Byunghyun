@@ -5,8 +5,8 @@ import { Follow } from '~/api/types/userTypes';
 import Button from '~/common/components/Button';
 import Text from '~/common/components/Text';
 import Toast from '~/common/components/Toast';
-import { useFollow } from '~/common/hooks/mutations/useFollow';
-import { useUnfollow } from '~/common/hooks/mutations/useUnfollow';
+import { useCreateFollow } from '~/common/hooks/mutations/useCreateFollow';
+import { useDeletefollow } from '~/common/hooks/mutations/useDeletefollow';
 import { cn } from '~/utils/cn';
 
 import { followButtonVariants } from './FollowButton.variants';
@@ -37,8 +37,8 @@ const FollowButton = ({
     ({ follower }) => follower === authUserId,
   );
 
-  const follow = useFollow();
-  const unfollow = useUnfollow();
+  const follow = useCreateFollow();
+  const unfollow = useDeletefollow();
 
   const handleFollowButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>,

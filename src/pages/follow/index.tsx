@@ -45,7 +45,7 @@ const FollowPage = () => {
     <section className="flex flex-col overflow-hidden">
       <Group
         spacing={0}
-        direction={'columns'}
+        direction="columns"
         grow
         className="scroll-none mt-small flex h-full w-full flex-col overflow-y-auto pb"
       >

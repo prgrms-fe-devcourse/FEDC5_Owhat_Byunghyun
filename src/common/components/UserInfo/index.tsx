@@ -34,7 +34,7 @@ const UserInfo = ({
   const { _id: authUserId } = authUser;
 
   return (
-    <Group spacing={betweenGap} align={'center'}>
+    <Group spacing={betweenGap} align="center">
       <Link
         to={authUserId === author._id ? '/account' : `/account/${author._id}`}
         className="flex items-center"
@@ -45,7 +45,7 @@ const UserInfo = ({
           className={cn('h-9 w-9', avartarClassName)}
         />
       </Link>
-      <Group spacing={0} direction={'columns'}>
+      <Group spacing={0} direction="columns">
         <Link
           to={authUserId === author._id ? '/account' : `/account/${author._id}`}
         >

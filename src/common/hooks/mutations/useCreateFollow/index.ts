@@ -6,7 +6,7 @@ import { QUERY_KEY } from '~/constants/queryKey';
 
 import useSendNotification from '../useSendNotification';
 
-export const useFollow = () => {
+export const useCreateFollow = () => {
   const followCreate = async ({ userId }: { userId: string }) => {
     const res = await instance.post(`/follow/create`, {
       userId,

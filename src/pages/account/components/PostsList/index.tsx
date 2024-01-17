@@ -13,8 +13,8 @@ const PostsList = ({ userPosts = [] }: PostsListProps) => {
         return (
           <Group
             key={post._id}
-            spacing={'md'}
-            direction={'columns'}
+            spacing="md"
+            direction="columns"
             className="w-full"
           >
             <FeedItem feed={post} />
