@@ -11,18 +11,18 @@ import useLayout from '~/common/hooks/useLayout';
 
 import UploadButton from './components/UploadButton';
 import useChannelInfo from './hooks/useChannelInfo';
-import useUpdatePostForm from './hooks/useUpdatePostForm';
+import useCreatePostForm from './hooks/useCreatePostForm';
 
 export default function PostCreatePage() {
   const { channelId, channelName } = useChannelInfo();
 
   const {
     formState,
-    handleUploadPostTitle,
-    handleUploadPostImage,
-    handleUploadPostContent,
+    handleCreatePostTitle,
+    handleCreatePostImage,
+    handleCreatePostContent,
     handleSubmit,
-  } = useUpdatePostForm(channelId);
+  } = useCreatePostForm(channelId);
 
   const { changeMeta } = useLayout();
 
@@ -41,13 +41,13 @@ export default function PostCreatePage() {
           hasBorder={false}
           placeholder="제목을 입력해주세요!"
           className="w-full text-xl placeholder:text-xl"
-          onChange={handleUploadPostTitle}
+          onChange={handleCreatePostTitle}
           value={formState.title}
         />
         <Upload
           onChange={file => {
             if (!file) return;
-            handleUploadPostImage(file, 'postImage');
+            handleCreatePostImage(file, 'postImage');
           }}
         >
           {(src, file) => (
@@ -78,7 +78,7 @@ export default function PostCreatePage() {
           size="lg"
           placeholder="나누고 싶은 이야기를 공유해보세요!"
           className="scroll-none overflow-y-auto overscroll-auto px-small pt-5"
-          onChange={handleUploadPostContent}
+          onChange={handleCreatePostContent}
           value={formState.content}
         />
       </form>

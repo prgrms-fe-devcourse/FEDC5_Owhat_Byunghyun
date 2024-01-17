@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 
-import useUploadPost from '~/common/hooks/mutations/useUploadPostImage';
+import useCreatePost from '~/common/hooks/mutations/useCreatePost';
 
-const useUpdatePostForm = (channelId: string) => {
+const useCreatePostForm = (channelId: string) => {
   const [formState, setFormState] = useState({
     title: '',
     content: '',
@@ -10,32 +10,32 @@ const useUpdatePostForm = (channelId: string) => {
     channelId,
   });
 
-  const handleUploadPostTitle = useCallback(
+  const handleCreatePostTitle = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setFormState(prev => ({ ...prev, title: event.target.value }));
     },
     [setFormState],
   );
 
-  const handleUploadPostImage = (file: File, name: string) => {
+  const handleCreatePostImage = (file: File, name: string) => {
     setFormState(prev => ({ ...prev, [name]: file }));
   };
 
-  const handleUploadPostContent = useCallback(
+  const handleCreatePostContent = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       setFormState(prev => ({ ...prev, content: event.target.value }));
     },
     [setFormState],
   );
 
-  const uploadPost = useUploadPost();
+  const createPost = useCreatePost();
 
-  const handleUploadPost = () => {
+  const handleCreatePost = () => {
     const title = JSON.stringify({
       title: formState.title,
       content: formState.content,
     });
-    uploadPost.mutate({
+    createPost.mutate({
       title,
       file: formState.postImage,
       channelId: formState.channelId,
@@ -44,16 +44,16 @@ const useUpdatePostForm = (channelId: string) => {
 
   const handleSubmit = (event: React.MouseEvent) => {
     event.preventDefault();
-    handleUploadPost();
+    handleCreatePost();
   };
 
   return {
     formState,
-    handleUploadPostTitle,
-    handleUploadPostImage,
-    handleUploadPostContent,
+    handleCreatePostTitle,
+    handleCreatePostImage,
+    handleCreatePostContent,
     handleSubmit,
   };
 };
 
-export default useUpdatePostForm;
+export default useCreatePostForm;

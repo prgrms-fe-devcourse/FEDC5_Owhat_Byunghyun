@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { postPostCreate } from '~/api/post';
 import { QUERY_KEY } from '~/constants/queryKey';
 
-const useUploadPost = () => {
+const useCreatePost = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -30,4 +30,4 @@ const useUploadPost = () => {
   return mutation;
 };
 
-export default useUploadPost;
+export default useCreatePost;
