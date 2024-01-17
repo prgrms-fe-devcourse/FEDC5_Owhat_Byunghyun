@@ -2,6 +2,8 @@ import './style.css';
 
 import { useEffect, useRef, useState } from 'react';
 
+import PostCreateButton from '~/pages/home/components/PostCreateButton';
+
 import Button from '../Button';
 import Icon from '../Icon';
 import ThemeButton from '../ThemeButton';
@@ -34,12 +36,9 @@ const AcordionButton = () => {
           <ThemeButton className="p-1" />
         </li>
         <li>
-          <Button
-            className="rounded-full bg-transparent  p-1 dark:bg-transparent"
-            styleType="secondary"
-          >
-            <Icon id="edit" />
-          </Button>
+          <div className="rounded-full dark:bg-transparent">
+            <PostCreateButton />
+          </div>
         </li>
         <li>
           <Button

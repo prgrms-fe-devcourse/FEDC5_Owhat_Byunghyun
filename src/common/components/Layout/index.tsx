@@ -1,12 +1,16 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { createContext, ReactNode, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import useAuthUser from '~/common/hooks/queries/useAuthUser';
 import useNotificationList from '~/common/hooks/queries/useNotificationList';
+import { QUERY_KEY } from '~/constants/queryKey';
 
 import AcordionButton from '../AcordionButton';
 import Header, { type HeaderProps } from '../Header';
 import Loading from '../Loading';
 import NavigationBar from '../NavigationBar';
+import ThemeButton from '../ThemeButton';
 
 interface ILayoutContext extends HeaderProps {
   changeMeta: ({ title, left, right }: HeaderProps) => void;
@@ -23,9 +27,21 @@ export const LayoutContext = createContext<ILayoutContext>(
 
 const LayoutProvider = ({ children }: LayoutProviderProps) => {
   const [hasNavigator, setHasNavigator] = useState(true);
+  const location = useLocation();
+  const isRootPath = location.pathname === '/';
+
+  const queryClient = useQueryClient();
   //TODO: 추후 useQUERY를 줄이는 방법으로 리팩토링
   const { user, isLoading: userLoading } = useAuthUser();
-  const { notificationList, isLoading: notiLoading } = useNotificationList();
+  const {
+    notificationList,
+    isLoading: notiLoading,
+    isError,
+  } = useNotificationList();
+
+  if (isError) {
+    queryClient.setQueryData([QUERY_KEY.NOTIFICATION_LIST], null);
+  }
   const [template, setTemplate] = useState<HeaderProps>({
     title: '',
     left: null,
@@ -59,19 +75,23 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
         <Header {...template} />
         {children}
         {hasNavigator && (
-          <>
-            <div className="fixed bottom-[100px] right-[40px] z-10 -translate-x-1/2">
-              <AcordionButton />
-            </div>
-            <NavigationBar
-              isLogin={!!user}
-              myProfile={user?.image}
-              isAlarm={
-                notificationList?.some(notification => !notification.seen) ||
-                false
-              }
-            />
-          </>
+          <NavigationBar
+            isLogin={!!user}
+            myProfile={user?.image}
+            isAlarm={
+              notificationList?.some(notification => !notification.seen) ||
+              false
+            }
+          />
+        )}
+        {isRootPath ? (
+          <div className="fixed bottom-[100px] right-[40px] z-10 -translate-x-1/2">
+            <AcordionButton />
+          </div>
+        ) : (
+          <div className="fixed bottom-[65px] right-[6px] z-10 ">
+            <ThemeButton className="p-1" />
+          </div>
         )}
       </main>
     </LayoutContext.Provider>
@@ -79,3 +99,5 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
 };
 
 export default LayoutProvider;
+
+//홈 플러스 버튼

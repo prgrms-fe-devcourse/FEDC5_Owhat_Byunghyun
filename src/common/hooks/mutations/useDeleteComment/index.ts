@@ -8,9 +8,9 @@ const useDeleteComment = () => {
 
   const mutationDeleteComment = useMutation({
     mutationFn: (commentId: string) => deleteComment(commentId),
-    onSettled: data => {
+    onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY.POST_LIST, data.post],
+        queryKey: [QUERY_KEY.POST_LIST],
       });
     },
   });

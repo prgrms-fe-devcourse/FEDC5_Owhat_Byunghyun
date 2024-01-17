@@ -43,7 +43,7 @@ const ThemeButton = ({ className }: ThemeButton) => {
   return (
     <Button
       className={cn(
-        'z-10 rounded-full bg-transparent dark:bg-transparent',
+        'z-10 rounded-full shadow-md dark:bg-transparent',
         className,
       )}
       styleType="secondary"

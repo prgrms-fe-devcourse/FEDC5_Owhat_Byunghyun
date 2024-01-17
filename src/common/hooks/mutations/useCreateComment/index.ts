@@ -29,9 +29,9 @@ const useCreateComment = ({
         });
       }
     },
-    onSettled: data => {
+    onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY.POST_LIST, data.post],
+        queryKey: [QUERY_KEY.POST_LIST],
       });
     },
   });
