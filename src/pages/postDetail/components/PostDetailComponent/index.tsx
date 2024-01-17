@@ -76,6 +76,7 @@ const PostDetailComponent = ({
           likes={postDetailData.likes as string[]}
           image={postDetailData.image as string}
           imgAspect={false}
+          textOverflow={false}
           handleLike={() => {
             likeMutation.mutate(
               likeInfo ? (likeInfo as Like)._id : postDetailData._id,
