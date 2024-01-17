@@ -39,16 +39,14 @@ const OnlineUsers = ({ onlineUsers, isLoading }: OnlineUsersProps) => {
                 className="h-full max-h-14 w-full max-w-14 [&>img]:h-14 [&>img]:w-14 "
               />
             </Badge>
-            <span className="line-clamp-1 text-ellipsis text-center">
+            <span className="line-clamp-1 text-ellipsis break-all text-center">
               {user.fullName}
             </span>
           </Link>
         </li>
       ))}
       {onlineUsers.length >= 5 && (
-        <Link to="/users" className="flex items-center">
-          <div className="pointer-events-none flex items-center">•••</div>
-        </Link>
+        <div className="pointer-events-none flex items-center">•••</div>
       )}
     </ul>
   );

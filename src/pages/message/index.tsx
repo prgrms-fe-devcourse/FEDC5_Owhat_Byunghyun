@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import useAuthUser from '~/common/hooks/queries/useAuthUser';
 import useMessageList from '~/common/hooks/queries/useMessageList';
@@ -26,6 +27,9 @@ export default function MessagePage() {
   return (
     <section className="flex flex-col">
       <OnlineUsers {...onlineUsers} />
+      <Link to="/more-users" className="text-small text-right">
+        더 보기
+      </Link>
 
       <h2 className="mt-4 text-xl font-bold">메시지</h2>
       <MessageList {...messageList} user={user} />
