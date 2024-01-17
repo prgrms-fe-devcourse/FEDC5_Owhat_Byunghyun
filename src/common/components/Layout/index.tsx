@@ -98,5 +98,3 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
 };
 
 export default LayoutProvider;
-
-//홈 플러스 버튼
