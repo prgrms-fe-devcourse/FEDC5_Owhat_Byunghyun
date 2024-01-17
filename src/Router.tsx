@@ -34,8 +34,28 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
+      <Route path="/posts/:postId" element={<PostDetailPage />} />
+      <Route path="/search" element={<SearchPage />} />
+      <Route
+        path="/follow"
+        element={
+          <Suspense fallback={<FollowSkeleton />}>
+            <FollowPage />
+          </Suspense>
+        }
+      />
+       <Route
+        path="/account/:userId"
+        element={
+          <Suspense fallback={<AccountSkeleton />}>
+            <AccountPage />
+          </Suspense>
+        }
+      />
+      <Route path="/message" element={<MessagePage />} />
+
       <Route element={<PrivateRouter />}>
-        <Route
+       <Route
           path="/account"
           element={
             <Suspense fallback={<AccountSkeleton />}>
@@ -52,29 +72,10 @@ const router = createBrowserRouter(
             </Suspense>
           }
         />
+        <Route path="/message/:userId" element={<MessageSendPage />} />
+        <Route path="/notification" element={<NotificationPage />} />
       </Route>
-      <Route
-        path="/account/:userId"
-        element={
-          <Suspense fallback={<AccountSkeleton />}>
-            <AccountPage />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/follow"
-        element={
-          <Suspense fallback={<FollowSkeleton />}>
-            <FollowPage />
-          </Suspense>
-        }
-      />
 
-      <Route path="/message" element={<MessagePage />} />
-      <Route path="/message/:userId" element={<MessageSendPage />} />
-      <Route path="/search" element={<SearchPage />} />
-      <Route path="/notification" element={<NotificationPage />} />
-      <Route path="/posts/:postId" element={<PostDetailPage />} />
       <Route element={<PublicRouter />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
