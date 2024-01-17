@@ -3,6 +3,7 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 import useAuthUser from '~/common/hooks/queries/useAuthUser';
 import useNotificationList from '~/common/hooks/queries/useNotificationList';
 
+import AcordionButton from '../AcordionButton';
 import Header, { type HeaderProps } from '../Header';
 import Loading from '../Loading';
 import NavigationBar from '../NavigationBar';
@@ -58,14 +59,19 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
         <Header {...template} />
         {children}
         {hasNavigator && (
-          <NavigationBar
-            isLogin={!!user}
-            myProfile={user?.image}
-            isAlarm={
-              notificationList?.some(notification => !notification.seen) ||
-              false
-            }
-          />
+          <>
+            <div className="fixed bottom-[100px] right-[40px] z-10 -translate-x-1/2">
+              <AcordionButton />
+            </div>
+            <NavigationBar
+              isLogin={!!user}
+              myProfile={user?.image}
+              isAlarm={
+                notificationList?.some(notification => !notification.seen) ||
+                false
+              }
+            />
+          </>
         )}
       </main>
     </LayoutContext.Provider>

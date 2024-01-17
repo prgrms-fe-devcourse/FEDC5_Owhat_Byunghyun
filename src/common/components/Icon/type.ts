@@ -19,4 +19,7 @@ export type IconName =
   | 'chevron-right'
   | 'chevron-left'
   | 'visibility'
-  | 'visibility-off';
+  | 'visibility-off'
+  | 'light-mode'
+  | 'dark-mode'
+  | 'add';
