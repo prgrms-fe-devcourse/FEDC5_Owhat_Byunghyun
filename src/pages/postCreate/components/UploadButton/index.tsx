@@ -1,6 +1,8 @@
-type SubmitButtonProps = (event: React.MouseEvent) => void;
+interface SubmitButtonProps {
+  onSubmit: (event: React.MouseEvent) => void;
+}
 
-const UploadButton = ({ onSubmit }: { onSubmit: SubmitButtonProps }) => {
+const UploadButton = ({ onSubmit }: SubmitButtonProps) => {
   return (
     <button
       onClick={event => onSubmit(event)}
