@@ -31,7 +31,16 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
+      <Route path="/posts/:postId" element={<PostDetailPage />} />
       <Route path="/search" element={<SearchPage />} />
+      <Route
+        path="/follow"
+        element={
+          <Suspense fallback={<div>로딩중...</div>}>
+            <FollowPage />
+          </Suspense>
+        }
+      />
 
       <Route element={<PrivateRouter />}>
         <Route
@@ -39,14 +48,6 @@ const router = createBrowserRouter(
           element={
             <Suspense fallback={<div>로딩중...</div>}>
               <AccountPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/follow"
-          element={
-            <Suspense fallback={<div>로딩중...</div>}>
-              <FollowPage />
             </Suspense>
           }
         />
@@ -62,7 +63,6 @@ const router = createBrowserRouter(
         <Route path="/message" element={<MessagePage />} />
         <Route path="/message/:userId" element={<MessageSendPage />} />
         <Route path="/notification" element={<NotificationPage />} />
-        <Route path="/posts/:postId" element={<PostDetailPage />} />
       </Route>
 
       <Route element={<PublicRouter />}>
