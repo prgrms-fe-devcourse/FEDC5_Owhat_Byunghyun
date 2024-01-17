@@ -9,12 +9,14 @@ interface AccountExtraInfoProps {
   posts: Post[];
   followers: Follow[];
   following: Follow[];
+  username?: string;
 }
 
 const AccountExtraInfo = ({
   posts = [],
   followers = [],
   following = [],
+  username = '',
 }: AccountExtraInfoProps) => {
   const navigate = useNavigate();
 
@@ -35,10 +37,8 @@ const AccountExtraInfo = ({
             state: {
               followers,
               following,
-              initialState: {
-                initialFollowData: followers,
-                initialIsFollowing: false,
-              },
+              username,
+              initialIsFollowing: false,
             },
           });
         }}
@@ -58,10 +58,9 @@ const AccountExtraInfo = ({
             state: {
               followers,
               following,
-              initialState: {
-                initialIsFollowing: true,
-                initialFollowData: following,
-              },
+              username,
+
+              initialIsFollowing: true,
             },
           });
         }}

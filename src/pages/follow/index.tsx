@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Follow } from '~/api/types/userTypes';
@@ -13,10 +13,8 @@ import FollowingList from './components/FollowingList';
 interface FollowLocationState {
   followers: Follow[];
   following: Follow[];
-  initialState: {
-    initialFollowData: Follow[];
-    initialIsFollowing: boolean;
-  };
+  username: string;
+  initialIsFollowing: boolean;
 }
 
 const FollowPage = () => {
@@ -25,21 +23,18 @@ const FollowPage = () => {
   const {
     followers,
     following,
-    initialState: { initialFollowData, initialIsFollowing },
+    username,
+    initialIsFollowing,
   }: FollowLocationState = location.state;
 
-  const [followData, setFollowData] = useState<Follow[]>(initialFollowData);
-
   useEffect(() => {
-    changeBottomNavigator(true);
+    changeBottomNavigator(false);
     changeMeta({
-      title: initialIsFollowing ? '팔로잉' : '팔로워',
+      title: `${username}`,
       left: <ArrowBackButton />,
       right: <></>,
     });
-
-    initialIsFollowing ? setFollowData(following) : setFollowData(followers);
-  }, [followers, following]);
+  }, []);
 
   return (
     <section className="flex flex-col overflow-hidden">
@@ -49,15 +44,12 @@ const FollowPage = () => {
         grow
         className="scroll-none mt-small flex h-full w-full flex-col overflow-y-auto pb"
       >
-        <Tab
-          activeLabel={initialIsFollowing ? '팔로잉' : '팔로워'}
-          className="mb"
-        >
+        <Tab activeLabel={initialIsFollowing ? '팔로잉' : '팔로워'}>
           <Tab.Item title="팔로워" subText={followers.length} label="팔로워">
-            <FollowersList followers={followData} />
+            <FollowersList followers={followers} />
           </Tab.Item>
           <Tab.Item title="팔로잉" subText={following.length} label="팔로잉">
-            <FollowingList following={followData} />
+            <FollowingList following={following} />
           </Tab.Item>
         </Tab>
       </Group>

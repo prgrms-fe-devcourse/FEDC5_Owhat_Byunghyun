@@ -25,7 +25,7 @@ const FollowingList = ({ following }: FollowListProps) => {
   }, [allUsers, following]);
 
   return (
-    <ul className="flex flex-col gap px-small">
+    <ul className="flex flex-col gap-large px-small">
       {followList.length === 0 && (
         <Text className="mt-large text-center text-gray-400">
           팔로우하고 있는 유저가 없습니다.
