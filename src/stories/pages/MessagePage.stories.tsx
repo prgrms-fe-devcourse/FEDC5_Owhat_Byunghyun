@@ -193,7 +193,11 @@ export const DefaultOnlineUsers: Story = {
     return (
       <>
         <OnlineUsers onlineUsers={users} isLoading={timer} />
-        <MessageList messageList={messageList} isLoading={timer} />
+        <MessageList
+          messageList={messageList}
+          user={undefined}
+          isLoading={timer}
+        />
       </>
     );
   },

@@ -12,12 +12,13 @@ import HomePage from './pages/home';
 import FeedSkeleton from './pages/home/components/FeedItem/Skeleton';
 import LoginPage from './pages/login';
 import MessagePage from './pages/message';
+import MessageSendPage from './pages/messageSend';
 import NotificationPage from './pages/notification';
 import PostDetailPage from './pages/postDetail';
 import RegisterPage from './pages/register';
 import SearchPage from './pages/search';
 import UpdatePasswordPage from './pages/updatePassword';
-import { AuthUserRouter, LayoutWrapper } from './routes';
+import { LayoutWrapper, PublicRouter } from './routes';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -64,11 +65,11 @@ const router = createBrowserRouter(
         }
       />
       <Route path="/message" element={<MessagePage />} />
+      <Route path="/message/:userId" element={<MessageSendPage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/notification" element={<NotificationPage />} />
-
       <Route path="/posts/:postId" element={<PostDetailPage />} />
-      <Route element={<AuthUserRouter />}>
+      <Route element={<PublicRouter />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>
