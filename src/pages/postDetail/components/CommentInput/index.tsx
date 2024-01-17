@@ -17,10 +17,10 @@ const CommentInput = ({
   isLogin,
 }: CommentInputProps) => {
   return (
-    <section className="fixed bottom-0 left-0 min-w-layout">
+    <section className="fixed bottom-0 w-full max-w-layout -translate-x">
       <form
         onSubmit={handleSubmitComment}
-        className="flex w-full items-center rounded rounded-b-none border border-primary bg-primary-lighter p-2 "
+        className="flex h-14 items-center justify-between rounded rounded-b-none border-2 border-primary-lighter bg-primary-lighter p-2 "
       >
         <div className="flex">
           <Avatar size="auto" src={user?.image} className="h-8 w-8" />
@@ -29,13 +29,13 @@ const CommentInput = ({
         <Input
           name="comment"
           placeholder={isLogin ? '댓글 추가...' : '로그인후 이용 가능합니다.'}
-          className="mx-3 grow"
+          className="mx-3 w-full"
           disabled={!isLogin}
         />
         <Button
           loading={loading}
           styleType="primary"
-          className="p-xsmall text-sm"
+          className="w-[50px] p-xsmall text-sm"
           disabled={!isLogin}
         >
           등록
