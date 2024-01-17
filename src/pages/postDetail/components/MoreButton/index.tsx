@@ -27,26 +27,22 @@ const MoreButton = ({
       className="pointer-events-auto"
     >
       {type === 'post' && (
-        <div className="flex w-[35px] flex-col">
-          <Button
-            onClick={() => handleEdit && handleEdit()}
-            styleType="secondary"
-            className="z-10 p-1 text-xs"
-          >
-            수정
-          </Button>
-        </div>
-      )}
-
-      <div className="flex w-[35px] flex-col">
         <Button
           onClick={() => handleEdit && handleEdit(id)}
           styleType="secondary"
-          className="z-10 p-1  text-xs text-error hover:bg-error"
+          className="z-10 p-[3px] text-xs"
         >
-          삭제
+          수정
         </Button>
-      </div>
+      )}
+
+      <Button
+        onClick={() => handleDelete(id)}
+        styleType="secondary"
+        className="z-10 p-[3px] text-xs text-error hover:bg-error"
+      >
+        삭제
+      </Button>
     </Tooltip>
   );
 };
