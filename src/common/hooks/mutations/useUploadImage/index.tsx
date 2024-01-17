@@ -10,6 +10,7 @@ export const useUploadImage = () => {
     mutationFn: postUploadImage,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.USER] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.POST_LIST] });
     },
     onError: error => {
       if (error instanceof Error) console.warn(error.message);
