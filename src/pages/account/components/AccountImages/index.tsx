@@ -29,7 +29,7 @@ const AccountImages = ({ coverImage, image }: AccountImagesProps) => {
         )}
       </div>
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-1/4">
-        <Avatar src={image} size="small" />
+        <Avatar src={image} size="full" className="h-20 w-20" />
       </div>
     </Group>
   );
