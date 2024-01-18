@@ -34,13 +34,12 @@ const CommentListItem = ({
 
   return (
     <Group direction="rows" spacing={14} align="center" className="w-full">
-      <div className="w-8">
-        {typeof author !== 'string' && (
-          <Link to={`/account/${id}`} className="flex items-center">
-            <Avatar size="auto" src={author.image} />
-          </Link>
-        )}
-      </div>
+      {typeof author !== 'string' && (
+        <Link to={`/account/${author._id}`} className="flex items-center">
+          <Avatar src={author.image} size="auto" className="h-8 w-8" />
+        </Link>
+      )}
+
       <Group direction="columns" spacing={0} className="flex-1">
         <Group direction="rows" spacing="sm" align="center">
           <Text size="xsmall" strong elementType="span">

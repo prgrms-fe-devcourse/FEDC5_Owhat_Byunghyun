@@ -85,7 +85,7 @@ const PostDetailComponent = ({
         />
         <Divider />
         <Text size="large">댓글</Text>
-        <Group direction="columns" spacing="md" className="pb">
+        <Group direction="columns" spacing="md" className="pb-24">
           {comments.map(comment => (
             <CommentListItem
               key={comment._id}
