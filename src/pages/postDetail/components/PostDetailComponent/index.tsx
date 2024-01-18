@@ -53,6 +53,7 @@ const PostDetailComponent = ({
         <div className="flex justify-between">
           <PostDetailUserInfo
             _id={postDetailData.author._id}
+            loginId={user?._id}
             fullName={postDetailData.author.fullName}
             profileImage={postDetailData.author?.image}
             channelName={postDetailData.channel.name}
@@ -85,11 +86,12 @@ const PostDetailComponent = ({
         />
         <Divider />
         <Text size="large">댓글</Text>
-        <Group direction="columns" spacing="md" className="pb">
+        <Group direction="columns" spacing="md" className="pb-24">
           {comments.map(comment => (
             <CommentListItem
               key={comment._id}
               id={comment._id}
+              loginId={user?._id}
               author={comment.author}
               createdAt={comment.createdAt}
               comment={comment.comment}

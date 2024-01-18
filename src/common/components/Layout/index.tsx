@@ -84,11 +84,11 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
           />
         )}
         {isRootPath ? (
-          <div className="fixed bottom-[100px] right-[40px] z-10 -translate-x-1/2">
+          <div className="fixed bottom-[130px] right-[60px] z-10 -translate-x-1/2">
             <AcordionButton />
           </div>
         ) : (
-          <div className="fixed bottom-[65px] right-[6px] z-10 ">
+          <div className="fixed bottom-[95px] right-[26px] z-10 ">
             <ThemeButton className="p-1" />
           </div>
         )}

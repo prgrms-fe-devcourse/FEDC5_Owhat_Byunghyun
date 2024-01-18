@@ -18,7 +18,7 @@ export interface AvatarProps
 
 const Avatar = ({
   src = DEFAULT_IMAGE,
-  size = 'small',
+  size = 'full',
   shape = 'circle',
   alt = '아바타 이미지',
   placeholder = 'https://via.placeholder.com/200',

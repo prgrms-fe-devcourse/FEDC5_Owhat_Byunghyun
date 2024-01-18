@@ -23,7 +23,7 @@ const CommentInput = ({
         className="flex h-14 items-center justify-between rounded rounded-b-none border-2 border-primary-lighter bg-primary-lighter p-2 "
       >
         <div className="flex">
-          <Avatar size="auto" src={user?.image} className="h-8 w-8" />
+          <Avatar size="full" src={user?.image} className="h-8 w-8" />
         </div>
 
         <Input
