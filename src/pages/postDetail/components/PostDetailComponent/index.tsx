@@ -53,6 +53,7 @@ const PostDetailComponent = ({
         <div className="flex justify-between">
           <PostDetailUserInfo
             _id={postDetailData.author._id}
+            loginId={user?._id}
             fullName={postDetailData.author.fullName}
             profileImage={postDetailData.author?.image}
             channelName={postDetailData.channel.name}
@@ -90,6 +91,7 @@ const PostDetailComponent = ({
             <CommentListItem
               key={comment._id}
               id={comment._id}
+              loginId={user?._id}
               author={comment.author}
               createdAt={comment.createdAt}
               comment={comment.comment}

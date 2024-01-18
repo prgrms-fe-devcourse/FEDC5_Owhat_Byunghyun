@@ -14,12 +14,14 @@ interface CommentListItemProps {
   author: User | string;
   createdAt: string;
   comment: string;
+  loginId: string;
   isMyComment: boolean;
 }
 
 const CommentListItem = ({
   id,
   author,
+  loginId,
   createdAt,
   comment,
   isMyComment,
@@ -35,8 +37,11 @@ const CommentListItem = ({
   return (
     <Group direction="rows" spacing={14} align="center" className="w-full">
       {typeof author !== 'string' && (
-        <Link to={`/account/${author._id}`} className="flex items-center">
-          <Avatar src={author.image} size="auto" className="h-8 w-8" />
+        <Link
+          to={loginId === author._id ? '/account' : `/account/${author._id}`}
+          className="flex"
+        >
+          <Avatar src={author.image} size="full" className="h-8 w-8" />
         </Link>
       )}
 

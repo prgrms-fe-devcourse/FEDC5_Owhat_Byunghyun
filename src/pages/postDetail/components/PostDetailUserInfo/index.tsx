@@ -12,10 +12,12 @@ interface PostDetailUserInfoProps {
   fullName: string;
   channelName: string;
   createdAt: string;
+  loginId: string;
 }
 
 const PostDetailUserInfo = ({
   _id,
+  loginId,
   profileImage,
   fullName,
   channelName,
@@ -23,8 +25,11 @@ const PostDetailUserInfo = ({
 }: PostDetailUserInfoProps) => {
   return (
     <Group direction="rows" spacing={14}>
-      <Link to={`/account/${_id}`} className="flex items-center">
-        <Avatar src={profileImage} size="auto" className="h-9 w-9" />
+      <Link
+        to={loginId === _id ? '/account' : `/account/${_id}`}
+        className="flex items-center"
+      >
+        <Avatar src={profileImage} size="full" className="h-9 w-9" />
       </Link>
       <Group spacing={1} direction="columns">
         <Link to={`/account/${_id}`}>
