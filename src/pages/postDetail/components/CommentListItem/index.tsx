@@ -11,6 +11,7 @@ import MoreButton from '../MoreButton';
 
 interface CommentListItemProps {
   id: string;
+  authUserId: string;
   author: User | string;
   createdAt: string;
   comment: string;
@@ -19,6 +20,7 @@ interface CommentListItemProps {
 
 const CommentListItem = ({
   id,
+  authUserId,
   author,
   createdAt,
   comment,
@@ -34,13 +36,14 @@ const CommentListItem = ({
 
   return (
     <Group direction="rows" spacing={14} align="center" className="w-full">
-      <div className="w-8">
-        {typeof author !== 'string' && (
-          <Link to={`/account/${id}`} className="flex items-center">
-            <Avatar size="auto" src={author.image} />
-          </Link>
-        )}
-      </div>
+      {typeof author !== 'string' && (
+        <Link
+          to={authUserId === author._id ? `/account` : `/account/${author._id}`}
+          className="flex items-center"
+        >
+          <Avatar size="auto" src={author.image} className="h-9 w-9" />
+        </Link>
+      )}
       <Group direction="columns" spacing={0} className="flex-1">
         <Group direction="rows" spacing="sm" align="center">
           <Text size="xsmall" strong elementType="span">
