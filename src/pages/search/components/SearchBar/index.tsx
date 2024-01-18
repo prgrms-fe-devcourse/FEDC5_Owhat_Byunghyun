@@ -38,7 +38,7 @@ const SearchBar = ({ onSubmit, onChange }: SearchBarProps) => {
           name="search"
           onChange={handleInputChange}
           value={inputValue}
-          className="w-full dark:bg-transparent"
+          className="w-full dark:bg-transparent dark:text-white"
         />
         <Icon
           id="cancel"

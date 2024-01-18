@@ -47,9 +47,7 @@ const MessageSendList = ({
           <span
             className={cn(
               'inline-block w-auto rounded px-3 py-2',
-              message.sender._id === user?._id
-                ? 'bg-primary-lighter'
-                : 'bg-gray-300',
+              message.sender._id === user?._id ? 'bg-gray-500' : 'bg-primary',
             )}
           >
             {message.message}
