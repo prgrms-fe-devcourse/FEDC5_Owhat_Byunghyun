@@ -44,7 +44,6 @@ const CommentListItem = ({
           <Avatar src={author.image} size="full" className="h-8 w-8" />
         </Link>
       )}
-
       <Group direction="columns" spacing={0} className="flex-1">
         <Group direction="rows" spacing="sm" align="center">
           <Text size="xsmall" strong elementType="span">

@@ -4,12 +4,12 @@ import Divider from '~/common/components/Divider';
 import Feed from '~/common/components/Feed';
 import Group from '~/common/components/Group';
 import Text from '~/common/components/Text';
+import UserInfo from '~/common/components/UserInfo';
 import useLikeFromPost from '~/common/hooks/mutations/useLikeFromPost';
 
 import CommentInput from '../CommentInput';
 import CommentListItem from '../CommentListItem';
 import MoreButton from '../MoreButton';
-import PostDetailUserInfo from '../PostDetailUserInfo';
 
 interface PostDetailComponent {
   postDetailData: Post;
@@ -51,14 +51,7 @@ const PostDetailComponent = ({
     <>
       <Group direction="columns" spacing="sm" grow>
         <div className="flex justify-between">
-          <PostDetailUserInfo
-            _id={postDetailData.author._id}
-            loginId={user?._id}
-            fullName={postDetailData.author.fullName}
-            profileImage={postDetailData.author?.image}
-            channelName={postDetailData.channel.name}
-            createdAt={postDetailData.createdAt}
-          />
+          <UserInfo post={postDetailData} authUser={user}></UserInfo>
           {postDetailData.author._id === user?._id && (
             <div className="self-start">
               <MoreButton

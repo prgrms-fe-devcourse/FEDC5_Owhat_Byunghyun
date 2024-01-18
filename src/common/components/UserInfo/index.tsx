@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react';
 import { Link } from 'react-router-dom';
 
-import { PostResponse } from '~/api/types/postTypes';
+import { Post } from '~/api/types/postTypes';
 import { User } from '~/api/types/userTypes';
 import { cn } from '~/utils/cn';
 import { elapsedTime } from '~/utils/time';
@@ -14,7 +14,7 @@ import Text from '../Text';
 type textSize = 'xsmall' | 'small' | 'base' | 'large' | 'xlarge' | '2xlarge';
 
 interface UserInfoProps extends ComponentProps<'div'> {
-  post: PostResponse;
+  post: Post;
   authUser: User;
   authorTextSize?: textSize;
   extraInfoTextSize?: textSize;
@@ -32,6 +32,10 @@ const UserInfo = ({
 }: UserInfoProps) => {
   const { author, channel, createdAt } = post;
   const { _id: authUserId } = authUser;
+
+  if (typeof author === 'string' || typeof channel === 'string') {
+    return;
+  }
 
   return (
     <Group spacing={betweenGap} align="center">
